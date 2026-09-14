@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#557b70">
-<title>神戶・大阪・奈良・京都 5 日旅行手冊</title>
+<meta name="theme-color" content="#f5f1e9">
+<title>神戶・大阪・奈良・京都5 日旅行手冊</title>
 
 <style>
 *{box-sizing:border-box}
@@ -12,17 +12,17 @@
 :root{
   --bg:#f5f1e9;
   --card:#fffdf8;
-  --card2:#faf7f1;
   --text:#292725;
   --muted:#817b72;
   --line:#ddd6ca;
+
   --green:#557b70;
-  --green-light:#e7eee9;
   --orange:#d88a61;
-  --orange-light:#f3ded1;
   --purple:#8d7ca8;
   --blue:#6586a6;
-  --red:#b96d64;
+  --pink:#c77c8c;
+  --yellow:#c4a15b;
+
   --shadow:0 8px 25px rgba(50,40,30,.06);
 }
 
@@ -37,31 +37,16 @@ body{
     "PingFang TC",
     "Microsoft JhengHei",
     sans-serif;
-  transition:background .4s,color .4s;
-}
-
-body.night{
-  --bg:#202522;
-  --card:#292f2c;
-  --card2:#242a27;
-  --text:#f3f0e9;
-  --muted:#aaa69d;
-  --line:#454b47;
-  --green:#80a99d;
-  --green-light:#30413b;
-  --orange:#d99873;
-  --orange-light:#49382f;
-  --shadow:0 8px 25px rgba(0,0,0,.18);
 }
 
 .container{
-  width:min(920px,100%);
+  width:min(900px,100%);
   margin:auto;
-  padding:18px 15px 60px;
+  padding:18px 15px 50px;
 }
 
 header{
-  padding:20px 4px 15px;
+  padding:20px 4px 16px;
 }
 
 .eyebrow{
@@ -71,7 +56,7 @@ header{
 }
 
 h1{
-  font-size:34px;
+  font-size:32px;
   margin:8px 0;
   line-height:1.2;
 }
@@ -108,12 +93,12 @@ h1{
   color:var(--muted);
 }
 
-/* =========================
-   NOW / COUNTDOWN
-========================= */
+/* -------------------------
+   COUNTDOWN
+------------------------- */
 
 .now-card{
-  background:linear-gradient(135deg,var(--green-light),var(--card));
+  background:linear-gradient(135deg,#e7eee9,#fff9f0);
 }
 
 .next-event{
@@ -125,7 +110,6 @@ h1{
   display:flex;
   gap:8px;
   margin:16px 0 8px;
-  flex-wrap:wrap;
 }
 
 .time-box{
@@ -143,9 +127,79 @@ h1{
   font-size:11px;
 }
 
-/* =========================
+/* -------------------------
+   MAP
+------------------------- */
+
+.map-box{
+  background:#faf7f1;
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.map-box svg{
+  display:block;
+  width:100%;
+  height:300px;
+}
+
+.map-controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:12px;
+  background:#faf7f1;
+}
+
+.day-map-btn{
+  border:1px solid var(--line);
+  background:#fffdf8;
+  color:var(--text);
+  padding:7px 12px;
+  border-radius:99px;
+  cursor:pointer;
+  font-size:12px;
+}
+
+.day-map-btn.active{
+  background:var(--green);
+  color:white;
+  border-color:var(--green);
+}
+
+.route-map{
+  display:none;
+}
+
+.route-map.active{
+  display:block;
+}
+
+.route-title{
+  padding:12px 15px 0;
+  font-weight:700;
+}
+
+.legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:12px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.dot{
+  display:inline-block;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  margin-right:5px;
+}
+
+/* -------------------------
    FLIGHTS
-========================= */
+------------------------- */
 
 .flight{
   display:grid;
@@ -181,149 +235,80 @@ h1{
   margin-top:12px;
 }
 
-/* =========================
-   ROUTE MAP
-========================= */
+/* -------------------------
+   ITINERARY
+------------------------- */
 
-.route-day{
-  border:1px solid var(--line);
-  border-radius:16px;
-  margin:10px 0;
-  overflow:hidden;
-  background:var(--card2);
+.day{
+  padding:10px 0;
+  border-top:1px dashed var(--line);
 }
 
-.route-header{
-  width:100%;
-  border:0;
-  background:transparent;
-  color:var(--text);
-  padding:15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  text-align:left;
-  cursor:pointer;
-  font-family:inherit;
+.day:first-child{
+  border-top:none;
 }
 
-.route-header:hover{
-  background:rgba(127,127,127,.05);
-}
-
-.route-name{
-  font-weight:700;
-}
-
-.route-arrow{
-  color:var(--muted);
-  transition:transform .25s;
-}
-
-.route-day.open .route-arrow{
-  transform:rotate(180deg);
-}
-
-.route-content{
-  display:none;
-  padding:0 15px 15px;
-}
-
-.route-day.open .route-content{
-  display:block;
-}
-
-.map-box{
-  background:var(--card2);
+.day-details{
   border-radius:16px;
   overflow:hidden;
-  border:1px solid var(--line);
-}
-
-.map-box svg{
-  display:block;
-  width:100%;
-  height:280px;
-}
-
-.map-caption{
-  padding:12px;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.6;
-}
-
-.route-buttons{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:10px;
-}
-
-/* =========================
-   DAY ITINERARY
-========================= */
-
-.itinerary-day{
-  border:1px solid var(--line);
-  border-radius:17px;
-  margin:10px 0;
-  overflow:hidden;
-  background:var(--card);
 }
 
 .day-summary{
-  width:100%;
-  border:0;
-  background:transparent;
-  color:var(--text);
-  padding:17px;
+  list-style:none;
+  cursor:pointer;
+  padding:15px 0;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:12px;
-  text-align:left;
-  cursor:pointer;
-  font-family:inherit;
+  gap:10px;
 }
 
-.day-summary:hover{
-  background:rgba(127,127,127,.05);
+.day-summary::-webkit-details-marker{
+  display:none;
 }
 
-.day-title{
-  font-weight:750;
-  font-size:17px;
+.day-summary-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.day-subtitle{
+.day-summary h3{
+  margin:0;
+  font-size:18px;
+}
+
+.day-arrow{
+  color:var(--muted);
+  transition:.2s;
+}
+
+details[open] .day-arrow{
+  transform:rotate(90deg);
+}
+
+.tag{
+  border:1px solid var(--line);
+  border-radius:99px;
+  padding:4px 9px;
+  font-size:11px;
+  color:var(--muted);
+  white-space:nowrap;
+}
+
+.day-preview{
   color:var(--muted);
   font-size:12px;
   margin-top:4px;
 }
 
-.day-toggle{
-  color:var(--muted);
-  transition:transform .25s;
-  font-size:18px;
-}
-
-.itinerary-day.open .day-toggle{
-  transform:rotate(180deg);
-}
-
-.day-content{
-  display:none;
-  padding:0 17px 17px;
-}
-
-.itinerary-day.open .day-content{
-  display:block;
+.timeline{
+  margin-top:2px;
 }
 
 .timeline-item{
   display:grid;
-  grid-template-columns:75px 1fr;
+  grid-template-columns:82px 1fr;
   gap:12px;
   padding:13px 0;
   border-bottom:1px solid rgba(221,214,202,.55);
@@ -361,197 +346,94 @@ h1{
   margin-top:6px;
   padding:3px 8px;
   border-radius:99px;
-  background:var(--orange-light);
-  color:var(--orange);
+  background:#f3ded1;
+  color:#8b5038;
   font-size:10px;
 }
 
-.map-btn,
-.action-btn{
+.map-btn{
   display:inline-block;
   margin-top:8px;
-  padding:7px 10px;
+  padding:6px 10px;
   border-radius:10px;
-  background:var(--card2);
-  border:1px solid var(--line);
+  background:#eee9df;
   color:var(--text);
   text-decoration:none;
   font-size:11px;
-  cursor:pointer;
-  font-family:inherit;
 }
 
-.map-btn:hover,
-.action-btn:hover{
-  background:var(--green-light);
+.map-btn:hover{
+  background:#e2dbcf;
 }
 
-.day-cost{
-  margin-top:15px;
-  padding:15px;
-  border-radius:14px;
-  background:var(--card2);
-}
+/* -------------------------
+   TODO
+------------------------- */
 
-/* =========================
-   EXPENSES
-========================= */
-
-.rate-box{
-  padding:15px;
-  background:var(--green-light);
-  border-radius:15px;
+.todo-form{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
   margin-bottom:15px;
 }
 
-.form-row{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
-input,
-select{
+.input,
+.select,
+.number-input{
+  width:100%;
   border:1px solid var(--line);
-  border-radius:10px;
-  padding:10px 11px;
-  background:var(--card);
+  background:#fffdf8;
   color:var(--text);
-  font-family:inherit;
+  border-radius:12px;
+  padding:10px 11px;
   font-size:13px;
   outline:none;
 }
 
-input:focus,
-select:focus{
+.input:focus,
+.select:focus,
+.number-input:focus{
   border-color:var(--green);
 }
 
-.rate-input{
-  width:130px;
+.primary-btn,
+.secondary-btn,
+.danger-btn{
+  border:none;
+  border-radius:12px;
+  padding:10px 14px;
+  cursor:pointer;
+  font-size:13px;
+  white-space:nowrap;
 }
 
-.expense-form input{
-  flex:1;
-  min-width:100px;
-}
-
-.expense-form select{
-  min-width:90px;
-}
-
-.add-btn{
-  border:0;
-  border-radius:10px;
-  padding:10px 15px;
+.primary-btn{
   background:var(--green);
   color:white;
-  cursor:pointer;
-  font-family:inherit;
-  font-weight:650;
 }
 
-.expense-summary{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin:15px 0;
+.secondary-btn{
+  background:#eee9df;
+  color:var(--text);
 }
 
-.total-box{
-  background:var(--card2);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:14px;
+.danger-btn{
+  background:#f3ded1;
+  color:#8b5038;
 }
 
-.total-label{
-  color:var(--muted);
-  font-size:11px;
-}
-
-.total-value{
-  font-size:22px;
-  font-weight:750;
-  margin-top:5px;
-}
-
-.expense-list{
-  margin-top:15px;
-}
-
-.expense-item{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:10px;
-  padding:12px 0;
-  border-bottom:1px solid var(--line);
-}
-
-.expense-item:last-child{
-  border-bottom:none;
-}
-
-.expense-name{
-  font-weight:650;
-  font-size:13px;
-}
-
-.expense-meta{
-  color:var(--muted);
-  font-size:11px;
-  margin-top:3px;
-}
-
-.expense-amount{
-  text-align:right;
-  font-weight:700;
-  font-size:13px;
-}
-
-.delete-btn{
-  margin-top:5px;
-  border:0;
-  background:none;
-  color:var(--red);
-  font-size:11px;
-  cursor:pointer;
-}
-
-.empty{
-  text-align:center;
-  padding:18px;
-  color:var(--muted);
-  font-size:13px;
-}
-
-/* =========================
-   TODO
-========================= */
-
-.name-box{
-  background:var(--card2);
-  border-radius:15px;
-  padding:15px;
-  margin-bottom:15px;
-}
-
-.name-box label{
-  display:block;
-  color:var(--muted);
-  font-size:12px;
-  margin-bottom:7px;
-}
-
-.name-input{
-  width:100%;
+.todo-list{
+  list-style:none;
+  padding:0;
+  margin:0;
 }
 
 .todo-item{
-  display:flex;
-  align-items:flex-start;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
   gap:10px;
-  padding:12px 0;
+  padding:11px 0;
   border-bottom:1px solid var(--line);
 }
 
@@ -559,49 +441,120 @@ select:focus{
   border-bottom:none;
 }
 
-.todo-item input[type="checkbox"]{
-  width:18px;
-  height:18px;
-  margin-top:1px;
+.todo-check{
+  width:19px;
+  height:19px;
   accent-color:var(--green);
-  flex-shrink:0;
 }
 
-.todo-label{
-  font-size:13px;
-  line-height:1.5;
-  cursor:pointer;
+.todo-text{
+  font-size:14px;
 }
 
-.todo-item.done .todo-label{
+.todo-text.done{
   text-decoration:line-through;
   color:var(--muted);
 }
 
-.todo-person{
+.todo-meta{
   font-size:11px;
   color:var(--muted);
   margin-top:3px;
 }
 
-.progress{
-  height:7px;
-  border-radius:99px;
-  background:var(--line);
-  overflow:hidden;
-  margin-top:10px;
+/* -------------------------
+   EXPENSE
+------------------------- */
+
+.rate-box{
+  background:#faf7f1;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:14px;
+  margin-bottom:15px;
 }
 
-.progress-bar{
-  height:100%;
-  width:0%;
-  background:var(--green);
-  transition:width .3s;
+.rate-title{
+  font-weight:700;
+  margin-bottom:8px;
 }
 
-/* =========================
+.rate-row{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  align-items:center;
+}
+
+.expense-form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.full{
+  grid-column:1 / -1;
+}
+
+.expense-table-wrap{
+  overflow-x:auto;
+  margin-top:18px;
+}
+
+.expense-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:12px;
+  min-width:650px;
+}
+
+.expense-table th,
+.expense-table td{
+  padding:10px 8px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+}
+
+.expense-table th{
+  color:var(--muted);
+  font-weight:600;
+}
+
+.expense-delete{
+  border:none;
+  background:none;
+  color:#9b6656;
+  cursor:pointer;
+  font-size:12px;
+}
+
+.expense-summary{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:18px;
+}
+
+.summary-box{
+  background:#faf7f1;
+  border-radius:15px;
+  padding:14px;
+}
+
+.summary-label{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.summary-number{
+  font-size:20px;
+  font-weight:750;
+  margin-top:4px;
+}
+
+/* -------------------------
    TIPS
-========================= */
+------------------------- */
 
 .tip{
   padding:12px 0;
@@ -614,9 +567,9 @@ select:focus{
   border-bottom:none;
 }
 
-/* =========================
+/* -------------------------
    RESPONSIVE
-========================= */
+------------------------- */
 
 @media(max-width:600px){
 
@@ -625,7 +578,7 @@ select:focus{
   }
 
   h1{
-    font-size:29px;
+    font-size:28px;
   }
 
   .card{
@@ -642,11 +595,11 @@ select:focus{
   }
 
   .map-box svg{
-    height:230px;
+    height:240px;
   }
 
   .timeline-item{
-    grid-template-columns:62px 1fr;
+    grid-template-columns:65px 1fr;
   }
 
   .flight{
@@ -658,17 +611,28 @@ select:focus{
   }
 
   .expense-form{
-    flex-direction:column;
+    grid-template-columns:1fr;
   }
 
-  .expense-form input,
-  .expense-form select,
-  .expense-form button{
-    width:100%;
+  .full{
+    grid-column:auto;
   }
 
   .expense-summary{
     grid-template-columns:1fr;
+  }
+
+  .todo-form{
+    grid-template-columns:1fr;
+  }
+
+  .todo-item{
+    grid-template-columns:auto 1fr;
+  }
+
+  .todo-item .danger-btn{
+    grid-column:2;
+    justify-self:start;
   }
 }
 </style>
@@ -681,7 +645,7 @@ select:focus{
 <header>
   <div class="eyebrow">KOBE · OSAKA · NARA · KYOTO · 2026</div>
 
-  <h1>神戶・大阪・奈良・京都<br>5 日旅行手冊</h1>
+  <h1>神戶・大阪・奈良・京都5 日旅行手冊</h1>
 
   <div class="subtitle">
     11/20（五）— 11/24（二） · 2 人 · 台中 ⇄ 神戶
@@ -689,18 +653,18 @@ select:focus{
 </header>
 
 
-<!-- =========================
-     此刻
-========================= -->
+<!-- ======================================
+     此刻 / COUNTDOWN
+====================================== -->
 
 <section class="card now-card">
 
   <div class="section-title">
     <h2>此刻</h2>
-    <span class="small" id="currentTimezone">神戶時間 JST</span>
+    <span class="small">神戶時間 JST</span>
   </div>
 
-  <div class="next-event" id="nextEvent">
+  <div class="next-event">
     下一個已知事件：11/20 12:30 抵達神戶機場
   </div>
 
@@ -735,338 +699,281 @@ select:focus{
 </section>
 
 
-<!-- =========================
+<!-- ======================================
      旅行路線
-========================= -->
+====================================== -->
 
 <section class="card">
 
   <div class="section-title">
     <h2>旅行路線</h2>
-    <span class="small">點擊每日查看</span>
+    <span class="small">點擊不同日期查看</span>
+  </div>
+
+  <div class="map-controls">
+
+    <button class="day-map-btn active" onclick="showRoute('day1',this)">
+      Day 1 · 神戶
+    </button>
+
+    <button class="day-map-btn" onclick="showRoute('day2',this)">
+      Day 2 · 待定
+    </button>
+
+    <button class="day-map-btn" onclick="showRoute('day3',this)">
+      Day 3 · 待定
+    </button>
+
+    <button class="day-map-btn" onclick="showRoute('day4',this)">
+      Day 4 · 待定
+    </button>
+
+    <button class="day-map-btn" onclick="showRoute('day5',this)">
+      Day 5 · 返程
+    </button>
+
   </div>
 
 
-  <!-- Day 1 -->
+  <!-- DAY 1 MAP -->
 
-  <div class="route-day">
+  <div id="day1" class="route-map active">
 
-    <button class="route-header" onclick="toggleRoute(this)">
-      <div>
-        <div class="route-name">Day 1 · 11/20 神戶 → 大阪</div>
-        <div class="small">神戶機場 → 三宮 → 北野 → 南京町 → 港區 → 大阪</div>
-      </div>
+    <div class="route-title">
+      Day 1 · 神戶機場 → 三宮 → 北野 → 南京町 → 港區 → 大阪
+    </div>
 
-      <div class="route-arrow">▼</div>
-    </button>
+    <div class="map-box">
 
-    <div class="route-content">
+      <svg viewBox="0 0 760 300">
 
-      <div class="map-box">
+        <path
+          d="M70 220
+          C145 175 185 205 255 135
+          S355 85 420 120
+          S515 175 600 125
+          S675 125 705 175"
 
-        <svg viewBox="0 0 760 300">
+          fill="none"
+          stroke="#d88a61"
+          stroke-width="9"
+          stroke-linecap="round"
+        />
 
-          <path
-            d="M70 220
-               C135 170 190 205 255 135
-               S355 85 420 120
-               S515 180 590 125
-               S665 125 705 175"
-            fill="none"
-            stroke="#d88a61"
-            stroke-width="9"
-            stroke-linecap="round"
-          />
-
-          <g fill="var(--card)" stroke="var(--text)" stroke-width="3">
-
-            <circle cx="70" cy="220" r="12"/>
-            <circle cx="255" cy="135" r="12"/>
-            <circle cx="420" cy="120" r="12"/>
-            <circle cx="590" cy="125" r="12"/>
-            <circle cx="705" cy="175" r="12"/>
-
-          </g>
-
-          <g
-            font-family="sans-serif"
-            font-size="14"
-            font-weight="700"
-            fill="var(--text)"
-          >
-
-            <text x="25" y="260">神戶機場 UKB</text>
-            <text x="220" y="105">三宮</text>
-            <text x="380" y="90">北野</text>
-            <text x="545" y="95">南京町</text>
-            <text x="640" y="215">港區</text>
-
-          </g>
-
-        </svg>
-
-        <div class="map-caption">
-          ✈️ 神戶機場 → 🚃 三宮 → ⛩️ 生田神社 → 🏠 北野異人館 →
-          🥟 南京町 → 🌊 Meriken Park / Kobe Port Tower →
-          🚃 大阪難波 → 🏨 道頓堀
-        </div>
-
-      </div>
-
-      <div class="route-buttons">
-
-        <a
-          class="map-btn"
-          target="_blank"
-          href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Dotonbori+Osaka&waypoints=Sannomiya+Station+Kobe%7CIkuta+Shrine+Kobe%7CKitano+Ijinkan-gai+Kobe%7CNankinmachi+Kobe%7CMeriken+Park+Kobe"
+        <g
+          fill="#fffdf8"
+          stroke="#292725"
+          stroke-width="3"
         >
-          🧭 開啟 Day 1 全日導航
-        </a>
+          <circle cx="70" cy="220" r="12"/>
+          <circle cx="255" cy="135" r="12"/>
+          <circle cx="420" cy="120" r="12"/>
+          <circle cx="600" cy="125" r="12"/>
+          <circle cx="705" cy="175" r="12"/>
+        </g>
 
-      </div>
+        <g
+          font-family="sans-serif"
+          font-size="14"
+          font-weight="700"
+          fill="#292725"
+        >
+          <text x="25" y="260">神戶機場</text>
+          <text x="220" y="105">三宮</text>
+          <text x="385" y="90">北野</text>
+          <text x="555" y="95">南京町</text>
+          <text x="645" y="215">港區</text>
+        </g>
 
-    </div>
-
-  </div>
-
-
-  <!-- Day 2 -->
-
-  <div class="route-day">
-
-    <button class="route-header" onclick="toggleRoute(this)">
-
-      <div>
-        <div class="route-name">Day 2 · 11/21 大阪</div>
-        <div class="small">行程待定</div>
-      </div>
-
-      <div class="route-arrow">▼</div>
-
-    </button>
-
-    <div class="route-content">
-
-      <div class="map-box">
-
-        <svg viewBox="0 0 760 260">
-
-          <path
-            d="M120 180 C220 90 330 190 430 100 S600 110 670 170"
-            fill="none"
-            stroke="#557b70"
-            stroke-width="9"
-            stroke-linecap="round"
-          />
-
-          <circle cx="120" cy="180" r="12" fill="var(--card)" stroke="var(--text)" stroke-width="3"/>
-          <circle cx="430" cy="100" r="12" fill="var(--card)" stroke="var(--text)" stroke-width="3"/>
-          <circle cx="670" cy="170" r="12" fill="var(--card)" stroke="var(--text)" stroke-width="3"/>
-
-          <text x="85" y="220" fill="var(--text)" font-size="14" font-weight="700">
-            大阪
-          </text>
-
-          <text x="395" y="70" fill="var(--text)" font-size="14" font-weight="700">
-            待定
-          </text>
-
-        </svg>
-
-        <div class="map-caption">
-          Day 2 行程尚未確認。
-        </div>
-
-      </div>
+      </svg>
 
     </div>
 
   </div>
 
 
-  <!-- Day 3 -->
+  <!-- DAY 2 MAP -->
 
-  <div class="route-day">
+  <div id="day2" class="route-map">
 
-    <button class="route-header" onclick="toggleRoute(this)">
+    <div class="route-title">
+      Day 2 · 行程待定
+    </div>
 
-      <div>
-        <div class="route-name">Day 3 · 11/22 奈良</div>
-        <div class="small">行程待定</div>
-      </div>
+    <div class="map-box">
 
-      <div class="route-arrow">▼</div>
+      <svg viewBox="0 0 760 300">
 
-    </button>
+        <path
+          d="M100 180 C220 120 350 210 470 135 S620 110 690 175"
+          fill="none"
+          stroke="#557b70"
+          stroke-width="9"
+          stroke-linecap="round"
+          stroke-dasharray="12 10"
+        />
 
-    <div class="route-content">
+        <text
+          x="280"
+          y="150"
+          font-size="20"
+          fill="#817b72"
+        >
+          Day 2 待定
+        </text>
 
-      <div class="map-box">
-
-        <svg viewBox="0 0 760 260">
-
-          <path
-            d="M130 170 C240 110 340 170 450 100 S600 120 660 165"
-            fill="none"
-            stroke="#8d7ca8"
-            stroke-width="9"
-            stroke-linecap="round"
-          />
-
-          <circle cx="130" cy="170" r="12" fill="var(--card)" stroke="var(--text)" stroke-width="3"/>
-          <circle cx="450" cy="100" r="12" fill="var(--card)" stroke="var(--text)" stroke-width="3"/>
-          <circle cx="660" cy="165" r="12" fill="var(--card)" stroke="var(--text)" stroke-width="3"/>
-
-          <text x="95" y="210" fill="var(--text)" font-size="14" font-weight="700">
-            大阪
-          </text>
-
-          <text x="415" y="70" fill="var(--text)" font-size="14" font-weight="700">
-            奈良
-          </text>
-
-        </svg>
-
-        <div class="map-caption">
-          Day 3 行程尚未確認。
-        </div>
-
-      </div>
+      </svg>
 
     </div>
 
   </div>
 
 
-  <!-- Day 4 -->
+  <!-- DAY 3 MAP -->
 
-  <div class="route-day">
+  <div id="day3" class="route-map">
 
-    <button class="route-header" onclick="toggleRoute(this)">
+    <div class="route-title">
+      Day 3 · 行程待定
+    </div>
 
-      <div>
-        <div class="route-name">Day 4 · 11/23 京都</div>
-        <div class="small">行程待定</div>
-      </div>
+    <div class="map-box">
 
-      <div class="route-arrow">▼</div>
+      <svg viewBox="0 0 760 300">
 
-    </button>
+        <path
+          d="M90 190 C180 120 300 160 400 115 S570 170 690 105"
+          fill="none"
+          stroke="#8d7ca8"
+          stroke-width="9"
+          stroke-linecap="round"
+          stroke-dasharray="12 10"
+        />
 
-    <div class="route-content">
+        <text
+          x="280"
+          y="150"
+          font-size="20"
+          fill="#817b72"
+        >
+          Day 3 待定
+        </text>
 
-      <div class="map-box">
-
-        <svg viewBox="0 0 760 260">
-
-          <path
-            d="M100 175 C220 110 310 180 430 95 S590 110 680 165"
-            fill="none"
-            stroke="#6586a6"
-            stroke-width="9"
-            stroke-linecap="round"
-          />
-
-          <circle cx="100" cy="175" r="12" fill="var(--card)" stroke="var(--text)" stroke-width="3"/>
-          <circle cx="430" cy="95" r="12" fill="var(--card)" stroke="var(--text)" stroke-width="3"/>
-          <circle cx="680" cy="165" r="12" fill="var(--card)" stroke="var(--text)" stroke-width="3"/>
-
-          <text x="65" y="215" fill="var(--text)" font-size="14" font-weight="700">
-            大阪
-          </text>
-
-          <text x="395" y="65" fill="var(--text)" font-size="14" font-weight="700">
-            京都
-          </text>
-
-        </svg>
-
-        <div class="map-caption">
-          Day 4 行程尚未確認。
-        </div>
-
-      </div>
+      </svg>
 
     </div>
 
   </div>
 
 
-  <!-- Day 5 -->
+  <!-- DAY 4 MAP -->
 
-  <div class="route-day">
+  <div id="day4" class="route-map">
 
-    <button class="route-header" onclick="toggleRoute(this)">
+    <div class="route-title">
+      Day 4 · 行程待定
+    </div>
 
-      <div>
-        <div class="route-name">Day 5 · 11/24 回程</div>
-        <div class="small">大阪 → 神戶機場 → 台中</div>
-      </div>
+    <div class="map-box">
 
-      <div class="route-arrow">▼</div>
+      <svg viewBox="0 0 760 300">
 
-    </button>
+        <path
+          d="M80 180 C170 220 280 100 390 160 S560 200 690 120"
+          fill="none"
+          stroke="#6586a6"
+          stroke-width="9"
+          stroke-linecap="round"
+          stroke-dasharray="12 10"
+        />
 
-    <div class="route-content">
+        <text
+          x="280"
+          y="150"
+          font-size="20"
+          fill="#817b72"
+        >
+          Day 4 待定
+        </text>
 
-      <div class="map-box">
-
-        <svg viewBox="0 0 760 260">
-
-          <path
-            d="M110 170 C250 110 380 150 510 115 S620 140 680 175"
-            fill="none"
-            stroke="#6586a6"
-            stroke-width="9"
-            stroke-linecap="round"
-          />
-
-          <circle cx="110" cy="170" r="12" fill="var(--card)" stroke="var(--text)" stroke-width="3"/>
-          <circle cx="510" cy="115" r="12" fill="var(--card)" stroke="var(--text)" stroke-width="3"/>
-          <circle cx="680" cy="175" r="12" fill="var(--card)" stroke="var(--text)" stroke-width="3"/>
-
-          <text x="65" y="210" fill="var(--text)" font-size="14" font-weight="700">
-            大阪
-          </text>
-
-          <text x="455" y="85" fill="var(--text)" font-size="14" font-weight="700">
-            UKB
-          </text>
-
-          <text x="630" y="215" fill="var(--text)" font-size="14" font-weight="700">
-            RMQ
-          </text>
-
-        </svg>
-
-        <div class="map-caption">
-          🏨 道頓堀 → 神戶機場 UKB T2 → ✈️ 清泉崗機場 RMQ T2
-        </div>
-
-        <div class="route-buttons">
-
-          <a
-            class="map-btn"
-            target="_blank"
-            href="https://www.google.com/maps/dir/?api=1&origin=Dotonbori+Osaka&destination=Kobe+Airport"
-          >
-            🧭 道頓堀 → 神戶機場
-          </a>
-
-        </div>
-
-      </div>
+      </svg>
 
     </div>
+
+  </div>
+
+
+  <!-- DAY 5 MAP -->
+
+  <div id="day5" class="route-map">
+
+    <div class="route-title">
+      Day 5 · 大阪／神戶 → 神戶機場 → 台中
+    </div>
+
+    <div class="map-box">
+
+      <svg viewBox="0 0 760 300">
+
+        <path
+          d="M110 180 C260 130 390 150 540 175 S650 150 700 100"
+          fill="none"
+          stroke="#c77c8c"
+          stroke-width="9"
+          stroke-linecap="round"
+        />
+
+        <text
+          x="310"
+          y="145"
+          font-size="20"
+          fill="#817b72"
+        >
+          回程
+        </text>
+
+      </svg>
+
+    </div>
+
+  </div>
+
+
+  <div class="legend">
+
+    <span>
+      <i class="dot" style="background:#d88a61"></i>
+      Day 1
+    </span>
+
+    <span>
+      <i class="dot" style="background:#557b70"></i>
+      Day 2
+    </span>
+
+    <span>
+      <i class="dot" style="background:#8d7ca8"></i>
+      Day 3
+    </span>
+
+    <span>
+      <i class="dot" style="background:#6586a6"></i>
+      Day 4
+    </span>
+
+    <span>
+      <i class="dot" style="background:#c77c8c"></i>
+      Day 5
+    </span>
 
   </div>
 
 </section>
 
 
-<!-- =========================
-     已確認交通
-========================= -->
+<!-- ======================================
+     航班
+====================================== -->
 
 <section class="card">
 
@@ -1076,85 +983,85 @@ select:focus{
   </div>
 
 
-  <div class="itinerary-day open">
+  <div class="day">
 
-    <div class="day-content" style="display:block;padding:0">
+    <div class="day-header">
+      <h3>11/20（五） · 去程</h3>
+      <span class="tag">直飛</span>
+    </div>
 
-      <div class="day-header">
-        <h3>11/20（五） · 去程</h3>
-        <span class="reserve">直飛</span>
-      </div>
+    <div class="flight">
 
-      <div class="flight">
+      <div class="airport">
 
-        <div class="airport">
-          <div class="airport-code">RMQ</div>
+        <div class="airport-code">RMQ</div>
 
-          <div class="airport-name">
-            清泉崗機場 T2<br>
-            09:00 · GMT+8
-          </div>
-        </div>
-
-        <div class="flight-arrow">→</div>
-
-        <div class="airport">
-          <div class="airport-code">UKB</div>
-
-          <div class="airport-name">
-            神戶機場 T2<br>
-            12:30 · JST / GMT+9
-          </div>
+        <div class="airport-name">
+          清泉崗機場 T2<br>
+          09:00 · GMT+8
         </div>
 
       </div>
 
-      <div class="flight-info">
-        2 小時 30 分 · 星宇航空
+      <div class="flight-arrow">→</div>
+
+      <div class="airport">
+
+        <div class="airport-code">UKB</div>
+
+        <div class="airport-name">
+          神戶機場 T2<br>
+          12:30 · JST / GMT+9
+        </div>
+
       </div>
 
+    </div>
+
+    <div class="flight-info">
+      2 小時 30 分 · 星宇航空
     </div>
 
   </div>
 
 
-  <div class="itinerary-day open">
+  <div class="day">
 
-    <div class="day-content" style="display:block;padding:0">
+    <div class="day-header">
+      <h3>11/24（二） · 回程</h3>
+      <span class="tag">直飛</span>
+    </div>
 
-      <div class="day-header">
-        <h3>11/24（二） · 回程</h3>
-        <span class="reserve">直飛</span>
-      </div>
+    <div class="flight">
 
-      <div class="flight">
+      <div class="airport">
 
-        <div class="airport">
-          <div class="airport-code">UKB</div>
+        <div class="airport-code">UKB</div>
 
-          <div class="airport-name">
-            神戶機場 T2<br>
-            13:30 · JST / GMT+9
-          </div>
-        </div>
-
-        <div class="flight-arrow">→</div>
-
-        <div class="airport">
-          <div class="airport-code">RMQ</div>
-
-          <div class="airport-name">
-            清泉崗機場 T2<br>
-            16:00 · GMT+8
-          </div>
+        <div class="airport-name">
+          神戶機場 T2<br>
+          13:30 · JST / GMT+9
         </div>
 
       </div>
 
-      <div class="flight-info">
-        3 小時 30 分 · 星宇航空
+      <div class="flight-arrow">→</div>
+
+      <div class="airport">
+
+        <div class="airport-code">RMQ</div>
+
+        <div class="airport-name">
+          清泉崗機場 T2<br>
+          16:00 · GMT+8
+        </div>
+
       </div>
 
+    </div>
+
+    <div class="flight-info">
+      3 小時 30 分 · 星宇航空
     </div>
 
   </div>
@@ -1162,680 +1069,699 @@ select:focus{
 </section>
 
 
-<!-- =========================
+<!-- ======================================
      逐日行程
-========================= -->
+====================================== -->
 
 <section class="card">
 
   <div class="section-title">
-
     <h2>逐日行程</h2>
-
-    <span class="small">
-      點擊展開
-    </span>
-
+    <span class="small">點擊日期展開</span>
   </div>
 
 
   <!-- DAY 1 -->
 
-  <div class="itinerary-day open">
+  <div class="day">
 
-    <button class="day-summary" onclick="toggleDay(this)">
+    <details class="day-details">
 
-      <div>
+      <summary class="day-summary">
 
-        <div class="day-title">
-          Day 1 · 11/20（五）
+        <div class="day-summary-left">
+
+          <span class="day-arrow">▶</span>
+
+          <div>
+
+            <h3>Day 1 · 11/20（五）</h3>
+
+            <div class="day-preview">
+              神戶半日遊 → 大阪道頓堀
+            </div>
+
+          </div>
+
         </div>
 
-        <div class="day-subtitle">
-          神戶半日遊 → 大阪道頓堀
+        <span class="tag">神戶半日遊</span>
+
+      </summary>
+
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            09:00
+          </div>
+
+          <div>
+
+            <div class="place">
+              清泉崗機場 RMQ T2
+            </div>
+
+            <div class="description">
+              星宇航空 · 台中 → 神戶
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            12:30
+          </div>
+
+          <div>
+
+            <div class="place">
+              抵達神戶機場 UKB T2
+            </div>
+
+            <div class="description">
+              入境＋領取行李，預留約 30–45 分鐘。
+            </div>
+
+            <a
+              class="map-btn"
+              href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport"
+              target="_blank"
+            >
+              📍 Google Maps
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            13:15–13:30
+          </div>
+
+          <div>
+
+            <div class="place">
+              🚃 神戶機場 → 三宮
+            </div>
+
+            <div class="description">
+              Port Liner（ポートライナー）<br>
+              約 18 分鐘
+            </div>
+
+            <div class="cost">
+              ¥340
+            </div>
+
+            <a
+              class="map-btn"
+              href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Sannomiya+Station+Kobe"
+              target="_blank"
+            >
+              🧭 開啟導航
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            13:45–14:15
+          </div>
+
+          <div>
+
+            <div class="place">
+              ⛩️ 生田神社
+            </div>
+
+            <div class="description">
+              三宮 → 生田神社步行約 5 分鐘。<br>
+              參拜＋拍照。
+            </div>
+
+            <div class="cost">
+              步行 · ¥0
+            </div>
+
+            <a
+              class="map-btn"
+              href="https://www.google.com/maps/search/?api=1&query=Ikuta+Shrine+Kobe"
+              target="_blank"
+            >
+              📍 Google Maps
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            14:15–14:45
+          </div>
+
+          <div>
+
+            <div class="place">
+              🛍️ 三宮 Center Gai
+            </div>
+
+            <div class="description">
+              逛街、買伴手禮。
+            </div>
+
+            <div class="cost">
+              步行 · ¥0
+            </div>
+
+            <a
+              class="map-btn"
+              href="https://www.google.com/maps/search/?api=1&query=Sannomiya+Center+Gai+Kobe"
+              target="_blank"
+            >
+              📍 Google Maps
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            14:45–15:45
+          </div>
+
+          <div>
+
+            <div class="place">
+              🏠 北野異人館街
+            </div>
+
+            <div class="description">
+              三宮 → 北野約 15–20 分鐘。<br>
+              不想走上坡可考慮 City Loop 巴士。
+            </div>
+
+            <div class="cost">
+              步行 ¥0 · City Loop 約 ¥230
+            </div>
+
+            <a
+              class="map-btn"
+              href="https://www.google.com/maps/search/?api=1&query=Kitano+Ijinkan-gai+Kobe"
+              target="_blank"
+            >
+              📍 Google Maps
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            15:45–16:15
+          </div>
+
+          <div>
+
+            <div class="place">
+              🚶 北野 → 南京町
+            </div>
+
+            <div class="description">
+              步行下山 → 元町 → 南京町。
+            </div>
+
+            <div class="cost">
+              步行 · ¥0
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            16:15–17:00
+          </div>
+
+          <div>
+
+            <div class="place">
+              🥟 南京町
+            </div>
+
+            <div class="description">
+              吃小吃＋逛街。
+            </div>
+
+            <div class="cost">
+              步行 · ¥0
+            </div>
+
+            <a
+              class="map-btn"
+              href="https://www.google.com/maps/search/?api=1&query=Nankinmachi+Kobe"
+              target="_blank"
+            >
+              📍 Google Maps
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            17:00–18:00
+          </div>
+
+          <div>
+
+            <div class="place">
+              🌊 Meriken Park ＋ Kobe Port Tower
+            </div>
+
+            <div class="description">
+              BE KOBE · Meriken Park · Kobe Port Tower。<br>
+              如要上展望台，再另外購買門票。
+            </div>
+
+            <div class="cost">
+              戶外區域 · ¥0
+            </div>
+
+            <a
+              class="map-btn"
+              href="https://www.google.com/maps/search/?api=1&query=Meriken+Park+Kobe"
+              target="_blank"
+            >
+              📍 Meriken Park
+            </a>
+
+            <br>
+
+            <a
+              class="map-btn"
+              href="https://www.google.com/maps/search/?api=1&query=Kobe+Port+Tower"
+              target="_blank"
+            >
+              🗼 Kobe Port Tower
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            18:00–18:20
+          </div>
+
+          <div>
+
+            <div class="place">
+              🚶 Kobe Port Tower → 元町站
+            </div>
+
+            <div class="description">
+              步行約 10–15 分鐘。
+            </div>
+
+            <div class="cost">
+              步行 · ¥0
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            約 18:20
+          </div>
+
+          <div>
+
+            <div class="place">
+              🚃 JR 元町 → JR 三ノ宮
+            </div>
+
+            <div class="description">
+              JR 神戶線 · 約 3 分鐘。
+            </div>
+
+            <div class="cost">
+              約 ¥150
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            18:20–19:20
+          </div>
+
+          <div>
+
+            <div class="place">
+              🚃 三宮 → 大阪難波
+            </div>
+
+            <div class="description">
+              阪神電車：阪神本線 → 阪神なんば線。<br>
+              目標為直達大阪難波。
+            </div>
+
+            <div class="cost">
+              約 ¥420
+            </div>
+
+            <a
+              class="map-btn"
+              href="https://www.google.com/maps/dir/?api=1&origin=Kobe-Sannomiya+Station&destination=Osaka-Namba+Station"
+              target="_blank"
+            >
+              🧭 開啟導航
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            約 19:20
+          </div>
+
+          <div>
+
+            <div class="place">
+              🏨 大阪難波 → 道頓堀住宿
+            </div>
+
+            <div class="description">
+              步行約 5–10 分鐘。<br>
+              Check-in、放行李。
+            </div>
+
+            <div class="cost">
+              步行 · ¥0
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            晚上
+          </div>
+
+          <div>
+
+            <div class="place">
+              🌃 道頓堀
+            </div>
+
+            <div class="description">
+              道頓堀晚餐、戎橋、固力果跑跑人、
+              心齋橋筋商店街、道頓堀小吃。
+            </div>
+
+            <a
+              class="map-btn"
+              href="https://www.google.com/maps/search/?api=1&query=Dotonbori+Osaka"
+              target="_blank"
+            >
+              📍 Google Maps
+            </a>
+
+          </div>
+
         </div>
 
       </div>
 
-      <div class="day-toggle">▼</div>
 
-    </button>
+      <div
+        class="card"
+        style="margin:15px 0 0;padding:15px;background:#faf7f1"
+      >
 
-
-    <div class="day-content">
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          09:00
-        </div>
-
-        <div>
-
-          <div class="place">
-            清泉崗機場 RMQ T2
-          </div>
-
-          <div class="description">
-            星宇航空 · 台中 → 神戶
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          12:30
-        </div>
-
-        <div>
-
-          <div class="place">
-            ✈️ 抵達神戶機場 UKB T2
-          </div>
-
-          <div class="description">
-            入境＋領取行李，預留約 30–45 分鐘。
-          </div>
-
-          <a
-            class="map-btn"
-            target="_blank"
-            href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport"
-          >
-            📍 Google Maps
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          13:15–13:30
-        </div>
-
-        <div>
-
-          <div class="place">
-            🚃 神戶機場 → 三宮
-          </div>
-
-          <div class="description">
-            Port Liner（ポートライナー）<br>
-            約 18 分鐘
-          </div>
-
-          <div class="cost">
-            ¥340
-          </div>
-
-          <a
-            class="map-btn"
-            target="_blank"
-            href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Sannomiya+Station+Kobe"
-          >
-            🧭 開啟導航
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          13:45–14:15
-        </div>
-
-        <div>
-
-          <div class="place">
-            ⛩️ 生田神社
-          </div>
-
-          <div class="description">
-            三宮 → 生田神社步行約 5 分鐘。<br>
-            參拜＋拍照。
-          </div>
-
-          <div class="cost">
-            步行 · ¥0
-          </div>
-
-          <a
-            class="map-btn"
-            target="_blank"
-            href="https://www.google.com/maps/search/?api=1&query=Ikuta+Shrine+Kobe"
-          >
-            📍 Google Maps
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          14:15–14:45
-        </div>
-
-        <div>
-
-          <div class="place">
-            🛍️ 三宮 Center Gai
-          </div>
-
-          <div class="description">
-            逛街、買伴手禮。
-          </div>
-
-          <div class="cost">
-            步行 · ¥0
-          </div>
-
-          <a
-            class="map-btn"
-            target="_blank"
-            href="https://www.google.com/maps/search/?api=1&query=Sannomiya+Center+Gai+Kobe"
-          >
-            📍 Google Maps
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          14:45–15:45
-        </div>
-
-        <div>
-
-          <div class="place">
-            🏠 北野異人館街
-          </div>
-
-          <div class="description">
-            三宮 → 北野約 15–20 分鐘。<br>
-            不想走上坡可考慮 City Loop 巴士。
-          </div>
-
-          <div class="cost">
-            步行 ¥0 · City Loop 約 ¥230
-          </div>
-
-          <a
-            class="map-btn"
-            target="_blank"
-            href="https://www.google.com/maps/search/?api=1&query=Kitano+Ijinkan-gai+Kobe"
-          >
-            📍 Google Maps
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          15:45–16:15
-        </div>
-
-        <div>
-
-          <div class="place">
-            🚶 北野 → 南京町
-          </div>
-
-          <div class="description">
-            步行下山 → 元町 → 南京町。
-          </div>
-
-          <div class="cost">
-            步行 · ¥0
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          16:15–17:00
-        </div>
-
-        <div>
-
-          <div class="place">
-            🥟 南京町
-          </div>
-
-          <div class="description">
-            吃小吃＋逛街。
-          </div>
-
-          <div class="cost">
-            步行 · ¥0
-          </div>
-
-          <a
-            class="map-btn"
-            target="_blank"
-            href="https://www.google.com/maps/search/?api=1&query=Nankinmachi+Kobe"
-          >
-            📍 Google Maps
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          17:00–18:00
-        </div>
-
-        <div>
-
-          <div class="place">
-            🌊 Meriken Park ＋ Kobe Port Tower
-          </div>
-
-          <div class="description">
-            BE KOBE · Meriken Park · Kobe Port Tower。<br>
-            如要上展望台，再另外購買門票。
-          </div>
-
-          <div class="cost">
-            戶外區域 · ¥0
-          </div>
-
-          <a
-            class="map-btn"
-            target="_blank"
-            href="https://www.google.com/maps/search/?api=1&query=Meriken+Park+Kobe"
-          >
-            📍 Meriken Park
-          </a>
-
-          <br>
-
-          <a
-            class="map-btn"
-            target="_blank"
-            href="https://www.google.com/maps/search/?api=1&query=Kobe+Port+Tower"
-          >
-            🗼 Kobe Port Tower
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          18:00–18:20
-        </div>
-
-        <div>
-
-          <div class="place">
-            🚶 Kobe Port Tower → 元町站
-          </div>
-
-          <div class="description">
-            步行約 10–15 分鐘。
-          </div>
-
-          <div class="cost">
-            步行 · ¥0
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          約 18:20
-        </div>
-
-        <div>
-
-          <div class="place">
-            🚃 JR 元町 → JR 三ノ宮
-          </div>
-
-          <div class="description">
-            JR 神戶線 · 約 3 分鐘。
-          </div>
-
-          <div class="cost">
-            約 ¥150
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          18:20–19:20
-        </div>
-
-        <div>
-
-          <div class="place">
-            🚃 三宮 → 大阪難波
-          </div>
-
-          <div class="description">
-            阪神電車：阪神本線 → 阪神なんば線。<br>
-            目標為直達大阪難波。
-          </div>
-
-          <div class="cost">
-            約 ¥420
-          </div>
-
-          <a
-            class="map-btn"
-            target="_blank"
-            href="https://www.google.com/maps/dir/?api=1&origin=Kobe-Sannomiya+Station&destination=Osaka-Namba+Station"
-          >
-            🧭 開啟導航
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          約 19:20
-        </div>
-
-        <div>
-
-          <div class="place">
-            🏨 大阪難波 → 道頓堀住宿
-          </div>
-
-          <div class="description">
-            步行約 5–10 分鐘。<br>
-            Check-in、放行李。
-          </div>
-
-          <div class="cost">
-            步行 · ¥0
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          晚上
-        </div>
-
-        <div>
-
-          <div class="place">
-            🌃 道頓堀
-          </div>
-
-          <div class="description">
-            道頓堀晚餐、戎橋、固力果跑跑人、
-            心齋橋筋商店街、道頓堀小吃。
-          </div>
-
-          <a
-            class="map-btn"
-            target="_blank"
-            href="https://www.google.com/maps/search/?api=1&query=Dotonbori+Osaka"
-          >
-            📍 Google Maps
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="day-cost">
-
-        <strong>
-          💴 Day 1 交通費估算
-        </strong>
+        <strong>💴 Day 1 交通費估算</strong>
 
         <div class="description">
           Port Liner ¥340 ＋ JR 約 ¥150 ＋
-          阪神約 ¥420 ＝
-          <strong>約 ¥910／人</strong>
+          阪神約 ¥420 ＝ <strong>約 ¥910／人</strong>
         </div>
 
-        <div class="small" style="margin-top:7px">
+        <div
+          class="small"
+          style="margin-top:7px"
+        >
           City Loop 若使用，另計約 ¥230。
         </div>
 
       </div>
 
-    </div>
+    </details>
 
   </div>
 
 
   <!-- DAY 2 -->
 
-  <div class="itinerary-day">
+  <div class="day">
 
-    <button class="day-summary" onclick="toggleDay(this)">
+    <details class="day-details">
 
-      <div>
+      <summary class="day-summary">
 
-        <div class="day-title">
-          Day 2 · 11/21（六）
+        <div class="day-summary-left">
+
+          <span class="day-arrow">▶</span>
+
+          <div>
+
+            <h3>Day 2 · 11/21（六）</h3>
+
+            <div class="day-preview">
+              行程尚未確認
+            </div>
+
+          </div>
+
         </div>
 
-        <div class="day-subtitle">
-          大阪 · 行程待定
-        </div>
+        <span class="tag">待定</span>
 
+      </summary>
+
+      <div class="description">
+        Day 2 行程尚未確認。
       </div>
 
-      <div class="day-toggle">
-        ▼
-      </div>
-
-    </button>
-
-    <div class="day-content">
-
-      <div class="empty">
-        行程尚未確認。
-      </div>
-
-    </div>
+    </details>
 
   </div>
 
 
   <!-- DAY 3 -->
 
-  <div class="itinerary-day">
+  <div class="day">
 
-    <button class="day-summary" onclick="toggleDay(this)">
+    <details class="day-details">
 
-      <div>
+      <summary class="day-summary">
 
-        <div class="day-title">
-          Day 3 · 11/22（日）
+        <div class="day-summary-left">
+
+          <span class="day-arrow">▶</span>
+
+          <div>
+
+            <h3>Day 3 · 11/22（日）</h3>
+
+            <div class="day-preview">
+              行程尚未確認
+            </div>
+
+          </div>
+
         </div>
 
-        <div class="day-subtitle">
-          奈良 · 行程待定
-        </div>
+        <span class="tag">待定</span>
 
+      </summary>
+
+      <div class="description">
+        Day 3 行程尚未確認。
       </div>
 
-      <div class="day-toggle">
-        ▼
-      </div>
-
-    </button>
-
-    <div class="day-content">
-
-      <div class="empty">
-        行程尚未確認。
-      </div>
-
-    </div>
+    </details>
 
   </div>
 
 
   <!-- DAY 4 -->
 
-  <div class="itinerary-day">
+  <div class="day">
 
-    <button class="day-summary" onclick="toggleDay(this)">
+    <details class="day-details">
 
-      <div>
+      <summary class="day-summary">
 
-        <div class="day-title">
-          Day 4 · 11/23（一）
+        <div class="day-summary-left">
+
+          <span class="day-arrow">▶</span>
+
+          <div>
+
+            <h3>Day 4 · 11/23（一）</h3>
+
+            <div class="day-preview">
+              行程尚未確認
+            </div>
+
+          </div>
+
         </div>
 
-        <div class="day-subtitle">
-          京都 · 行程待定
-        </div>
+        <span class="tag">待定</span>
 
+      </summary>
+
+      <div class="description">
+        Day 4 行程尚未確認。
       </div>
 
-      <div class="day-toggle">
-        ▼
-      </div>
-
-    </button>
-
-    <div class="day-content">
-
-      <div class="empty">
-        行程尚未確認。
-      </div>
-
-    </div>
+    </details>
 
   </div>
 
 
   <!-- DAY 5 -->
 
-  <div class="itinerary-day">
+  <div class="day">
 
-    <button class="day-summary" onclick="toggleDay(this)">
+    <details class="day-details">
 
-      <div>
+      <summary class="day-summary">
 
-        <div class="day-title">
-          Day 5 · 11/24（二）
-        </div>
+        <div class="day-summary-left">
 
-        <div class="day-subtitle">
-          大阪 → 神戶機場 → 台中
-        </div>
+          <span class="day-arrow">▶</span>
 
-      </div>
+          <div>
 
-      <div class="day-toggle">
-        ▼
-      </div>
+            <h3>Day 5 · 11/24（二）</h3>
 
-    </button>
+            <div class="day-preview">
+              大阪／神戶 → 神戶機場 → 台中
+            </div>
 
-    <div class="day-content">
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">
-          13:30
-        </div>
-
-        <div>
-
-          <div class="place">
-            ✈️ 神戶機場 UKB T2
-          </div>
-
-          <div class="description">
-            星宇航空 · 神戶 → 台中
           </div>
 
         </div>
 
-      </div>
+        <span class="tag">返程</span>
+
+      </summary>
 
 
-      <div class="timeline-item">
+      <div class="timeline">
 
-        <div class="timeline-time">
-          16:00
-        </div>
+        <div class="timeline-item">
 
-        <div>
-
-          <div class="place">
-            抵達清泉崗機場 RMQ T2
+          <div class="timeline-time">
+            13:30
           </div>
 
-          <div class="description">
-            台灣時間 GMT+8
+          <div>
+
+            <div class="place">
+              神戶機場 UKB T2
+            </div>
+
+            <div class="description">
+              星宇航空 · 神戶 → 台中
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <div class="timeline-time">
+            16:00
+          </div>
+
+          <div>
+
+            <div class="place">
+              抵達清泉崗機場 RMQ T2
+            </div>
+
+            <div class="description">
+              台灣時間 GMT+8
+            </div>
+
           </div>
 
         </div>
 
       </div>
 
-    </div>
+    </details>
 
   </div>
 
 </section>
 
 
-<!-- =========================
+<!-- ======================================
      消費紀錄總覽
-========================= -->
+====================================== -->
 
 <section class="card">
 
@@ -1844,56 +1770,181 @@ select:focus{
     <h2>💴 消費紀錄總覽</h2>
 
     <span class="small">
-      日幣 ⇄ 台幣
+      此裝置自動保存
     </span>
 
   </div>
 
 
+  <!-- 匯率 -->
+
   <div class="rate-box">
 
-    <div style="font-weight:700">
-      匯率設定
+    <div class="rate-title">
+      💱 匯率設定
     </div>
 
-    <div class="small" style="margin:5px 0 10px">
-      目前設定為：1 JPY = ?
-      TWD
+    <div class="small" style="margin-bottom:8px">
+      請輸入這次旅行使用的估算匯率。
+      例如 1 JPY = 0.22 TWD。
     </div>
 
-    <div class="form-row">
+    <div class="rate-row">
 
-      <input
-        id="exchangeRate"
-        class="rate-input"
-        type="number"
-        step="0.000001"
-        min="0"
-        placeholder="例如 0.21"
-      >
+      <label style="font-size:13px">
+        1 JPY =
+      </label>
 
-      <button
-        class="add-btn"
-        onclick="saveRate()"
-      >
-        儲存匯率
-      </button>
+      <div style="display:flex;align-items:center;gap:6px">
+
+        <input
+          id="exchangeRate"
+          class="number-input"
+          type="number"
+          step="0.0001"
+          min="0"
+          value="0.22"
+          style="width:120px"
+          onchange="saveRate()"
+        >
+
+        <span style="font-size:13px">
+          TWD
+        </span>
+
+      </div>
 
     </div>
 
   </div>
 
 
+  <!-- 消費新增 -->
+
+  <div class="expense-form">
+
+    <input
+      id="expenseName"
+      class="input full"
+      placeholder="旅伴名字，例如 Celina"
+    >
+
+    <input
+      id="expenseItem"
+      class="input"
+      placeholder="消費項目，例如 拉麵"
+    >
+
+    <input
+      id="expenseAmount"
+      class="number-input"
+      type="number"
+      step="1"
+      min="0"
+      placeholder="金額"
+    >
+
+    <select
+      id="expenseCurrency"
+      class="select"
+    >
+
+      <option value="JPY">
+        JPY 日圓
+      </option>
+
+      <option value="TWD">
+        TWD 台幣
+      </option>
+
+    </select>
+
+    <select
+      id="expenseDay"
+      class="select"
+    >
+
+      <option value="Day 1">
+        Day 1
+      </option>
+
+      <option value="Day 2">
+        Day 2
+      </option>
+
+      <option value="Day 3">
+        Day 3
+      </option>
+
+      <option value="Day 4">
+        Day 4
+      </option>
+
+      <option value="Day 5">
+        Day 5
+      </option>
+
+    </select>
+
+    <input
+      id="expenseNote"
+      class="input"
+      placeholder="備註（可選）"
+    >
+
+    <button
+      class="primary-btn full"
+      onclick="addExpense()"
+    >
+      ＋ 新增消費
+    </button>
+
+  </div>
+
+
+  <!-- 消費表格 -->
+
+  <div class="expense-table-wrap">
+
+    <table class="expense-table">
+
+      <thead>
+
+        <tr>
+
+          <th>旅伴</th>
+          <th>Day</th>
+          <th>項目</th>
+          <th>原幣</th>
+          <th>台幣</th>
+          <th>備註</th>
+          <th></th>
+
+        </tr>
+
+      </thead>
+
+      <tbody id="expenseTableBody">
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+  <!-- 統計 -->
+
   <div class="expense-summary">
 
-    <div class="total-box">
+    <div class="summary-box">
 
-      <div class="total-label">
-        日幣總支出
+      <div class="summary-label">
+        總消費 JPY
       </div>
 
       <div
-        class="total-value"
+        class="summary-number"
         id="totalJPY"
       >
         ¥0
@@ -1902,14 +1953,14 @@ select:focus{
     </div>
 
 
-    <div class="total-box">
+    <div class="summary-box">
 
-      <div class="total-label">
-        約合台幣
+      <div class="summary-label">
+        總消費 TWD
       </div>
 
       <div
-        class="total-value"
+        class="summary-number"
         id="totalTWD"
       >
         NT$0
@@ -1921,38 +1972,57 @@ select:focus{
 
 
   <div
-    class="expense-form form-row"
+    id="personSummary"
+    style="margin-top:12px"
   >
+  </div>
+
+
+  <div
+    class="small"
+    style="margin-top:14px"
+  >
+    ⚠️ 消費資料目前儲存在「這台裝置／這個瀏覽器」。
+    兩位旅伴使用不同手機時不會自動同步。
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     待辦事項
+====================================== -->
+
+<section class="card">
+
+  <div class="section-title">
+
+    <h2>📝 待辦事項</h2>
+
+    <span class="small">
+      可由旅伴自行勾選
+    </span>
+
+  </div>
+
+
+  <div class="todo-form">
 
     <input
-      id="expenseName"
-      type="text"
-      placeholder="消費項目，例如：大阪晚餐"
+      id="todoName"
+      class="input"
+      placeholder="你的名字"
     >
 
     <input
-      id="expenseAmount"
-      type="number"
-      min="0"
-      step="1"
-      placeholder="金額"
+      id="todoText"
+      class="input"
+      placeholder="新增待辦，例如確認京都住宿"
     >
-
-    <select id="expenseCurrency">
-
-      <option value="JPY">
-        ¥ 日幣
-      </option>
-
-      <option value="TWD">
-        NT$ 台幣
-      </option>
-
-    </select>
 
     <button
-      class="add-btn"
-      onclick="addExpense()"
+      class="primary-btn"
+      onclick="addTodo()"
     >
       ＋ 新增
     </button>
@@ -1960,176 +2030,27 @@ select:focus{
   </div>
 
 
-  <div id="expenseList" class="expense-list"></div>
+  <ul
+    class="todo-list"
+    id="todoList"
+  >
 
-</section>
-
-
-<!-- =========================
-     待辦事項
-========================= -->
-
-<section class="card">
-
-  <div class="section-title">
-
-    <h2>✅ 旅伴待辦事項</h2>
-
-    <span
-      class="small"
-      id="todoProgressText"
-    >
-      0 / 0
-    </span>
-
-  </div>
+  </ul>
 
 
-  <div class="name-box">
-
-    <label>
-      先輸入你的名字
-    </label>
-
-    <input
-      id="travelerName"
-      class="name-input"
-      type="text"
-      placeholder="例如：Celina"
-      oninput="saveTravelerName()"
-    >
-
-    <div class="small" style="margin-top:7px">
-      每位旅伴可以在自己的手機輸入名字並勾選自己的完成項目。
-    </div>
-
-  </div>
-
-
-  <div class="progress">
-
-    <div
-      class="progress-bar"
-      id="progressBar"
-    ></div>
-
-  </div>
-
-
-  <div id="todoList">
-
-    <div class="todo-item">
-
-      <input
-        type="checkbox"
-        data-todo="hotel"
-        onchange="updateTodo(this)"
-      >
-
-      <label class="todo-label">
-        確認大阪道頓堀住宿資料
-      </label>
-
-    </div>
-
-
-    <div class="todo-item">
-
-      <input
-        type="checkbox"
-        data-todo="dayplans"
-        onchange="updateTodo(this)"
-      >
-
-      <label class="todo-label">
-        確認 Day 2–Day 4 行程
-      </label>
-
-    </div>
-
-
-    <div class="todo-item">
-
-      <input
-        type="checkbox"
-        data-todo="reservation"
-        onchange="updateTodo(this)"
-      >
-
-      <label class="todo-label">
-        確認需要提前預約的景點／餐廳
-      </label>
-
-    </div>
-
-
-    <div class="todo-item">
-
-      <input
-        type="checkbox"
-        data-todo="transport"
-        onchange="updateTodo(this)"
-      >
-
-      <label class="todo-label">
-        確認 Day 1 實際交通時間與票價
-      </label>
-
-    </div>
-
-
-    <div class="todo-item">
-
-      <input
-        type="checkbox"
-        data-todo="weather"
-        onchange="updateTodo(this)"
-      >
-
-      <label class="todo-label">
-        出發前確認天氣與穿著
-      </label>
-
-    </div>
-
-
-    <div class="todo-item">
-
-      <input
-        type="checkbox"
-        data-todo="yen"
-        onchange="updateTodo(this)"
-      >
-
-      <label class="todo-label">
-        準備日幣／確認付款方式
-      </label>
-
-    </div>
-
-
-    <div class="todo-item">
-
-      <input
-        type="checkbox"
-        data-todo="insurance"
-        onchange="updateTodo(this)"
-      >
-
-      <label class="todo-label">
-        確認旅遊保險及重要資料
-      </label>
-
-    </div>
-
+  <div
+    class="small"
+    style="margin-top:14px"
+  >
+    ⚠️ 待辦勾選狀態同樣儲存在目前裝置。
   </div>
 
 </section>
 
 
-<!-- =========================
+<!-- ======================================
      實用提醒
-========================= -->
+====================================== -->
 
 <section class="card">
 
@@ -2150,7 +2071,8 @@ select:focus{
   </div>
 
   <div class="tip">
-    🚃 Day 1 最後由神戶前往大阪，優先考慮阪神電車前往大阪難波。
+    🚃 Day 1 最後由神戶前往大阪，
+    優先考慮阪神電車前往大阪難波。
   </div>
 
   <div class="tip">
@@ -2162,7 +2084,8 @@ select:focus{
   </div>
 
   <div class="tip">
-    💴 消費紀錄與待辦事項會儲存在目前裝置的瀏覽器中。
+    💴 消費紀錄可依照旅伴分開記錄，
+    並自動換算 JPY／TWD。
   </div>
 
 </section>
@@ -2172,7 +2095,7 @@ select:focus{
   class="small"
   style="text-align:center;padding:20px 0"
 >
-  KOBE · OSAKA · NARA · KYOTO TRAVEL BOOK · 2026
+  KOBE · OSAKA · NARA · KYOTO · TRAVEL BOOK · 2026
 </footer>
 
 </div>
@@ -2180,9 +2103,9 @@ select:focus{
 
 <script>
 
-/* =====================================================
+/* ======================================
    COUNTDOWN
-===================================================== */
+====================================== */
 
 const target =
   new Date("2026-11-20T12:30:00+09:00").getTime();
@@ -2199,111 +2122,92 @@ function updateCountdown(){
   }
 
   const days =
-    Math.floor(diff / (1000*60*60*24));
+    Math.floor(
+      diff / (1000 * 60 * 60 * 24)
+    );
 
   const hours =
     Math.floor(
-      (diff % (1000*60*60*24))
-      / (1000*60*60)
+      (diff % (1000 * 60 * 60 * 24))
+      / (1000 * 60 * 60)
     );
 
   const minutes =
     Math.floor(
-      (diff % (1000*60*60))
-      / (1000*60)
+      (diff % (1000 * 60 * 60))
+      / (1000 * 60)
     );
 
   const seconds =
     Math.floor(
-      (diff % (1000*60))
+      (diff % (1000 * 60))
       / 1000
     );
 
 
-  document.getElementById("days").textContent =
+  document.getElementById("days")
+    .textContent =
     String(days).padStart(2,"0");
 
-  document.getElementById("hours").textContent =
+  document.getElementById("hours")
+    .textContent =
     String(hours).padStart(2,"0");
 
-  document.getElementById("minutes").textContent =
+  document.getElementById("minutes")
+    .textContent =
     String(minutes).padStart(2,"0");
 
-  document.getElementById("seconds").textContent =
+  document.getElementById("seconds")
+    .textContent =
     String(seconds).padStart(2,"0");
-
 }
 
 
 updateCountdown();
 
-setInterval(updateCountdown,1000);
+setInterval(
+  updateCountdown,
+  1000
+);
 
 
-/* =====================================================
-   DAY / NIGHT MODE
-===================================================== */
+/* ======================================
+   ROUTE MAP
+====================================== */
 
-function updateDayNight(){
+function showRoute(routeId, button){
 
-  const now = new Date();
+  document
+    .querySelectorAll(".route-map")
+    .forEach(function(map){
 
-  const hour =
-    Number(
-      new Intl.DateTimeFormat(
-        "en-US",
-        {
-          timeZone:"Asia/Tokyo",
-          hour:"numeric",
-          hour12:false
-        }
-      ).format(now)
-    );
+      map.classList.remove("active");
 
-  if(hour >= 18 || hour < 6){
-    document.body.classList.add("night");
-  }else{
-    document.body.classList.remove("night");
-  }
-
-}
-
-updateDayNight();
-
-setInterval(updateDayNight,60000);
+    });
 
 
-/* =====================================================
-   COLLAPSIBLE DAYS
-===================================================== */
+  document
+    .getElementById(routeId)
+    .classList.add("active");
 
-function toggleDay(button){
 
-  const card =
-    button.parentElement;
+  document
+    .querySelectorAll(".day-map-btn")
+    .forEach(function(btn){
 
-  card.classList.toggle("open");
+      btn.classList.remove("active");
+
+    });
+
+
+  button.classList.add("active");
 
 }
 
 
-/* =====================================================
-   COLLAPSIBLE ROUTES
-===================================================== */
-
-function toggleRoute(button){
-
-  const card =
-    button.parentElement;
-
-  card.classList.toggle("open");
-
-}
-
-
-/* =====================================================
-   EXPENSE STORAGE
-===================================================== */
+/* ======================================
+   EXPENSE DATA
+====================================== */
 
 let expenses =
   JSON.parse(
@@ -2312,35 +2216,35 @@ let expenses =
 
 
 let exchangeRate =
-  Number(
-    localStorage.getItem("kobeExchangeRate") || "0"
+  parseFloat(
+    localStorage.getItem("kobeExchangeRate") || "0.22"
   );
+
+
+document.getElementById("exchangeRate").value =
+  exchangeRate;
 
 
 function saveRate(){
 
-  const value =
-    Number(
+  const input =
+    parseFloat(
       document.getElementById("exchangeRate").value
     );
 
-  if(!value || value <= 0){
 
-    alert("請輸入有效匯率。");
+  if(input > 0){
 
-    return;
+    exchangeRate = input;
+
+    localStorage.setItem(
+      "kobeExchangeRate",
+      exchangeRate
+    );
+
+    renderExpenses();
 
   }
-
-
-  exchangeRate = value;
-
-  localStorage.setItem(
-    "kobeExchangeRate",
-    exchangeRate
-  );
-
-  renderExpenses();
 
 }
 
@@ -2348,25 +2252,42 @@ function saveRate(){
 function addExpense(){
 
   const name =
-    document
-      .getElementById("expenseName")
-      .value
-      .trim();
+    document.getElementById("expenseName")
+      .value.trim();
+
+  const item =
+    document.getElementById("expenseItem")
+      .value.trim();
 
   const amount =
-    Number(
-      document
-        .getElementById("expenseAmount")
+    parseFloat(
+      document.getElementById("expenseAmount")
         .value
     );
 
   const currency =
-    document
-      .getElementById("expenseCurrency")
+    document.getElementById("expenseCurrency")
       .value;
+
+  const day =
+    document.getElementById("expenseDay")
+      .value;
+
+  const note =
+    document.getElementById("expenseNote")
+      .value.trim();
 
 
   if(!name){
+
+    alert("請輸入旅伴名字。");
+
+    return;
+
+  }
+
+
+  if(!item){
 
     alert("請輸入消費項目。");
 
@@ -2384,17 +2305,28 @@ function addExpense(){
   }
 
 
-  expenses.push({
+  const expense = {
 
     id:Date.now(),
 
     name:name,
 
+    item:item,
+
     amount:amount,
 
-    currency:currency
+    currency:currency,
 
-  });
+    day:day,
+
+    note:note,
+
+    createdAt:new Date().toISOString()
+
+  };
+
+
+  expenses.push(expense);
 
 
   localStorage.setItem(
@@ -2403,9 +2335,9 @@ function addExpense(){
   );
 
 
-  document.getElementById("expenseName").value = "";
-
+  document.getElementById("expenseItem").value = "";
   document.getElementById("expenseAmount").value = "";
+  document.getElementById("expenseNote").value = "";
 
 
   renderExpenses();
@@ -2417,7 +2349,9 @@ function deleteExpense(id){
 
   expenses =
     expenses.filter(
-      item => item.id !== id
+      function(expense){
+        return expense.id !== id;
+      }
     );
 
 
@@ -2432,388 +2366,429 @@ function deleteExpense(id){
 }
 
 
-function renderExpenses(){
+function convertToTWD(expense){
 
-  const list =
-    document.getElementById("expenseList");
+  if(expense.currency === "JPY"){
 
-
-  const rate =
-    Number(exchangeRate) || 0;
-
-
-  if(
-    document.getElementById("exchangeRate")
-  ){
-
-    document.getElementById("exchangeRate").value =
-      rate || "";
+    return expense.amount * exchangeRate;
 
   }
+
+
+  return expense.amount;
+
+}
+
+
+function convertToJPY(expense){
+
+  if(expense.currency === "JPY"){
+
+    return expense.amount;
+
+  }
+
+
+  return expense.amount / exchangeRate;
+
+}
+
+
+function renderExpenses(){
+
+  const tbody =
+    document.getElementById(
+      "expenseTableBody"
+    );
+
+
+  tbody.innerHTML = "";
 
 
   let totalJPY = 0;
 
+  let totalTWD = 0;
 
-  expenses.forEach(item => {
+  const people = {};
 
-    if(item.currency === "JPY"){
 
-      totalJPY += item.amount;
+  expenses.forEach(function(expense){
+
+    const twd =
+      convertToTWD(expense);
+
+    const jpy =
+      convertToJPY(expense);
+
+
+    totalJPY += jpy;
+
+    totalTWD += twd;
+
+
+    if(!people[expense.name]){
+
+      people[expense.name] = 0;
 
     }
 
-    if(item.currency === "TWD" && rate > 0){
+    people[expense.name] += twd;
 
-      totalJPY +=
-        item.amount / rate;
 
-    }
+    const row =
+      document.createElement("tr");
+
+
+    row.innerHTML = `
+
+      <td>${escapeHTML(expense.name)}</td>
+
+      <td>${escapeHTML(expense.day)}</td>
+
+      <td>${escapeHTML(expense.item)}</td>
+
+      <td>
+        ${expense.currency === "JPY"
+          ? "¥" + formatNumber(expense.amount)
+          : "NT$" + formatNumber(expense.amount)}
+      </td>
+
+      <td>
+        NT$${formatNumber(twd)}
+      </td>
+
+      <td>
+        ${escapeHTML(expense.note || "-")}
+      </td>
+
+      <td>
+        <button
+          class="expense-delete"
+          onclick="deleteExpense(${expense.id})"
+        >
+          刪除
+        </button>
+      </td>
+
+    `;
+
+
+    tbody.appendChild(row);
 
   });
 
 
-  let totalTWD =
-    rate > 0
-      ? totalJPY * rate
-      : 0;
+  document.getElementById("totalJPY")
+    .textContent =
+    "¥" + formatNumber(totalJPY);
 
 
-  document.getElementById("totalJPY").textContent =
-    "¥" +
-    Math.round(totalJPY).toLocaleString();
+  document.getElementById("totalTWD")
+    .textContent =
+    "NT$" + formatNumber(totalTWD);
 
 
-  document.getElementById("totalTWD").textContent =
-    rate > 0
-      ? "NT$" +
-        Math.round(totalTWD).toLocaleString()
-      : "請設定匯率";
+  const summary =
+    document.getElementById("personSummary");
 
 
-  if(expenses.length === 0){
-
-    list.innerHTML =
-      '<div class="empty">目前還沒有消費紀錄</div>';
-
-    return;
-
-  }
+  summary.innerHTML = "";
 
 
-  list.innerHTML =
-    expenses.map(item => {
+  Object.keys(people).forEach(function(name){
 
-      const amountText =
-        item.currency === "JPY"
-          ? "¥" +
-            Math.round(item.amount).toLocaleString()
-          : "NT$" +
-            Math.round(item.amount).toLocaleString();
+    const div =
+      document.createElement("div");
 
 
-      let converted = "";
+    div.className = "small";
+
+    div.style.marginTop = "5px";
 
 
-      if(
-        item.currency === "JPY" &&
-        rate > 0
-      ){
-
-        converted =
-          " ≈ NT$" +
-          Math.round(
-            item.amount * rate
-          ).toLocaleString();
-
-      }
+    div.textContent =
+      name +
+      "：NT$" +
+      formatNumber(people[name]);
 
 
-      if(
-        item.currency === "TWD" &&
-        rate > 0
-      ){
+    summary.appendChild(div);
 
-        converted =
-          " ≈ ¥" +
-          Math.round(
-            item.amount / rate
-          ).toLocaleString();
+  });
 
-      }
+}
 
 
-      return `
+function formatNumber(number){
 
-        <div class="expense-item">
-
-          <div>
-
-            <div class="expense-name">
-              ${escapeHTML(item.name)}
-            </div>
-
-            <div class="expense-meta">
-              ${item.currency === "JPY"
-                ? "日幣"
-                : "台幣"}
-              ${converted}
-            </div>
-
-          </div>
-
-
-          <div class="expense-amount">
-
-            ${amountText}
-
-            <br>
-
-            <button
-              class="delete-btn"
-              onclick="deleteExpense(${item.id})"
-            >
-              刪除
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
+  return Math.round(number)
+    .toLocaleString("en-US");
 
 }
 
 
 function escapeHTML(text){
 
-  return text
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ======================================
+   TODO DATA
+====================================== */
+
+let todos =
+  JSON.parse(
+    localStorage.getItem("kobeTodos") || "null"
+  );
+
+
+if(!todos){
+
+  todos = [
+
+    {
+      id:1,
+      text:"確認大阪道頓堀住宿資料",
+      completed:false,
+      completedBy:""
+    },
+
+    {
+      id:2,
+      text:"確認 Day 2–Day 4 行程",
+      completed:false,
+      completedBy:""
+    },
+
+    {
+      id:3,
+      text:"確認需要提前預約的景點／餐廳",
+      completed:false,
+      completedBy:""
+    },
+
+    {
+      id:4,
+      text:"確認 Day 1 實際交通時間與票價",
+      completed:false,
+      completedBy:""
+    }
+
+  ];
+
+}
+
+
+function saveTodos(){
+
+  localStorage.setItem(
+    "kobeTodos",
+    JSON.stringify(todos)
+  );
+
+}
+
+
+function addTodo(){
+
+  const name =
+    document.getElementById("todoName")
+      .value.trim();
+
+  const text =
+    document.getElementById("todoText")
+      .value.trim();
+
+
+  if(!name){
+
+    alert("請輸入你的名字。");
+
+    return;
+
+  }
+
+
+  if(!text){
+
+    alert("請輸入待辦事項。");
+
+    return;
+
+  }
+
+
+  todos.push({
+
+    id:Date.now(),
+
+    text:text,
+
+    completed:false,
+
+    completedBy:""
+
+  });
+
+
+  saveTodos();
+
+
+  document.getElementById("todoText")
+    .value = "";
+
+
+  renderTodos();
+
+}
+
+
+function toggleTodo(id){
+
+  const todo =
+    todos.find(
+      function(item){
+        return item.id === id;
+      }
+    );
+
+
+  if(!todo){
+
+    return;
+
+  }
+
+
+  if(!todo.completed){
+
+    const name =
+      document.getElementById("todoName")
+        .value.trim();
+
+
+    if(!name){
+
+      alert("請先輸入你的名字，再勾選待辦。");
+
+      renderTodos();
+
+      return;
+
+    }
+
+
+    todo.completed = true;
+
+    todo.completedBy = name;
+
+  }else{
+
+    todo.completed = false;
+
+    todo.completedBy = "";
+
+  }
+
+
+  saveTodos();
+
+  renderTodos();
+
+}
+
+
+function deleteTodo(id){
+
+  todos =
+    todos.filter(
+      function(item){
+        return item.id !== id;
+      }
+    );
+
+
+  saveTodos();
+
+  renderTodos();
+
+}
+
+
+function renderTodos(){
+
+  const list =
+    document.getElementById("todoList");
+
+
+  list.innerHTML = "";
+
+
+  todos.forEach(function(todo){
+
+    const li =
+      document.createElement("li");
+
+
+    li.className = "todo-item";
+
+
+    li.innerHTML = `
+
+      <input
+        class="todo-check"
+        type="checkbox"
+        ${todo.completed ? "checked" : ""}
+        onchange="toggleTodo(${todo.id})"
+      >
+
+      <div>
+
+        <div
+          class="todo-text ${todo.completed ? "done" : ""}"
+        >
+          ${escapeHTML(todo.text)}
+        </div>
+
+        ${
+          todo.completed
+          ? `<div class="todo-meta">
+               ✓ ${escapeHTML(todo.completedBy)} 已完成
+             </div>`
+          : `<div class="todo-meta">
+               尚未完成
+             </div>`
+        }
+
+      </div>
+
+      <button
+        class="danger-btn"
+        onclick="deleteTodo(${todo.id})"
+      >
+        刪除
+      </button>
+
+    `;
+
+
+    list.appendChild(li);
+
+  });
 
 }
 
 
 renderExpenses();
 
-
-/* =====================================================
-   TRAVELER NAME + TODO
-===================================================== */
-
-const todoKeys = [
-
-  "hotel",
-  "dayplans",
-  "reservation",
-  "transport",
-  "weather",
-  "yen",
-  "insurance"
-
-];
-
-
-function getTravelerName(){
-
-  return (
-    localStorage.getItem(
-      "kobeTravelerName"
-    ) || ""
-  );
-
-}
-
-
-function saveTravelerName(){
-
-  const name =
-    document
-      .getElementById("travelerName")
-      .value
-      .trim();
-
-
-  localStorage.setItem(
-    "kobeTravelerName",
-    name
-  );
-
-
-  renderTodo();
-
-}
-
-
-function getTodoData(){
-
-  return JSON.parse(
-    localStorage.getItem(
-      "kobeTodoData"
-    ) || "{}"
-  );
-
-}
-
-
-function updateTodo(checkbox){
-
-  const data =
-    getTodoData();
-
-
-  const key =
-    checkbox.dataset.todo;
-
-
-  data[key] =
-    checkbox.checked;
-
-
-  localStorage.setItem(
-    "kobeTodoData",
-    JSON.stringify(data)
-  );
-
-
-  renderTodo();
-
-}
-
-
-function renderTodo(){
-
-  const name =
-    getTravelerName();
-
-
-  const nameInput =
-    document.getElementById(
-      "travelerName"
-    );
-
-
-  if(
-    document.activeElement !== nameInput
-  ){
-
-    nameInput.value = name;
-
-  }
-
-
-  const data =
-    getTodoData();
-
-
-  const checkboxes =
-    document.querySelectorAll(
-      "#todoList input[type='checkbox']"
-    );
-
-
-  let completed = 0;
-
-
-  checkboxes.forEach(box => {
-
-    const key =
-      box.dataset.todo;
-
-
-    box.checked =
-      Boolean(data[key]);
-
-
-    const item =
-      box.closest(".todo-item");
-
-
-    if(box.checked){
-
-      completed++;
-
-      item.classList.add("done");
-
-    }else{
-
-      item.classList.remove("done");
-
-    }
-
-  });
-
-
-  const total =
-    checkboxes.length;
-
-
-  document.getElementById(
-    "todoProgressText"
-  ).textContent =
-    completed + " / " + total;
-
-
-  const percentage =
-    total
-      ? (completed / total) * 100
-      : 0;
-
-
-  document.getElementById(
-    "progressBar"
-  ).style.width =
-    percentage + "%";
-
-
-  const labels =
-    document.querySelectorAll(
-      ".todo-label"
-    );
-
-
-  labels.forEach(label => {
-
-    if(name){
-
-      let person =
-        label.parentElement.querySelector(
-          ".todo-person"
-        );
-
-
-      if(!person){
-
-        person =
-          document.createElement("div");
-
-        person.className =
-          "todo-person";
-
-        label.parentElement.appendChild(
-          person
-        );
-
-      }
-
-
-      person.textContent =
-        "旅伴：" + name;
-
-    }
-
-  });
-
-}
-
-
-renderTodo();
-
+renderTodos();
 
 </script>
 
