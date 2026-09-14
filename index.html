@@ -1,1232 +1,345 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>神戶 5 日旅行手冊</title>
-
-<style>
-*{box-sizing:border-box}
-
-:root{
-  --bg:#f5f1e9;
-  --card:#fffdf8;
-  --text:#292725;
-  --muted:#817b72;
-  --line:#ddd6ca;
-  --green:#557b70;
-  --orange:#d88a61;
-  --purple:#8d7ca8;
-  --blue:#6586a6;
-}
-
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",
-  "PingFang TC","Microsoft JhengHei",sans-serif;
-}
-
-.container{
-  width:min(900px,100%);
-  margin:auto;
-  padding:18px 15px 50px;
-}
-
-header{padding:20px 4px}
-
-.eyebrow{
-  color:var(--muted);
-  font-size:12px;
-  letter-spacing:.15em;
-}
-
-h1{
-  font-size:34px;
-  margin:8px 0;
-  line-height:1.15;
-}
-
-.subtitle{
-  color:var(--muted);
-  font-size:14px;
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:20px;
-  margin:15px 0;
-  box-shadow:0 8px 25px rgba(50,40,30,.06);
-}
-
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:16px;
-}
-
-.section-title h2{
-  margin:0;
-  font-size:21px;
-}
-
-.small{
-  font-size:12px;
-  color:var(--muted);
-}
-
-/* countdown */
-
-.now-card{
-  background:linear-gradient(135deg,#e7eee9,#fff9f0);
-}
-
-.next-event{
-  color:var(--muted);
-  font-size:14px;
-}
-
-.countdown{
-  display:flex;
-  gap:8px;
-  margin:16px 0 8px;
-}
-
-.time-box{
-  min-width:65px;
-  text-align:center;
-}
-
-.number{
-  font-size:32px;
-  font-weight:750;
-}
-
-.label{
-  color:var(--muted);
-  font-size:11px;
-}
-
-/* map */
-
-.map-box{
-  background:#faf7f1;
-  border-radius:16px;
-  overflow:hidden;
-}
-
-.map-box svg{
-  display:block;
-  width:100%;
-  height:300px;
-}
-
-.legend{
-  display:flex;
-  flex-wrap:wrap;
-  gap:14px;
-  margin-top:12px;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.dot{
-  display:inline-block;
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  margin-right:5px;
-}
-
-/* flight */
-
-.flight{
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  align-items:center;
-  gap:10px;
-}
-
-.airport{text-align:center}
-
-.airport-code{
-  font-size:28px;
-  font-weight:750;
-}
-
-.airport-name{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.5;
-}
-
-.flight-arrow{
-  font-size:24px;
-  color:var(--green);
-}
-
-.flight-info{
-  text-align:center;
-  color:var(--muted);
-  font-size:13px;
-  margin-top:12px;
-}
-
-/* daily */
-
-.day{
-  padding:18px 0;
-  border-top:1px dashed var(--line);
-}
-
-.day:first-child{border-top:none}
-
-.day-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
-
-.day-header h3{
-  margin:0;
-  font-size:18px;
-}
-
-.tag{
-  border:1px solid var(--line);
-  border-radius:99px;
-  padding:4px 9px;
-  font-size:11px;
-  color:var(--muted);
-  white-space:nowrap;
-}
-
-.timeline{
-  margin-top:12px;
-}
-
-.timeline-item{
-  display:grid;
-  grid-template-columns:75px 1fr;
-  gap:12px;
-  padding:12px 0;
-  border-bottom:1px solid rgba(221,214,202,.55);
-}
-
-.timeline-item:last-child{
-  border-bottom:none;
-}
-
-.timeline-time{
-  font-weight:700;
-  font-size:14px;
-}
-
-.place{
-  font-weight:650;
-  line-height:1.4;
-}
-
-.description{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:4px;
-  line-height:1.55;
-}
-
-.cost{
-  color:var(--green);
-  font-size:12px;
-  margin-top:4px;
-}
-
-.reserve{
-  display:inline-block;
-  margin-top:6px;
-  padding:3px 8px;
-  border-radius:99px;
-  background:#f3ded1;
-  color:#8b5038;
-  font-size:10px;
-}
-
-/* buttons */
-
-.map-btn{
-  display:inline-block;
-  margin-top:8px;
-  padding:6px 10px;
-  border-radius:10px;
-  background:#eee9df;
-  color:var(--text);
-  text-decoration:none;
-  font-size:11px;
-}
-
-.map-btn:hover{
-  background:#e2dbcf;
-}
-
-/* todo */
-
-.todo li{
-  margin:11px 0;
-}
-
-/* tips */
-
-.tip{
-  padding:12px 0;
-  border-bottom:1px solid var(--line);
-  font-size:14px;
-  line-height:1.6;
-}
-
-.tip:last-child{
-  border-bottom:none;
-}
-
-/* mobile */
-
-@media(max-width:600px){
-
-  .container{
-    padding:12px 12px 40px;
-  }
-
-  h1{
-    font-size:30px;
-  }
-
-  .card{
-    padding:16px;
-    border-radius:18px;
-  }
-
-  .number{
-    font-size:27px;
-  }
-
-  .time-box{
-    min-width:55px;
-  }
-
-  .map-box svg{
-    height:240px;
-  }
-
-  .timeline-item{
-    grid-template-columns:62px 1fr;
-  }
-
-  .day-header{
-    align-items:flex-start;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<header>
-  <div class="eyebrow">KOBE TRAVEL BOOK · 2026</div>
-  <h1>神戶 5 日旅行</h1>
-  <div class="subtitle">
-    11/20（五）— 11/24（二） · 2 人 · 台中 ⇄ 神戶
-  </div>
-</header>
-
-
-<!-- 此刻 -->
-
-<section class="card now-card">
-
-  <div class="section-title">
-    <h2>此刻</h2>
-    <span class="small">神戶時間 JST</span>
+<!-- Day 1 -->
+<div class="day">
+  <div class="day-header">
+    <h3>Day 1 · 11/20（五） · 台中 → 神戶／大阪</h3>
+    <span class="tag">抵達日本</span>
   </div>
 
-  <div class="next-event">
-    下一個已知事件：11/20 12:30 抵達神戶機場
-  </div>
-
-  <div class="countdown">
-
-    <div class="time-box">
-      <div class="number" id="days">--</div>
-      <div class="label">日</div>
-    </div>
-
-    <div class="time-box">
-      <div class="number" id="hours">--</div>
-      <div class="label">時</div>
-    </div>
-
-    <div class="time-box">
-      <div class="number" id="minutes">--</div>
-      <div class="label">分</div>
-    </div>
-
-    <div class="time-box">
-      <div class="number" id="seconds">--</div>
-      <div class="label">秒</div>
-    </div>
-
-  </div>
-
-  <div class="small">
-    目標時間：2026-11-20 12:30 JST（UTC+9）
-  </div>
-
-</section>
-
-
-<!-- 視覺總覽 -->
-
-<section class="card">
-
-  <div class="section-title">
-    <h2>旅行路線</h2>
-    <span class="small">目前已確認 Day 1</span>
-  </div>
-
-  <div class="map-box">
-
-    <svg viewBox="0 0 760 300">
-
-      <path
-        d="M80 220
-           C145 170 190 205 260 135
-           S360 85 420 120
-           S520 180 600 125
-           S675 120 700 175"
-        fill="none"
-        stroke="#d88a61"
-        stroke-width="9"
-        stroke-linecap="round"
-      />
-
-      <g fill="#fffdf8" stroke="#292725" stroke-width="3">
-
-        <circle cx="80" cy="220" r="12"/>
-        <circle cx="260" cy="135" r="12"/>
-        <circle cx="420" cy="120" r="12"/>
-        <circle cx="600" cy="125" r="12"/>
-        <circle cx="700" cy="175" r="12"/>
-
-      </g>
-
-      <g
-        font-family="sans-serif"
-        font-size="14"
-        font-weight="700"
-        fill="#292725"
-      >
-
-        <text x="35" y="260">神戶機場 UKB</text>
-
-        <text x="225" y="105">三宮</text>
-
-        <text x="375" y="90">北野</text>
-
-        <text x="555" y="95">南京町</text>
-
-        <text x="640" y="215">港區</text>
-
-      </g>
-
-    </svg>
-
-  </div>
-
-  <div class="legend">
-
-    <span>
-      <i class="dot" style="background:#d88a61"></i>
-      Day 1 神戶
-    </span>
-
-    <span>
-      <i class="dot" style="background:#557b70"></i>
-      Day 2 待定
-    </span>
-
-    <span>
-      <i class="dot" style="background:#8d7ca8"></i>
-      Day 3–4 待定
-    </span>
-
-  </div>
-
-</section>
-
-
-<!-- 已確認交通 -->
-
-<section class="card">
-
-  <div class="section-title">
-    <h2>已確認交通</h2>
-    <span class="small">STARLUX Airlines</span>
-  </div>
-
-
-  <div class="day">
-
-    <div class="day-header">
-      <h3>11/20（五） · 去程</h3>
-      <span class="tag">直飛</span>
-    </div>
-
-    <div class="flight">
-
-      <div class="airport">
-
-        <div class="airport-code">RMQ</div>
-
-        <div class="airport-name">
-          清泉崗機場 T2<br>
-          09:00 · GMT+8
-        </div>
-
-      </div>
-
-      <div class="flight-arrow">→</div>
-
-      <div class="airport">
-
-        <div class="airport-code">UKB</div>
-
-        <div class="airport-name">
-          神戶機場 T2<br>
-          12:30 · JST / GMT+9
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="flight-info">
-      2 小時 30 分 · 星宇航空
-    </div>
-
-  </div>
-
-
-  <div class="day">
-
-    <div class="day-header">
-      <h3>11/24（二） · 回程</h3>
-      <span class="tag">直飛</span>
-    </div>
-
-    <div class="flight">
-
-      <div class="airport">
-
-        <div class="airport-code">UKB</div>
-
-        <div class="airport-name">
-          神戶機場 T2<br>
-          13:30 · JST / GMT+9
-        </div>
-
-      </div>
-
-      <div class="flight-arrow">→</div>
-
-      <div class="airport">
-
-        <div class="airport-code">RMQ</div>
-
-        <div class="airport-name">
-          清泉崗機場 T2<br>
-          16:00 · GMT+8
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="flight-info">
-      3 小時 30 分 · 星宇航空
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- 每日行程 -->
-
-<section class="card">
-
-  <div class="section-title">
-    <h2>逐日行程</h2>
-    <span class="small">已確認內容優先</span>
-  </div>
-
-
-  <!-- DAY 1 -->
-
-  <div class="day">
-
-    <div class="day-header">
-
-      <h3>Day 1 · 11/20（五）</h3>
-
-      <span class="tag">神戶半日遊</span>
-
-    </div>
-
+  <details open>
+    <summary>展開 Day 1 路線與行程</summary>
 
     <div class="timeline">
 
-
       <div class="timeline-item">
-
-        <div class="timeline-time">09:00</div>
-
+        <div class="timeline-time">
+          09:00<br>
+          <span class="small">GMT+8</span>
+        </div>
         <div>
-
           <div class="place">
-            清泉崗機場 RMQ T2
+            ✈️ 清泉崗機場 RMQ T2
           </div>
-
           <div class="description">
             星宇航空 · 台中 → 神戶
           </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">12:30</div>
-
-        <div>
-
-          <div class="place">
-            抵達神戶機場 UKB T2
-          </div>
-
           <div class="description">
-            入境＋領取行李，預留約 30–45 分鐘。
+            直飛 · 約 2 小時 30 分鐘
           </div>
-
           <a
-            class="map-btn"
-            href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport"
+            class="place-link"
             target="_blank"
+            href="https://www.google.com/maps/search/?api=1&query=Taichung+International+Airport"
           >
             📍 Google Maps
           </a>
-
         </div>
-
       </div>
 
+      <div class="timeline-item">
+        <div class="timeline-time">
+          12:30<br>
+          <span class="small">JST</span>
+        </div>
+        <div>
+          <div class="place">
+            ✈️ 抵達神戶機場 UKB T2
+          </div>
+          <div class="description">
+            入境＋領取行李
+          </div>
+          <div class="description">
+            預留約 30–45 分鐘
+          </div>
+          <a
+            class="place-link"
+            target="_blank"
+            href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport"
+          >
+            📍 Google Maps
+          </a>
+        </div>
+      </div>
 
       <div class="timeline-item">
-
-        <div class="timeline-time">13:15–13:30</div>
-
+        <div class="timeline-time">
+          13:15–13:30<br>
+          <span class="small">JST</span>
+        </div>
         <div>
-
           <div class="place">
             🚃 神戶機場 → 三宮
           </div>
-
           <div class="description">
-            Port Liner（ポートライナー）<br>
+            Port Liner（ポートライナー）
+          </div>
+          <div class="description">
             約 18 分鐘
           </div>
-
-          <div class="cost">
-            ¥340
+          <div class="description">
+            約 ¥340／人
           </div>
-
           <a
-            class="map-btn"
-            href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Sannomiya+Station+Kobe"
+            class="place-link"
             target="_blank"
+            href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Sannomiya+Station+Kobe"
           >
             🧭 開啟導航
           </a>
-
         </div>
-
       </div>
 
-
       <div class="timeline-item">
-
-        <div class="timeline-time">13:45–14:15</div>
-
+        <div class="timeline-time">
+          13:45–14:15<br>
+          <span class="small">JST</span>
+        </div>
         <div>
-
           <div class="place">
             ⛩️ 生田神社
           </div>
-
           <div class="description">
-            三宮 → 生田神社步行約 5 分鐘。<br>
-            參拜＋拍照。
+            三宮 → 生田神社步行約 5 分鐘
           </div>
-
-          <div class="cost">
-            步行 · ¥0
+          <div class="description">
+            參拜＋拍照 · ¥0
           </div>
-
           <a
-            class="map-btn"
-            href="https://www.google.com/maps/search/?api=1&query=Ikuta+Shrine+Kobe"
+            class="place-link"
             target="_blank"
+            href="https://www.google.com/maps/search/?api=1&query=Ikuta+Shrine+Kobe"
           >
             📍 Google Maps
           </a>
-
         </div>
-
       </div>
 
-
       <div class="timeline-item">
-
-        <div class="timeline-time">14:15–14:45</div>
-
+        <div class="timeline-time">
+          14:15–14:45<br>
+          <span class="small">JST</span>
+        </div>
         <div>
-
           <div class="place">
             🛍️ 三宮 Center Gai
           </div>
-
           <div class="description">
-            逛街、買伴手禮。
+            逛街、買伴手禮
           </div>
-
-          <div class="cost">
+          <div class="description">
             步行 · ¥0
           </div>
-
           <a
-            class="map-btn"
-            href="https://www.google.com/maps/search/?api=1&query=Sannomiya+Center+Gai+Kobe"
+            class="place-link"
             target="_blank"
+            href="https://www.google.com/maps/search/?api=1&query=Kobe+Sannomiya+Center+Gai"
           >
             📍 Google Maps
           </a>
-
         </div>
-
       </div>
 
-
       <div class="timeline-item">
-
-        <div class="timeline-time">14:45–15:45</div>
-
+        <div class="timeline-time">
+          14:45–15:45<br>
+          <span class="small">JST</span>
+        </div>
         <div>
-
           <div class="place">
             🏠 北野異人館街
           </div>
-
           <div class="description">
-            三宮 → 北野約 15–20 分鐘。<br>
-            不想走上坡可考慮 City Loop 巴士。
+            三宮 → 北野步行約 15–20 分鐘
           </div>
-
-          <div class="cost">
+          <div class="description">
+            若不想爬坡，可考慮 City Loop 巴士
+          </div>
+          <div class="description">
             步行 ¥0 · City Loop 約 ¥230
           </div>
-
           <a
-            class="map-btn"
-            href="https://www.google.com/maps/search/?api=1&query=Kitano+Ijinkan-gai+Kobe"
+            class="place-link"
             target="_blank"
+            href="https://www.google.com/maps/search/?api=1&query=Kitano+Ijinkan+Kobe"
           >
             📍 Google Maps
           </a>
-
         </div>
-
       </div>
 
-
       <div class="timeline-item">
-
-        <div class="timeline-time">15:45–16:15</div>
-
+        <div class="timeline-time">
+          15:45–16:15<br>
+          <span class="small">JST</span>
+        </div>
         <div>
-
           <div class="place">
             🚶 北野 → 南京町
           </div>
-
           <div class="description">
-            步行下山 → 元町 → 南京町。
+            步行下山 → 元町 → 南京町
           </div>
-
-          <div class="cost">
+          <div class="description">
             步行 · ¥0
           </div>
-
         </div>
-
       </div>
 
-
       <div class="timeline-item">
-
-        <div class="timeline-time">16:15–17:00</div>
-
+        <div class="timeline-time">
+          16:15–17:00<br>
+          <span class="small">JST</span>
+        </div>
         <div>
-
           <div class="place">
             🥟 南京町
           </div>
-
           <div class="description">
-            吃小吃＋逛街。
+            吃小吃＋逛街
           </div>
-
-          <div class="cost">
-            步行 · ¥0
+          <div class="description">
+            ¥0（餐飲另計）
           </div>
-
           <a
-            class="map-btn"
-            href="https://www.google.com/maps/search/?api=1&query=Nankinmachi+Kobe"
+            class="place-link"
             target="_blank"
+            href="https://www.google.com/maps/search/?api=1&query=Nankinmachi+Kobe"
           >
             📍 Google Maps
           </a>
-
         </div>
-
       </div>
 
-
       <div class="timeline-item">
-
-        <div class="timeline-time">17:00–18:00</div>
-
+        <div class="timeline-time">
+          17:00–18:00<br>
+          <span class="small">JST</span>
+        </div>
         <div>
-
           <div class="place">
             🌊 Meriken Park ＋ Kobe Port Tower
           </div>
-
           <div class="description">
-            BE KOBE · Meriken Park · Kobe Port Tower。<br>
-            如要上展望台，再另外購買門票。
+            BE KOBE · Meriken Park · Kobe Port Tower
           </div>
-
-          <div class="cost">
-            戶外區域 · ¥0
+          <div class="description">
+            戶外區域散步；如登展望台，門票另計
           </div>
-
           <a
-            class="map-btn"
-            href="https://www.google.com/maps/search/?api=1&query=Meriken+Park+Kobe"
+            class="place-link"
             target="_blank"
+            href="https://www.google.com/maps/search/?api=1&query=Meriken+Park+Kobe"
           >
             📍 Meriken Park
           </a>
-
           <br>
-
           <a
-            class="map-btn"
-            href="https://www.google.com/maps/search/?api=1&query=Kobe+Port+Tower"
+            class="place-link"
             target="_blank"
+            href="https://www.google.com/maps/search/?api=1&query=Kobe+Port+Tower"
           >
             🗼 Kobe Port Tower
           </a>
-
         </div>
-
       </div>
 
-
       <div class="timeline-item">
-
-        <div class="timeline-time">18:00–18:20</div>
-
+        <div class="timeline-time">
+          18:00–18:40<br>
+          <span class="small">JST</span>
+        </div>
         <div>
-
           <div class="place">
-            🚶 Kobe Port Tower → 元町站
+            🚃 元町 → 三宮
           </div>
-
           <div class="description">
-            步行約 10–15 分鐘。
+            JR 約 3 分鐘
           </div>
-
-          <div class="cost">
-            步行 · ¥0
+          <div class="description">
+            約 ¥150／人
           </div>
-
         </div>
-
       </div>
 
-
       <div class="timeline-item">
-
-        <div class="timeline-time">約 18:20</div>
-
-        <div>
-
-          <div class="place">
-            🚃 JR 元町 → JR 三ノ宮
-          </div>
-
-          <div class="description">
-            JR 神戶線 · 約 3 分鐘。
-          </div>
-
-          <div class="cost">
-            約 ¥150
-          </div>
-
+        <div class="timeline-time">
+          18:40–19:30<br>
+          <span class="small">JST</span>
         </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">18:20–19:20</div>
-
         <div>
-
           <div class="place">
             🚃 三宮 → 大阪難波
           </div>
-
           <div class="description">
-            阪神電車：阪神本線 → 阪神なんば線。<br>
-            目標為直達大阪難波。
+            阪神電車
           </div>
-
-          <div class="cost">
-            約 ¥420
+          <div class="description">
+            約 50 分鐘 · 約 ¥420／人
           </div>
-
+          <div class="description">
+            目標搭乘直達大阪難波的班次
+          </div>
           <a
-            class="map-btn"
-            href="https://www.google.com/maps/dir/?api=1&origin=Kobe-Sannomiya+Station&destination=Osaka-Namba+Station"
+            class="place-link"
             target="_blank"
+            href="https://www.google.com/maps/dir/?api=1&origin=Kobe-Sannomiya+Station&destination=Osaka-Namba+Station"
           >
             🧭 開啟導航
           </a>
-
         </div>
-
       </div>
 
-
       <div class="timeline-item">
-
-        <div class="timeline-time">約 19:20</div>
-
+        <div class="timeline-time">
+          約 19:30<br>
+          <span class="small">JST</span>
+        </div>
         <div>
-
           <div class="place">
-            🏨 大阪難波 → 道頓堀住宿
+            🏨 道頓堀住宿
           </div>
-
           <div class="description">
-            步行約 5–10 分鐘。<br>
-            Check-in、放行李。
+            大阪難波 → 住宿步行約 5–10 分鐘
           </div>
-
-          <div class="cost">
-            步行 · ¥0
+          <div class="description">
+            Check-in、放行李
           </div>
-
         </div>
-
       </div>
 
-
       <div class="timeline-item">
-
-        <div class="timeline-time">晚上</div>
-
+        <div class="timeline-time">
+          晚上<br>
+          <span class="small">JST</span>
+        </div>
         <div>
-
           <div class="place">
             🌃 道頓堀
           </div>
-
           <div class="description">
-            道頓堀晚餐、戎橋、固力果跑跑人、
-            心齋橋筋商店街、道頓堀小吃。
+            晚餐、戎橋、固力果跑跑人、
+            心齋橋筋商店街、道頓堀小吃
           </div>
-
           <a
-            class="map-btn"
-            href="https://www.google.com/maps/search/?api=1&query=Dotonbori+Osaka"
+            class="place-link"
             target="_blank"
+            href="https://www.google.com/maps/search/?api=1&query=Dotonbori+Osaka"
           >
             📍 Google Maps
           </a>
-
         </div>
-
-      </div>
-
-
-    </div>
-
-
-    <div class="card" style="margin:15px 0 0;padding:15px;background:#faf7f1">
-
-      <strong>💴 Day 1 交通費估算</strong>
-
-      <div class="description">
-        Port Liner ¥340
-        ＋ JR 約 ¥150
-        ＋ 阪神約 ¥420
-        ＝ <strong>約 ¥910／人</strong>
-      </div>
-
-      <div class="small" style="margin-top:7px">
-        City Loop 若使用，另計約 ¥230。
       </div>
 
     </div>
 
-  </div>
-
-
-  <!-- DAY 2 -->
-
-  <div class="day">
-
-    <div class="day-header">
-      <h3>Day 2 · 11/21（六）</h3>
-      <span class="tag">待定</span>
+    <div class="route-actions">
+      <a
+        class="btn primary"
+        target="_blank"
+        href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Dotonbori+Osaka&waypoints=Ikuta+Shrine+Kobe%7CKobe+Sannomiya+Center+Gai%7CKitano+Ijinkan%7CNankinmachi+Kobe%7CMeriken+Park+Kobe%7CKobe+Port+Tower"
+      >
+        🗺️ 打開 Day 1 多點導航
+      </a>
     </div>
 
-    <div class="description">
-      行程尚未確認。
-    </div>
-
-  </div>
-
-
-  <!-- DAY 3 -->
-
-  <div class="day">
-
-    <div class="day-header">
-      <h3>Day 3 · 11/22（日）</h3>
-      <span class="tag">待定</span>
-    </div>
-
-    <div class="description">
-      行程尚未確認。
-    </div>
-
-  </div>
-
-
-  <!-- DAY 4 -->
-
-  <div class="day">
-
-    <div class="day-header">
-      <h3>Day 4 · 11/23（一）</h3>
-      <span class="tag">待定</span>
-    </div>
-
-    <div class="description">
-      行程尚未確認。
-    </div>
-
-  </div>
-
-
-  <!-- DAY 5 -->
-
-  <div class="day">
-
-    <div class="day-header">
-      <h3>Day 5 · 11/24（二）</h3>
-      <span class="tag">返程</span>
-    </div>
-
-    <div class="timeline">
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">13:30</div>
-
-        <div>
-
-          <div class="place">
-            神戶機場 UKB T2
-          </div>
-
-          <div class="description">
-            星宇航空 · 神戶 → 台中
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="timeline-item">
-
-        <div class="timeline-time">16:00</div>
-
-        <div>
-
-          <div class="place">
-            抵達清泉崗機場 RMQ T2
-          </div>
-
-          <div class="description">
-            台灣時間 GMT+8
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- 待辦事項 -->
-
-<section class="card">
-
-  <div class="section-title">
-    <h2>待辦事項</h2>
-    <span class="small">完成後告訴我，我會更新</span>
-  </div>
-
-  <ul class="todo">
-
-    <li>確認大阪道頓堀住宿資料</li>
-
-    <li>確認 Day 2–Day 4 行程</li>
-
-    <li>確認需要提前預約的景點／餐廳</li>
-
-    <li>確認 Day 1 實際交通時間與票價</li>
-
-  </ul>
-
-</section>
-
-
-<!-- 實用資訊 -->
-
-<section class="card">
-
-  <div class="section-title">
-    <h2>實用提醒</h2>
-  </div>
-
-  <div class="tip">
-    ✈️ 12:30 抵達神戶後，第一段交通預留了入境及領行李時間。
-  </div>
-
-  <div class="tip">
-    🚶 Day 1 步行比例偏高，北野異人館一帶有上坡；如果體力不足可改搭 City Loop。
-  </div>
-
-  <div class="tip">
-    🚃 Day 1 最後由神戶前往大阪，優先考慮阪神電車前往大阪難波。
-  </div>
-
-  <div class="tip">
-    🗼 Kobe Port Tower 若要登塔，門票及營業時間另行確認。
-  </div>
-
-  <div class="tip">
-    📱 所有 Google Maps 按鈕會直接開啟地圖／導航。
-  </div>
-
-</section>
-
-
-<footer class="small" style="text-align:center;padding:20px 0">
-  KOBE TRAVEL BOOK · 2026
-</footer>
-
+  </details>
 </div>
-
-
-<script>
-
-/* Countdown */
-
-const target = new Date("2026-11-20T12:30:00+09:00").getTime();
-
-function updateCountdown(){
-
-  const now = Date.now();
-
-  let diff = target - now;
-
-  if(diff < 0){
-    diff = 0;
-  }
-
-  const days = Math.floor(diff / (1000*60*60*24));
-
-  const hours = Math.floor(
-    (diff % (1000*60*60*24)) /
-    (1000*60*60)
-  );
-
-  const minutes = Math.floor(
-    (diff % (1000*60*60)) /
-    (1000*60)
-  );
-
-  const seconds = Math.floor(
-    (diff % (1000*60)) /
-    1000
-  );
-
-  document.getElementById("days").textContent =
-    String(days).padStart(2,"0");
-
-  document.getElementById("hours").textContent =
-    String(hours).padStart(2,"0");
-
-  document.getElementById("minutes").textContent =
-    String(minutes).padStart(2,"0");
-
-  document.getElementById("seconds").textContent =
-    String(seconds).padStart(2,"0");
-}
-
-updateCountdown();
-
-setInterval(updateCountdown,1000);
-
-</script>
-
-</body>
-</html>
