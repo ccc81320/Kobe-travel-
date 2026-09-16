@@ -635,95 +635,113 @@ white-space:nowrap;
   font-size:20px;
 }
 
-/* TODO */
-.people-box{
-  margin-bottom:16px;
-}
-
-.people-list{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin:9px 0;
-}
-
-.person-chip{
-  display:inline-flex;
-  align-items:center;
-  gap:4px;
-  padding:5px 8px;
-  border:1px solid var(--line);
-  border-radius:99px;
-  font-size:11px;
-}
-
-.person-chip button{
-  border:0;
-  background:none;
-  color:var(--muted);
-  cursor:pointer;
-  padding:0 2px;
-}
-
-.add-person{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:7px;
-}
-
 .todo-add{
-  display:grid;
-  grid-template-columns:1fr 90px auto;
-  gap:7px;
-  margin-bottom:10px;
+display:grid;
+grid-template-columns:1fr 100px 1fr auto;
+gap:7px;
+margin-bottom:10px;
 }
 
 .todo-row{
-  padding:12px 0;
-  border-bottom:1px solid var(--line);
+padding:12px 0;
+border-bottom:1px solid var(--line);
 }
 
 .todo-row:last-child{
-  border-bottom:0;
+border-bottom:0;
 }
 
 .todo-main{
-  display:flex;
-  align-items:flex-start;
-  gap:9px;
+display:flex;
+align-items:flex-start;
+gap:9px;
 }
 
 .todo-check{
-  width:auto;
-  margin-top:3px;
+width:auto;
+margin-top:3px;
+flex-shrink:0;
+}
+
+.todo-content{
+min-width:0;
+flex:1;
 }
 
 .todo-title{
-  font-size:13px;
-  font-weight:650;
-  flex:1;
+font-size:13px;
+font-weight:650;
+line-height:1.45;
+}
+
+.todo-note{
+width:100%;
+margin-top:6px;
+padding:7px 9px;
+border:1px solid var(--line);
+border-radius:8px;
+background:var(--card);
+color:var(--text);
+font-size:12px;
+outline:none;
+}
+
+.todo-note::placeholder{
+color:var(--muted);
+}
+
+.todo-note:focus{
+border-color:var(--accent);
 }
 
 .todo-meta{
-  display:flex;
-  justify-content:flex-end;
-  align-items:center;
-  gap:7px;
-  margin-top:7px;
+display:flex;
+justify-content:flex-end;
+align-items:center;
+gap:7px;
+margin-top:7px;
 }
 
 .owner-select{
-  width:88px;
-  padding:5px 6px;
-  font-size:10px;
+width:88px;
+padding:5px 6px;
+font-size:10px;
 }
 
 .todo-delete{
-  border:0;
-  background:none;
-  color:var(--muted);
-  cursor:pointer;
+border:0;
+background:none;
+color:var(--muted);
+cursor:pointer;
+padding:4px;
 }
+
+@media(max-width:600px){
+.todo-add{
+grid-template-columns:1fr 90px;
+}
+
+.todo-add input:first-child{
+grid-column:1 / -1;
+}
+
+.todo-add input:nth-child(3){
+grid-column:1;
+}
+
+.todo-add button{
+grid-column:2;
+}
+
+.todo-meta{
+justify-content:flex-start;
+}
+
+.todo-note{
+font-size:13px;
+}
+}
+
 
 /* PRACTICAL */
 .tip{
@@ -2248,22 +2266,44 @@ document.addEventListener('DOMContentLoaded', function() {
   <div style="margin-top:12px">
     <button class="btn primary" onclick="addExpenseRow()">＋ 新增消費</button>
   </div>
-</section>
-
 <section class="card">
   <div class="section-title">
     <h2>④ ☑️ 待辦事項</h2>
     <span class="small">同行者共用名單</span>
   </div>
 
+  <!-- 旅伴 -->
+
   <div class="people-box">
-    <div class="small">👥 同行者</div>
-    <div id="peopleList" class="people-list"></div>
+    <div class="small">👥 旅伴</div>
+
+<div id="peopleList" class="people-list"></div>
 
 <div class="add-person">
-  <input id="personInput" placeholder="輸入同行者姓名">
+  <input id="personInput" placeholder="輸入旅伴">
   <button class="btn primary" onclick="addPerson()">新增</button>
 </div>
+
+  </div>
+
+  <!-- 新增待辦 -->
+
+  <div class="todo-add">
+    <input id="todoInput" placeholder="新增待辦事項">
+
+<select id="todoOwner"></select>
+
+<input id="todoNoteInput" placeholder="備註（可選）">
+
+<button class="btn primary" onclick="addTodo()">新增</button>
+
+  </div>
+
+  <!-- 待辦列表 -->
+
+  <div id="todoList"></div>
+</section>
+
 
   </div>
 
@@ -2275,6 +2315,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <div id="todoList"></div>
 </section>
+
 
 <section class="card">
   <div class="section-title">
@@ -2562,113 +2603,149 @@ function renderOwnerOptions(){
 /* TODO */
 let todos = JSON.parse(localStorage.getItem("kobe_todos") || "[]");
 
+/* 舊資料如果沒有 note，自動補上空白備註 */
+todos = todos.map(t => ({
+...t,
+note: t.note || ""
+}));
+
 function saveTodos(){
-  localStorage.setItem("kobe_todos",JSON.stringify(todos));
+localStorage.setItem("kobe_todos", JSON.stringify(todos));
 }
 
 function addTodo(){
-  const input = document.getElementById("todoInput");
-  const owner = document.getElementById("todoOwner").value;
-  const title = input.value.trim();
+const input = document.getElementById("todoInput");
+const owner = document.getElementById("todoOwner").value;
+const noteInput = document.getElementById("todoNoteInput");
 
-  if(!title) return;
+const title = input.value.trim();
+const note = noteInput.value.trim();
 
-  todos.push({
-    id:Date.now(),
-    title:title,
-    owner:owner,
-    done:false
-  });
+if(!title) return;
 
-  saveTodos();
+todos.push({
+id: Date.now(),
+title: title,
+owner: owner,
+note: note,
+done: false
+});
 
-  input.value = "";
-  document.getElementById("todoOwner").value = "";
+saveTodos();
 
-  renderTodos();
+input.value = "";
+noteInput.value = "";
+document.getElementById("todoOwner").value = "";
+
+renderTodos();
 }
 
 function toggleTodo(id){
-  const item = todos.find(t=>t.id===id);
-  if(!item) return;
+const item = todos.find(t => t.id === id);
+if(!item) return;
 
-  item.done = !item.done;
-  saveTodos();
-  renderTodos();
+item.done = !item.done;
+saveTodos();
+renderTodos();
 }
 
-function updateTodoOwner(id,value){
-  const item = todos.find(t=>t.id===id);
-  if(!item) return;
+function updateTodoOwner(id, value){
+const item = todos.find(t => t.id === id);
+if(!item) return;
 
-  item.owner = value;
-  saveTodos();
+item.owner = value;
+saveTodos();
+}
+
+function updateTodoNote(id, value){
+const item = todos.find(t => t.id === id);
+if(!item) return;
+
+item.note = value;
+saveTodos();
 }
 
 function deleteTodo(id){
-  todos = todos.filter(t=>t.id!==id);
-  saveTodos();
-  renderTodos();
+todos = todos.filter(t => t.id !== id);
+saveTodos();
+renderTodos();
 }
 
 function renderTodos(){
-  renderOwnerOptions();
+renderOwnerOptions();
 
-  const list = document.getElementById("todoList");
+const list = document.getElementById("todoList");
 
-  if(!todos.length){
-    list.innerHTML = '<div class="note">目前沒有待辦事項，可以在上方新增。</div>';
-    return;
-  }
+if(!todos.length){
+list.innerHTML =
+'<div class="note">目前沒有待辦事項，可以在上方新增。</div>';
+return;
+}
 
-  list.innerHTML = todos.map(t=>`
-    <div class="todo-row">
-      <div class="todo-main">
-        <input
-          class="todo-check"
-          type="checkbox"
-          ${t.done ? "checked" : ""}
-          onchange="toggleTodo(${t.id})"
-        >
-        <div class="todo-title" style="${t.done ? "text-decoration:line-through;color:var(--muted)" : ""}">
-          ${escapeHtml(t.title)}
-        </div>
+list.innerHTML = todos.map(t => ` <div class="todo-row">
+
+```
+  <div class="todo-main">
+    <input
+      class="todo-check"
+      type="checkbox"
+      ${t.done ? "checked" : ""}
+      onchange="toggleTodo(${t.id})"
+    >
+
+    <div class="todo-content">
+
+      <div
+        class="todo-title"
+        style="${t.done ? "text-decoration:line-through;color:var(--muted)" : ""}"
+      >
+        ${escapeHtml(t.title)}
       </div>
 
-      <div class="todo-meta">
-        <select
-          class="owner-select"
-          onchange="updateTodoOwner(${t.id},this.value)"
-        >
-          <option value="">負責人</option>
-          ${people.map(p=>`
-            <option value="${escapeAttr(p)}" ${t.owner===p ? "selected" : ""}>
-              ${escapeHtml(p)}
-            </option>
-          `).join("")}
-        </select>
+      <input
+        class="todo-note"
+        type="text"
+        value="${escapeAttr(t.note)}"
+        placeholder="📝 新增備註……"
+        onchange="updateTodoNote(${t.id},this.value)"
+      >
 
-        <button class="todo-delete" onclick="deleteTodo(${t.id})">🗑️</button>
-      </div>
     </div>
-  `).join("");
+  </div>
+
+  <div class="todo-meta">
+
+    <select
+      class="owner-select"
+      onchange="updateTodoOwner(${t.id},this.value)"
+    >
+      <option value="">負責人</option>
+
+      ${people.map(p => `
+        <option
+          value="${escapeAttr(p)}"
+          ${t.owner === p ? "selected" : ""}
+        >
+          ${escapeHtml(p)}
+        </option>
+      `).join("")}
+
+    </select>
+
+    <button
+      class="todo-delete"
+      onclick="deleteTodo(${t.id})"
+    >
+      🗑️
+    </button>
+
+  </div>
+
+</div>
+
+`).join("");
 }
 
-function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g,function(m){
-    return {
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[m];
-  });
-}
-
-function escapeAttr(s){
-  return escapeHtml(s).replace(/`/g,"");
-}
 
 renderPeople();
 renderTodos();
