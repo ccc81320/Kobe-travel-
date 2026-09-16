@@ -909,14 +909,12 @@ footer{
     background:var(--card);
   }
 
-  /* 重要：所有地圖預設隱藏 */
   .map-box .day-map{
     display:none !important;
     width:100%;
     height:auto;
   }
 
-  /* 只有 active 的地圖顯示 */
   .map-box .day-map.active{
     display:block !important;
   }
@@ -939,6 +937,7 @@ footer{
     stroke-width:6;
     stroke-linecap:round;
     stroke-linejoin:round;
+    stroke-dasharray:12 9;
   }
 
   .map-arrow{
@@ -974,138 +973,137 @@ footer{
 
   <div class="map-box">
 
-<!-- D1 -->
+<!-- D1｜台中 → 神戶 → 大阪 -->
 <svg id="svg-d1" class="day-map active" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
 
   <path class="map-route"
-    d="M90 85
-       C155 45 220 65 270 120
-       S345 220 420 190
-       S505 145 565 220
-       S625 315 690 365"/>
+    d="M70 100
+       C140 45 215 65 270 125
+       S350 225 420 185
+       S505 125 565 205
+       S640 300 690 350"/>
 
-  <circle class="map-node" cx="90" cy="85" r="12"/>
-  <circle class="map-node" cx="270" cy="120" r="12"/>
-  <circle class="map-node" cx="420" cy="190" r="12"/>
-  <circle class="map-node" cx="565" cy="220" r="12"/>
-  <circle class="map-node" cx="690" cy="365" r="12"/>
+  <circle class="map-node" cx="70" cy="100" r="12"/>
+  <circle class="map-node" cx="270" cy="125" r="12"/>
+  <circle class="map-node" cx="420" cy="185" r="12"/>
+  <circle class="map-node" cx="565" cy="205" r="12"/>
+  <circle class="map-node" cx="690" cy="350" r="12"/>
 
-  <text class="map-label" x="90" y="58" text-anchor="middle">神戶機場</text>
-  <text class="map-label" x="270" y="93" text-anchor="middle">生田神社</text>
-  <text class="map-label" x="420" y="163" text-anchor="middle">南京町</text>
-  <text class="map-label" x="565" y="193" text-anchor="middle">神戶港塔</text>
-  <text class="map-label" x="690" y="398" text-anchor="middle">北野異人館</text>
+  <text class="map-label" x="70" y="72" text-anchor="middle">神戶機場</text>
+  <text class="map-label" x="270" y="98" text-anchor="middle">生田神社</text>
+  <text class="map-label" x="420" y="158" text-anchor="middle">南京町</text>
+  <text class="map-label" x="565" y="178" text-anchor="middle">神戶港塔</text>
+  <text class="map-label" x="690" y="385" text-anchor="middle">北野異人館</text>
 
-  <polygon class="map-arrow" points="675,357 690,365 676,374"/>
+  <polygon class="map-arrow" points="675,342 690,350 675,358"/>
 </svg>
 
 
-<!-- D2 -->
+<!-- D2｜大阪 -->
 <svg id="svg-d2" class="day-map" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
 
   <path class="map-route"
-    d="M80 130
-       C145 80 210 105 255 165
-       S320 275 390 245
-       S470 175 530 215
-       S595 315 680 285"/>
+    d="M70 260
+       C130 210 195 225 245 170
+       S330 75 390 130
+       S470 255 525 205
+       S610 145 690 185"/>
 
-  <circle class="map-node" cx="80" cy="130" r="12"/>
-  <circle class="map-node" cx="255" cy="165" r="12"/>
-  <circle class="map-node" cx="390" cy="245" r="12"/>
-  <circle class="map-node" cx="530" cy="215" r="12"/>
-  <circle class="map-node" cx="680" cy="285" r="12"/>
+  <circle class="map-node" cx="70" cy="260" r="12"/>
+  <circle class="map-node" cx="245" cy="170" r="12"/>
+  <circle class="map-node" cx="390" cy="130" r="12"/>
+  <circle class="map-node" cx="525" cy="205" r="12"/>
+  <circle class="map-node" cx="690" cy="185" r="12"/>
 
-  <text class="map-label" x="80" y="102" text-anchor="middle">大阪城</text>
-  <text class="map-label" x="255" y="138" text-anchor="middle">黑門市場</text>
-  <text class="map-label" x="390" y="275" text-anchor="middle">四天王寺</text>
-  <text class="map-label" x="530" y="187" text-anchor="middle">新世界・通天閣</text>
-  <text class="map-label" x="680" y="317" text-anchor="middle">心齋橋・道頓堀</text>
+  <text class="map-label" x="70" y="293" text-anchor="middle">大阪城</text>
+  <text class="map-label" x="245" y="143" text-anchor="middle">黑門市場</text>
+  <text class="map-label" x="390" y="103" text-anchor="middle">四天王寺</text>
+  <text class="map-label" x="525" y="238" text-anchor="middle">新世界・通天閣</text>
+  <text class="map-label" x="690" y="153" text-anchor="middle">心齋橋・道頓堀</text>
 
-  <polygon class="map-arrow" points="665,276 680,285 665,294"/>
+  <polygon class="map-arrow" points="675,177 690,185 675,193"/>
 </svg>
 
 
-<!-- D3 -->
+<!-- D3 大阪 → 奈良 → 宇治 → 大阪 -->
 <svg id="svg-d3" class="day-map" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
 
   <path class="map-route"
-    d="M80 390
-       C140 350 195 370 230 315
-       S285 215 345 250
-       S420 330 465 275
-       S525 175 580 195
-       S650 145 700 95"/>
+    d="M65 340
+       C125 385 190 365 230 300
+       S290 185 350 230
+       S425 335 475 275
+       S535 150 595 175
+       S655 135 700 90"/>
 
-  <circle class="map-node" cx="80" cy="390" r="12"/>
-  <circle class="map-node" cx="230" cy="315" r="12"/>
-  <circle class="map-node" cx="345" cy="250" r="12"/>
-  <circle class="map-node" cx="465" cy="275" r="12"/>
-  <circle class="map-node" cx="580" cy="195" r="12"/>
-  <circle class="map-node" cx="700" cy="95" r="12"/>
+  <circle class="map-node" cx="65" cy="340" r="12"/>
+  <circle class="map-node" cx="230" cy="300" r="12"/>
+  <circle class="map-node" cx="350" cy="230" r="12"/>
+  <circle class="map-node" cx="475" cy="275" r="12"/>
+  <circle class="map-node" cx="595" cy="175" r="12"/>
+  <circle class="map-node" cx="700" cy="90" r="12"/>
 
-  <text class="map-label" x="80" y="420" text-anchor="middle">奈良公園</text>
-  <text class="map-label" x="230" y="345" text-anchor="middle">東大寺</text>
-  <text class="map-label" x="345" y="280" text-anchor="middle">春日大社</text>
-  <text class="map-label" x="465" y="305" text-anchor="middle">若草山</text>
-  <text class="map-label" x="580" y="165" text-anchor="middle">奈良町</text>
-  <text class="map-label" x="700" y="68" text-anchor="middle">宇治・平等院</text>
+  <text class="map-label" x="65" y="373" text-anchor="middle">奈良公園</text>
+  <text class="map-label" x="230" y="333" text-anchor="middle">東大寺</text>
+  <text class="map-label" x="350" y="203" text-anchor="middle">春日大社</text>
+  <text class="map-label" x="475" y="308" text-anchor="middle">若草山</text>
+  <text class="map-label" x="595" y="145" text-anchor="middle">奈良町</text>
+  <text class="map-label" x="700" y="62" text-anchor="middle">宇治・平等院</text>
 
-  <polygon class="map-arrow" points="685,86 700,95 685,104"/>
+  <polygon class="map-arrow" points="685,82 700,90 685,98"/>
 </svg>
 
 
-<!-- D4 -->
+<!-- D4｜大阪 → 京都 → 嵐山 → 大阪  -->
 <svg id="svg-d4" class="day-map" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
 
   <path class="map-route"
-    d="M680 95
-       C625 50 560 70 525 130
-       S470 235 405 205
-       S330 150 285 220
-       S235 335 170 315
-       S105 350 75 410"/>
+    d="M65 350
+       C125 310 185 335 225 275
+       S285 155 345 190
+       S420 285 470 235
+       S535 115 590 150
+       S655 125 700 80"/>
 
-  <circle class="map-node" cx="680" cy="95" r="12"/>
-  <circle class="map-node" cx="525" cy="130" r="12"/>
-  <circle class="map-node" cx="405" cy="205" r="12"/>
-  <circle class="map-node" cx="285" cy="220" r="12"/>
-  <circle class="map-node" cx="170" cy="315" r="12"/>
-  <circle class="map-node" cx="75" cy="410" r="12"/>
+  <circle class="map-node" cx="65" cy="350" r="12"/>
+  <circle class="map-node" cx="225" cy="275" r="12"/>
+  <circle class="map-node" cx="345" cy="190" r="12"/>
+  <circle class="map-node" cx="470" cy="235" r="12"/>
+  <circle class="map-node" cx="590" cy="150" r="12"/>
+  <circle class="map-node" cx="700" cy="80" r="12"/>
 
-  <text class="map-label" x="680" y="68" text-anchor="middle">伏見稻荷大社</text>
-  <text class="map-label" x="525" y="103" text-anchor="middle">清水寺</text>
-  <text class="map-label" x="405" y="178" text-anchor="middle">八坂神社</text>
-  <text class="map-label" x="285" y="193" text-anchor="middle">祇園</text>
-  <text class="map-label" x="170" y="345" text-anchor="middle">嵐山竹林</text>
-  <text class="map-label" x="75" y="425" text-anchor="middle">天龍寺・渡月橋</text>
+  <text class="map-label" x="65" y="383" text-anchor="middle">伏見稻荷大社</text>
+  <text class="map-label" x="225" y="308" text-anchor="middle">清水寺</text>
+  <text class="map-label" x="345" y="163" text-anchor="middle">八坂神社</text>
+  <text class="map-label" x="470" y="268" text-anchor="middle">祇園</text>
+  <text class="map-label" x="590" y="120" text-anchor="middle">嵐山竹林</text>
+  <text class="map-label" x="700" y="52" text-anchor="middle">天龍寺・渡月橋</text>
 
-  <polygon class="map-arrow" points="90,401 75,410 90,419"/>
+  <polygon class="map-arrow" points="685,72 700,80 685,88"/>
 </svg>
 
 
-<!-- D5 -->
+<!-- D5｜大阪 → 神戶 → 台中 -->
 <svg id="svg-d5" class="day-map" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
 
   <path class="map-route"
-    d="M95 110
-       C165 70 235 105 285 165
-       S375 275 450 245
-       S545 195 590 270
-       S645 350 705 395"
-    stroke-dasharray="12 9"/>
+    d="M70 120
+       C140 75 215 100 275 165
+       S365 275 445 240
+       S535 185 590 260
+       S650 335 700 385"/>
 
-  <circle class="map-node" cx="95" cy="110" r="12"/>
-  <circle class="map-node" cx="285" cy="165" r="12"/>
-  <circle class="map-node" cx="450" cy="245" r="12"/>
-  <circle class="map-node" cx="705" cy="395" r="12"/>
+  <circle class="map-node" cx="70" cy="120" r="12"/>
+  <circle class="map-node" cx="275" cy="165" r="12"/>
+  <circle class="map-node" cx="445" cy="240" r="12"/>
+  <circle class="map-node" cx="700" cy="385" r="12"/>
 
-  <text class="map-label" x="95" y="82" text-anchor="middle">大阪</text>
-  <text class="map-label" x="285" y="138" text-anchor="middle">三宮</text>
-  <text class="map-label" x="450" y="218" text-anchor="middle">神戶機場</text>
-  <text class="map-label" x="705" y="425" text-anchor="middle">台中</text>
+  <text class="map-label" x="70" y="92" text-anchor="middle">大阪</text>
+  <text class="map-label" x="275" y="138" text-anchor="middle">三宮</text>
+  <text class="map-label" x="445" y="212" text-anchor="middle">神戶機場</text>
+  <text class="map-label" x="700" y="420" text-anchor="middle">台中</text>
 
-  <polygon class="map-arrow" points="690,386 705,395 690,404"/>
+  <polygon class="map-arrow" points="685,377 700,385 685,393"/>
 </svg>
 
   </div>
@@ -1114,13 +1112,11 @@ footer{
 <script>
 function switchMap(day) {
 
-  /* 先把所有地圖強制隱藏 */
   document.querySelectorAll('.map-box .day-map').forEach(function(map) {
     map.classList.remove('active');
     map.style.setProperty('display', 'none', 'important');
   });
 
-  /* 只顯示被點擊的那一天 */
   const selectedMap = document.getElementById('svg-' + day);
 
   if (selectedMap) {
@@ -1128,24 +1124,23 @@ function switchMap(day) {
     selectedMap.style.setProperty('display', 'block', 'important');
   }
 
-  /* 更新 D1～D5 按鈕 */
   document.querySelectorAll('.map-tab').forEach(function(tab) {
     tab.classList.remove('active');
   });
 
-  const selectedTab = document.querySelector('.map-tab[data-day="' + day + '"]');
+  const selectedTab = document.querySelector(
+    '.map-tab[data-day="' + day + '"]'
+  );
 
   if (selectedTab) {
     selectedTab.classList.add('active');
   }
 }
 
-/* 預設只顯示 D1 */
 document.addEventListener('DOMContentLoaded', function() {
   switchMap('d1');
 });
 </script>
-
 
 
 <section class="card">
@@ -1234,8 +1229,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="day-content">
 
   <div class="weather-box">
-    <div class="weather-title">🌤️ 今日天氣</div> <a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">
-      ☁️ 神戶｜Apple Weather →
+    <div class="weather-title">🌤️ 今日天氣</div> <a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955"> ☁️ 神戶｜Apple Weather →
     </a>
   </div>
 
