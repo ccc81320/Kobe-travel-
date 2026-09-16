@@ -3,26 +3,24 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f4efe6">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>JAPAN TRAVEL｜神戶・大阪・奈良・京都5日遊</title>
 <style>
 :root{
-  --bg:#f4efe6;
+  --bg:#f7f4ef;
   --card:#fffdf8;
-  --text:#292a27;
-  --muted:#77756d;
-  --line:#ded8cc;
-  --green:#71876f;
-  --green-light:#e4ebe1;
+  --text:#3d3d39;
+  --muted:#858178;
+  --line:#ded8ce;
+  --green:#7d9273;
+  --green-light:#e9eee5;
   --orange:#c9825c;
-  --orange-light:#f3dfd1;
-  --purple:#8e7da0;
-  --purple-light:#ebe5ef;
-  --blue:#708fa0;
-  --blue-light:#e2ebef;
-  --shadow:0 8px 28px rgba(58,51,42,.07);
-  --radius:20px;
+  --orange-light:#f4e5da;
+  --purple:#927ca0;
+  --purple-light:#eee8f1;
+  --blue:#7699aa;
+  --blue-light:#e6eef2;
+  --shadow:0 8px 24px rgba(70,60,45,.07);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -31,8 +29,8 @@ body{
   background:var(--bg);
   color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
-  line-height:1.55;
-  transition:.25s;
+  line-height:1.65;
+  transition:.3s;
 }
 body.night{
   --bg:#292a27;
@@ -48,153 +46,139 @@ body.night{
   --purple-light:#46404f;
   --blue:#8eaaba;
   --blue-light:#3d4750;
-  --shadow:0 8px 28px rgba(0,0,0,.18);
+}
+body.night select{
+  background:#363733;
+  color:#f1eee7;
+  border-color:#52534d;
+}
+body.night select option{
+  background:#363733;
+  color:#f1eee7;
 }
 a{color:inherit}
-button,input,select,textarea{font:inherit}
 .container{
-  width:min(920px,100%);
+  width:min(100% - 28px,900px);
   margin:auto;
-  padding:18px 18px 56px;
 }
 header{
-  padding:18px 2px 22px;
+  padding:28px 0 20px;
+  text-align:center;
 }
-.eyebrow{
-  font-size:11px;
-  letter-spacing:.16em;
+.logo{
+  letter-spacing:3px;
+  font-size:12px;
   color:var(--muted);
   font-weight:800;
-  margin-bottom:8px;
 }
 h1{
-  margin:0;
-  font-size:clamp(30px,7vw,48px);
-  line-height:1.12;
-  letter-spacing:-.035em;
+  margin:5px 0 3px;
+  font-size:27px;
+  letter-spacing:1px;
 }
 .subtitle{
-  margin-top:9px;
   color:var(--muted);
   font-size:13px;
 }
 .card{
   background:var(--card);
   border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:20px;
-  margin:14px 0;
+  border-radius:20px;
   box-shadow:var(--shadow);
 }
-.section-title{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:14px;
-}
-.section-title h2{
-  margin:0;
-  font-size:18px;
-  letter-spacing:-.02em;
-}
-.small{
-  color:var(--muted);
-  font-size:11px;
-}
-.countdown-label{
-  font-size:12px;
-  color:var(--muted);
-  font-weight:750;
-}
 .countdown{
+  padding:17px;
+  text-align:center;
+  margin-bottom:16px;
+}
+.countdown-title{
+  font-size:13px;
+  color:var(--muted);
+  font-weight:800;
+}
+.countdown-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:8px;
-  margin:12px 0 8px;
+  margin-top:9px;
 }
-.time-box{
-  border:1px solid var(--line);
-  border-radius:15px;
-  padding:11px 5px;
-  text-align:center;
+.countdown-item strong{
+  display:block;
+  font-size:25px;
+  line-height:1.1;
 }
-.number{
-  font-size:31px;
-  line-height:1;
-  font-weight:850;
-}
-.label{
-  color:var(--muted);
+.countdown-item span{
   font-size:10px;
-  margin-top:6px;
-}
-.zone-note{
   color:var(--muted);
-  font-size:11px;
 }
-.flight-card{
-  border:1px solid var(--line);
-  border-radius:17px;
-  overflow:hidden;
-  margin-top:12px;
+section{margin:18px 0}
+.section-title{
+  font-size:17px;
+  font-weight:900;
+  margin:0 0 10px;
 }
-.flight-head{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:12px 15px;
-  border-bottom:1px solid var(--line);
+.flight{
+  padding:15px;
 }
-.flight-head strong{font-size:14px}
-.tag{
-  display:inline-flex;
-  align-items:center;
-  padding:4px 9px;
-  border-radius:999px;
-  background:var(--green-light);
-  color:var(--green);
-  font-size:10px;
+.flight+.flight{margin-top:10px}
+.flight-date{
+  color:var(--muted);
+  font-size:12px;
   font-weight:800;
-  white-space:nowrap;
 }
 .flight-route{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:4px;
-  padding:14px 17px 16px;
-}
-.airport-block:first-child{text-align:left}
-.airport-block:nth-child(2){text-align:right}
-.airport-code{
-  font-size:24px;
-  font-weight:900;
-  letter-spacing:.05em;
-}
-.airport-name{
-  font-size:12px;
-  color:var(--muted);
-  margin-top:2px;
-}
-.flight-time{
-  grid-column:1/-1;
-  display:grid;
   grid-template-columns:1fr auto 1fr;
   align-items:center;
-  gap:14px;
-  margin-top:3px;
-  font-size:16px;
-  font-weight:850;
+  gap:10px;
+  margin-top:7px;
 }
-.flight-time span:first-child{text-align:left}
-.flight-time span:last-child{text-align:right}
-.flight-plane{font-size:17px}
-.flight-info{
-  border-top:1px solid var(--line);
-  padding:9px 17px;
-  color:var(--muted);
+.airport strong{
+  display:block;
+  font-size:20px;
+}
+.airport span{
   font-size:11px;
+  color:var(--muted);
 }
+.airport:last-child{text-align:right}
+.flight-plane{
+  text-align:center;
+  font-size:21px;
+}
+.flight-time{
+  font-size:12px;
+  color:var(--muted);
+}
+.flight-meta{
+  text-align:center;
+  margin-top:8px;
+  font-size:11px;
+  color:var(--muted);
+}
+.route-tabs{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:6px;
+  margin-bottom:10px;
+}
+.route-tab{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:8px 5px;
+  background:var(--card);
+  color:var(--muted);
+  cursor:pointer;
+  font-size:11px;
+  font-weight:800;
+}
+.route-tab.active{
+  background:var(--green);
+  color:#fff;
+  border-color:var(--green);
+}
+.route-panel{display:none}
+.route-panel.active{display:block}
 .route-overview{
   position:relative;
   overflow:hidden;
@@ -205,9 +189,7 @@ h1{
 body.night .route-overview{background:rgba(255,255,255,.025)}
 .route-day{
   padding:14px 13px 16px;
-  border-bottom:1px solid var(--line);
 }
-.route-day:last-child{border-bottom:0}
 .route-day-title{
   display:flex;
   align-items:center;
@@ -248,634 +230,531 @@ body.night .route-overview{background:rgba(255,255,255,.025)}
 }
 .route-line{
   fill:none;
+  stroke:var(--orange);
   stroke-width:5;
   stroke-linecap:round;
   stroke-linejoin:round;
 }
 .day-card{
-  border-top:1px solid var(--line);
-  padding:16px 0 4px;
+  overflow:hidden;
 }
-.day-card:first-of-type{border-top:0}
-.day-header{
+.day-card summary{
+  list-style:none;
+  cursor:pointer;
+  padding:16px;
+}
+.day-card summary::-webkit-details-marker{display:none}
+.day-head{
   display:flex;
+  justify-content:space-between;
   align-items:flex-start;
-  justify-content:space-between;
-  gap:12px;
-}
-.day-title{
-  margin:0;
-  font-size:18px;
-}
-.day-sub{
-  margin-top:3px;
-  color:var(--muted);
-  font-size:11px;
-}
-.pass-badge{
-  background:var(--purple-light);
-  color:var(--purple);
-  border:1px solid rgba(142,125,160,.25);
-  border-radius:999px;
-  padding:4px 8px;
-  font-size:10px;
-  font-weight:800;
-  white-space:nowrap;
-}
-.weather{
-  margin-top:13px;
-  padding:11px 12px;
-  border:1px solid var(--line);
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
   gap:10px;
 }
-.weather-title{
-  font-size:12px;
+.day-title{
+  font-size:17px;
+  font-weight:900;
+}
+.day-date{
+  color:var(--muted);
+  font-size:11px;
+}
+.day-arrow{
+  color:var(--muted);
+  font-size:18px;
+}
+.day-body{
+  padding:0 16px 17px;
+  border-top:1px solid var(--line);
+}
+.badge{
+  display:inline-block;
+  margin-top:7px;
+  padding:3px 8px;
+  border-radius:999px;
+  background:var(--green-light);
+  color:var(--green);
+  font-size:10px;
   font-weight:800;
 }
-.weather-link{
-  display:inline-flex;
-  align-items:center;
-  gap:5px;
-  text-decoration:none;
+.note{
+  margin-top:12px;
+  padding:10px 11px;
+  border-radius:12px;
+  background:var(--orange-light);
   border:1px solid var(--line);
-  border-radius:999px;
-  padding:7px 10px;
-  color:var(--text);
-  font-size:10px;
-  background:var(--card);
 }
-.notice{
-  margin-top:10px;
-  padding:12px;
-  border-left:3px solid var(--green);
-  border-radius:8px;
-  background:var(--green-light);
-}
-.notice-title{
+.note-title{
   font-size:11px;
-  font-weight:850;
+  font-weight:900;
   margin-bottom:4px;
 }
-.editable{
-  min-height:18px;
-  outline:none;
-}
-.editable:empty:before{
-  content:attr(data-placeholder);
-  color:var(--muted);
+.note textarea{
+  width:100%;
+  min-height:55px;
+  resize:vertical;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:var(--text);
+  font:inherit;
+  font-size:12px;
 }
 .timeline{
   position:relative;
   margin-top:14px;
 }
 .timeline-item{
-  display:grid;
-  grid-template-columns:76px 1fr;
-  gap:12px;
   position:relative;
-  padding:10px 0 13px;
+  padding:0 0 17px 30px;
 }
-.timeline-item:not(:last-child):after{
+.timeline-item:not(:last-child):before{
   content:"";
   position:absolute;
-  left:68px;
-  top:39px;
-  bottom:-1px;
+  left:9px;
+  top:22px;
+  bottom:0;
   width:1px;
   background:var(--line);
+}
+.timeline-dot{
+  position:absolute;
+  left:4px;
+  top:5px;
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  background:var(--orange);
 }
 .timeline-time{
   font-size:11px;
   color:var(--muted);
   font-weight:800;
-  padding-top:2px;
 }
-.item-body{
-  min-width:0;
-}
-.item-title{
+.timeline-title{
+  font-weight:900;
   font-size:13px;
-  font-weight:800;
-  line-height:1.45;
 }
-.item-sub{
+.timeline-detail{
+  font-size:12px;
   color:var(--muted);
-  font-size:11px;
-  margin-top:4px;
-  line-height:1.5;
 }
-.item-links{
+.transport{
   display:flex;
   flex-wrap:wrap;
   gap:5px;
-  margin-top:6px;
+  margin-top:5px;
 }
-.map-link{
-  text-decoration:none;
-  color:var(--green);
+.transport span{
   font-size:10px;
+  padding:2px 6px;
+  border-radius:999px;
+  background:var(--blue-light);
+  color:var(--blue);
+}
+.move{
+  margin:3px 0 13px 30px;
+  font-size:11px;
+  color:var(--muted);
+}
+.move a{
+  text-decoration:none;
   font-weight:800;
 }
-.item-note{
-  margin-top:7px;
-  padding:7px 9px;
-  border:1px dashed var(--line);
-  border-radius:8px;
-  font-size:10px;
-  color:var(--muted);
+.place-link{
+  text-decoration:none;
 }
 .meal{
-  background:rgba(201,130,92,.06);
-  border-radius:10px;
-  padding:5px 7px;
-}
-.pending{
-  color:var(--orange);
-  font-weight:800;
-}
-details.day-details{
-  margin-top:9px;
-  border-top:1px solid var(--line);
-  padding-top:11px;
-}
-details.day-details summary{
-  cursor:pointer;
-  color:var(--green);
-  font-size:12px;
-  font-weight:800;
-  list-style:none;
-}
-details.day-details summary::-webkit-details-marker{display:none}
-.details-label:after{
-  content:"＋";
-  margin-left:6px;
-}
-details[open] .details-label:after{content:"−"}
-.expense-add{
-  display:grid;
-  grid-template-columns:78px 120px 1fr 90px 70px 95px auto;
-  gap:7px;
-  align-items:center;
-}
-input,select,textarea{
-  width:100%;
-  min-width:0;
-  padding:9px 10px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:var(--card);
-  color:var(--text);
-  outline:none;
-}
-textarea{resize:vertical}
-body.night select{
-  background:#363733;
-  color:#f1eee7;
-  border-color:#52534d;
-}
-body.night select option{
-  background:#363733;
-  color:#f1eee7;
-}
-.primary-btn,.secondary-btn,.danger-btn{
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:9px 11px;
-  cursor:pointer;
-  font-weight:800;
-  font-size:11px;
-}
-.primary-btn{
-  background:var(--green);
-  color:#fff;
-  border-color:var(--green);
-}
-.secondary-btn{
-  background:var(--card);
-  color:var(--text);
-}
-.danger-btn{
-  background:transparent;
-  color:var(--orange);
-}
-.expense-list{margin-top:13px}
-.expense-row{
-  display:grid;
-  grid-template-columns:55px 95px 1fr 85px 55px 75px 34px;
-  gap:7px;
-  align-items:center;
-  padding:9px 0;
-  border-bottom:1px solid var(--line);
-  font-size:11px;
-}
-.expense-row.header{
-  color:var(--muted);
-  font-weight:800;
-  border-bottom:2px solid var(--line);
-}
-.expense-row .amount{text-align:right;font-weight:800}
-.total-box{
-  display:grid;
-  grid-template-columns:1fr;
+  display:flex;
+  align-items:flex-start;
   gap:8px;
+  margin:7px 0;
+  padding:8px 9px;
+  border:1px dashed var(--line);
+  border-radius:11px;
+  font-size:11px;
+}
+.meal strong{font-size:12px}
+.inline-edit{
+  display:inline-block;
+  min-width:45px;
+  border-bottom:1px dashed var(--muted);
+  color:var(--text);
+  outline:0;
+}
+.weather{
   margin-top:13px;
-}
-.total{
-  border:1px solid var(--line);
-  border-radius:13px;
-  padding:11px 13px;
-}
-.total-label{color:var(--muted);font-size:10px}
-.total strong{display:block;font-size:19px;margin-top:3px}
-.people-box{
+  padding:9px 11px;
   border:1px solid var(--line);
   border-radius:14px;
-  padding:12px;
-  margin-bottom:12px;
-}
-.people-title{
-  font-size:12px;
-  font-weight:850;
-}
-.people-add{
   display:flex;
+  align-items:center;
   gap:7px;
-  margin-top:8px;
+  flex-wrap:wrap;
+  font-size:11px;
 }
-.people-list{
+.weather-title{
+  font-weight:900;
+  white-space:nowrap;
+}
+.weather-link{
+  text-decoration:none;
+  color:var(--blue);
+  font-weight:800;
+  padding:4px 7px;
+  border-radius:8px;
+  background:var(--blue-light);
+  white-space:nowrap;
+}
+.expense-box,.todo-box,.info-box{
+  padding:14px;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:6px;
+}
+input,select,button,textarea{
+  font:inherit;
+}
+input,select{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:7px 8px;
+  background:var(--card);
+  color:var(--text);
+  outline:0;
+  font-size:11px;
+}
+button{
+  border:0;
+  cursor:pointer;
+}
+.add-btn{
+  background:var(--green);
+  color:#fff;
+  border-radius:9px;
+  padding:7px 10px;
+  font-size:11px;
+  font-weight:800;
+}
+.expense-table{
+  margin-top:10px;
+}
+.expense-row{
+  display:grid;
+  grid-template-columns:48px 90px 1fr 80px 55px 85px 28px;
+  gap:5px;
+  align-items:center;
+  padding:6px 0;
+  border-bottom:1px solid var(--line);
+}
+.expense-head{
+  color:var(--muted);
+  font-size:10px;
+  font-weight:900;
+}
+.expense-row input,.expense-row select{
+  padding:5px 6px;
+}
+.delete-btn{
+  background:transparent;
+  color:var(--muted);
+  font-size:14px;
+}
+.total{
+  text-align:right;
+  margin-top:10px;
+  font-size:13px;
+  font-weight:900;
+}
+.people{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  margin-bottom:9px;
+}
+.people input{max-width:160px}
+.person-list{
   display:flex;
   flex-wrap:wrap;
-  gap:6px;
-  margin-top:9px;
-}
-.person-chip{
-  display:inline-flex;
-  align-items:center;
   gap:5px;
-  padding:5px 8px;
+}
+.person{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  background:var(--green-light);
+  color:var(--green);
+  padding:3px 7px;
   border-radius:999px;
-  border:1px solid var(--line);
   font-size:10px;
 }
-.person-chip button{
-  border:0;
-  background:none;
-  color:var(--muted);
-  padding:0;
-  cursor:pointer;
+.person button{
+  background:transparent;
+  color:inherit;
+  font-size:10px;
 }
 .todo-add{
   display:grid;
-  grid-template-columns:1fr 90px auto;
-  gap:7px;
-  margin-bottom:10px;
+  grid-template-columns:1fr 115px auto;
+  gap:6px;
 }
-.todo-row{
+.todo-list{margin-top:9px}
+.todo-item{
   display:grid;
-  grid-template-columns:1fr auto;
-  gap:10px;
-  padding:11px 0;
-  border-bottom:1px solid var(--line);
+  grid-template-columns:20px 1fr 105px 24px;
+  gap:6px;
   align-items:center;
+  padding:8px 0;
+  border-bottom:1px solid var(--line);
+  font-size:11px;
 }
-.todo-row:last-child{border-bottom:0}
-.todo-main{
-  display:flex;
-  align-items:flex-start;
-  gap:9px;
-  min-width:0;
-}
-.todo-check{
-  width:18px;
-  height:18px;
-  margin-top:1px;
-  flex:0 0 auto;
-}
-.todo-text{
-  font-size:12px;
-  font-weight:700;
-  outline:none;
-  min-width:0;
-}
-.todo-row.done .todo-text{
+.todo-item.done .todo-text{
   text-decoration:line-through;
   color:var(--muted);
 }
-.todo-side{
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-.owner{
-  width:88px;
-  padding:6px 7px;
-  font-size:10px;
-}
-.todo-delete{
-  border:0;
-  background:none;
-  color:var(--muted);
-  cursor:pointer;
-  font-size:14px;
-}
-.tip{
-  padding:11px 0;
+.info-row{
+  padding:10px 0;
   border-bottom:1px solid var(--line);
+}
+.info-row:last-child{border-bottom:0}
+.info-row strong{
+  display:block;
   font-size:12px;
 }
-.tip:last-child{border-bottom:0}
-.footer{
-  text-align:center;
-  padding:22px 0 5px;
-  color:var(--muted);
+.info-row span{
+  display:block;
   font-size:11px;
+  color:var(--muted);
+}
+footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:10px;
+  padding:25px 0 35px;
 }
 @media(max-width:700px){
-  .container{padding:12px 12px 42px}
-  .card{padding:16px;border-radius:18px}
-  h1{font-size:31px}
-  .countdown{gap:6px}
-  .number{font-size:27px}
+  .container{width:min(100% - 20px,900px)}
+  h1{font-size:24px}
   .route-map{height:145px}
-  .expense-add{
-    grid-template-columns:1fr 1fr;
+  .weather{
+    align-items:center;
+    flex-wrap:wrap;
   }
-  .expense-add .full-mobile{grid-column:1/-1}
-  .expense-list{display:flex;flex-direction:column;gap:8px}
-  .expense-row.header{display:none}
+  .weather-link{
+    width:auto;
+    justify-content:center;
+  }
+  .form-grid{grid-template-columns:repeat(2,1fr)}
   .expense-row{
-    display:grid;
-    grid-template-columns:1fr auto;
-    gap:7px 10px;
-    padding:11px;
-    border:1px solid var(--line);
-    border-radius:13px;
-    background:var(--card);
+    grid-template-columns:1fr 1fr;
+    gap:5px;
+    padding:9px 0;
   }
-  .expense-row > div:nth-child(1):before{content:"Day："}
-  .expense-row > div:nth-child(2):before{content:"類別："}
-  .expense-row > div:nth-child(3):before{content:"項目："}
-  .expense-row > div:nth-child(4):before{content:"金額："}
-  .expense-row > div:nth-child(5):before{content:"幣別："}
-  .expense-row > div:nth-child(6):before{content:"付款人："}
-  .expense-row > div:nth-child(1),
-  .expense-row > div:nth-child(2),
-  .expense-row > div:nth-child(4),
-  .expense-row > div:nth-child(5),
-  .expense-row > div:nth-child(6){
-    color:var(--muted);
-  }
-  .expense-row > div:nth-child(3){
-    grid-column:1/-1;
-    font-weight:800;
-    color:var(--text);
-  }
-  .expense-row > div:nth-child(7){
-    grid-column:2;
-    grid-row:1;
+  .expense-head{display:none}
+  .expense-row > *{min-width:0}
+  .expense-row .delete-btn{
     justify-self:end;
   }
-  .expense-row > div:nth-child(4){text-align:left}
-  .expense-row > div:nth-child(1){grid-column:1}
-  .expense-row > div:nth-child(2){grid-column:2}
-  .expense-row > div:nth-child(5){grid-column:1}
-  .expense-row > div:nth-child(6){grid-column:2}
   .todo-add{
-    grid-template-columns:1fr auto;
-  }
-  .todo-add select{grid-column:1}
-  .todo-add button{grid-column:2}
-  .todo-row{
     grid-template-columns:1fr;
-    gap:7px;
   }
-  .todo-side{
-    padding-left:27px;
+  .todo-item{
+    grid-template-columns:20px 1fr 90px 24px;
   }
-  .owner{width:88px}
-  .weather{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-  .weather-link{width:100%;justify-content:center}
-  .day-header{align-items:flex-start}
-  .timeline-item{
-    grid-template-columns:67px 1fr;
-    gap:10px;
-  }
-  .timeline-item:not(:last-child):after{left:59px}
-  .flight-route{padding-left:13px;padding-right:13px}
 }
 @media(max-width:390px){
-  .container{padding-left:9px;padding-right:9px}
-  .card{padding:13px}
-  .airport-code{font-size:21px}
-  .airport-name{font-size:11px}
-  .flight-time{font-size:14px;gap:8px}
+  .route-tabs{gap:4px}
+  .route-tab{font-size:10px;padding:7px 3px}
   .route-label{font-size:10px;padding:3px 6px}
+  .countdown-item strong{font-size:22px}
 }
 </style>
 </head>
 
 <body>
-<div class="container">
-
 <header>
-  <div class="eyebrow">JAPAN TRAVEL · 2026</div>
-  <h1>JAPAN TRAVEL</h1>
-  <div class="subtitle">神戶・大阪・奈良・京都5日遊</div>
-  <div class="subtitle">2026.11.20 Fri — 11.24 Tue · 台中 ⇄ 神戶</div>
+  <div class="container">
+    <div class="logo">JAPAN TRAVEL</div>
+    <h1>神戶・大阪・奈良・京都5日遊</h1>
+    <div class="subtitle">November 20 — 24, 2026</div>
+  </div>
 </header>
 
-<section class="card">
-  <div class="section-title">
-    <div>
-      <div class="countdown-label">✈️ 出發倒數</div>
-    </div>
-    <span class="small">JST / GMT+9</span>
-  </div>
-  <div class="countdown">
-    <div class="time-box"><div class="number" id="days">--</div><div class="label">日</div></div>
-    <div class="time-box"><div class="number" id="hours">--</div><div class="label">時</div></div>
-    <div class="time-box"><div class="number" id="minutes">--</div><div class="label">分</div></div>
-    <div class="time-box"><div class="number" id="seconds">--</div><div class="label">秒</div></div>
-  </div>
-  <div class="zone-note">目標時間：2026-11-20 12:30 JST（神戶抵達）</div>
-</section>
+<main class="container">
 
-<section class="card">
-  <div class="section-title">
-    <h2>✈️ 機票資訊</h2>
-    <span class="small">STARLUX Airlines</span>
-  </div>
-
-  <div class="flight-card">
-    <div class="flight-head">
-      <strong>11/20（五）去程</strong>
-      <span class="tag">直飛</span>
-    </div>
-    <div class="flight-route">
-      <div class="airport-block">
-        <div class="airport-code">RMQ</div>
-        <div class="airport-name">台中 T2</div>
-      </div>
-      <div class="airport-block">
-        <div class="airport-code">UKB</div>
-        <div class="airport-name">神戶 T2</div>
-      </div>
-      <div class="flight-time">
-        <span>09:00</span>
-        <span class="flight-plane">✈️</span>
-        <span>12:30</span>
-      </div>
-    </div>
-    <div class="flight-info">約 2 小時 30 分｜台灣 GMT+8 → 日本 JST+9</div>
-  </div>
-
-  <div class="flight-card">
-    <div class="flight-head">
-      <strong>11/24（二）回程</strong>
-      <span class="tag">直飛</span>
-    </div>
-    <div class="flight-route">
-      <div class="airport-block">
-        <div class="airport-code">UKB</div>
-        <div class="airport-name">神戶 T2</div>
-      </div>
-      <div class="airport-block">
-        <div class="airport-code">RMQ</div>
-        <div class="airport-name">台中 T2</div>
-      </div>
-      <div class="flight-time">
-        <span>13:30</span>
-        <span class="flight-plane">✈️</span>
-        <span>16:00</span>
-      </div>
-    </div>
-    <div class="flight-info">約 3 小時 30 分｜日本 JST+9 → 台灣 GMT+8</div>
+<section class="card countdown">
+  <div class="countdown-title">✈️ 出發倒數</div>
+  <div class="countdown-grid">
+    <div class="countdown-item"><strong id="days">0</strong><span>天</span></div>
+    <div class="countdown-item"><strong id="hours">0</strong><span>小時</span></div>
+    <div class="countdown-item"><strong id="minutes">0</strong><span>分鐘</span></div>
+    <div class="countdown-item"><strong id="seconds">0</strong><span>秒</span></div>
   </div>
 </section>
 
-<section class="card">
-  <div class="section-title">
-    <h2>① 🗺️ 每日地圖總覽</h2>
-    <span class="small">旅程方向示意</span>
+<section>
+  <h2 class="section-title">✈️ 機票資訊</h2>
+
+  <div class="card flight">
+    <div class="flight-date">11/20 Fri｜STARLUX Airlines</div>
+    <div class="flight-route">
+      <div class="airport">
+        <strong>RMQ</strong>
+        <span>台中 T2</span>
+        <div class="flight-time">09:00</div>
+      </div>
+      <div class="flight-plane">✈️</div>
+      <div class="airport">
+        <strong>UKB</strong>
+        <span>神戶 T2</span>
+        <div class="flight-time">12:30</div>
+      </div>
+    </div>
+    <div class="flight-meta">直飛｜約 2h30m</div>
+  </div>
+
+  <div class="card flight">
+    <div class="flight-date">11/24 Tue｜STARLUX Airlines</div>
+    <div class="flight-route">
+      <div class="airport">
+        <strong>UKB</strong>
+        <span>神戶 T2</span>
+        <div class="flight-time">13:30</div>
+      </div>
+      <div class="flight-plane">✈️</div>
+      <div class="airport">
+        <strong>RMQ</strong>
+        <span>台中 T2</span>
+        <div class="flight-time">16:00</div>
+      </div>
+    </div>
+    <div class="flight-meta">直飛｜約 3h30m</div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">① 🗺️ 每日地圖總覽</h2>
+
+  <div class="route-tabs">
+    <button class="route-tab active" data-day="1" onclick="showRouteDay('1')">Day 1</button>
+    <button class="route-tab" data-day="2" onclick="showRouteDay('2')">Day 2</button>
+    <button class="route-tab" data-day="3" onclick="showRouteDay('3')">Day 3</button>
+    <button class="route-tab" data-day="4" onclick="showRouteDay('4')">Day 4</button>
+    <button class="route-tab" data-day="5" onclick="showRouteDay('5')">Day 5</button>
   </div>
 
   <div class="route-overview">
 
 ```
-<div class="route-day">
-  <div class="route-day-title">
-    <strong>D1｜左上 → 右下 ↘</strong>
-    <span>神戶 → 大阪</span>
-  </div>
-  <div class="route-map">
-    <svg viewBox="0 0 400 145" preserveAspectRatio="none">
-      <path class="route-line" stroke="#c9825c"
-        d="M35 25 C90 20 115 65 165 58 S240 75 275 105 S330 118 365 128"/>
-    </svg>
-    <span class="route-dot" style="left:7%;top:13%"></span>
-    <span class="route-dot" style="left:39%;top:37%"></span>
-    <span class="route-dot" style="left:68%;top:70%"></span>
-    <span class="route-dot" style="left:90%;top:82%"></span>
-
-    <span class="route-label" style="left:1%;top:0">神戶機場</span>
-    <span class="route-label" style="left:30%;top:29%">三宮</span>
-    <span class="route-label" style="left:59%;top:61%">神戶港塔</span>
-    <span class="route-label" style="right:0;bottom:0">JR難波</span>
-  </div>
-</div>
-
-<div class="route-day">
-  <div class="route-day-title">
-    <strong>D2｜左中 → 右中 → 左下</strong>
-    <span>大阪</span>
-  </div>
-  <div class="route-map">
-    <svg viewBox="0 0 400 145" preserveAspectRatio="none">
-      <path class="route-line" stroke="#71876f"
-        d="M28 72 C80 30 120 35 155 72 S225 112 260 72 S320 34 370 72"/>
-    </svg>
-    <span class="route-dot" style="left:6%;top:44%"></span>
-    <span class="route-dot" style="left:37%;top:42%"></span>
-    <span class="route-dot" style="left:65%;top:42%"></span>
-    <span class="route-dot" style="left:91%;top:44%"></span>
-
-    <span class="route-label" style="left:0;top:31%">大阪城</span>
-    <span class="route-label" style="left:28%;top:29%">黑門市場</span>
-    <span class="route-label" style="left:55%;top:29%">四天王寺</span>
-    <span class="route-label" style="right:0;top:31%">新世界</span>
+<div class="route-panel active" data-day="1">
+  <div class="route-day">
+    <div class="route-day-title">
+      <strong>D1｜左下 → 右上 ↗</strong>
+      <span>神戶 → 大阪</span>
+    </div>
+    <div class="route-map">
+      <svg viewBox="0 0 500 138" preserveAspectRatio="none">
+        <path class="route-line" d="M55 105 C120 90 120 65 210 72 S330 45 430 25"/>
+      </svg>
+      <div class="route-dot" style="left:10%;top:73%"></div>
+      <div class="route-dot" style="left:39%;top:48%"></div>
+      <div class="route-dot" style="left:62%;top:47%"></div>
+      <div class="route-dot" style="left:84%;top:12%"></div>
+      <div class="route-label" style="left:3%;top:79%">神戶機場</div>
+      <div class="route-label" style="left:31%;top:54%">三宮</div>
+      <div class="route-label" style="left:53%;top:53%">神戶港塔</div>
+      <div class="route-label" style="left:76%;top:2%">JR難波</div>
+    </div>
   </div>
 </div>
 
-<div class="route-day">
-  <div class="route-day-title">
-    <strong>D3｜左下 → 右上 ↗</strong>
-    <span>奈良＋宇治</span>
-  </div>
-  <div class="route-map">
-    <svg viewBox="0 0 400 145" preserveAspectRatio="none">
-      <path class="route-line" stroke="#8e7da0"
-        d="M30 122 C75 110 75 70 125 90 S185 65 215 48 S275 60 305 28 S350 18 370 18"/>
-    </svg>
-    <span class="route-dot" style="left:7%;top:78%"></span>
-    <span class="route-dot" style="left:32%;top:57%"></span>
-    <span class="route-dot" style="left:54%;top:29%"></span>
-    <span class="route-dot" style="left:91%;top:8%"></span>
-
-    <span class="route-label" style="left:0;bottom:0">奈良公園</span>
-    <span class="route-label" style="left:25%;bottom:23%">東大寺</span>
-    <span class="route-label" style="left:48%;top:13%">奈良町</span>
-    <span class="route-label" style="right:0;top:0">宇治</span>
-  </div>
-</div>
-
-<div class="route-day">
-  <div class="route-day-title">
-    <strong>D4｜右上 → 左下 ↙</strong>
-    <span>京都＋嵐山</span>
-  </div>
-  <div class="route-map">
-    <svg viewBox="0 0 400 145" preserveAspectRatio="none">
-      <path class="route-line" stroke="#708fa0"
-        d="M370 22 C325 25 335 62 290 52 S230 42 220 82 S165 102 130 88 S80 112 30 125"/>
-    </svg>
-    <span class="route-dot" style="left:91%;top:9%"></span>
-    <span class="route-dot" style="left:71%;top:28%"></span>
-    <span class="route-dot" style="left:54%;top:53%"></span>
-    <span class="route-dot" style="left:30%;top:60%"></span>
-    <span class="route-dot" style="left:7%;top:82%"></span>
-
-    <span class="route-label" style="right:0;top:0">伏見稻荷</span>
-    <span class="route-label" style="right:17%;top:18%">清水寺</span>
-    <span class="route-label" style="left:47%;top:43%">祇園</span>
-    <span class="route-label" style="left:23%;bottom:24%">嵐山</span>
-    <span class="route-label" style="left:0;bottom:0">JR難波</span>
+<div class="route-panel" data-day="2">
+  <div class="route-day">
+    <div class="route-day-title">
+      <strong>D2｜右上 → 左下 ↙</strong>
+      <span>大阪市區</span>
+    </div>
+    <div class="route-map">
+      <svg viewBox="0 0 500 138" preserveAspectRatio="none">
+        <path class="route-line" d="M430 25 C365 30 355 70 295 58 S180 80 135 110 S75 116 45 122"/>
+      </svg>
+      <div class="route-dot" style="left:84%;top:12%"></div>
+      <div class="route-dot" style="left:58%;top:36%"></div>
+      <div class="route-dot" style="left:36%;top:54%"></div>
+      <div class="route-dot" style="left:9%;top:83%"></div>
+      <div class="route-label" style="left:76%;top:2%">大阪城</div>
+      <div class="route-label" style="left:50%;top:43%">黑門市場</div>
+      <div class="route-label" style="left:27%;top:61%">四天王寺</div>
+      <div class="route-label" style="left:2%;top:88%">新世界</div>
+    </div>
   </div>
 </div>
 
-<div class="route-day">
-  <div class="route-day-title">
-    <strong>D5｜左上 → 右下 ↘</strong>
-    <span>大阪 → 神戶 → 台中</span>
+<div class="route-panel" data-day="3">
+  <div class="route-day">
+    <div class="route-day-title">
+      <strong>D3｜左下 → 右上 ↗</strong>
+      <span>奈良 → 宇治</span>
+    </div>
+    <div class="route-map">
+      <svg viewBox="0 0 500 138" preserveAspectRatio="none">
+        <path class="route-line" d="M45 116 C115 105 110 73 185 78 S280 48 330 55 S405 34 445 20"/>
+      </svg>
+      <div class="route-dot" style="left:8%;top:80%"></div>
+      <div class="route-dot" style="left:31%;top:51%"></div>
+      <div class="route-dot" style="left:57%;top:36%"></div>
+      <div class="route-dot" style="left:87%;top:8%"></div>
+      <div class="route-label" style="left:2%;top:86%">奈良</div>
+      <div class="route-label" style="left:23%;top:56%">奈良公園</div>
+      <div class="route-label" style="left:51%;top:40%">奈良町</div>
+      <div class="route-label" style="left:80%;top:0%">宇治</div>
+    </div>
   </div>
-  <div class="route-map">
-    <svg viewBox="0 0 400 145" preserveAspectRatio="none">
-      <path class="route-line" stroke="#c9825c"
-        d="M32 25 C95 20 125 48 170 52 S230 62 265 88 S320 112 370 126"/>
-    </svg>
-    <span class="route-dot" style="left:7%;top:13%"></span>
-    <span class="route-dot" style="left:43%;top:34%"></span>
-    <span class="route-dot" style="left:91%;top:82%"></span>
+</div>
 
-    <span class="route-label" style="left:0;top:0">JR難波</span>
-    <span class="route-label" style="left:35%;top:26%">三宮</span>
-    <span class="route-label" style="right:0;bottom:0">神戶機場</span>
+<div class="route-panel" data-day="4">
+  <div class="route-day">
+    <div class="route-day-title">
+      <strong>D4｜左下 → 右上 ↗</strong>
+      <span>京都 → 嵐山</span>
+    </div>
+    <div class="route-map">
+      <svg viewBox="0 0 500 138" preserveAspectRatio="none">
+        <path class="route-line" d="M55 112 C120 95 105 58 175 72 S275 105 315 72 S385 45 445 22"/>
+      </svg>
+      <div class="route-dot" style="left:10%;top:77%"></div>
+      <div class="route-dot" style="left:33%;top:48%"></div>
+      <div class="route-dot" style="left:61%;top:48%"></div>
+      <div class="route-dot" style="left:87%;top:9%"></div>
+      <div class="route-label" style="left:3%;top:84%">京都</div>
+      <div class="route-label" style="left:25%;top:54%">伏見稻荷</div>
+      <div class="route-label" style="left:52%;top:55%">清水寺</div>
+      <div class="route-label" style="left:79%;top:0%">嵐山</div>
+    </div>
+  </div>
+</div>
+
+<div class="route-panel" data-day="5">
+  <div class="route-day">
+    <div class="route-day-title">
+      <strong>D5｜右上 → 左下 ↙</strong>
+      <span>大阪 → 神戶機場</span>
+    </div>
+    <div class="route-map">
+      <svg viewBox="0 0 500 138" preserveAspectRatio="none">
+        <path class="route-line" d="M440 25 C365 30 350 58 290 53 S180 65 145 88 S80 105 50 120"/>
+      </svg>
+      <div class="route-dot" style="left:86%;top:11%"></div>
+      <div class="route-dot" style="left:57%;top:36%"></div>
+      <div class="route-dot" style="left:29%;top:61%"></div>
+      <div class="route-dot" style="left:9%;top:86%"></div>
+      <div class="route-label" style="left:78%;top:2%">JR難波</div>
+      <div class="route-label" style="left:50%;top:43%">三宮</div>
+      <div class="route-label" style="left:22%;top:68%">神戶</div>
+      <div class="route-label" style="left:2%;top:91%">神戶機場</div>
+    </div>
   </div>
 </div>
 ```
@@ -883,1035 +762,408 @@ body.night select option{
   </div>
 </section>
 
-<section class="card">
-  <div class="section-title">
-    <h2>② 📅 每日行程</h2>
-    <span class="small">點開查看</span>
+<section>
+<h2 class="section-title">② 📅 每日行程</h2>
+
+<details class="card day-card" open>
+<summary>
+  <div class="day-head">
+    <div>
+      <div class="day-title">D1｜台中 → 神戶 → 大阪</div>
+      <div class="day-date">11/20 Fri</div>
+      <span class="badge">神戶 → 大阪</span>
+    </div>
+    <div class="day-arrow">⌄</div>
+  </div>
+</summary>
+<div class="day-body">
+  <div class="note">
+    <div class="note-title">💡 今日注意事項</div>
+    <textarea placeholder="輸入今日注意事項……"></textarea>
   </div>
 
-  <!-- D1 -->
-
-  <div class="day-card">
-    <div class="day-header">
-      <div>
-        <h3 class="day-title">D1｜台中 → 神戶 → 大阪</h3>
-        <div class="day-sub">11/20（五）｜神戶</div>
-      </div>
-    </div>
-
-```
-<div class="weather">
-  <div class="weather-title">🌤️ 今日天氣</div>
-  <a class="weather-link" target="_blank" rel="noopener"
-     href="https://weather.apple.com/?lat=34.6901&long=135.1955">☁️ 神戶｜Apple Weather →</a>
-</div>
-
-<div class="notice">
-  <div class="notice-title">💡 今日注意事項</div>
-  <div class="editable" contenteditable="true"
-       data-key="notice-d1"
-       data-placeholder="點此輸入今天要注意的事情……"></div>
-</div>
-
-<details class="day-details" open>
-  <summary class="details-label">完整行程</summary>
+  <div class="weather">
+    <div class="weather-title">🌤️ 今日天氣</div>
+    <a class="weather-link" target="_blank" rel="noopener" href="https://weather.apple.com/?lat=34.6901&long=135.1955">神戶｜Apple Weather →</a>
+  </div>
 
   <div class="timeline">
-
     <div class="timeline-item">
-      <div class="timeline-time">12:30</div>
-      <div class="item-body">
-        <div class="item-title">✈️ 抵達神戶機場 Kobe Airport（UKB）</div>
-        <div class="item-sub">國際線 T2｜JST</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍 神戶機場</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">12:45–13:10</div>
-      <div class="item-body">
-        <div class="item-title">神戶機場 → 三宮</div>
-        <div class="item-sub">🚃 Port Liner｜Port Island Line（ポートアイランド線）｜約 18 分｜💳 ¥340</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Sannomiya+Station+Kobe">🧭 導航</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">13:10–13:30</div>
-      <div class="item-body">
-        <div class="item-title">🧳 三宮寄放行李｜<span class="pending">待定</span></div>
-        <div class="item-sub">🚶 步行</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Sannomiya+Station+Kobe">📍 三宮</a>
-        </div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d1-luggage"
-             data-placeholder="📝 備註……"></div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">13:30–14:45</div>
-      <div class="item-body meal">
-        <div class="item-title">🍽️ 神戶牛午餐｜<span class="pending">待定</span></div>
-        <div class="item-sub">🚶 步行</div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d1-lunch"
-             data-placeholder="📝 餐廳／備註……"></div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">14:45–15:00</div>
-      <div class="item-body">
-        <div class="item-title">三宮 → 生田神社</div>
-        <div class="item-sub">🚶 約 10–15 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Station+Kobe&destination=Ikuta+Shrine+Kobe">🧭 導航</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">15:00–15:45</div>
-      <div class="item-body">
-        <div class="item-title">⛩️ 生田神社｜Ikuta Shrine（生田神社）</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Ikuta+Shrine+Kobe">📍 位置</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">15:45–16:00</div>
-      <div class="item-body">
-        <div class="item-title">生田神社 → 南京町</div>
-        <div class="item-sub">🚶 約 15 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Ikuta+Shrine+Kobe&destination=Nankinmachi+Kobe">🧭 導航</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">16:00–17:00</div>
-      <div class="item-body">
-        <div class="item-title">🏮 南京町｜Nankinmachi（南京町）</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Nankinmachi+Kobe">📍 位置</a>
-        </div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d1-nankinmachi"
-             data-placeholder="📝 備註……"></div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">17:00–17:20</div>
-      <div class="item-body">
-        <div class="item-title">南京町 → 神戶港塔</div>
-        <div class="item-sub">🚶 約 20 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Nankinmachi+Kobe&destination=Kobe+Port+Tower">🧭 導航</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">17:20–18:10</div>
-      <div class="item-body">
-        <div class="item-title">🗼 神戶港塔｜Kobe Port Tower（神戸ポートタワー）</div>
-        <div class="item-sub">🎟️ ¥1,200</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Kobe+Port+Tower">📍 位置</a>
-        </div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d1-porttower"
-             data-placeholder="📝 備註……"></div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">18:10–18:30</div>
-      <div class="item-body">
-        <div class="item-title">神戶港塔 → 北野</div>
-        <div class="item-sub">🚶 約 20 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Port+Tower&destination=Kitano+Ijinkan+Kobe">🧭 導航</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">18:30–19:30</div>
-      <div class="item-body">
-        <div class="item-title">🌿 北野異人館｜Kitano Ijinkan（北野異人館街）</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Kitano+Ijinkan+Kobe">📍 位置</a>
-        </div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d1-kitano"
-             data-placeholder="📝 備註……"></div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">19:30–20:00</div>
-      <div class="item-body">
-        <div class="item-title">北野 → 三宮取行李</div>
-        <div class="item-sub">🚶 約 20–30 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Kitano+Ijinkan+Kobe&destination=Sannomiya+Station+Kobe">🧭 導航</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">20:00–20:40</div>
-      <div class="item-body">
-        <div class="item-title">三宮 → JR難波</div>
-        <div class="item-sub">🚆 JR神戶線＋JR大和路線<br>JR Kobe Line + JR Yamatoji Line｜約 40–50 分｜💳 約 ¥660</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Station+Kobe&destination=JR-Namba+Station">🧭 導航</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">20:40</div>
-      <div class="item-body">
-        <div class="item-title">🏨 入住飯店｜JR難波</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=JR-Namba+Station">📍 JR難波</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</details>
-```
-
-  </div>
-
-  <!-- D2 -->
-
-  <div class="day-card">
-    <div class="day-header">
-      <div>
-        <h3 class="day-title">D2｜大阪</h3>
-        <div class="day-sub">11/21（六）｜大阪</div>
-      </div>
-    </div>
-
-```
-<div class="weather">
-  <div class="weather-title">🌤️ 今日天氣</div>
-  <a class="weather-link" target="_blank" rel="noopener"
-     href="https://weather.apple.com/?lat=34.6937&long=135.5023">☁️ 大阪｜Apple Weather →</a>
-</div>
-
-<div class="notice">
-  <div class="notice-title">💡 今日注意事項</div>
-  <div class="editable" contenteditable="true"
-       data-key="notice-d2"
-       data-placeholder="點此輸入今天要注意的事情……"></div>
-</div>
-
-<details class="day-details" open>
-  <summary class="details-label">完整行程</summary>
-  <div class="timeline">
-
-    <div class="timeline-item">
+      <div class="timeline-dot"></div>
       <div class="timeline-time">09:00</div>
-      <div class="item-body">
-        <div class="item-title">飯店 → 大阪城</div>
-        <div class="item-sub">🚇 Osaka Metro｜大阪メトロ｜約 25 分｜🪪 Enjoy Eco Card</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=JR-Namba+Station&destination=Osaka+Castle">🧭 導航</a>
-        </div>
-      </div>
+      <div class="timeline-title">✈️ 台中機場 RMQ T2</div>
+      <div class="timeline-detail">STARLUX Airlines｜直飛神戶</div>
     </div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">09:00–11:00</div>
-      <div class="item-body">
-        <div class="item-title">🏯 大阪城｜Osaka Castle（大阪城）</div>
-        <div class="item-sub">🎟️ ¥1,200</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Osaka+Castle">📍 位置</a>
-        </div>
-      </div>
-    </div>
+```
+<div class="move">🧭 RMQ 台中機場 → UKB 神戶機場</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">11:00–11:30</div>
-      <div class="item-body">
-        <div class="item-title">大阪城 → 黑門市場</div>
-        <div class="item-sub">🚇 Osaka Metro｜大阪メトロ｜20–30 分｜🪪 Enjoy Eco Card</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Osaka+Castle&destination=Kuromon+Market+Osaka">🧭 導航</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">12:30</div>
+  <div class="timeline-title">抵達神戶機場</div>
+  <div class="transport"><span>🚃 Port Liner</span><span>💳 IC</span></div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">11:30–12:45</div>
-      <div class="item-body">
-        <div class="item-title">🍣 黑門市場｜Kuromon Market（黒門市場）</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Kuromon+Market+Osaka">📍 位置</a>
-        </div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d2-kuromon"
-             data-placeholder="📝 備註……"></div>
-      </div>
-    </div>
+<div class="move">🧭 神戶機場 → 三宮</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">12:45–13:00</div>
-      <div class="item-body">
-        <div class="item-title">黑門市場 → 四天王寺</div>
-        <div class="item-sub">🚇 Osaka Metro + 🚶｜約 15 分｜🪪 Enjoy Eco Card</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Kuromon+Market+Osaka&destination=Shitennoji+Temple+Osaka">🧭 導航</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">13:30</div>
+  <div class="timeline-title">三宮</div>
+  <div class="meal">🍽️ <div><strong>午餐</strong>｜待定<br><span class="inline-edit" contenteditable="true">輸入餐廳</span></div></div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">13:00–14:00</div>
-      <div class="item-body">
-        <div class="item-title">⛩️ 四天王寺｜Shitennoji Temple（四天王寺）</div>
-        <div class="item-sub">🎟️ ¥500</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Shitennoji+Temple+Osaka">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="move">🧭 三宮 → 神戶港塔</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">14:00–14:15</div>
-      <div class="item-body">
-        <div class="item-title">四天王寺 → 天王寺公園</div>
-        <div class="item-sub">🚶 約 15 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Shitennoji+Temple+Osaka&destination=Tennoji+Park+Osaka">🧭 導航</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">15:00</div>
+  <div class="timeline-title">神戶港塔</div>
+  <div class="timeline-detail">港區散步、拍照</div>
+  <div class="transport"><span>🎟️ 入場券</span></div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">14:15–15:00</div>
-      <div class="item-body">
-        <div class="item-title">🌳 天王寺公園｜Tennoji Park（天王寺公園）</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Tennoji+Park+Osaka">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="move">🧭 神戶港塔 → 北野異人館</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">15:00–16:30</div>
-      <div class="item-body">
-        <div class="item-title">🎡 新世界・通天閣｜Shinsekai / Tsutenkaku（新世界・通天閣）</div>
-        <div class="item-sub">🎟️ ¥1,200</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Tsutenkaku+Osaka">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">16:30</div>
+  <div class="timeline-title">北野異人館</div>
+  <div class="timeline-detail">北野坂周邊散步</div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">16:30–17:00</div>
-      <div class="item-body">
-        <div class="item-title">🏮 法善寺橫丁｜Hozenji Yokocho（法善寺横丁）</div>
-        <div class="item-sub">🚶 約 5 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Hozenji+Yokocho+Osaka">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="move">🧭 北野異人館 → 三宮 → JR難波</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">17:30–18:30</div>
-      <div class="item-body meal">
-        <div class="item-title">🍽️ 待定行程＋晚餐｜<span class="pending">待定</span></div>
-        <div class="item-sub">🛍️ 心齋橋・Amerikamura｜🚇 15–20 分｜🪪 Enjoy Eco Card<br>🌃 道頓堀｜🚶 約 10 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Hozenji+Yokocho&destination=Shinsaibashi+Osaka">🧭 導航</a>
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Dotonbori+Osaka">📍 道頓堀</a>
-        </div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d2-dinner"
-             data-placeholder="📝 備註／餐廳……"></div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">18:30</div>
+  <div class="timeline-title">前往大阪</div>
+  <div class="transport"><span>🚆 JR</span><span>💳 IC</span></div>
+  <div class="timeline-detail">抵達 JR 難波後前往飯店</div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">21:30</div>
-      <div class="item-body">
-        <div class="item-title">🏨 回飯店｜JR難波</div>
-        <div class="item-sub">🚶 約 10–15 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Dotonbori+Osaka&destination=JR-Namba+Station">🧭 導航</a>
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=JR-Namba+Station">📍 JR難波</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">20:00</div>
+  <div class="timeline-title">飯店 Check-in</div>
+  <div class="meal">🍽️ <div><strong>晚餐</strong>｜待定<br><span class="inline-edit" contenteditable="true">輸入餐廳</span></div></div>
+</div>
+```
 
   </div>
+</div>
 </details>
-```
 
+<details class="card day-card">
+<summary>
+  <div class="day-head">
+    <div>
+      <div class="day-title">D2｜大阪</div>
+      <div class="day-date">11/21 Sat</div>
+      <span class="badge">大阪市區</span>
+    </div>
+    <div class="day-arrow">⌄</div>
+  </div>
+</summary>
+<div class="day-body">
+  <div class="note">
+    <div class="note-title">💡 今日注意事項</div>
+    <textarea placeholder="輸入今日注意事項……"></textarea>
   </div>
 
-  <!-- D3 -->
+  <div class="weather">
+    <div class="weather-title">🌤️ 今日天氣</div>
+    <a class="weather-link" target="_blank" rel="noopener" href="https://weather.apple.com/?lat=34.6937&long=135.5023">大阪｜Apple Weather →</a>
+  </div>
 
-  <div class="day-card">
-    <div class="day-header">
-      <div>
-        <h3 class="day-title">D3｜奈良＋宇治</h3>
-        <div class="day-sub">11/22（日）｜奈良＋宇治</div>
-      </div>
-      <span class="pass-badge">🎫 JR Kansai Area Pass｜Day 1</span>
-    </div>
-
-```
-<div class="weather">
-  <div class="weather-title">🌤️ 今日天氣</div>
-  <a class="weather-link" target="_blank" rel="noopener"
-     href="https://weather.apple.com/?lat=34.6851&long=135.8048">☁️ 奈良｜Apple Weather →</a>
-</div>
-
-<div class="notice">
-  <div class="notice-title">💡 今日注意事項</div>
-  <div class="editable" contenteditable="true"
-       data-key="notice-d3"
-       data-placeholder="點此輸入今天要注意的事情……"></div>
-</div>
-
-<details class="day-details" open>
-  <summary class="details-label">完整行程</summary>
   <div class="timeline">
-
     <div class="timeline-item">
-      <div class="timeline-time">07:30</div>
-      <div class="item-body">
-        <div class="item-title">飯店 → JR奈良</div>
-        <div class="item-sub">🚆 JR大和路線<br>JR Yamatoji Line（大和路線）｜45–50 分｜🎫 JR Kansai Area Pass</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=JR-Namba+Station&destination=JR-Nara+Station">🧭 導航</a>
-        </div>
-      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-time">08:00</div>
+      <div class="timeline-title">大阪市區出發</div>
+      <div class="transport"><span>🪪 Enjoy Eco Card</span><span>🚇 Osaka Metro</span></div>
     </div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">08:20</div>
-      <div class="item-body">
-        <div class="item-title">JR奈良 → 奈良公園</div>
-        <div class="item-sub">🚶 步行</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=JR-Nara+Station&destination=Nara+Park">🧭 導航</a>
-        </div>
-      </div>
-    </div>
+```
+<div class="move">🧭 JR難波 → 大阪城</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">08:20–09:00</div>
-      <div class="item-body">
-        <div class="item-title">🦌 奈良公園｜Nara Park（奈良公園）</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Nara+Park">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">09:00</div>
+  <div class="timeline-title">大阪城</div>
+  <div class="transport"><span>🎟️ 入場券</span></div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">09:00–10:15</div>
-      <div class="item-body">
-        <div class="item-title">🏯 東大寺｜Todai-ji Temple（東大寺）</div>
-        <div class="item-sub">🚶 約 15 分｜🎟️ ¥800</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Todai-ji+Temple+Nara">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="move">🧭 大阪城 → 黑門市場</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">10:15–10:45</div>
-      <div class="item-body">
-        <div class="item-title">🌿 二月堂｜Nigatsudo（東大寺二月堂）</div>
-        <div class="item-sub">🚶 10–15 分｜🎟️ ¥0</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Nigatsudo+Nara">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">11:30</div>
+  <div class="timeline-title">黑門市場</div>
+  <div class="meal">🍽️ <div><strong>午餐</strong>｜待定<br><span class="inline-edit" contenteditable="true">輸入餐廳</span></div></div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">10:45–11:30</div>
-      <div class="item-body">
-        <div class="item-title">⛩️ 春日大社｜Kasuga Taisha（春日大社）</div>
-        <div class="item-sub">🚶 約 20 分｜🎟️ ¥0</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Kasuga+Taisha+Nara">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="move">🧭 黑門市場 → 四天王寺</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">11:30–12:00</div>
-      <div class="item-body">
-        <div class="item-title">🌄 若草山｜Mount Wakakusa（若草山）</div>
-        <div class="item-sub">🚶 10–15 分｜🎟️ ¥150</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Mount+Wakakusa+Nara">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">14:00</div>
+  <div class="timeline-title">四天王寺</div>
+  <div class="transport"><span>🚇 Osaka Metro</span><span>💳 IC</span></div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">12:00–13:00</div>
-      <div class="item-body">
-        <div class="item-title">🏘️ 奈良町｜Naramachi（ならまち）</div>
-        <div class="item-sub">🚶 約 20 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Naramachi+Nara">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="move">🧭 四天王寺 → 新世界</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">13:00–13:30</div>
-      <div class="item-body meal">
-        <div class="item-title">🍽️ 午餐｜<span class="pending">待定</span></div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d3-lunch"
-             data-placeholder="📝 餐廳／備註……"></div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">16:00</div>
+  <div class="timeline-title">新世界・通天閣</div>
+  <div class="transport"><span>🎟️ 入場券</span></div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">13:30</div>
-      <div class="item-body">
-        <div class="item-title">JR奈良 → JR宇治</div>
-        <div class="item-sub">🚆 JR奈良線<br>JR Nara Line（奈良線）｜30–40 分｜🎫 JR Kansai Area Pass</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=JR-Nara+Station&destination=JR-Uji+Station">🧭 導航</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">14:00–14:30</div>
-      <div class="item-body">
-        <div class="item-title">🌊 宇治川・宇治橋｜Uji River / Uji Bridge（宇治川・宇治橋）</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Uji+Bridge+Kyoto">📍 位置</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">14:30–14:50</div>
-      <div class="item-body">
-        <div class="item-title">⛩️ 宇治神社｜Ujigami Shrine（宇治神社）</div>
-        <div class="item-sub">🚶 10 分｜🎟️ ¥0</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Ujigami+Shrine+Uji">📍 位置</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">15:00–16:15</div>
-      <div class="item-body">
-        <div class="item-title">🏯 平等院｜Byodo-in Temple（平等院）</div>
-        <div class="item-sub">🚶 10 分｜🎟️ ¥700</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Byodo-in+Temple+Uji">📍 位置</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">16:15–17:30</div>
-      <div class="item-body">
-        <div class="item-title">🍵 宇治表參道・抹茶街｜<span class="pending">待定</span></div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Uji+Omotesando">📍 位置</a>
-        </div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d3-uji-matcha"
-             data-placeholder="📝 備註……"></div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">17:30</div>
-      <div class="item-body">
-        <div class="item-title">JR宇治 → JR難波</div>
-        <div class="item-sub">🚆 JR奈良線＋JR大和路線<br>JR Nara Line + JR Yamatoji Line｜約 1h20–30m｜🎫 JR Kansai Area Pass</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=JR-Uji+Station&destination=JR-Namba+Station">🧭 導航</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">18:50–19:50</div>
-      <div class="item-body meal">
-        <div class="item-title">🍽️ 晚餐｜<span class="pending">待定</span></div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d3-dinner"
-             data-placeholder="📝 餐廳／備註……"></div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">20:00</div>
-      <div class="item-body">
-        <div class="item-title">🏨 回飯店｜JR難波</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=JR-Namba+Station">📍 JR難波</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">19:00</div>
+  <div class="timeline-title">返回 JR 難波</div>
+  <div class="meal">🍽️ <div><strong>晚餐</strong>｜待定<br><span class="inline-edit" contenteditable="true">輸入餐廳</span></div></div>
+</div>
+```
 
   </div>
+</div>
 </details>
-```
 
+<details class="card day-card">
+<summary>
+  <div class="day-head">
+    <div>
+      <div class="day-title">D3｜奈良 → 宇治</div>
+      <div class="day-date">11/22 Sun</div>
+      <span class="badge">奈良＋宇治</span>
+    </div>
+    <div class="day-arrow">⌄</div>
+  </div>
+</summary>
+<div class="day-body">
+  <div class="note">
+    <div class="note-title">💡 今日注意事項</div>
+    <textarea placeholder="輸入今日注意事項……"></textarea>
   </div>
 
-  <!-- D4 -->
+  <div class="weather">
+    <div class="weather-title">🌤️ 今日天氣</div>
+    <a class="weather-link" target="_blank" rel="noopener" href="https://weather.apple.com/?lat=34.6851&long=135.8048">奈良｜Apple Weather →</a>
+    <a class="weather-link" target="_blank" rel="noopener" href="https://weather.apple.com/?lat=34.8844&long=135.7996">宇治｜Apple Weather →</a>
+  </div>
 
-  <div class="day-card">
-    <div class="day-header">
-      <div>
-        <h3 class="day-title">D4｜京都＋嵐山</h3>
-        <div class="day-sub">11/23（一）｜京都＋嵐山</div>
-      </div>
-      <span class="pass-badge">🎫 JR Kansai Area Pass｜Day 2</span>
-    </div>
-
-```
-<div class="weather">
-  <div class="weather-title">🌤️ 今日天氣</div>
-  <a class="weather-link" target="_blank" rel="noopener"
-     href="https://weather.apple.com/?lat=35.0116&long=135.7681">☁️ 京都｜Apple Weather →</a>
-</div>
-
-<div class="notice">
-  <div class="notice-title">💡 今日注意事項</div>
-  <div class="editable" contenteditable="true"
-       data-key="notice-d4"
-       data-placeholder="點此輸入今天要注意的事情……"></div>
-</div>
-
-<details class="day-details" open>
-  <summary class="details-label">完整行程</summary>
   <div class="timeline">
-
     <div class="timeline-item">
+      <div class="timeline-dot"></div>
       <div class="timeline-time">07:00</div>
-      <div class="item-body">
-        <div class="item-title">JR難波 → JR稻荷</div>
-        <div class="item-sub">🚆 JR大和路線＋JR奈良線<br>JR Yamatoji Line + JR Nara Line｜約 1h10m｜🎫 JR Kansai Area Pass</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=JR-Namba+Station&destination=JR-Inari+Station">🧭 導航</a>
-        </div>
-      </div>
+      <div class="timeline-title">JR難波出發</div>
+      <div class="transport"><span>🎫 JR Kansai Area Pass</span><span>🚆 JR</span></div>
     </div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">08:10–09:15</div>
-      <div class="item-body">
-        <div class="item-title">⛩️ 伏見稻荷大社｜Fushimi Inari Taisha（伏見稲荷大社）</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Fushimi+Inari+Taisha+Kyoto">📍 位置</a>
-        </div>
-      </div>
-    </div>
+```
+<div class="move">🧭 JR難波 → 奈良</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">09:15</div>
-      <div class="item-body">
-        <div class="item-title">JR稻荷 → JR東福寺</div>
-        <div class="item-sub">🚆 JR奈良線｜JR Nara Line（奈良線）｜約 2 分｜🎫 JR Kansai Area Pass</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=JR-Inari+Station&destination=JR-Tofukuji+Station">🧭 導航</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">08:30</div>
+  <div class="timeline-title">奈良公園</div>
+  <div class="timeline-detail">鹿群、東大寺周邊散步</div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">09:20</div>
-      <div class="item-body">
-        <div class="item-title">東福寺 → 清水五條</div>
-        <div class="item-sub">🚃 京阪本線｜Keihan Main Line（京阪本線）｜約 5 分｜💳 ¥220</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Tofukuji+Station+Kyoto&destination=Kiyomizu-Gojo+Station">🧭 導航</a>
-        </div>
-      </div>
-    </div>
+<div class="move">🧭 奈良公園 → 東大寺</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">09:30–10:00</div>
-      <div class="item-body">
-        <div class="item-title">清水五條 → 清水寺</div>
-        <div class="item-sub">🚶 20–25 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Kiyomizu-Gojo+Station&destination=Kiyomizu-dera+Kyoto">🧭 導航</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">09:00</div>
+  <div class="timeline-title">東大寺</div>
+  <div class="transport"><span>🎟️ 入場券</span></div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">10:00–11:15</div>
-      <div class="item-body">
-        <div class="item-title">🏯 清水寺｜Kiyomizu-dera Temple（清水寺）</div>
-        <div class="item-sub">🎟️ ¥500</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Kiyomizu-dera+Kyoto">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="move">🧭 東大寺 → 奈良町</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">11:15–12:15</div>
-      <div class="item-body">
-        <div class="item-title">🏮 三年坂・二年坂｜Sannenzaka / Ninenzaka（三年坂・二年坂）</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Ninenzaka+Kyoto">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">12:00</div>
+  <div class="timeline-title">奈良町</div>
+  <div class="meal">🍽️ <div><strong>午餐</strong>｜待定<br><span class="inline-edit" contenteditable="true">輸入餐廳</span></div></div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">12:15–12:40</div>
-      <div class="item-body">
-        <div class="item-title">🗼 八坂之塔｜Yasaka Pagoda（八坂の塔）</div>
-        <div class="item-sub">🚶 5 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Yasaka+Pagoda+Kyoto">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="move">🧭 奈良 → 宇治</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">12:40–13:20</div>
-      <div class="item-body meal">
-        <div class="item-title">🍽️ 午餐｜<span class="pending">待定</span></div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d4-lunch"
-             data-placeholder="📝 餐廳／備註……"></div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">15:00</div>
+  <div class="timeline-title">宇治</div>
+  <div class="timeline-detail">平等院、宇治川周邊散步</div>
+  <div class="transport"><span>🚆 JR</span></div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">13:20–13:50</div>
-      <div class="item-body">
-        <div class="item-title">⛩️ 八坂神社｜Yasaka Shrine（八坂神社）</div>
-        <div class="item-sub">🚶 10 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Yasaka+Shrine+Kyoto">📍 位置</a>
-        </div>
-      </div>
-    </div>
+<div class="move">🧭 宇治 → JR難波</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">13:50–14:30</div>
-      <div class="item-body">
-        <div class="item-title">🌸 祇園・花見小路｜Gion / Hanamikoji Street（祇園・花見小路）</div>
-        <div class="item-sub">🚶 10 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Hanamikoji+Street+Kyoto">📍 位置</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">14:30–15:15</div>
-      <div class="item-body">
-        <div class="item-title">祇園 → 嵐山</div>
-        <div class="item-sub">🚃 京阪＋大阪 Metro＋嵐電<br>Keihan + Osaka Metro + Randen｜約 45 分｜💳 ¥450</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Gion+Kyoto&destination=Arashiyama+Bamboo+Forest">🧭 導航</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">15:15–16:00</div>
-      <div class="item-body">
-        <div class="item-title">🎋 嵐山竹林｜Arashiyama Bamboo Forest（嵐山竹林）</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Arashiyama+Bamboo+Forest">📍 位置</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">16:00–17:00</div>
-      <div class="item-body">
-        <div class="item-title">🏯 天龍寺｜Tenryu-ji Temple（天龍寺）</div>
-        <div class="item-sub">🚶 5 分｜🎟️ ¥500</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Tenryu-ji+Temple+Kyoto">📍 位置</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">17:00–17:30</div>
-      <div class="item-body">
-        <div class="item-title">🌉 渡月橋｜Togetsukyo Bridge（渡月橋）</div>
-        <div class="item-sub">🚶 10 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Togetsukyo+Bridge+Kyoto">📍 位置</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">17:30–18:30</div>
-      <div class="item-body">
-        <div class="item-title">🍵 嵐山商店街・抹茶｜<span class="pending">待定</span></div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Arashiyama+Shopping+Street">📍 位置</a>
-        </div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d4-matcha"
-             data-placeholder="📝 備註……"></div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">18:30–19:00</div>
-      <div class="item-body">
-        <div class="item-title">🌿 嵐山散步</div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">19:00</div>
-      <div class="item-body">
-        <div class="item-title">JR嵯峨嵐山 → JR京都</div>
-        <div class="item-sub">🚆 JR嵯峨野線<br>JR Sagano Line（嵯峨野線）｜11–15 分｜🎫 JR Kansai Area Pass</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=JR-Saga-Arashiyama+Station&destination=Kyoto+Station">🧭 導航</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">19:15</div>
-      <div class="item-body">
-        <div class="item-title">JR京都 → JR難波</div>
-        <div class="item-sub">🚆 JR京都線＋JR大和路線<br>JR Kyoto Line + JR Yamatoji Line｜約 1h｜🎫 JR Kansai Area Pass</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Kyoto+Station&destination=JR-Namba+Station">🧭 導航</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">19:30–20:15</div>
-      <div class="item-body meal">
-        <div class="item-title">🍽️ 晚餐｜<span class="pending">待定</span></div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d4-dinner"
-             data-placeholder="📝 餐廳／備註……"></div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">20:30</div>
-      <div class="item-body">
-        <div class="item-title">🏨 回飯店｜JR難波</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=JR-Namba+Station">📍 JR難波</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">19:00</div>
+  <div class="timeline-title">返回大阪</div>
+  <div class="meal">🍽️ <div><strong>晚餐</strong>｜待定<br><span class="inline-edit" contenteditable="true">輸入餐廳</span></div></div>
+</div>
+```
 
   </div>
+</div>
 </details>
-```
 
+<details class="card day-card">
+<summary>
+  <div class="day-head">
+    <div>
+      <div class="day-title">D4｜京都</div>
+      <div class="day-date">11/23 Mon</div>
+      <span class="badge">京都＋嵐山</span>
+    </div>
+    <div class="day-arrow">⌄</div>
+  </div>
+</summary>
+<div class="day-body">
+  <div class="note">
+    <div class="note-title">💡 今日注意事項</div>
+    <textarea placeholder="輸入今日注意事項……"></textarea>
   </div>
 
-  <!-- D5 -->
+  <div class="weather">
+    <div class="weather-title">🌤️ 今日天氣</div>
+    <a class="weather-link" target="_blank" rel="noopener" href="https://weather.apple.com/?lat=35.0116&long=135.7681">京都｜Apple Weather →</a>
+    <a class="weather-link" target="_blank" rel="noopener" href="https://weather.apple.com/?lat=35.0094&long=135.6677">嵐山｜Apple Weather →</a>
+  </div>
 
-  <div class="day-card">
-    <div class="day-header">
-      <div>
-        <h3 class="day-title">D5｜大阪 → 神戶 → 台中</h3>
-        <div class="day-sub">11/24（二）｜神戶</div>
-      </div>
-    </div>
-
-```
-<div class="weather">
-  <div class="weather-title">🌤️ 今日天氣</div>
-  <a class="weather-link" target="_blank" rel="noopener"
-     href="https://weather.apple.com/?lat=34.6901&long=135.1955">☁️ 神戶｜Apple Weather →</a>
-</div>
-
-<div class="notice">
-  <div class="notice-title">💡 今日注意事項</div>
-  <div class="editable" contenteditable="true"
-       data-key="notice-d5"
-       data-placeholder="點此輸入今天要注意的事情……"></div>
-</div>
-
-<details class="day-details" open>
-  <summary class="details-label">完整行程</summary>
   <div class="timeline">
-
     <div class="timeline-item">
-      <div class="timeline-time">待定</div>
-      <div class="item-body">
-        <div class="item-title">🧳 飯店 Check-out</div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d5-checkout"
-             data-placeholder="📝 備註……"></div>
-      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-time">07:00</div>
+      <div class="timeline-title">JR難波出發</div>
+      <div class="transport"><span>🎫 JR Kansai Area Pass</span><span>🚆 JR</span></div>
     </div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">待定</div>
-      <div class="item-body meal">
-        <div class="item-title">🍽️ 早午餐｜<span class="pending">待定</span></div>
-        <div class="item-note editable" contenteditable="true"
-             data-key="d5-brunch"
-             data-placeholder="📝 餐廳／備註……"></div>
-      </div>
-    </div>
+```
+<div class="move">🧭 JR難波 → JR稻荷</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">待定</div>
-      <div class="item-body">
-        <div class="item-title">JR難波 → 三宮</div>
-        <div class="item-sub">🚆 JR大和路線＋JR神戶線<br>JR Yamatoji Line + JR Kobe Line｜40–50 分｜💳 ¥660</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=JR-Namba+Station&destination=Sannomiya+Station+Kobe">🧭 導航</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">08:00</div>
+  <div class="timeline-title">伏見稻荷大社</div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">11:15–11:35</div>
-      <div class="item-body">
-        <div class="item-title">三宮 → 神戶機場</div>
-        <div class="item-sub">🚃 Port Liner｜Port Island Line（ポートアイランド線）｜18 分｜💳 ¥340</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Station+Kobe&destination=Kobe+Airport">🧭 導航</a>
-        </div>
-      </div>
-    </div>
+<div class="move">🧭 伏見稻荷 → 清水寺</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">11:40–12:00</div>
-      <div class="item-body">
-        <div class="item-title">✈️ 抵達神戶機場｜Kobe Airport（UKB）</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍 神戶機場</a>
-        </div>
-      </div>
-    </div>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">10:30</div>
+  <div class="timeline-title">清水寺</div>
+  <div class="transport"><span>🎟️ 入場券</span></div>
+</div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">13:30</div>
-      <div class="item-body">
-        <div class="item-title">✈️ 神戶 → 台中｜STARLUX Airlines</div>
-        <div class="item-sub">13:30 → 16:00｜直飛｜約 3 小時 30 分</div>
-      </div>
-    </div>
+<div class="move">🧭 清水寺 → 祇園</div>
 
-  </div>
-</details>
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">13:00</div>
+  <div class="timeline-title">祇園</div>
+  <div class="meal">🍽️ <div><strong>午餐</strong>｜待定<br><span class="inline-edit" contenteditable="true">輸入餐廳</span></div></div>
+</div>
+
+<div class="move">🧭 祇園 → 嵐山</div>
+
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">15:30</div>
+  <div class="timeline-title">嵐山</div>
+  <div class="timeline-detail">竹林、渡月橋周邊散步</div>
+</div>
+
+<div class="move">🧭 嵐山 → JR難波</div>
+
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">19:00</div>
+  <div class="timeline-title">返回大阪</div>
+  <div class="meal">🍽️ <div><strong>晚餐</strong>｜待定<br><span class="inline-edit" contenteditable="true">輸入餐廳</span></div></div>
+</div>
 ```
 
   </div>
+</div>
+</details>
+
+<details class="card day-card">
+<summary>
+  <div class="day-head">
+    <div>
+      <div class="day-title">D5｜大阪 → 神戶 → 台中</div>
+      <div class="day-date">11/24 Tue</div>
+      <span class="badge">返回</span>
+    </div>
+    <div class="day-arrow">⌄</div>
+  </div>
+</summary>
+<div class="day-body">
+  <div class="note">
+    <div class="note-title">💡 今日注意事項</div>
+    <textarea placeholder="輸入今日注意事項……"></textarea>
+  </div>
+
+  <div class="weather">
+    <div class="weather-title">🌤️ 今日天氣</div>
+    <a class="weather-link" target="_blank" rel="noopener" href="https://weather.apple.com/?lat=34.6901&long=135.1955">神戶｜Apple Weather →</a>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-time">08:00</div>
+      <div class="timeline-title">JR難波退房</div>
+    </div>
+
+```
+<div class="move">🧭 JR難波 → 三宮</div>
+
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">10:00</div>
+  <div class="timeline-title">三宮</div>
+  <div class="meal">🍽️ <div><strong>早餐／早午餐</strong>｜待定<br><span class="inline-edit" contenteditable="true">輸入餐廳</span></div></div>
+</div>
+
+<div class="move">🧭 三宮 → 神戶機場</div>
+
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">11:40</div>
+  <div class="timeline-title">神戶機場 UKB T2</div>
+  <div class="transport"><span>🚃 Port Liner</span><span>💳 IC</span></div>
+</div>
+
+<div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-time">13:30</div>
+  <div class="timeline-title">✈️ 起飛返回台中</div>
+  <div class="timeline-detail">STARLUX Airlines｜UKB → RMQ</div>
+</div>
+```
+
+  </div>
+</div>
+</details>
 </section>
 
-<section class="card">
-  <div class="section-title">
-    <h2>③ 💰 消費紀錄</h2>
-    <span class="small">實際花費</span>
-  </div>
+<section>
+<h2 class="section-title">③ 💰 消費紀錄</h2>
+<div class="card expense-box">
 
-  <div class="expense-add">
+  <div class="form-grid">
     <select id="expenseDay">
       <option>Day 1</option>
       <option>Day 2</option>
@@ -1922,144 +1174,173 @@ body.night select option{
 
 ```
 <select id="expenseCategory">
-  <option>🍜 餐飲</option>
-  <option>🎟️ 票券</option>
-  <option>🚃 交通</option>
-  <option>🏨 住宿</option>
-  <option>🛍️ 購物</option>
-  <option>☕ 咖啡／飲料</option>
-  <option>🎁 伴手禮</option>
-  <option>📦 其他</option>
+  <option>交通</option>
+  <option>住宿</option>
+  <option>餐飲</option>
+  <option>景點</option>
+  <option>購物</option>
+  <option>其他</option>
 </select>
 
-<input class="full-mobile" id="expenseItem" placeholder="項目">
-<input id="expenseAmount" type="number" min="0" step="1" placeholder="金額">
-
+<input id="expenseItem" placeholder="項目">
+<input id="expenseAmount" type="number" placeholder="金額">
 <select id="expenseCurrency">
   <option>JPY</option>
   <option>CAD</option>
   <option>TWD</option>
 </select>
-
 <input id="expensePayer" placeholder="付款人">
-<button class="primary-btn" onclick="addExpense()">＋</button>
 ```
 
   </div>
 
-  <div class="expense-list" id="expenseList"></div>
+<button class="add-btn" style="margin-top:7px" onclick="addExpense()">＋ 新增</button>
 
-  <div class="total-box">
-    <div class="total">
-      <div class="total-label">JPY 總額</div>
-      <strong id="jpyTotal">¥0</strong>
+  <div class="expense-table">
+    <div class="expense-row expense-head">
+      <div>Day</div>
+      <div>類別</div>
+      <div>項目</div>
+      <div>金額</div>
+      <div>幣別</div>
+      <div>付款人</div>
+      <div></div>
     </div>
+    <div id="expenseList"></div>
   </div>
+
+  <div class="total">JPY 合計：¥<span id="expenseTotal">0</span></div>
+</div>
 </section>
 
-<section class="card">
-  <div class="section-title">
-    <h2>④ ☑️ 待辦事項</h2>
-    <span class="small">可自行編輯</span>
+<section>
+<h2 class="section-title">④ ☑️ 待辦事項</h2>
+<div class="card todo-box">
+
+  <div class="people">
+    <input id="personInput" placeholder="輸入同行者名字">
+    <button class="add-btn" onclick="addPerson()">＋ 新增</button>
+  </div>
+  <div class="person-list" id="personList"></div>
+
+  <div class="todo-add" style="margin-top:10px">
+    <input id="todoInput" placeholder="輸入待辦事項">
+    <select id="todoOwner">
+      <option value="">負責人</option>
+    </select>
+    <button class="add-btn" onclick="addTodo()">＋ 新增</button>
   </div>
 
-  <div class="people-box">
-    <div class="people-title">👥 同行者</div>
-    <div class="people-add">
-      <input id="personInput" placeholder="輸入同行者姓名">
-      <button class="secondary-btn" onclick="addPerson()">＋ 新增</button>
-    </div>
-    <div class="people-list" id="peopleList"></div>
-  </div>
-
-  <div class="todo-add">
-    <input id="todoInput" placeholder="新增待辦事項">
-    <select id="todoOwner"></select>
-    <button class="primary-btn" onclick="addTodo()">＋</button>
-  </div>
-
-  <div id="todoList"></div>
+  <div class="todo-list" id="todoList"></div>
+</div>
 </section>
 
-<section class="card">
-  <div class="section-title">
-    <h2>⑤ 💡 實用資訊</h2>
-    <span class="small">旅行中快速查看</span>
+<section>
+<h2 class="section-title">⑤ 💡 實用資訊</h2>
+<div class="card info-box">
+
+  <div class="info-row">
+    <strong>🕘 時差</strong>
+    <span>日本 JST GMT+9｜台灣 GMT+8</span>
   </div>
 
-  <div class="tip">🕐 日本時間為 JST（GMT+9）；台灣時間為 GMT+8。</div>
-  <div class="tip">🎫 JR Kansai Area Pass 主要用於 D3、D4 的 JR 行程。</div>
-  <div class="tip">🪪 D2 使用 Enjoy Eco Card 時，交通資訊會直接標示於行程內。</div>
-  <div class="tip">🧭 移動行程使用 Google Maps 導航；📍 景點本身使用 Google Maps 位置。</div>
-  <div class="tip">🍽️ 餐廳目前以「待定」保留，可直接在行程內輸入餐廳與備註。</div>
-  <div class="tip">📝 今日注意事項與行程備註會儲存在本機瀏覽器，重新整理後仍會保留。</div>
-  <div class="tip">🌙 網頁會依當地裝置時間自動切換白天／深夜模式。</div>
+  <div class="info-row">
+    <strong>💳 交通支付</strong>
+    <span>IC 卡可用於多數 JR、Osaka Metro、私鐵及巴士；實際以現場為準。</span>
+  </div>
+
+  <div class="info-row">
+    <strong>🎫 JR Kansai Area Pass</strong>
+    <span>使用前確認當日路線是否涵蓋；非 JR 路線需另外支付。</span>
+  </div>
+
+  <div class="info-row">
+    <strong>🪪 Enjoy Eco Card</strong>
+    <span>大阪市區地鐵一日券；使用前確認當日票價及適用範圍。</span>
+  </div>
+
+  <div class="info-row">
+    <strong>💴 現金</strong>
+    <span>日本仍有部分小店、寺社及自動販賣機需要現金。</span>
+  </div>
+
+  <div class="info-row">
+    <strong>📱 Apple Weather</strong>
+    <span>每日天氣按行程地點分開查看。</span>
+  </div>
+
+</div>
 </section>
 
-<div class="footer">
+</main>
+
+<footer>
   <div>Kobe・Osaka・Nara・Kyoto 5-Day</div>
   <div>November 20 — 24, 2026</div>
-</div>
-
-</div>
+</footer>
 
 <script>
-const tripTarget = Date.parse("2026-11-20T12:30:00+09:00");
+const targetDate = new Date("2026-11-20T12:30:00+09:00");
 
 function updateCountdown(){
-  const diff = tripTarget - Date.now();
-  const safe = Math.max(0,diff);
-  const d = Math.floor(safe / 86400000);
-  const h = Math.floor((safe % 86400000) / 3600000);
-  const m = Math.floor((safe % 3600000) / 60000);
-  const s = Math.floor((safe % 60000) / 1000);
+  const now = new Date();
+  let diff = targetDate - now;
 
-  document.getElementById("days").textContent = d;
-  document.getElementById("hours").textContent = String(h).padStart(2,"0");
-  document.getElementById("minutes").textContent = String(m).padStart(2,"0");
-  document.getElementById("seconds").textContent = String(s).padStart(2,"0");
+  if(diff < 0) diff = 0;
+
+  const days = Math.floor(diff / 86400000);
+  diff %= 86400000;
+
+  const hours = Math.floor(diff / 3600000);
+  diff %= 3600000;
+
+  const minutes = Math.floor(diff / 60000);
+  diff %= 60000;
+
+  const seconds = Math.floor(diff / 1000);
+
+  document.getElementById("days").textContent = days;
+  document.getElementById("hours").textContent = String(hours).padStart(2,"0");
+  document.getElementById("minutes").textContent = String(minutes).padStart(2,"0");
+  document.getElementById("seconds").textContent = String(seconds).padStart(2,"0");
 }
+updateCountdown();
+setInterval(updateCountdown,1000);
 
 function updateTheme(){
   const hour = new Date().getHours();
-  document.body.classList.toggle("night", hour >= 19 || hour < 6);
+  document.body.classList.toggle("night",hour>=19||hour<6);
 }
-
-updateCountdown();
 updateTheme();
-setInterval(updateCountdown,1000);
 setInterval(updateTheme,60000);
 
-const editables = document.querySelectorAll(".editable[data-key]");
-
-editables.forEach(el=>{
-  const key = "kobe-travel-" + el.dataset.key;
-  const saved = localStorage.getItem(key);
-  if(saved !== null) el.innerHTML = saved;
-
-  el.addEventListener("input",()=>{
-    localStorage.setItem(key,el.innerHTML);
+function showRouteDay(day){
+  document.querySelectorAll(".route-tab").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.day===day);
   });
-});
 
-let expenses = JSON.parse(localStorage.getItem("kobe-travel-expenses") || "[]");
+  document.querySelectorAll(".route-panel").forEach(panel=>{
+    panel.classList.toggle("active",panel.dataset.day===day);
+  });
+}
+
+let expenses = JSON.parse(localStorage.getItem("japanExpenses") || "[]");
 
 function saveExpenses(){
-  localStorage.setItem("kobe-travel-expenses",JSON.stringify(expenses));
+  localStorage.setItem("japanExpenses",JSON.stringify(expenses));
 }
 
 function addExpense(){
-  const day = document.getElementById("expenseDay").value;
-  const category = document.getElementById("expenseCategory").value;
-  const item = document.getElementById("expenseItem").value.trim();
-  const amount = Number(document.getElementById("expenseAmount").value);
-  const currency = document.getElementById("expenseCurrency").value;
-  const payer = document.getElementById("expensePayer").value.trim();
+  const day=document.getElementById("expenseDay").value;
+  const category=document.getElementById("expenseCategory").value;
+  const item=document.getElementById("expenseItem").value.trim();
+  const amount=parseFloat(document.getElementById("expenseAmount").value);
+  const currency=document.getElementById("expenseCurrency").value;
+  const payer=document.getElementById("expensePayer").value.trim();
 
   if(!item || !amount) return;
 
   expenses.push({
-    id:Date.now(),
     day,
     category,
     item,
@@ -2069,233 +1350,200 @@ function addExpense(){
   });
 
   saveExpenses();
-
-  document.getElementById("expenseItem").value = "";
-  document.getElementById("expenseAmount").value = "";
   renderExpenses();
+
+  document.getElementById("expenseItem").value="";
+  document.getElementById("expenseAmount").value="";
 }
 
-function deleteExpense(id){
-  expenses = expenses.filter(x=>x.id !== id);
+function deleteExpense(index){
+  expenses.splice(index,1);
   saveExpenses();
   renderExpenses();
 }
 
 function renderExpenses(){
-  const box = document.getElementById("expenseList");
+  const list=document.getElementById("expenseList");
+  list.innerHTML="";
 
-  if(!expenses.length){
-    box.innerHTML = '<div class="small" style="padding:12px 0">目前尚無消費紀錄。</div>';
-    document.getElementById("jpyTotal").textContent = "¥0";
-    return;
-  }
+  let total=0;
 
-  let html = `
-    <div class="expense-row header">
-      <div>Day</div>
-      <div>類別</div>
-      <div>項目</div>
-      <div>金額</div>
-      <div>幣別</div>
-      <div>付款人</div>
-      <div></div>
-    </div>
-  `;
+  expenses.forEach((e,index)=>{
+    if(e.currency==="JPY") total += Number(e.amount)||0;
 
-  expenses.forEach(x=>{
-    html += `
-      <div class="expense-row">
-        <div>${escapeHtml(x.day)}</div>
-        <div>${escapeHtml(x.category)}</div>
-        <div>${escapeHtml(x.item)}</div>
-        <div class="amount">${Number(x.amount).toLocaleString()}</div>
-        <div>${escapeHtml(x.currency)}</div>
-        <div>${escapeHtml(x.payer || "—")}</div>
-        <div><button class="todo-delete" onclick="deleteExpense(${x.id})">🗑️</button></div>
-      </div>
+    const row=document.createElement("div");
+    row.className="expense-row";
+
+    row.innerHTML=`
+      <select onchange="updateExpense(${index},'day',this.value)">
+        ${["Day 1","Day 2","Day 3","Day 4","Day 5"].map(x=>`<option ${x===e.day?"selected":""}>${x}</option>`).join("")}
+      </select>
+      <select onchange="updateExpense(${index},'category',this.value)">
+        ${["交通","住宿","餐飲","景點","購物","其他"].map(x=>`<option ${x===e.category?"selected":""}>${x}</option>`).join("")}
+      </select>
+      <input value="${escapeHtml(e.item)}" onchange="updateExpense(${index},'item',this.value)">
+      <input type="number" value="${e.amount}" onchange="updateExpense(${index},'amount',this.value)">
+      <select onchange="updateExpense(${index},'currency',this.value)">
+        ${["JPY","CAD","TWD"].map(x=>`<option ${x===e.currency?"selected":""}>${x}</option>`).join("")}
+      </select>
+      <input value="${escapeHtml(e.payer||"")}" onchange="updateExpense(${index},'payer',this.value)">
+      <button class="delete-btn" onclick="deleteExpense(${index})">✕</button>
     `;
+
+    list.appendChild(row);
   });
 
-  box.innerHTML = html;
-
-  const total = expenses
-    .filter(x=>x.currency === "JPY")
-    .reduce((sum,x)=>sum + Number(x.amount),0);
-
-  document.getElementById("jpyTotal").textContent =
-    "¥" + total.toLocaleString();
+  document.getElementById("expenseTotal").textContent =
+    Math.round(total).toLocaleString();
 }
 
-function escapeHtml(value){
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+function updateExpense(index,key,value){
+  expenses[index][key]=key==="amount" ? Number(value) : value;
+  saveExpenses();
+  renderExpenses();
+}
+
+function escapeHtml(str){
+  return String(str)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
 renderExpenses();
 
-let people = JSON.parse(
-  localStorage.getItem("kobe-travel-people") ||
-  JSON.stringify(["Celina"])
-);
-
-let todos = JSON.parse(
-  localStorage.getItem("kobe-travel-todos") ||
-  "[]"
-);
+let people = JSON.parse(localStorage.getItem("japanPeople") || "[]");
+let todos = JSON.parse(localStorage.getItem("japanTodos") || "[]");
 
 function savePeople(){
-  localStorage.setItem("kobe-travel-people",JSON.stringify(people));
+  localStorage.setItem("japanPeople",JSON.stringify(people));
 }
 
 function saveTodos(){
-  localStorage.setItem("kobe-travel-todos",JSON.stringify(todos));
+  localStorage.setItem("japanTodos",JSON.stringify(todos));
 }
 
 function addPerson(){
-  const input = document.getElementById("personInput");
-  const name = input.value.trim();
+  const input=document.getElementById("personInput");
+  const name=input.value.trim();
 
-  if(!name || people.includes(name)) return;
+  if(!name) return;
 
-  people.push(name);
-  input.value = "";
-  savePeople();
-  renderPeople();
-  renderOwnerSelect();
-  renderTodos();
+  if(!people.includes(name)){
+    people.push(name);
+    savePeople();
+    renderPeople();
+    renderOwnerOptions();
+  }
+
+  input.value="";
 }
 
-function deletePerson(name){
-  if(people.length <= 1) return;
-
-  people = people.filter(x=>x !== name);
-
-  todos = todos.map(todo=>{
-    if(todo.owner === name) todo.owner = people[0] || "";
-    return todo;
-  });
-
+function deletePerson(index){
+  people.splice(index,1);
   savePeople();
-  saveTodos();
-
   renderPeople();
-  renderOwnerSelect();
-  renderTodos();
+  renderOwnerOptions();
 }
 
 function renderPeople(){
-  const box = document.getElementById("peopleList");
+  const list=document.getElementById("personList");
+  list.innerHTML="";
 
-  box.innerHTML = people.map(name=>`
-    <span class="person-chip">
-      ${escapeHtml(name)}
-      ${people.length > 1
-        ? `<button onclick="deletePerson('${escapeHtml(name).replaceAll("'","&#039;")}')">×</button>`
-        : ""}
-    </span>
-  `).join("");
+  people.forEach((name,index)=>{
+    const div=document.createElement("div");
+    div.className="person";
+    div.innerHTML=`
+      <span>${escapeHtml(name)}</span>
+      <button onclick="deletePerson(${index})">×</button>
+    `;
+    list.appendChild(div);
+  });
 }
 
-function renderOwnerSelect(){
-  const select = document.getElementById("todoOwner");
+function renderOwnerOptions(){
+  const select=document.getElementById("todoOwner");
+  const current=select.value;
 
-  select.innerHTML =
-    people.map(name=>`<option>${escapeHtml(name)}</option>`).join("");
+  select.innerHTML='<option value="">負責人</option>';
+
+  people.forEach(name=>{
+    const option=document.createElement("option");
+    option.value=name;
+    option.textContent=name;
+    select.appendChild(option);
+  });
+
+  if(people.includes(current)) select.value=current;
 }
 
 function addTodo(){
-  const input = document.getElementById("todoInput");
-  const owner = document.getElementById("todoOwner").value;
-  const text = input.value.trim();
+  const input=document.getElementById("todoInput");
+  const owner=document.getElementById("todoOwner").value;
+  const text=input.value.trim();
 
   if(!text) return;
 
   todos.push({
-    id:Date.now(),
     text,
     owner,
     done:false
   });
 
-  input.value = "";
+  saveTodos();
+  renderTodos();
+
+  input.value="";
+}
+
+function toggleTodo(index){
+  todos[index].done=!todos[index].done;
   saveTodos();
   renderTodos();
 }
 
-function toggleTodo(id){
-  const todo = todos.find(x=>x.id === id);
-  if(!todo) return;
-
-  todo.done = !todo.done;
+function deleteTodo(index){
+  todos.splice(index,1);
   saveTodos();
   renderTodos();
 }
 
-function changeOwner(id,value){
-  const todo = todos.find(x=>x.id === id);
-  if(!todo) return;
-
-  todo.owner = value;
-  saveTodos();
-}
-
-function deleteTodo(id){
-  todos = todos.filter(x=>x.id !== id);
+function updateTodoOwner(index,value){
+  todos[index].owner=value;
   saveTodos();
   renderTodos();
 }
 
 function renderTodos(){
-  const box = document.getElementById("todoList");
+  const list=document.getElementById("todoList");
+  list.innerHTML="";
 
-  if(!todos.length){
-    box.innerHTML =
-      '<div class="small" style="padding:12px 0">目前尚無待辦事項。</div>';
-    return;
-  }
+  todos.forEach((todo,index)=>{
+    const row=document.createElement("div");
+    row.className="todo-item"+(todo.done?" done":"");
 
-  box.innerHTML = todos.map(todo=>`
-    <div class="todo-row ${todo.done ? "done" : ""}">
-      <div class="todo-main">
-        <input class="todo-check"
-               type="checkbox"
-               ${todo.done ? "checked" : ""}
-               onchange="toggleTodo(${todo.id})">
-        <div class="todo-text"
-             contenteditable="true"
-             onblur="updateTodoText(${todo.id},this.innerText)">${escapeHtml(todo.text)}</div>
-      </div>
+    const ownerOptions=people.map(name=>
+      `<option value="${escapeHtml(name)}" ${todo.owner===name?"selected":""}>${escapeHtml(name)}</option>`
+    ).join("");
 
-      <div class="todo-side">
-        <select class="owner"
-                onchange="changeOwner(${todo.id},this.value)">
-          ${people.map(person=>`
-            <option ${person === todo.owner ? "selected" : ""}>
-              ${escapeHtml(person)}
-            </option>
-          `).join("")}
-        </select>
-        <button class="todo-delete"
-                onclick="deleteTodo(${todo.id})">🗑️</button>
-      </div>
-    </div>
-  `).join("");
-}
+    row.innerHTML=`
+      <input type="checkbox" ${todo.done?"checked":""} onchange="toggleTodo(${index})">
+      <div class="todo-text">${escapeHtml(todo.text)}</div>
+      <select onchange="updateTodoOwner(${index},this.value)">
+        <option value="">負責人</option>
+        ${ownerOptions}
+      </select>
+      <button class="delete-btn" onclick="deleteTodo(${index})">✕</button>
+    `;
 
-function updateTodoText(id,text){
-  const todo = todos.find(x=>x.id === id);
-  if(!todo) return;
-
-  todo.text = text.trim();
-  saveTodos();
+    list.appendChild(row);
+  });
 }
 
 renderPeople();
-renderOwnerSelect();
+renderOwnerOptions();
 renderTodos();
 </script>
 
