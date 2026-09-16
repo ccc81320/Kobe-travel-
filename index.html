@@ -6,6 +6,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f5f1e9">
 <title>JAPAN TRAVEL｜神戶・大阪・奈良・京都5日遊</title>
+.day-card .day-content{
+display:none;
+}
+
+.day-card.open .day-content{
+display:block;
+}
+
+.day-header{
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+}
+
+.day-header::after{
+content:"⌄";
+font-size:20px;
+font-weight:800;
+}
+
+.day-card.open .day-header::after{
+transform:rotate(180deg);
+}
+
+@media (max-width:600px){
+.day-header{
+align-items:flex-start;
+}
+
+.day-header h3{
+line-height:1.4;
+}
+}
 
 <style>
 *{box-sizing:border-box}
@@ -1221,7 +1256,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <!-- D1 -->
 
   <div class="day-card">
-    <div class="day-header">
+    <div class="day-header" onclick="toggleDay(this)">
       <h3>D1｜台中 → 神戶 → 大阪</h3>
       <span class="tag">11/20 五</span>
     </div>
@@ -1421,7 +1456,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <!-- D2 -->
 
   <div class="day-card">
-    <div class="day-header">
+    <div class="day-header" onclick="toggleDay(this)">
       <h3>D2｜大阪</h3>
       <span class="tag">11/21 六</span>
     </div>
@@ -1584,7 +1619,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <!-- D3 -->
 
   <div class="day-card">
-    <div class="day-header">
+    <div class="day-header" onclick="toggleDay(this)">
       <h3>D3｜奈良＋宇治</h3>
       <span class="tag">11/22 日</span>
     </div>
@@ -1799,7 +1834,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <!-- D4 -->
 
   <div class="day-card">
-    <div class="day-header">
+    <div class="day-header" onclick="toggleDay(this)">
       <h3>D4｜京都＋嵐山</h3>
       <span class="tag">11/23 一</span>
     </div>
@@ -2053,7 +2088,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <!-- D5 -->
 
   <div class="day-card">
-    <div class="day-header">
+    <div class="day-header" onclick="toggleDay(this)">
       <h3>D5｜大阪 → 神戶 → 台中</h3>
       <span class="tag">11/24 二</span>
     </div>
@@ -2221,6 +2256,23 @@ document.addEventListener('DOMContentLoaded', function() {
 </footer>
 
 </div>
+function toggleDay(header){
+const dayCard = header.closest('.day-card');
+
+document.querySelectorAll('.day-card').forEach(function(card){
+card.classList.remove('open');
+});
+
+dayCard.classList.add('open');
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+const firstDay = document.querySelector('.day-card');
+
+if(firstDay){
+firstDay.classList.add('open');
+}
+});
 
 <script>
 const tripTarget = Date.parse("2026-11-20T12:30:00+09:00");
