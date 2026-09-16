@@ -877,14 +877,14 @@ footer{
 <section class="card">
   <div class="section-title">
     <h2>① 🗺️ 每日地圖總覽</h2>
-    <span class="small">旅程方向示意</span>
+    <span class="small"></span>
   </div>
 
   <div class="map-box">
     <svg viewBox="0 0 760 650" role="img" aria-label="五日旅程地圖">
 
 ```
-  <!-- D1 左上 → 右下 -->
+  <!-- D1 台中 → 神戶 → 大阪 -->
   <path d="M90 75 C180 45 250 90 330 145 S430 205 520 245 S620 285 685 330"
         fill="none" stroke="#d88a61" stroke-width="7" stroke-linecap="round"/>
   <circle cx="90" cy="75" r="9" fill="#fffdf8" stroke="#d88a61" stroke-width="4"/>
@@ -898,7 +898,7 @@ footer{
   <text x="480" y="225" class="map-label map-place">南京町</text>
   <text x="620" y="360" class="map-label map-place">神戶港塔</text>
 
-  <!-- D2 左中 → 右中 -->
+  <!-- D2 大阪 -->
   <path d="M75 370 C150 335 215 405 295 375 S425 335 505 380 S600 415 690 380"
         fill="none" stroke="#557b70" stroke-width="7" stroke-linecap="round"/>
   <circle cx="75" cy="370" r="9" fill="#fffdf8" stroke="#557b70" stroke-width="4"/>
@@ -912,7 +912,7 @@ footer{
   <text x="465" y="360" class="map-label map-place">四天王寺</text>
   <text x="605" y="410" class="map-label map-place">新世界・通天閣</text>
 
-  <!-- D3 左下 → 右上 -->
+  <!-- D3 大阪 → 奈良 → 宇治 → 大阪 -->
   <path d="M75 590 C160 565 220 520 295 535 S395 495 445 455 S545 425 610 440 S665 420 700 395"
         fill="none" stroke="#8d7ca8" stroke-width="7" stroke-linecap="round"/>
   <circle cx="75" cy="590" r="9" fill="#fffdf8" stroke="#8d7ca8" stroke-width="4"/>
@@ -928,7 +928,7 @@ footer{
   <text x="570" y="420" class="map-label map-place">宇治橋</text>
   <text x="645" y="375" class="map-label map-place">平等院</text>
 
-  <!-- D4 右上 → 左下 -->
+  <!-- D4 大阪 → 京都 → 嵐山 → 大阪  -->
   <path d="M685 90 C610 70 555 105 500 145 S410 205 355 250 S245 305 185 350"
         fill="none" stroke="#6586a6" stroke-width="7" stroke-linecap="round"/>
   <circle cx="685" cy="90" r="9" fill="#fffdf8" stroke="#6586a6" stroke-width="4"/>
@@ -942,7 +942,7 @@ footer{
   <text x="315" y="235" class="map-label map-place">祇園・花見小路</text>
   <text x="120" y="375" class="map-label map-place">嵐山竹林</text>
 
-  <!-- D5 左上 → 右下 -->
+  <!-- D5 大阪 → 神戶 → 台中 -->
   <path d="M120 215 C200 190 275 215 340 245 S465 285 550 305 S635 325 700 350"
         fill="none" stroke="#d99b70" stroke-width="5" stroke-dasharray="8 7" stroke-linecap="round"/>
   <circle cx="120" cy="215" r="8" fill="#fffdf8" stroke="#d99b70" stroke-width="3"/>
@@ -962,11 +962,11 @@ footer{
   </div>
 
   <div class="map-legend">
-    <div class="legend-item">D1｜神戶機場・生田神社・南京町・神戶港塔</div>
-    <div class="legend-item">D2｜大阪城・黑門市場・四天王寺・新世界</div>
-    <div class="legend-item">D3｜奈良公園・東大寺・奈良町・宇治・平等院</div>
-    <div class="legend-item">D4｜伏見稻荷・清水寺・祇園・嵐山竹林</div>
-    <div class="legend-item">D5｜JR難波・三宮・神戶機場・台中</div>
+    <div class="legend-item">D1｜神戶機場・生田神社・南京町・神戶港塔・北野異人館</div>
+    <div class="legend-item">D2｜大阪城・黑門市場・四天王寺・新世界・通天閣・心齋橋・道頓崛</div>
+    <div class="legend-item">D3｜奈良公園・東大寺・春日大社・若草山・奈良町・宇治・平等院</div>
+    <div class="legend-item">D4｜伏見稻荷大社・清水寺・八坂神社・祇園・嵐山竹林</div>
+    <div class="legend-item">D5｜大阪・三宮・神戶機場・台中</div>
   </div>
 </section>
 
@@ -1004,7 +1004,7 @@ footer{
   </div>
 </div>
 
-<div class="flight-info">直飛 · 約 2 小時 30 分｜台灣 GMT+8 → 日本 JST</div>
+<div class="flight-info">直飛 · 約 2 小時 30 分｜台灣 GMT+8 → 日本 JST+9</div>
 ```
 
   </div>
@@ -1037,7 +1037,7 @@ footer{
   </div>
 </div>
 
-<div class="flight-info">直飛 · 約 3 小時 30 分｜日本 JST → 台灣 GMT+8</div>
+<div class="flight-info">直飛 · 約 3 小時 30 分｜日本 JST+9 → 台灣 GMT+8</div>
 ```
 
   </div>
@@ -1069,7 +1069,7 @@ footer{
 
   <div class="day-note">
     <div class="day-note-label">💡 今日注意事項</div>
-    <textarea id="note-d1" placeholder="點此輸入今天要注意的事情……"></textarea>
+    <textarea id="note-d1" placeholder="點此輸入……"></textarea>
   </div>
 
   <div class="timeline">
@@ -1273,7 +1273,7 @@ footer{
 
   <div class="day-note">
     <div class="day-note-label">💡 今日注意事項</div>
-    <textarea id="note-d2" placeholder="點此輸入今天要注意的事情……"></textarea>
+    <textarea id="note-d2" placeholder="點此輸入……"></textarea>
   </div>
 
   <div class="timeline">
@@ -1404,7 +1404,7 @@ footer{
     <div class="timeline-item">
       <div class="timeline-time">21:30</div>
       <div>
-        <div class="item-title">🏨 回飯店｜JR難波</div>
+        <div class="item-title">🏨 回飯店｜</div>
         <div class="item-sub">🚶 約 10–15 分</div>
         <div class="item-links">
           <a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Dotonbori+Osaka&destination=JR-Namba+Station">🧭</a>
@@ -1440,7 +1440,7 @@ footer{
 
   <div class="day-note">
     <div class="day-note-label">💡 今日注意事項</div>
-    <textarea id="note-d3" placeholder="點此輸入今天要注意的事情……"></textarea>
+    <textarea id="note-d3" placeholder="點此輸入……"></textarea>
   </div>
 
   <div class="timeline">
@@ -1657,7 +1657,7 @@ footer{
 
   <div class="day-note">
     <div class="day-note-label">💡 今日注意事項</div>
-    <textarea id="note-d4" placeholder="點此輸入今天要注意的事情……"></textarea>
+    <textarea id="note-d4" placeholder="點此輸入……"></textarea>
   </div>
 
   <div class="timeline">
@@ -1911,7 +1911,7 @@ footer{
 
   <div class="day-note">
     <div class="day-note-label">💡 今日注意事項</div>
-    <textarea id="note-d5" placeholder="點此輸入今天要注意的事情……"></textarea>
+    <textarea id="note-d5" placeholder="點此輸入……"></textarea>
   </div>
 
   <div class="timeline">
