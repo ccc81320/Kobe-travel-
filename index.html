@@ -880,95 +880,195 @@ footer{
     <span class="small"></span>
   </div>
 
-  <div class="map-box">
-    <svg viewBox="0 0 760 650" role="img" aria-label="五日旅程地圖">
+  <div class="map-tabs">
+    <button class="map-tab active" onclick="switchMap('d1')">D1</button>
+    <button class="map-tab" onclick="switchMap('d2')">D2</button>
+    <button class="map-tab" onclick="switchMap('d3')">D3</button>
+    <button class="map-tab" onclick="switchMap('d4')">D4</button>
+    <button class="map-tab" onclick="switchMap('d5')">D5</button>
+  </div>
+
+  <!-- D1 -->
+
+  <div class="route-map active" id="map-d1">
+    <svg viewBox="0 0 760 500" role="img" aria-label="D1 神戶行程地圖">
 
 ```
-  <!-- D1 台中 → 神戶 → 大阪 -->
-  <path d="M90 75 C180 45 250 90 330 145 S430 205 520 245 S620 285 685 330"
-        fill="none" stroke="#d88a61" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="90" cy="75" r="9" fill="#fffdf8" stroke="#d88a61" stroke-width="4"/>
-  <circle cx="330" cy="145" r="9" fill="#fffdf8" stroke="#d88a61" stroke-width="4"/>
-  <circle cx="520" cy="245" r="9" fill="#fffdf8" stroke="#d88a61" stroke-width="4"/>
-  <circle cx="685" cy="330" r="9" fill="#fffdf8" stroke="#d88a61" stroke-width="4"/>
+  <path d="M90 90
+           C155 55 220 75 270 125
+           S345 215 420 195
+           S510 145 565 215
+           S625 315 690 365"
+        fill="none"
+        stroke="#d88a61"
+        stroke-width="8"
+        stroke-linecap="round"/>
 
-  <text x="55" y="48" class="map-label map-day">D1</text>
-  <text x="55" y="65" class="map-label map-place">神戶機場</text>
-  <text x="295" y="125" class="map-label map-place">生田神社</text>
-  <text x="480" y="225" class="map-label map-place">南京町</text>
-  <text x="620" y="360" class="map-label map-place">神戶港塔</text>
+  <circle cx="90" cy="90" r="10" fill="#fffdf8" stroke="#d88a61" stroke-width="4"/>
+  <circle cx="270" cy="125" r="10" fill="#fffdf8" stroke="#d88a61" stroke-width="4"/>
+  <circle cx="420" cy="195" r="10" fill="#fffdf8" stroke="#d88a61" stroke-width="4"/>
+  <circle cx="565" cy="215" r="10" fill="#fffdf8" stroke="#d88a61" stroke-width="4"/>
+  <circle cx="690" cy="365" r="10" fill="#fffdf8" stroke="#d88a61" stroke-width="4"/>
 
-  <!-- D2 大阪 -->
-  <path d="M75 370 C150 335 215 405 295 375 S425 335 505 380 S600 415 690 380"
-        fill="none" stroke="#557b70" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="75" cy="370" r="9" fill="#fffdf8" stroke="#557b70" stroke-width="4"/>
-  <circle cx="295" cy="375" r="9" fill="#fffdf8" stroke="#557b70" stroke-width="4"/>
-  <circle cx="505" cy="380" r="9" fill="#fffdf8" stroke="#557b70" stroke-width="4"/>
-  <circle cx="690" cy="380" r="9" fill="#fffdf8" stroke="#557b70" stroke-width="4"/>
+  <text x="65" y="62" class="map-label map-day">D1</text>
+  <text x="45" y="82" class="map-label map-place">神戶機場</text>
 
-  <text x="48" y="350" class="map-label map-day">D2</text>
-  <text x="48" y="365" class="map-label map-place">大阪城</text>
-  <text x="260" y="355" class="map-label map-place">黑門市場</text>
-  <text x="465" y="360" class="map-label map-place">四天王寺</text>
-  <text x="605" y="410" class="map-label map-place">新世界・通天閣</text>
-
-  <!-- D3 大阪 → 奈良 → 宇治 → 大阪 -->
-  <path d="M75 590 C160 565 220 520 295 535 S395 495 445 455 S545 425 610 440 S665 420 700 395"
-        fill="none" stroke="#8d7ca8" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="75" cy="590" r="9" fill="#fffdf8" stroke="#8d7ca8" stroke-width="4"/>
-  <circle cx="295" cy="535" r="9" fill="#fffdf8" stroke="#8d7ca8" stroke-width="4"/>
-  <circle cx="445" cy="455" r="9" fill="#fffdf8" stroke="#8d7ca8" stroke-width="4"/>
-  <circle cx="610" cy="440" r="9" fill="#fffdf8" stroke="#8d7ca8" stroke-width="4"/>
-  <circle cx="700" cy="395" r="9" fill="#fffdf8" stroke="#8d7ca8" stroke-width="4"/>
-
-  <text x="48" y="615" class="map-label map-day">D3</text>
-  <text x="48" y="630" class="map-label map-place">奈良公園</text>
-  <text x="250" y="560" class="map-label map-place">東大寺</text>
-  <text x="405" y="480" class="map-label map-place">奈良町</text>
-  <text x="570" y="420" class="map-label map-place">宇治橋</text>
-  <text x="645" y="375" class="map-label map-place">平等院</text>
-
-  <!-- D4 大阪 → 京都 → 嵐山 → 大阪  -->
-  <path d="M685 90 C610 70 555 105 500 145 S410 205 355 250 S245 305 185 350"
-        fill="none" stroke="#6586a6" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="685" cy="90" r="9" fill="#fffdf8" stroke="#6586a6" stroke-width="4"/>
-  <circle cx="500" cy="145" r="9" fill="#fffdf8" stroke="#6586a6" stroke-width="4"/>
-  <circle cx="355" cy="250" r="9" fill="#fffdf8" stroke="#6586a6" stroke-width="4"/>
-  <circle cx="185" cy="350" r="9" fill="#fffdf8" stroke="#6586a6" stroke-width="4"/>
-
-  <text x="650" y="68" class="map-label map-day">D4</text>
-  <text x="625" y="85" class="map-label map-place">伏見稻荷大社</text>
-  <text x="455" y="125" class="map-label map-place">清水寺</text>
-  <text x="315" y="235" class="map-label map-place">祇園・花見小路</text>
-  <text x="120" y="375" class="map-label map-place">嵐山竹林</text>
-
-  <!-- D5 大阪 → 神戶 → 台中 -->
-  <path d="M120 215 C200 190 275 215 340 245 S465 285 550 305 S635 325 700 350"
-        fill="none" stroke="#d99b70" stroke-width="5" stroke-dasharray="8 7" stroke-linecap="round"/>
-  <circle cx="120" cy="215" r="8" fill="#fffdf8" stroke="#d99b70" stroke-width="3"/>
-  <circle cx="340" cy="245" r="8" fill="#fffdf8" stroke="#d99b70" stroke-width="3"/>
-  <circle cx="550" cy="305" r="8" fill="#fffdf8" stroke="#d99b70" stroke-width="3"/>
-  <circle cx="700" cy="350" r="8" fill="#fffdf8" stroke="#d99b70" stroke-width="3"/>
-
-  <text x="92" y="195" class="map-label map-day">D5</text>
-  <text x="92" y="210" class="map-label map-place">JR難波</text>
-  <text x="310" y="225" class="map-label map-place">三宮</text>
-  <text x="515" y="285" class="map-label map-place">神戶機場</text>
-  <text x="650" y="380" class="map-label map-place">台中</text>
+  <text x="235" y="105" class="map-label map-place">生田神社</text>
+  <text x="385" y="180" class="map-label map-place">南京町</text>
+  <text x="525" y="195" class="map-label map-place">神戶港塔</text>
+  <text x="600" y="395" class="map-label map-place">北野異人館</text>
 
 </svg>
 ```
 
   </div>
 
-  <div class="map-legend">
-    <div class="legend-item">D1｜神戶機場・生田神社・南京町・神戶港塔・北野異人館</div>
-    <div class="legend-item">D2｜大阪城・黑門市場・四天王寺・新世界・通天閣・心齋橋・道頓崛</div>
-    <div class="legend-item">D3｜奈良公園・東大寺・春日大社・若草山・奈良町・宇治・平等院</div>
-    <div class="legend-item">D4｜伏見稻荷大社・清水寺・八坂神社・祇園・嵐山竹林</div>
-    <div class="legend-item">D5｜大阪・三宮・神戶機場・台中</div>
+  <!-- D2 -->
+
+  <div class="route-map" id="map-d2">
+    <svg viewBox="0 0 760 500" role="img" aria-label="D2 大阪行程地圖">
+
+```
+  <path d="M90 130
+           C155 85 215 105 255 165
+           S320 270 390 245
+           S470 175 530 215
+           S590 315 665 290"
+        fill="none"
+        stroke="#557b70"
+        stroke-width="8"
+        stroke-linecap="round"/>
+
+  <circle cx="90" cy="130" r="10" fill="#fffdf8" stroke="#557b70" stroke-width="4"/>
+  <circle cx="255" cy="165" r="10" fill="#fffdf8" stroke="#557b70" stroke-width="4"/>
+  <circle cx="390" cy="245" r="10" fill="#fffdf8" stroke="#557b70" stroke-width="4"/>
+  <circle cx="530" cy="215" r="10" fill="#fffdf8" stroke="#557b70" stroke-width="4"/>
+  <circle cx="665" cy="290" r="10" fill="#fffdf8" stroke="#557b70" stroke-width="4"/>
+
+  <text x="60" y="102" class="map-label map-day">D2</text>
+  <text x="45" y="122" class="map-label map-place">大阪城</text>
+
+  <text x="215" y="145" class="map-label map-place">黑門市場</text>
+  <text x="350" y="275" class="map-label map-place">四天王寺</text>
+  <text x="480" y="195" class="map-label map-place">新世界・通天閣</text>
+  <text x="590" y="320" class="map-label map-place">心齋橋・道頓堀</text>
+
+</svg>
+```
+
   </div>
+
+  <!-- D3 -->
+
+  <div class="route-map" id="map-d3">
+    <svg viewBox="0 0 760 500" role="img" aria-label="D3 奈良與宇治行程地圖">
+
+```
+  <path d="M90 390
+           C145 350 195 365 230 315
+           S285 215 345 250
+           S420 330 465 275
+           S525 175 580 195
+           S650 145 700 95"
+        fill="none"
+        stroke="#8d7ca8"
+        stroke-width="8"
+        stroke-linecap="round"/>
+
+  <circle cx="90" cy="390" r="10" fill="#fffdf8" stroke="#8d7ca8" stroke-width="4"/>
+  <circle cx="230" cy="315" r="10" fill="#fffdf8" stroke="#8d7ca8" stroke-width="4"/>
+  <circle cx="345" cy="250" r="10" fill="#fffdf8" stroke="#8d7ca8" stroke-width="4"/>
+  <circle cx="465" cy="275" r="10" fill="#fffdf8" stroke="#8d7ca8" stroke-width="4"/>
+  <circle cx="580" cy="195" r="10" fill="#fffdf8" stroke="#8d7ca8" stroke-width="4"/>
+  <circle cx="700" cy="95" r="10" fill="#fffdf8" stroke="#8d7ca8" stroke-width="4"/>
+
+  <text x="55" y="420" class="map-label map-day">D3</text>
+  <text x="35" y="405" class="map-label map-place">奈良公園</text>
+
+  <text x="195" y="345" class="map-label map-place">東大寺</text>
+  <text x="305" y="230" class="map-label map-place">春日大社</text>
+  <text x="425" y="305" class="map-label map-place">若草山</text>
+  <text x="540" y="175" class="map-label map-place">奈良町</text>
+  <text x="650" y="75" class="map-label map-place">宇治・平等院</text>
+
+</svg>
+```
+
+  </div>
+
+  <!-- D4 -->
+
+  <div class="route-map" id="map-d4">
+    <svg viewBox="0 0 760 500" role="img" aria-label="D4 京都與嵐山行程地圖">
+
+```
+  <path d="M680 100
+           C625 55 560 75 525 135
+           S470 235 405 205
+           S330 150 285 220
+           S235 335 170 315
+           S105 350 75 410"
+        fill="none"
+        stroke="#6586a6"
+        stroke-width="8"
+        stroke-linecap="round"/>
+
+  <circle cx="680" cy="100" r="10" fill="#fffdf8" stroke="#6586a6" stroke-width="4"/>
+  <circle cx="525" cy="135" r="10" fill="#fffdf8" stroke="#6586a6" stroke-width="4"/>
+  <circle cx="405" cy="205" r="10" fill="#fffdf8" stroke="#6586a6" stroke-width="4"/>
+  <circle cx="285" cy="220" r="10" fill="#fffdf8" stroke="#6586a6" stroke-width="4"/>
+  <circle cx="170" cy="315" r="10" fill="#fffdf8" stroke="#6586a6" stroke-width="4"/>
+  <circle cx="75" cy="410" r="10" fill="#fffdf8" stroke="#6586a6" stroke-width="4"/>
+
+  <text x="645" y="72" class="map-label map-day">D4</text>
+  <text x="595" y="92" class="map-label map-place">伏見稻荷大社</text>
+
+  <text x="480" y="115" class="map-label map-place">清水寺</text>
+  <text x="365" y="185" class="map-label map-place">八坂神社</text>
+  <text x="245" y="200" class="map-label map-place">祇園</text>
+  <text x="115" y="300" class="map-label map-place">嵐山竹林</text>
+
+</svg>
+```
+
+  </div>
+
+  <!-- D5 -->
+
+  <div class="route-map" id="map-d5">
+    <svg viewBox="0 0 760 500" role="img" aria-label="D5 大阪神戶台中行程地圖">
+
+```
+  <path d="M100 115
+           C175 75 235 110 285 170
+           S375 275 450 245
+           S545 195 590 270
+           S645 350 705 395"
+        fill="none"
+        stroke="#d99b70"
+        stroke-width="8"
+        stroke-dasharray="10 8"
+        stroke-linecap="round"/>
+
+  <circle cx="100" cy="115" r="10" fill="#fffdf8" stroke="#d99b70" stroke-width="4"/>
+  <circle cx="285" cy="170" r="10" fill="#fffdf8" stroke="#d99b70" stroke-width="4"/>
+  <circle cx="450" cy="245" r="10" fill="#fffdf8" stroke="#d99b70" stroke-width="4"/>
+  <circle cx="590" cy="270" r="10" fill="#fffdf8" stroke="#d99b70" stroke-width="4"/>
+  <circle cx="705" cy="395" r="10" fill="#fffdf8" stroke="#d99b70" stroke-width="4"/>
+
+  <text x="72" y="87" class="map-label map-day">D5</text>
+  <text x="65" y="108" class="map-label map-place">大阪</text>
+
+  <text x="250" y="150" class="map-label map-place">三宮</text>
+  <text x="415" y="225" class="map-label map-place">神戶機場</text>
+  <text x="555" y="250" class="map-label map-place">台中</text>
+
+</svg>
+
+  </div>
+
 </section>
+
 
 <section class="card">
   <div class="section-title">
@@ -985,7 +1085,6 @@ footer{
       <span class="tag">直飛</span>
     </div>
 
-```
 <div class="flight-route">
   <div class="airport">
     <div class="airport-code">RMQ</div>
@@ -1005,7 +1104,6 @@ footer{
 </div>
 
 <div class="flight-info">直飛 · 約 2 小時 30 分｜台灣 GMT+8 → 日本 JST+9</div>
-```
 
   </div>
 
@@ -1018,7 +1116,6 @@ footer{
       <span class="tag">直飛</span>
     </div>
 
-```
 <div class="flight-route">
   <div class="airport">
     <div class="airport-code">UKB</div>
@@ -1038,7 +1135,6 @@ footer{
 </div>
 
 <div class="flight-info">直飛 · 約 3 小時 30 分｜日本 JST+9 → 台灣 GMT+8</div>
-```
 
   </div>
 </section>
@@ -1057,7 +1153,6 @@ footer{
       <span class="tag">11/20 五</span>
     </div>
 
-```
 <div class="day-content">
 
   <div class="weather-box">
@@ -1249,7 +1344,6 @@ footer{
 
   </div>
 </div>
-```
 
   </div>
 
@@ -1261,7 +1355,6 @@ footer{
       <span class="tag">11/21 六</span>
     </div>
 
-```
 <div class="day-content">
 
   <div class="weather-box">
@@ -1414,7 +1507,6 @@ footer{
 
   </div>
 </div>
-```
 
   </div>
 
@@ -1426,7 +1518,6 @@ footer{
       <span class="tag">11/22 日</span>
     </div>
 
-```
 <div class="day-content">
 
   <div class="pass-badge">🎫 JR Kansai Area Pass｜Day 1</div>
@@ -1631,7 +1722,6 @@ footer{
 
   </div>
 </div>
-```
 
   </div>
 
@@ -1643,7 +1733,6 @@ footer{
       <span class="tag">11/23 一</span>
     </div>
 
-```
 <div class="day-content">
 
   <div class="pass-badge">🎫 JR Kansai Area Pass｜Day 2</div>
@@ -1887,7 +1976,6 @@ footer{
 
   </div>
 </div>
-```
 
   </div>
 
@@ -1899,7 +1987,6 @@ footer{
       <span class="tag">11/24 二</span>
     </div>
 
-```
 <div class="day-content">
 
   <div class="weather-box">
@@ -1978,7 +2065,6 @@ footer{
 
   </div>
 </div>
-```
 
   </div>
 
@@ -2028,12 +2114,10 @@ footer{
     <div class="small">👥 同行者</div>
     <div id="peopleList" class="people-list"></div>
 
-```
 <div class="add-person">
   <input id="personInput" placeholder="輸入同行者姓名">
   <button class="btn primary" onclick="addPerson()">新增</button>
 </div>
-```
 
   </div>
 
