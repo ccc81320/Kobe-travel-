@@ -2255,7 +2255,10 @@ document.addEventListener('DOMContentLoaded', function() {
 </footer>
 
 </div>
-function toggleDay(header){
+
+
+<script>
+  function toggleDay(header){
 const dayCard = header.closest('.day-card');
 
 document.querySelectorAll('.day-card').forEach(function(card){
@@ -2272,8 +2275,6 @@ if(firstDay){
 firstDay.classList.add('open');
 }
 });
-
-<script>
 const tripTarget = Date.parse("2026-11-20T12:30:00+09:00");
 
 function updateCountdown(){
