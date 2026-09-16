@@ -1054,7 +1054,7 @@ onclick="toggleTheme()"
 
 <section class="card">
 
-  <h2>① 🗺️ 每日地圖總覽</h2>
+  <h2> 🗺️ 每日地圖總覽</h2>
 
   <div class="map-tabs">
     <button class="map-tab active" data-day="d1" onclick="switchMap('d1')">D1</button>
@@ -1187,7 +1187,6 @@ onclick="toggleTheme()"
       <span class="tag">直飛</span>
     </div>
 
-```
 <div class="flight-route">
   <div class="airport">
     <div class="airport-code">RMQ</div>
@@ -1207,7 +1206,6 @@ onclick="toggleTheme()"
 </div>
 
 <div class="flight-info">直飛 · 約 2 小時 30 分｜台灣 GMT+8 → 日本 JST+9</div>
-```
 
   </div>
 
@@ -1220,7 +1218,6 @@ onclick="toggleTheme()"
       <span class="tag">直飛</span>
     </div>
 
-```
 <div class="flight-route">
   <div class="airport">
     <div class="airport-code">UKB</div>
@@ -1240,14 +1237,13 @@ onclick="toggleTheme()"
 </div>
 
 <div class="flight-info">直飛 · 約 3 小時 30 分｜日本 JST+9 → 台灣 GMT+8</div>
-```
 
   </div>
 </section>
 
 <section class="card">
   <div class="section-title">
-    <h2>② 📅 每日行程</h2>
+    <h2>① 📅 每日行程</h2>
     <span class="small">點開／關閉各日行程</span>
   </div>
 
@@ -1255,7 +1251,7 @@ onclick="toggleTheme()"
 
   <div class="day-card open">
 
-```
+
 <div class="day-header" onclick="toggleDay(this)">
   <h3>D1｜台中 → 神戶 → 大阪</h3>
   <span class="tag">11/20 五</span>
@@ -1452,7 +1448,6 @@ onclick="toggleTheme()"
 
   </div>
 </div>
-```
 
   </div>
 
@@ -1460,7 +1455,6 @@ onclick="toggleTheme()"
 
   <div class="day-card">
 
-```
 <div class="day-header" onclick="toggleDay(this)">
   <h3>D2｜大阪</h3>
   <span class="tag">11/21 六</span>
@@ -1618,7 +1612,6 @@ onclick="toggleTheme()"
 
   </div>
 </div>
-```
 
   </div>
 
@@ -1626,7 +1619,6 @@ onclick="toggleTheme()"
 
   <div class="day-card">
 
-```
 <div class="day-header" onclick="toggleDay(this)">
   <h3>D3｜奈良＋宇治</h3>
   <span class="tag">11/22 日</span>
@@ -1836,7 +1828,6 @@ onclick="toggleTheme()"
 
   </div>
 </div>
-```
 
   </div>
 
@@ -1844,7 +1835,6 @@ onclick="toggleTheme()"
 
   <div class="day-card">
 
-```
 <div class="day-header" onclick="toggleDay(this)">
   <h3>D4｜京都＋嵐山</h3>
   <span class="tag">11/23 一</span>
@@ -2093,7 +2083,6 @@ onclick="toggleTheme()"
 
   </div>
 </div>
-```
 
   </div>
 
@@ -2101,7 +2090,6 @@ onclick="toggleTheme()"
 
   <div class="day-card">
 
-```
 <div class="day-header" onclick="toggleDay(this)">
   <h3>D5｜大阪 → 神戶 → 台中</h3>
   <span class="tag">11/24 二</span>
@@ -2185,7 +2173,6 @@ onclick="toggleTheme()"
 
   </div>
 </div>
-```
 
   </div>
 
@@ -2193,8 +2180,8 @@ onclick="toggleTheme()"
 
 <section class="card">
   <div class="section-title">
-    <h2>③ 💰 消費紀錄</h2>
-    <span class="small">自動儲存於此瀏覽器</span>
+    <h2>② 💰 消費紀錄</h2>
+    <span class="small">是免稅不是免費</span>
   </div>
 
   <div class="expense-total">
@@ -2202,13 +2189,10 @@ onclick="toggleTheme()"
       <span class="small">JPY 總額</span>
       <strong id="totalJpy">¥0</strong>
     </div>
-
-```
 <div class="total-box">
   <span class="small">紀錄筆數</span>
   <strong id="expenseCount">0</strong>
 </div>
-```
 
   </div>
 
@@ -2233,28 +2217,25 @@ onclick="toggleTheme()"
 
 <section class="card">
   <div class="section-title">
-    <h2>④ ☑️ 待辦事項</h2>
-    <span class="small">同行者共用名單</span>
+    <h2>③ ☑️ 待辦事項</h2>
+    <span class="small">一同去郊遊</span>
   </div>
 
   <div class="people-box">
     <div class="small">👥 旅伴</div>
 
-```
 <div id="peopleList" class="people-list"></div>
 
 <div class="add-person">
   <input id="personInput" placeholder="輸入旅伴">
   <button class="btn primary" onclick="addPerson()">新增</button>
 </div>
-```
 
   </div>
 
   <div class="todo-add">
     <input id="todoInput" placeholder="新增待辦事項">
 
-```
 <select id="todoOwner">
   <option value="">負責人</option>
 </select>
@@ -2262,7 +2243,6 @@ onclick="toggleTheme()"
 <input id="todoNoteInput" placeholder="備註（可選）">
 
 <button class="btn primary" onclick="addTodo()">新增</button>
-```
 
   </div>
 
@@ -2271,7 +2251,7 @@ onclick="toggleTheme()"
 
 <section class="card">
   <div class="section-title">
-    <h2>⑤ 💡 實用資訊</h2>
+    <h2>④ 💡 實用資訊</h2>
     <span class="small">旅行中快速查看</span>
   </div>
 
