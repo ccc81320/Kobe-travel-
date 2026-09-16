@@ -26,41 +26,35 @@
   --blue-light:#e4ebf1;
   --shadow:0 8px 25px rgba(50,40,30,.06);
 }
+
+/* 每日行程折疊 */
 .day-card .day-content{
-display:none;
+  display:none;
 }
 
 .day-card.open .day-content{
-display:block;
+  display:block;
 }
 
 .day-header{
-cursor:pointer;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
 
 .day-header::after{
-content:"⌄";
-font-size:20px;
-font-weight:800;
+  content:"⌄";
+  font-size:20px;
+  font-weight:800;
+  transition:.2s;
 }
 
 .day-card.open .day-header::after{
-transform:rotate(180deg);
+  transform:rotate(180deg);
 }
 
-@media (max-width:600px){
-.day-header{
-align-items:flex-start;
-}
-
-.day-header h3{
-line-height:1.4;
-}
-}
 body{
   margin:0;
   background:var(--bg);
@@ -296,6 +290,72 @@ body.night .map-label{
   background:rgba(85,123,112,.07);
 }
 
+/* MAP TABS */
+.map-tabs{
+  display:flex;
+  gap:8px;
+  margin:14px 0;
+  overflow-x:auto;
+  padding-bottom:4px;
+}
+
+.map-tab{
+  flex:1;
+  min-width:52px;
+  border:1px solid var(--line);
+  background:var(--card);
+  color:var(--text);
+  border-radius:10px;
+  padding:9px 12px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.map-tab.active{
+  background:var(--green);
+  color:#fff;
+  border-color:var(--green);
+}
+
+.map-box .day-map{
+  display:none !important;
+  width:100%;
+  height:auto;
+}
+
+.map-box .day-map.active{
+  display:block !important;
+}
+
+.map-node{
+  fill:var(--card);
+  stroke:var(--green);
+  stroke-width:3;
+}
+
+.map-route{
+  fill:none;
+  stroke:var(--green);
+  stroke-width:6;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-dasharray:12 9;
+}
+
+.map-arrow{
+  fill:var(--green);
+}
+
+body.night .map-tab{
+  background:var(--card);
+  color:var(--text);
+}
+
+body.night .map-tab.active{
+  background:var(--green);
+  color:#fff;
+}
+
 /* FLIGHTS */
 .flight-card{
   padding:16px 0;
@@ -395,10 +455,6 @@ body.night .map-label{
 
 .day-header{
   padding:16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
   background:rgba(85,123,112,.045);
 }
 
@@ -473,68 +529,55 @@ body.night .map-label{
   font-size:12px;
 }
 
+/* TIMELINE */
 .timeline{
-position:relative;
+  position:relative;
 }
 
 .timeline-item{
-display:grid;
-grid-template-columns:110px 1fr;
-gap:16px;
-padding:12px 0;
-border-bottom:1px dashed var(--line);
+  display:grid;
+  grid-template-columns:110px 1fr;
+  gap:16px;
+  padding:12px 0;
+  border-bottom:1px dashed var(--line);
 }
 
 .timeline-item:last-child{
-border-bottom:0;
+  border-bottom:0;
 }
 
 .timeline-time{
-font-size:13px;
-font-weight:800;
-line-height:1.5;
-white-space:nowrap;
-position:relative;
-padding-left:28px;
+  font-size:13px;
+  font-weight:800;
+  line-height:1.5;
+  white-space:nowrap;
+  position:relative;
+  padding-left:28px;
 }
 
 .timeline-time::before{
-content:"";
-position:absolute;
-left:4px;
-top:4px;
-width:12px;
-height:12px;
-border-radius:50%;
-border:3px solid currentColor;
-background:var(--bg,#fff);
-z-index:2;
+  content:"";
+  position:absolute;
+  left:4px;
+  top:4px;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  border:3px solid currentColor;
+  background:var(--bg);
+  z-index:2;
 }
 
 .timeline-item:not(:last-child) .timeline-time::after{
-content:"";
-position:absolute;
-left:10px;
-top:19px;
-bottom:-22px;
-width:2px;
-background:currentColor;
-opacity:.25;
+  content:"";
+  position:absolute;
+  left:10px;
+  top:19px;
+  bottom:-22px;
+  width:2px;
+  background:currentColor;
+  opacity:.25;
 }
-
-@media(max-width:600px){
-.timeline-item{
-grid-template-columns:100px 1fr;
-gap:10px;
-}
-
-.timeline-time{
-font-size:13px;
-padding-left:25px;
-white-space:nowrap;
-}
-}
-
 
 .item-title{
   font-weight:700;
@@ -635,113 +678,122 @@ white-space:nowrap;
   font-size:20px;
 }
 
+/* PEOPLE / TODO */
+.people-box{
+  margin-bottom:16px;
+}
+
+.people-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:9px 0;
+}
+
+.person-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  padding:5px 8px;
+  border:1px solid var(--line);
+  border-radius:99px;
+  font-size:11px;
+}
+
+.person-chip button{
+  border:0;
+  background:none;
+  color:var(--muted);
+  cursor:pointer;
+  padding:0 2px;
+}
+
+.add-person{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:7px;
+}
+
 .todo-add{
-display:grid;
-grid-template-columns:1fr 100px 1fr auto;
-gap:7px;
-margin-bottom:10px;
+  display:grid;
+  grid-template-columns:1fr 100px 1fr auto;
+  gap:7px;
+  margin-bottom:10px;
 }
 
 .todo-row{
-padding:12px 0;
-border-bottom:1px solid var(--line);
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
 }
 
 .todo-row:last-child{
-border-bottom:0;
+  border-bottom:0;
 }
 
 .todo-main{
-display:flex;
-align-items:flex-start;
-gap:9px;
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
 }
 
 .todo-check{
-width:auto;
-margin-top:3px;
-flex-shrink:0;
+  width:auto;
+  margin-top:3px;
+  flex-shrink:0;
 }
 
 .todo-content{
-min-width:0;
-flex:1;
+  min-width:0;
+  flex:1;
 }
 
 .todo-title{
-font-size:13px;
-font-weight:650;
-line-height:1.45;
+  font-size:13px;
+  font-weight:650;
+  line-height:1.45;
 }
 
 .todo-note{
-width:100%;
-margin-top:6px;
-padding:7px 9px;
-border:1px solid var(--line);
-border-radius:8px;
-background:var(--card);
-color:var(--text);
-font-size:12px;
-outline:none;
+  width:100%;
+  margin-top:6px;
+  padding:7px 9px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--card);
+  color:var(--text);
+  font-size:12px;
+  outline:none;
 }
 
 .todo-note::placeholder{
-color:var(--muted);
+  color:var(--muted);
 }
 
 .todo-note:focus{
-border-color:var(--accent);
+  border-color:var(--green);
 }
 
 .todo-meta{
-display:flex;
-justify-content:flex-end;
-align-items:center;
-gap:7px;
-margin-top:7px;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:7px;
+  margin-top:7px;
 }
 
 .owner-select{
-width:88px;
-padding:5px 6px;
-font-size:10px;
+  width:88px;
+  padding:5px 6px;
+  font-size:10px;
 }
 
 .todo-delete{
-border:0;
-background:none;
-color:var(--muted);
-cursor:pointer;
-padding:4px;
+  border:0;
+  background:none;
+  color:var(--muted);
+  cursor:pointer;
+  padding:4px;
 }
-
-@media(max-width:600px){
-.todo-add{
-grid-template-columns:1fr 90px;
-}
-
-.todo-add input:first-child{
-grid-column:1 / -1;
-}
-
-.todo-add input:nth-child(3){
-grid-column:1;
-}
-
-.todo-add button{
-grid-column:2;
-}
-
-.todo-meta{
-justify-content:flex-start;
-}
-
-.todo-note{
-font-size:13px;
-}
-}
-
 
 /* PRACTICAL */
 .tip{
@@ -849,12 +901,14 @@ footer{
   }
 
   .timeline-item{
-    grid-template-columns:63px 1fr;
-    gap:9px;
+    grid-template-columns:100px 1fr;
+    gap:10px;
   }
 
   .timeline-time{
     font-size:12px;
+    padding-left:25px;
+    white-space:nowrap;
   }
 
   .item-title{
@@ -898,20 +952,32 @@ footer{
   }
 
   .todo-add{
-    grid-template-columns:1fr auto;
+    grid-template-columns:1fr 90px;
   }
 
-  .todo-add input{
-    grid-column:1/-1;
+  .todo-add input:first-child{
+    grid-column:1 / -1;
   }
 
-  .owner-select{
-    width:82px;
+  .todo-add input:nth-child(3){
+    grid-column:1;
+  }
+
+  .todo-add button{
+    grid-column:2;
   }
 
   .todo-meta{
     justify-content:flex-start;
     margin-left:25px;
+  }
+
+  .todo-note{
+    font-size:13px;
+  }
+
+  .owner-select{
+    width:82px;
   }
 
   .add-person{
@@ -967,91 +1033,6 @@ footer{
   </div>
 </section>
 
-<style>
-  .map-tabs{
-    display:flex;
-    gap:8px;
-    margin:14px 0;
-    overflow-x:auto;
-    padding-bottom:4px;
-  }
-
-  .map-tab{
-    flex:1;
-    min-width:52px;
-    border:1px solid var(--line);
-    background:var(--card);
-    color:var(--text);
-    border-radius:10px;
-    padding:9px 12px;
-    font-weight:800;
-    cursor:pointer;
-  }
-
-  .map-tab.active{
-    background:var(--green);
-    color:#fff;
-    border-color:var(--green);
-  }
-
-  .map-box{
-    width:100%;
-    overflow:hidden;
-    border:1px solid var(--line);
-    border-radius:16px;
-    background:var(--card);
-  }
-
-  .map-box .day-map{
-    display:none !important;
-    width:100%;
-    height:auto;
-  }
-
-  .map-box .day-map.active{
-    display:block !important;
-  }
-
-  .map-label{
-    font-size:13px;
-    font-weight:800;
-    fill:var(--text);
-  }
-
-  .map-node{
-    fill:var(--card);
-    stroke:var(--green);
-    stroke-width:3;
-  }
-
-  .map-route{
-    fill:none;
-    stroke:var(--green);
-    stroke-width:6;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-    stroke-dasharray:12 9;
-  }
-
-  .map-arrow{
-    fill:var(--green);
-  }
-
-  body.night .map-box{
-    background:var(--card);
-  }
-
-  body.night .map-tab{
-    background:var(--card);
-    color:var(--text);
-  }
-
-  body.night .map-tab.active{
-    background:var(--green);
-    color:#fff;
-  }
-</style>
-
 <section class="card">
 
   <h2>① 🗺️ 每日地圖總覽</h2>
@@ -1067,14 +1048,15 @@ footer{
   <div class="map-box">
 
 <!-- D1｜台中 → 神戶 → 大阪 -->
+
 <svg id="svg-d1" class="day-map active" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
 
-  <path class="map-route"
-    d="M70 100
-       C140 45 215 65 270 125
-       S350 225 420 185
-       S505 125 565 205
-       S640 300 690 350"/>
+<path class="map-route"
+ d="M70 100
+    C140 45 215 65 270 125
+    S350 225 420 185
+    S505 125 565 205
+    S640 300 690 350"/>
 
   <circle class="map-node" cx="70" cy="100" r="12"/>
   <circle class="map-node" cx="270" cy="125" r="12"/>
@@ -1082,25 +1064,21 @@ footer{
   <circle class="map-node" cx="565" cy="205" r="12"/>
   <circle class="map-node" cx="690" cy="350" r="12"/>
 
-  <text class="map-label" x="70" y="72" text-anchor="middle">神戶機場</text>
-  <text class="map-label" x="270" y="98" text-anchor="middle">生田神社</text>
-  <text class="map-label" x="420" y="158" text-anchor="middle">南京町</text>
-  <text class="map-label" x="565" y="178" text-anchor="middle">神戶港塔</text>
-  <text class="map-label" x="690" y="385" text-anchor="middle">北野異人館</text>
+<text class="map-label" x="70" y="72" text-anchor="middle">神戶機場</text> <text class="map-label" x="270" y="98" text-anchor="middle">生田神社</text> <text class="map-label" x="420" y="158" text-anchor="middle">南京町</text> <text class="map-label" x="565" y="178" text-anchor="middle">神戶港塔</text> <text class="map-label" x="690" y="385" text-anchor="middle">北野異人館</text>
 
   <polygon class="map-arrow" points="675,342 690,350 675,358"/>
 </svg>
 
-
 <!-- D2｜大阪 -->
+
 <svg id="svg-d2" class="day-map" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
 
-  <path class="map-route"
-    d="M70 260
-       C130 210 195 225 245 170
-       S330 75 390 130
-       S470 255 525 205
-       S610 145 690 185"/>
+<path class="map-route"
+ d="M70 260
+    C130 210 195 225 245 170
+    S330 75 390 130
+    S470 255 525 205
+    S610 145 690 185"/>
 
   <circle class="map-node" cx="70" cy="260" r="12"/>
   <circle class="map-node" cx="245" cy="170" r="12"/>
@@ -1108,26 +1086,22 @@ footer{
   <circle class="map-node" cx="525" cy="205" r="12"/>
   <circle class="map-node" cx="690" cy="185" r="12"/>
 
-  <text class="map-label" x="70" y="293" text-anchor="middle">大阪城</text>
-  <text class="map-label" x="245" y="143" text-anchor="middle">黑門市場</text>
-  <text class="map-label" x="390" y="103" text-anchor="middle">四天王寺</text>
-  <text class="map-label" x="525" y="238" text-anchor="middle">新世界・通天閣</text>
-  <text class="map-label" x="690" y="153" text-anchor="middle">心齋橋・道頓堀</text>
+<text class="map-label" x="70" y="293" text-anchor="middle">大阪城</text> <text class="map-label" x="245" y="143" text-anchor="middle">黑門市場</text> <text class="map-label" x="390" y="103" text-anchor="middle">四天王寺</text> <text class="map-label" x="525" y="238" text-anchor="middle">新世界・通天閣</text> <text class="map-label" x="690" y="153" text-anchor="middle">心齋橋・道頓堀</text>
 
   <polygon class="map-arrow" points="675,177 690,185 675,193"/>
 </svg>
 
-
 <!-- D3 大阪 → 奈良 → 宇治 → 大阪 -->
+
 <svg id="svg-d3" class="day-map" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
 
-  <path class="map-route"
-    d="M65 340
-       C125 385 190 365 230 300
-       S290 185 350 230
-       S425 335 475 275
-       S535 150 595 175
-       S655 135 700 90"/>
+<path class="map-route"
+ d="M65 340
+    C125 385 190 365 230 300
+    S290 185 350 230
+    S425 335 475 275
+    S535 150 595 175
+    S655 135 700 90"/>
 
   <circle class="map-node" cx="65" cy="340" r="12"/>
   <circle class="map-node" cx="230" cy="300" r="12"/>
@@ -1136,27 +1110,22 @@ footer{
   <circle class="map-node" cx="595" cy="175" r="12"/>
   <circle class="map-node" cx="700" cy="90" r="12"/>
 
-  <text class="map-label" x="65" y="373" text-anchor="middle">奈良公園</text>
-  <text class="map-label" x="230" y="333" text-anchor="middle">東大寺</text>
-  <text class="map-label" x="350" y="203" text-anchor="middle">春日大社</text>
-  <text class="map-label" x="475" y="308" text-anchor="middle">若草山</text>
-  <text class="map-label" x="595" y="145" text-anchor="middle">奈良町</text>
-  <text class="map-label" x="700" y="62" text-anchor="middle">宇治・平等院</text>
+<text class="map-label" x="65" y="373" text-anchor="middle">奈良公園</text> <text class="map-label" x="230" y="333" text-anchor="middle">東大寺</text> <text class="map-label" x="350" y="203" text-anchor="middle">春日大社</text> <text class="map-label" x="475" y="308" text-anchor="middle">若草山</text> <text class="map-label" x="595" y="145" text-anchor="middle">奈良町</text> <text class="map-label" x="700" y="62" text-anchor="middle">宇治・平等院</text>
 
   <polygon class="map-arrow" points="685,82 700,90 685,98"/>
 </svg>
 
+<!-- D4｜大阪 → 京都 → 嵐山 → 大阪 -->
 
-<!-- D4｜大阪 → 京都 → 嵐山 → 大阪  -->
 <svg id="svg-d4" class="day-map" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
 
-  <path class="map-route"
-    d="M65 350
-       C125 310 185 335 225 275
-       S285 155 345 190
-       S420 285 470 235
-       S535 115 590 150
-       S655 125 700 80"/>
+<path class="map-route"
+ d="M65 350
+    C125 310 185 335 225 275
+    S285 155 345 190
+    S420 285 470 235
+    S535 115 590 150
+    S655 125 700 80"/>
 
   <circle class="map-node" cx="65" cy="350" r="12"/>
   <circle class="map-node" cx="225" cy="275" r="12"/>
@@ -1165,76 +1134,34 @@ footer{
   <circle class="map-node" cx="590" cy="150" r="12"/>
   <circle class="map-node" cx="700" cy="80" r="12"/>
 
-  <text class="map-label" x="65" y="383" text-anchor="middle">伏見稻荷大社</text>
-  <text class="map-label" x="225" y="308" text-anchor="middle">清水寺</text>
-  <text class="map-label" x="345" y="163" text-anchor="middle">八坂神社</text>
-  <text class="map-label" x="470" y="268" text-anchor="middle">祇園</text>
-  <text class="map-label" x="590" y="120" text-anchor="middle">嵐山竹林</text>
-  <text class="map-label" x="700" y="52" text-anchor="middle">天龍寺・渡月橋</text>
+<text class="map-label" x="65" y="383" text-anchor="middle">伏見稻荷大社</text> <text class="map-label" x="225" y="308" text-anchor="middle">清水寺</text> <text class="map-label" x="345" y="163" text-anchor="middle">八坂神社</text> <text class="map-label" x="470" y="268" text-anchor="middle">祇園</text> <text class="map-label" x="590" y="120" text-anchor="middle">嵐山竹林</text> <text class="map-label" x="700" y="52" text-anchor="middle">天龍寺・渡月橋</text>
 
   <polygon class="map-arrow" points="685,72 700,80 685,88"/>
 </svg>
 
-
 <!-- D5｜大阪 → 神戶 → 台中 -->
+
 <svg id="svg-d5" class="day-map" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
 
-  <path class="map-route"
-    d="M70 120
-       C140 75 215 100 275 165
-       S365 275 445 240
-       S535 185 590 260
-       S650 335 700 385"/>
+<path class="map-route"
+ d="M70 120
+    C140 75 215 100 275 165
+    S365 275 445 240
+    S535 185 590 260
+    S650 335 700 385"/>
 
   <circle class="map-node" cx="70" cy="120" r="12"/>
   <circle class="map-node" cx="275" cy="165" r="12"/>
   <circle class="map-node" cx="445" cy="240" r="12"/>
   <circle class="map-node" cx="700" cy="385" r="12"/>
 
-  <text class="map-label" x="70" y="92" text-anchor="middle">大阪</text>
-  <text class="map-label" x="275" y="138" text-anchor="middle">三宮</text>
-  <text class="map-label" x="445" y="212" text-anchor="middle">神戶機場</text>
-  <text class="map-label" x="700" y="420" text-anchor="middle">台中</text>
+<text class="map-label" x="70" y="92" text-anchor="middle">大阪</text> <text class="map-label" x="275" y="138" text-anchor="middle">三宮</text> <text class="map-label" x="445" y="212" text-anchor="middle">神戶機場</text> <text class="map-label" x="700" y="420" text-anchor="middle">台中</text>
 
   <polygon class="map-arrow" points="685,377 700,385 685,393"/>
 </svg>
 
   </div>
 </section>
-
-<script>
-function switchMap(day) {
-
-  document.querySelectorAll('.map-box .day-map').forEach(function(map) {
-    map.classList.remove('active');
-    map.style.setProperty('display', 'none', 'important');
-  });
-
-  const selectedMap = document.getElementById('svg-' + day);
-
-  if (selectedMap) {
-    selectedMap.classList.add('active');
-    selectedMap.style.setProperty('display', 'block', 'important');
-  }
-
-  document.querySelectorAll('.map-tab').forEach(function(tab) {
-    tab.classList.remove('active');
-  });
-
-  const selectedTab = document.querySelector(
-    '.map-tab[data-day="' + day + '"]'
-  );
-
-  if (selectedTab) {
-    selectedTab.classList.add('active');
-  }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  switchMap('d1');
-});
-</script>
-
 
 <section class="card">
   <div class="section-title">
@@ -1251,6 +1178,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="tag">直飛</span>
     </div>
 
+```
 <div class="flight-route">
   <div class="airport">
     <div class="airport-code">RMQ</div>
@@ -1270,6 +1198,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <div class="flight-info">直飛 · 約 2 小時 30 分｜台灣 GMT+8 → 日本 JST+9</div>
+```
 
   </div>
 
@@ -1282,6 +1211,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="tag">直飛</span>
     </div>
 
+```
 <div class="flight-route">
   <div class="airport">
     <div class="airport-code">UKB</div>
@@ -1301,6 +1231,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <div class="flight-info">直飛 · 約 3 小時 30 分｜日本 JST+9 → 台灣 GMT+8</div>
+```
 
   </div>
 </section>
@@ -1319,10 +1250,13 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="tag">11/20 五</span>
     </div>
 
+```
 <div class="day-content">
 
   <div class="weather-box">
-    <div class="weather-title">🌤️ 今日天氣</div> <a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955"> ☁️ 神戶｜Apple Weather →
+    <div class="weather-title">🌤️ 今日天氣</div>
+    <a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">
+      ☁️ 神戶｜Apple Weather →
     </a>
   </div>
 
@@ -1508,6 +1442,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   </div>
 </div>
+```
 
   </div>
 
@@ -1519,6 +1454,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="tag">11/21 六</span>
     </div>
 
+```
 <div class="day-content">
 
   <div class="weather-box">
@@ -1671,6 +1607,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   </div>
 </div>
+```
 
   </div>
 
@@ -1682,6 +1619,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="tag">11/22 日</span>
     </div>
 
+```
 <div class="day-content">
 
   <div class="pass-badge">🎫 JR Kansai Area Pass｜Day 1</div>
@@ -1886,6 +1824,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   </div>
 </div>
+```
 
   </div>
 
@@ -1897,6 +1836,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="tag">11/23 一</span>
     </div>
 
+```
 <div class="day-content">
 
   <div class="pass-badge">🎫 JR Kansai Area Pass｜Day 2</div>
@@ -2140,6 +2080,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   </div>
 </div>
+```
 
   </div>
 
@@ -2151,6 +2092,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="tag">11/24 二</span>
     </div>
 
+```
 <div class="day-content">
 
   <div class="weather-box">
@@ -2229,6 +2171,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   </div>
 </div>
+```
 
   </div>
 
@@ -2266,56 +2209,45 @@ document.addEventListener('DOMContentLoaded', function() {
   <div style="margin-top:12px">
     <button class="btn primary" onclick="addExpenseRow()">＋ 新增消費</button>
   </div>
+</section>
+
 <section class="card">
   <div class="section-title">
     <h2>④ ☑️ 待辦事項</h2>
-    <span class="small">是免稅不是免費</span>
+    <span class="small">同行者共用名單</span>
   </div>
-
-  <!-- 旅伴 -->
 
   <div class="people-box">
     <div class="small">👥 旅伴</div>
 
+```
 <div id="peopleList" class="people-list"></div>
 
 <div class="add-person">
   <input id="personInput" placeholder="輸入旅伴">
   <button class="btn primary" onclick="addPerson()">新增</button>
 </div>
+```
 
   </div>
-
-  <!-- 新增待辦 -->
 
   <div class="todo-add">
     <input id="todoInput" placeholder="新增待辦事項">
 
-<select id="todoOwner"></select>
+```
+<select id="todoOwner">
+  <option value="">負責人</option>
+</select>
 
 <input id="todoNoteInput" placeholder="備註（可選）">
 
 <button class="btn primary" onclick="addTodo()">新增</button>
+```
 
-  </div>
-
-  <!-- 待辦列表 -->
-
-  <div id="todoList"></div>
-</section>
-
-
-  </div>
-
-  <div class="todo-add">
-    <input id="todoInput" placeholder="新增待辦事項">
-    <select id="todoOwner"></select>
-    <button class="btn primary" onclick="addTodo()">新增</button>
   </div>
 
   <div id="todoList"></div>
 </section>
-
 
 <section class="card">
   <div class="section-title">
@@ -2338,28 +2270,75 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </div>
 
-
 <script>
-  function toggleDay(header){
-const dayCard = header.closest('.day-card');
 
-document.querySelectorAll('.day-card').forEach(function(card){
-card.classList.remove('open');
-});
+/* =========================
+   每日行程折疊
+========================= */
 
-dayCard.classList.add('open');
+function toggleDay(header){
+  const dayCard = header.closest(".day-card");
+
+  document.querySelectorAll(".day-card").forEach(function(card){
+    card.classList.remove("open");
+  });
+
+  if(dayCard){
+    dayCard.classList.add("open");
+  }
 }
 
-document.addEventListener('DOMContentLoaded', function(){
-const firstDay = document.querySelector('.day-card');
+document.addEventListener("DOMContentLoaded",function(){
+  const firstDay = document.querySelector(".day-card");
 
-if(firstDay){
-firstDay.classList.add('open');
-}
+  if(firstDay){
+    firstDay.classList.add("open");
+  }
+
+  switchMap("d1");
 });
+
+
+/* =========================
+   地圖切換
+========================= */
+
+function switchMap(day){
+
+  document.querySelectorAll(".map-box .day-map").forEach(function(map){
+    map.classList.remove("active");
+    map.style.setProperty("display","none","important");
+  });
+
+  const selectedMap = document.getElementById("svg-" + day);
+
+  if(selectedMap){
+    selectedMap.classList.add("active");
+    selectedMap.style.setProperty("display","block","important");
+  }
+
+  document.querySelectorAll(".map-tab").forEach(function(tab){
+    tab.classList.remove("active");
+  });
+
+  const selectedTab = document.querySelector(
+    '.map-tab[data-day="' + day + '"]'
+  );
+
+  if(selectedTab){
+    selectedTab.classList.add("active");
+  }
+}
+
+
+/* =========================
+   倒數
+========================= */
+
 const tripTarget = Date.parse("2026-11-20T12:30:00+09:00");
 
 function updateCountdown(){
+
   const diff = tripTarget - Date.now();
   const safe = Math.max(0,diff);
 
@@ -2368,22 +2347,44 @@ function updateCountdown(){
   const m = Math.floor((safe % 3600000) / 60000);
   const s = Math.floor((safe % 60000) / 1000);
 
-  document.getElementById("days").textContent = String(d).padStart(2,"0");
-  document.getElementById("hours").textContent = String(h).padStart(2,"0");
-  document.getElementById("minutes").textContent = String(m).padStart(2,"0");
-  document.getElementById("seconds").textContent = String(s).padStart(2,"0");
-}
+  document.getElementById("days").textContent =
+    String(d).padStart(2,"0");
 
-function updateTheme(){
-  const hour = new Date().getHours();
-  document.body.classList.toggle("night",hour >= 19 || hour < 6);
+  document.getElementById("hours").textContent =
+    String(h).padStart(2,"0");
+
+  document.getElementById("minutes").textContent =
+    String(m).padStart(2,"0");
+
+  document.getElementById("seconds").textContent =
+    String(s).padStart(2,"0");
 }
 
 setInterval(updateCountdown,1000);
 updateCountdown();
 
+
+/* =========================
+   日夜模式
+========================= */
+
+function updateTheme(){
+
+  const hour = new Date().getHours();
+
+  document.body.classList.toggle(
+    "night",
+    hour >= 19 || hour < 6
+  );
+}
+
 updateTheme();
 setInterval(updateTheme,60000);
+
+
+/* =========================
+   行程備註
+========================= */
 
 const noteIds = [
   "note-d1","note-d2","note-d3","note-d4","note-d5",
@@ -2394,23 +2395,63 @@ const noteIds = [
   "d5-checkout","d5-brunch"
 ];
 
-noteIds.forEach(id=>{
+noteIds.forEach(function(id){
+
   const el = document.getElementById(id);
+
   if(!el) return;
 
   const key = "kobe_note_" + id;
+
   el.value = localStorage.getItem(key) || "";
 
-  el.addEventListener("input",()=>{
+  el.addEventListener("input",function(){
     localStorage.setItem(key,el.value);
   });
+
 });
 
-/* EXPENSES */
-let expenses = JSON.parse(localStorage.getItem("kobe_expenses_v2") || "[]");
+
+/* =========================
+   工具：HTML Escape
+========================= */
+
+function escapeHtml(s){
+
+  return String(s).replace(/[&<>"']/g,function(m){
+
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[m];
+
+  });
+}
+
+function escapeAttr(s){
+
+  return escapeHtml(s).replace(/`/g,"");
+
+}
+
+
+/* =========================
+   EXPENSES
+========================= */
+
+let expenses =
+  JSON.parse(
+    localStorage.getItem("kobe_expenses_v2") || "[]"
+  );
+
 
 function expenseOptions(type){
+
   if(type === "day"){
+
     return `
       <option>Day 1</option>
       <option>Day 2</option>
@@ -2418,6 +2459,7 @@ function expenseOptions(type){
       <option>Day 4</option>
       <option>Day 5</option>
     `;
+
   }
 
   return `
@@ -2432,62 +2474,106 @@ function expenseOptions(type){
   `;
 }
 
+
 function currencyOptions(){
+
   return `
     <option>JPY</option>
     <option>CAD</option>
     <option>TWD</option>
   `;
+
 }
+
 
 function peopleForExpense(){
-  const people = JSON.parse(localStorage.getItem("kobe_people") || "[]");
-  if(!people.length) return "<option>未設定</option>";
-  return people.map(p=>"<option>"+escapeHtml(p)+"</option>").join("");
+
+  const expensePeople =
+    JSON.parse(
+      localStorage.getItem("kobe_people") || "[]"
+    );
+
+  if(!expensePeople.length){
+    return "<option>未設定</option>";
+  }
+
+  return expensePeople
+    .map(function(p){
+      return "<option>" + escapeHtml(p) + "</option>";
+    })
+    .join("");
+
 }
 
+
 function addExpenseRow(){
+
   expenses.push({
     day:"Day 1",
     category:"🍜 餐飲",
     item:"",
     amount:"",
     currency:"JPY",
-    payer:"",
+    payer:""
   });
 
   saveExpenses();
   renderExpenses();
+
 }
+
 
 function updateExpense(index,field,value){
+
   expenses[index][field] = value;
+
   saveExpenses();
   renderExpenses();
+
 }
+
 
 function deleteExpense(index){
+
   expenses.splice(index,1);
+
   saveExpenses();
   renderExpenses();
+
 }
+
 
 function saveExpenses(){
-  localStorage.setItem("kobe_expenses_v2",JSON.stringify(expenses));
+
+  localStorage.setItem(
+    "kobe_expenses_v2",
+    JSON.stringify(expenses)
+  );
+
 }
 
+
 function renderExpenses(){
+
   const list = document.getElementById("expenseList");
+
+  if(!list) return;
+
   list.innerHTML = "";
 
   let jpy = 0;
 
-  expenses.forEach((e,i)=>{
-    if(e.currency === "JPY" && Number(e.amount)){
+  expenses.forEach(function(e,i){
+
+    if(
+      e.currency === "JPY" &&
+      Number(e.amount)
+    ){
       jpy += Number(e.amount);
     }
 
     const row = document.createElement("div");
+
     row.className = "expense-row";
 
     row.innerHTML = `
@@ -2521,235 +2607,409 @@ function renderExpenses(){
         ${peopleForExpense()}
       </select>
 
-      <button class="btn delete" onclick="deleteExpense(${i})">🗑️</button>
+      <button
+        class="btn delete"
+        onclick="deleteExpense(${i})"
+      >
+        🗑️
+      </button>
     `;
 
     list.appendChild(row);
 
-    row.querySelectorAll("select")[0].value = e.day || "Day 1";
-    row.querySelectorAll("select")[1].value = e.category || "🍜 餐飲";
-    row.querySelectorAll("select")[2].value = e.currency || "JPY";
+    row.querySelectorAll("select")[0].value =
+      e.day || "Day 1";
+
+    row.querySelectorAll("select")[1].value =
+      e.category || "🍜 餐飲";
+
+    row.querySelectorAll("select")[2].value =
+      e.currency || "JPY";
 
     if(e.payer){
-      row.querySelectorAll("select")[3].value = e.payer;
+      row.querySelectorAll("select")[3].value =
+        e.payer;
     }
+
   });
 
-  document.getElementById("totalJpy").textContent = "¥" + jpy.toLocaleString();
-  document.getElementById("expenseCount").textContent = expenses.length;
+  document.getElementById("totalJpy").textContent =
+    "¥" + jpy.toLocaleString();
+
+  document.getElementById("expenseCount").textContent =
+    expenses.length;
+
 }
 
-/* PEOPLE */
-let people = JSON.parse(localStorage.getItem("kobe_people") || "[]");
+
+/* =========================
+   PEOPLE
+========================= */
+
+let people =
+  JSON.parse(
+    localStorage.getItem("kobe_people") || "[]"
+  );
+
 
 function savePeople(){
-  localStorage.setItem("kobe_people",JSON.stringify(people));
+
+  localStorage.setItem(
+    "kobe_people",
+    JSON.stringify(people)
+  );
+
 }
 
+
 function addPerson(){
-  const input = document.getElementById("personInput");
-  const name = input.value.trim();
+
+  const input =
+    document.getElementById("personInput");
+
+  const name =
+    input.value.trim();
 
   if(!name) return;
+
   if(people.includes(name)) return;
 
   people.push(name);
+
   savePeople();
 
   input.value = "";
+
   renderPeople();
   renderTodos();
   renderExpenses();
+
 }
+
 
 function deletePerson(index){
+
   people.splice(index,1);
+
   savePeople();
+
   renderPeople();
   renderTodos();
   renderExpenses();
+
 }
 
+
 function renderPeople(){
-  const list = document.getElementById("peopleList");
+
+  const list =
+    document.getElementById("peopleList");
+
+  if(!list) return;
 
   if(!people.length){
-    list.innerHTML = '<span class="small">尚未加入同行者</span>';
+
+    list.innerHTML =
+      '<span class="small">尚未加入同行者</span>';
+
   }else{
-    list.innerHTML = people.map((p,i)=>`
-      <span class="person-chip">
-        ${escapeHtml(p)}
-        <button onclick="deletePerson(${i})">×</button>
-      </span>
-    `).join("");
+
+    list.innerHTML =
+      people.map(function(p,i){
+
+        return `
+          <span class="person-chip">
+            ${escapeHtml(p)}
+            <button onclick="deletePerson(${i})">×</button>
+          </span>
+        `;
+
+      }).join("");
+
   }
 
   renderOwnerOptions();
+
 }
 
+
 function renderOwnerOptions(){
-  const select = document.getElementById("todoOwner");
+
+  const select =
+    document.getElementById("todoOwner");
+
+  if(!select) return;
 
   if(!people.length){
-    select.innerHTML = "<option value=''>負責人</option>";
+
+    select.innerHTML =
+      "<option value=''>負責人</option>";
+
     return;
+
   }
 
   select.innerHTML =
     "<option value=''>負責人</option>" +
-    people.map(p=>"<option value='"+escapeAttr(p)+"'>"+escapeHtml(p)+"</option>").join("");
-}
+    people.map(function(p){
 
-/* TODO */
-let todos = JSON.parse(localStorage.getItem("kobe_todos") || "[]");
-
-/* 舊資料如果沒有 note，自動補上空白備註 */
-todos = todos.map(t => ({
-...t,
-note: t.note || ""
-}));
-
-function saveTodos(){
-localStorage.setItem("kobe_todos", JSON.stringify(todos));
-}
-
-function addTodo(){
-const input = document.getElementById("todoInput");
-const owner = document.getElementById("todoOwner").value;
-const noteInput = document.getElementById("todoNoteInput");
-
-const title = input.value.trim();
-const note = noteInput.value.trim();
-
-if(!title) return;
-
-todos.push({
-id: Date.now(),
-title: title,
-owner: owner,
-note: note,
-done: false
-});
-
-saveTodos();
-
-input.value = "";
-noteInput.value = "";
-document.getElementById("todoOwner").value = "";
-
-renderTodos();
-}
-
-function toggleTodo(id){
-const item = todos.find(t => t.id === id);
-if(!item) return;
-
-item.done = !item.done;
-saveTodos();
-renderTodos();
-}
-
-function updateTodoOwner(id, value){
-const item = todos.find(t => t.id === id);
-if(!item) return;
-
-item.owner = value;
-saveTodos();
-}
-
-function updateTodoNote(id, value){
-const item = todos.find(t => t.id === id);
-if(!item) return;
-
-item.note = value;
-saveTodos();
-}
-
-function deleteTodo(id){
-todos = todos.filter(t => t.id !== id);
-saveTodos();
-renderTodos();
-}
-
-function renderTodos(){
-renderOwnerOptions();
-
-const list = document.getElementById("todoList");
-
-if(!todos.length){
-list.innerHTML =
-'<div class="note">目前沒有待辦事項，可以在上方新增。</div>';
-return;
-}
-
-list.innerHTML = todos.map(t => ` <div class="todo-row">
-
-```
-  <div class="todo-main">
-    <input
-      class="todo-check"
-      type="checkbox"
-      ${t.done ? "checked" : ""}
-      onchange="toggleTodo(${t.id})"
-    >
-
-    <div class="todo-content">
-
-      <div
-        class="todo-title"
-        style="${t.done ? "text-decoration:line-through;color:var(--muted)" : ""}"
-      >
-        ${escapeHtml(t.title)}
-      </div>
-
-      <input
-        class="todo-note"
-        type="text"
-        value="${escapeAttr(t.note)}"
-        placeholder="📝 新增備註……"
-        onchange="updateTodoNote(${t.id},this.value)"
-      >
-
-    </div>
-  </div>
-
-  <div class="todo-meta">
-
-    <select
-      class="owner-select"
-      onchange="updateTodoOwner(${t.id},this.value)"
-    >
-      <option value="">負責人</option>
-
-      ${people.map(p => `
-        <option
-          value="${escapeAttr(p)}"
-          ${t.owner === p ? "selected" : ""}
-        >
+      return `
+        <option value="${escapeAttr(p)}">
           ${escapeHtml(p)}
         </option>
-      `).join("")}
+      `;
 
-    </select>
+    }).join("");
 
-    <button
-      class="todo-delete"
-      onclick="deleteTodo(${t.id})"
-    >
-      🗑️
-    </button>
-
-  </div>
-
-</div>
-
-`).join("");
 }
 
+
+/* =========================
+   TODO
+========================= */
+
+let todos =
+  JSON.parse(
+    localStorage.getItem("kobe_todos") || "[]"
+  );
+
+
+/* 舊資料如果沒有 note，自動補上空白備註 */
+
+todos = todos.map(function(t){
+
+  return {
+    ...t,
+    note:t.note || ""
+  };
+
+});
+
+
+function saveTodos(){
+
+  localStorage.setItem(
+    "kobe_todos",
+    JSON.stringify(todos)
+  );
+
+}
+
+
+function addTodo(){
+
+  const input =
+    document.getElementById("todoInput");
+
+  const owner =
+    document.getElementById("todoOwner").value;
+
+  const noteInput =
+    document.getElementById("todoNoteInput");
+
+  const title =
+    input.value.trim();
+
+  const note =
+    noteInput.value.trim();
+
+  if(!title) return;
+
+  todos.push({
+
+    id:Date.now(),
+
+    title:title,
+
+    owner:owner,
+
+    note:note,
+
+    done:false
+
+  });
+
+  saveTodos();
+
+  input.value = "";
+  noteInput.value = "";
+
+  document.getElementById("todoOwner").value = "";
+
+  renderTodos();
+
+}
+
+
+function toggleTodo(id){
+
+  const item =
+    todos.find(function(t){
+      return t.id === id;
+    });
+
+  if(!item) return;
+
+  item.done = !item.done;
+
+  saveTodos();
+
+  renderTodos();
+
+}
+
+
+function updateTodoOwner(id,value){
+
+  const item =
+    todos.find(function(t){
+      return t.id === id;
+    });
+
+  if(!item) return;
+
+  item.owner = value;
+
+  saveTodos();
+
+}
+
+
+function updateTodoNote(id,value){
+
+  const item =
+    todos.find(function(t){
+      return t.id === id;
+    });
+
+  if(!item) return;
+
+  item.note = value;
+
+  saveTodos();
+
+}
+
+
+function deleteTodo(id){
+
+  todos =
+    todos.filter(function(t){
+      return t.id !== id;
+    });
+
+  saveTodos();
+
+  renderTodos();
+
+}
+
+
+function renderTodos(){
+
+  renderOwnerOptions();
+
+  const list =
+    document.getElementById("todoList");
+
+  if(!list) return;
+
+  if(!todos.length){
+
+    list.innerHTML =
+      '<div class="note">目前沒有待辦事項，可以在上方新增。</div>';
+
+    return;
+
+  }
+
+  list.innerHTML =
+    todos.map(function(t){
+
+      return `
+        <div class="todo-row">
+
+          <div class="todo-main">
+
+            <input
+              class="todo-check"
+              type="checkbox"
+              ${t.done ? "checked" : ""}
+              onchange="toggleTodo(${t.id})"
+            >
+
+            <div class="todo-content">
+
+              <div
+                class="todo-title"
+                style="${t.done ? "text-decoration:line-through;color:var(--muted)" : ""}"
+              >
+                ${escapeHtml(t.title)}
+              </div>
+
+              <input
+                class="todo-note"
+                type="text"
+                value="${escapeAttr(t.note)}"
+                placeholder="📝 新增備註……"
+                onchange="updateTodoNote(${t.id},this.value)"
+              >
+
+            </div>
+
+          </div>
+
+          <div class="todo-meta">
+
+            <select
+              class="owner-select"
+              onchange="updateTodoOwner(${t.id},this.value)"
+            >
+
+              <option value="">
+                負責人
+              </option>
+
+              ${people.map(function(p){
+
+                return `
+                  <option
+                    value="${escapeAttr(p)}"
+                    ${t.owner === p ? "selected" : ""}
+                  >
+                    ${escapeHtml(p)}
+                  </option>
+                `;
+
+              }).join("")}
+
+            </select>
+
+            <button
+              class="todo-delete"
+              onclick="deleteTodo(${t.id})"
+            >
+              🗑️
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+}
+
+
+/* =========================
+   初始化
+========================= */
 
 renderPeople();
 renderTodos();
 renderExpenses();
+
 </script>
 
 </body>
