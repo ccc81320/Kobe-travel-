@@ -1178,7 +1178,6 @@ footer{
       <span class="tag">直飛</span>
     </div>
 
-```
 <div class="flight-route">
   <div class="airport">
     <div class="airport-code">RMQ</div>
@@ -1198,7 +1197,6 @@ footer{
 </div>
 
 <div class="flight-info">直飛 · 約 2 小時 30 分｜台灣 GMT+8 → 日本 JST+9</div>
-```
 
   </div>
 
@@ -1211,7 +1209,6 @@ footer{
       <span class="tag">直飛</span>
     </div>
 
-```
 <div class="flight-route">
   <div class="airport">
     <div class="airport-code">UKB</div>
@@ -1231,7 +1228,6 @@ footer{
 </div>
 
 <div class="flight-info">直飛 · 約 3 小時 30 分｜日本 JST+9 → 台灣 GMT+8</div>
-```
 
   </div>
 </section>
@@ -1250,7 +1246,6 @@ footer{
       <span class="tag">11/20 五</span>
     </div>
 
-```
 <div class="day-content">
 
   <div class="weather-box">
@@ -1442,7 +1437,6 @@ footer{
 
   </div>
 </div>
-```
 
   </div>
 
@@ -1454,7 +1448,6 @@ footer{
       <span class="tag">11/21 六</span>
     </div>
 
-```
 <div class="day-content">
 
   <div class="weather-box">
@@ -1607,7 +1600,6 @@ footer{
 
   </div>
 </div>
-```
 
   </div>
 
@@ -1619,7 +1611,6 @@ footer{
       <span class="tag">11/22 日</span>
     </div>
 
-```
 <div class="day-content">
 
   <div class="pass-badge">🎫 JR Kansai Area Pass｜Day 1</div>
@@ -1824,7 +1815,6 @@ footer{
 
   </div>
 </div>
-```
 
   </div>
 
@@ -1836,7 +1826,6 @@ footer{
       <span class="tag">11/23 一</span>
     </div>
 
-```
 <div class="day-content">
 
   <div class="pass-badge">🎫 JR Kansai Area Pass｜Day 2</div>
@@ -2080,7 +2069,6 @@ footer{
 
   </div>
 </div>
-```
 
   </div>
 
@@ -2092,7 +2080,6 @@ footer{
       <span class="tag">11/24 二</span>
     </div>
 
-```
 <div class="day-content">
 
   <div class="weather-box">
@@ -2220,21 +2207,18 @@ footer{
   <div class="people-box">
     <div class="small">👥 旅伴</div>
 
-```
 <div id="peopleList" class="people-list"></div>
 
 <div class="add-person">
   <input id="personInput" placeholder="輸入旅伴">
   <button class="btn primary" onclick="addPerson()">新增</button>
 </div>
-```
 
   </div>
 
   <div class="todo-add">
     <input id="todoInput" placeholder="新增待辦事項">
 
-```
 <select id="todoOwner">
   <option value="">負責人</option>
 </select>
@@ -2242,7 +2226,6 @@ footer{
 <input id="todoNoteInput" placeholder="備註（可選）">
 
 <button class="btn primary" onclick="addTodo()">新增</button>
-```
 
   </div>
 
