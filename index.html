@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4efe6">
 <title>JAPAN TRAVEL｜神戶・大阪・奈良・京都5日遊</title>
 
 <style>
@@ -51,12 +52,13 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family:
-    -apple-system,BlinkMacSystemFont,
-    "Noto Sans TC","PingFang TC",
-    "Microsoft JhengHei",sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
   line-height:1.65;
   transition:background .35s,color .35s;
+}
+
+button,input,textarea,select{
+  font:inherit;
 }
 
 a{
@@ -64,16 +66,12 @@ a{
   text-decoration:none;
 }
 
-button,input,textarea,select{
-  font:inherit;
-}
-
 .container{
   width:min(960px,calc(100% - 28px));
   margin:auto;
 }
 
-/* ---------- Hero ---------- */
+/* HERO */
 
 .hero{
   padding:42px 0 28px;
@@ -106,7 +104,7 @@ button,input,textarea,select{
   font-size:.88rem;
 }
 
-/* ---------- Countdown ---------- */
+/* COUNTDOWN */
 
 .countdown{
   background:var(--card);
@@ -147,7 +145,7 @@ button,input,textarea,select{
   color:var(--muted);
 }
 
-/* ---------- Section ---------- */
+/* SECTION */
 
 .section{
   margin:34px 0;
@@ -166,7 +164,7 @@ button,input,textarea,select{
   color:var(--green);
 }
 
-/* ---------- Cards ---------- */
+/* CARD */
 
 .card{
   background:var(--card);
@@ -179,7 +177,7 @@ button,input,textarea,select{
   padding:18px;
 }
 
-/* ---------- Flight ---------- */
+/* FLIGHT */
 
 .flight-card{
   overflow:hidden;
@@ -239,7 +237,7 @@ button,input,textarea,select{
   margin-top:-3px;
 }
 
-/* ---------- Tabs ---------- */
+/* TABS */
 
 .tabs{
   display:flex;
@@ -270,7 +268,7 @@ button,input,textarea,select{
   border-color:var(--green);
 }
 
-/* ---------- Weather ---------- */
+/* WEATHER */
 
 .weather-box{
   margin-bottom:14px;
@@ -303,7 +301,7 @@ button,input,textarea,select{
   font-size:.78rem;
 }
 
-/* ---------- Notice ---------- */
+/* NOTICE */
 
 .notice{
   margin-bottom:14px;
@@ -343,7 +341,7 @@ button,input,textarea,select{
   border-color:var(--green);
 }
 
-/* ---------- Itinerary ---------- */
+/* ITINERARY */
 
 .day-panel{
   display:none;
@@ -478,7 +476,17 @@ button,input,textarea,select{
   margin-bottom:4px;
 }
 
-/* ---------- Route map ---------- */
+.pass-badge{
+  margin:0 0 12px;
+  padding:9px 12px;
+  border-radius:12px;
+  background:var(--green-light);
+  color:var(--green);
+  font-size:.75rem;
+  font-weight:800;
+}
+
+/* ROUTE MAP */
 
 .route-map{
   padding:18px 12px;
@@ -544,7 +552,7 @@ button,input,textarea,select{
   margin-top:12px;
 }
 
-/* ---------- Expense ---------- */
+/* EXPENSE */
 
 .expense-wrap{
   overflow-x:auto;
@@ -611,7 +619,7 @@ button,input,textarea,select{
   font-weight:800;
 }
 
-/* ---------- Todo ---------- */
+/* TODO */
 
 .participant-box{
   padding:14px;
@@ -716,7 +724,7 @@ button,input,textarea,select{
   font-size:.68rem;
 }
 
-/* ---------- Practical ---------- */
+/* PRACTICAL */
 
 .info-card{
   padding:16px;
@@ -734,7 +742,7 @@ button,input,textarea,select{
   font-size:.78rem;
 }
 
-/* ---------- Footer ---------- */
+/* FOOTER */
 
 footer{
   text-align:center;
@@ -747,7 +755,37 @@ footer strong{
   color:var(--text);
 }
 
-/* ---------- Desktop ---------- */
+/* MOBILE */
+
+@media(max-width:600px){
+  .container{
+    width:min(100% - 20px,960px);
+  }
+
+  .hero{
+    padding-top:32px;
+  }
+
+  .hero h1{
+    letter-spacing:.05em;
+  }
+
+  .flight-top{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:2px;
+  }
+
+  .todo-add{
+    grid-template-columns:1fr;
+  }
+
+  .todo-add button{
+    width:100%;
+  }
+}
+
+/* DESKTOP */
 
 @media(min-width:700px){
   .hero{
@@ -782,16 +820,12 @@ footer strong{
 
 <div class="container">
 
-<!-- HERO -->
-
 <header class="hero">
   <div class="eyebrow">JAPAN TRAVEL</div>
   <h1>JAPAN TRAVEL</h1>
   <h2>神戶・大阪・奈良・京都5日遊</h2>
   <div class="date">November 20 — 24, 2026</div>
 </header>
-
-<!-- COUNTDOWN -->
 
 <section class="countdown">
   <div class="countdown-title">✈️ 出發倒數</div>
@@ -819,8 +853,6 @@ footer strong{
     出發時間 2026.11.20 12:30 JST（GMT+9）｜台灣 GMT+8
   </div>
 </section>
-
-<!-- FLIGHTS -->
 
 <section class="section">
   <h2 class="section-title">✈️ 機票資訊</h2>
@@ -886,8 +918,6 @@ footer strong{
   </div>
 </section>
 
-<!-- MAP -->
-
 <section class="section" id="mapSection">
   <h2 class="section-title">
     <span class="section-number">①</span> 🗺️ 每日地圖總覽
@@ -900,8 +930,6 @@ footer strong{
   </div>
 </section>
 
-<!-- ITINERARY -->
-
 <section class="section" id="itinerarySection">
   <h2 class="section-title">
     <span class="section-number">②</span> 📅 每日行程
@@ -910,8 +938,6 @@ footer strong{
   <div class="tabs" id="dayTabs"></div>
   <div id="daysContainer"></div>
 </section>
-
-<!-- EXPENSE -->
 
 <section class="section">
   <h2 class="section-title">
@@ -946,8 +972,6 @@ footer strong{
   </div>
 </section>
 
-<!-- TODO -->
-
 <section class="section">
   <h2 class="section-title">
     <span class="section-number">④</span> ☑️ 待辦事項
@@ -972,9 +996,11 @@ footer strong{
 
   <div class="todo-add">
     <input id="todoInput" placeholder="輸入待辦事項……">
+
     <select id="todoPerson">
       <option value="">負責人</option>
     </select>
+
     <button onclick="addTodo()">＋ 新增</button>
   </div>
 
@@ -985,8 +1011,6 @@ footer strong{
 
   </div>
 </section>
-
-<!-- PRACTICAL -->
 
 <section class="section">
   <h2 class="section-title">
@@ -1034,9 +1058,6 @@ footer strong{
 </div>
 
 <script>
-/* =========================================================
-   DATA
-========================================================= */
 
 const days = {
 
@@ -1069,23 +1090,23 @@ const days = {
     },
     {
       time:"13:10–13:30",
-      title:"🧳 三宮寄放行李",
-      place:"Sannomiya Station Kobe Japan",
+      title:"🧳 三宮寄放行李｜待定",
       transport:"🚶 步行",
+      place:"Sannomiya Station Kobe Japan",
       note:true
     },
     {
       time:"13:30–14:45",
       title:"🍽️ 神戶牛午餐｜待定",
-      place:"Kobe Japan",
       transport:"🚶 步行",
+      place:"Kobe Japan",
       note:true
     },
     {
       time:"14:45–15:00",
       title:"三宮 → 生田神社",
-      nav:"Ikuta Shrine Kobe Japan",
       transport:"🚶 約 10–15 分",
+      nav:"Ikuta Shrine Kobe Japan",
       move:true
     },
     {
@@ -1097,8 +1118,8 @@ const days = {
     {
       time:"15:45–16:00",
       title:"生田神社 → 南京町",
-      nav:"Nankinmachi Kobe Japan",
       transport:"🚶 約 15 分",
+      nav:"Nankinmachi Kobe Japan",
       move:true
     },
     {
@@ -1111,8 +1132,8 @@ const days = {
     {
       time:"17:00–17:20",
       title:"南京町 → 神戶港塔",
-      nav:"Kobe Port Tower Japan",
       transport:"🚶 約 20 分",
+      nav:"Kobe Port Tower Japan",
       move:true
     },
     {
@@ -1126,8 +1147,8 @@ const days = {
     {
       time:"18:10–18:30",
       title:"神戶港塔 → 北野",
-      nav:"Kitano Ijinkan Kobe Japan",
       transport:"🚶 約 20 分",
+      nav:"Kitano Ijinkan Kobe Japan",
       move:true
     },
     {
@@ -1140,8 +1161,8 @@ const days = {
     {
       time:"19:30–20:00",
       title:"北野 → 三宮取行李",
-      nav:"Sannomiya Station Kobe Japan",
       transport:"🚶 約 20–30 分",
+      nav:"Sannomiya Station Kobe Japan",
       move:true
     },
     {
@@ -1170,7 +1191,7 @@ const days = {
     ["🌳","天王寺公園","Tennoji Park",""],
     ["🎡","新世界・通天閣","Shinsekai / Tsutenkaku",""],
     ["🏮","法善寺橫丁","Hozenji Yokocho",""],
-    ["🍽️","晚餐・心齋橋","待定",""],
+    ["🍽️","晚餐","待定",""],
     ["🌃","道頓堀","Dotonbori",""],
     ["🏨","JR難波","飯店","hotel"]
   ],
@@ -1220,8 +1241,8 @@ const days = {
     {
       time:"14:00–14:15",
       title:"四天王寺 → 天王寺公園",
-      nav:"Tennoji Park Osaka Japan",
       transport:"🚶 約 15 分",
+      nav:"Tennoji Park Osaka Japan",
       move:true
     },
     {
@@ -1599,8 +1620,7 @@ const days = {
     },
     {
       time:"11:40–12:00",
-      title:"✈️ 抵達神戶機場",
-      sub:"Kobe Airport（UKB）",
+      title:"✈️ 抵達神戶機場｜Kobe Airport（UKB）",
       place:"Kobe Airport Japan",
       air:true
     },
@@ -1617,22 +1637,20 @@ const days = {
 };
 
 
-/* =========================================================
-   COUNTDOWN
-========================================================= */
+/* COUNTDOWN */
 
 const target = new Date("2026-11-20T12:30:00+09:00").getTime();
 
 function updateCountdown(){
-  const now = Date.now();
-  let diff = target - now;
+  const now=Date.now();
+  let diff=target-now;
 
-  if(diff < 0) diff = 0;
+  if(diff<0) diff=0;
 
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor((diff%86400000)/3600000);
+  const m=Math.floor((diff%3600000)/60000);
+  const s=Math.floor((diff%60000)/1000);
 
   document.getElementById("days").textContent=String(d).padStart(2,"0");
   document.getElementById("hours").textContent=String(h).padStart(2,"0");
@@ -1644,71 +1662,64 @@ updateCountdown();
 setInterval(updateCountdown,1000);
 
 
-/* =========================================================
-   DAY / NIGHT
-========================================================= */
+/* DAY / NIGHT */
 
 function updateTheme(){
-  const hour = new Date().getHours();
-  document.body.classList.toggle("night",hour >= 19 || hour < 6);
+  const hour=new Date().getHours();
+  document.body.classList.toggle("night",hour>=19 || hour<6);
 }
 
 updateTheme();
 setInterval(updateTheme,60000);
 
 
-/* =========================================================
-   WEATHER
-========================================================= */
+/* WEATHER */
 
 function weatherUrl(city){
-  return "https://weather.apple.com/search?q=" +
-    encodeURIComponent(city + " Japan");
+  return "https://weather.apple.com/search?q="+
+    encodeURIComponent(city+" Japan");
 }
 
 
-/* =========================================================
-   GOOGLE MAPS
-========================================================= */
+/* GOOGLE MAPS */
 
 function placeUrl(place){
-  return "https://www.google.com/maps/search/?api=1&query=" +
+  return "https://www.google.com/maps/search/?api=1&query="+
     encodeURIComponent(place);
 }
 
 function navUrl(destination){
-  return "https://www.google.com/maps/dir/?api=1&destination=" +
+  return "https://www.google.com/maps/dir/?api=1&destination="+
     encodeURIComponent(destination);
 }
 
 
-/* =========================================================
-   TABS
-========================================================= */
+/* TABS */
 
-let currentDay = 1;
+let currentDay=1;
 
 function createTabs(){
-  const mapTabs=document.getElementById("mapTabs");
-  const dayTabs=document.getElementById("dayTabs");
-
-  [mapTabs,dayTabs].forEach(tabBox=>{
-    tabBox.innerHTML="";
+  ["mapTabs","dayTabs"].forEach(id=>{
+    const box=document.getElementById(id);
+    box.innerHTML="";
 
     for(let i=1;i<=5;i++){
-      const btn=document.createElement("button");
-      btn.className="tab" + (i===1 ? " active":"");
-      btn.textContent="D"+i;
-      btn.onclick=()=>switchDay(i);
-      tabBox.appendChild(btn);
+      const button=document.createElement("button");
+
+      button.className="tab"+(i===1?" active":"");
+      button.textContent="D"+i;
+      button.onclick=()=>switchDay(i);
+
+      box.appendChild(button);
     }
   });
 }
 
 function updateActiveTabs(){
-  document.querySelectorAll(".tab").forEach((btn,index)=>{
-    const day=(index % 5)+1;
-    btn.classList.toggle("active",day===currentDay);
+  document.querySelectorAll(".tabs").forEach(box=>{
+    box.querySelectorAll(".tab").forEach((button,index)=>{
+      button.classList.toggle("active",index+1===currentDay);
+    });
   });
 }
 
@@ -1720,72 +1731,95 @@ function switchDay(day){
 }
 
 
-/* =========================================================
-   ROUTE MAP
-========================================================= */
+/* ROUTE MAP */
+
+function getNodePlace(name){
+
+  const map={
+    "神戶機場":"Kobe Airport Japan",
+    "三宮":"Sannomiya Station Kobe Japan",
+    "神戶牛午餐":"Kobe Japan",
+    "生田神社":"Ikuta Shrine Kobe Japan",
+    "南京町":"Nankinmachi Kobe Japan",
+    "神戶港塔":"Kobe Port Tower Japan",
+    "北野異人館":"Kitano Ijinkan Kobe Japan",
+    "JR難波":"JR Namba Station Osaka Japan",
+
+    "大阪城":"Osaka Castle Japan",
+    "黑門市場":"Kuromon Market Osaka Japan",
+    "四天王寺":"Shitennoji Temple Osaka Japan",
+    "天王寺公園":"Tennoji Park Osaka Japan",
+    "新世界・通天閣":"Tsutenkaku Osaka Japan",
+    "法善寺橫丁":"Hozenji Yokocho Osaka Japan",
+    "晚餐":"Namba Osaka Japan",
+    "道頓堀":"Dotonbori Osaka Japan",
+
+    "JR奈良":"JR Nara Station Japan",
+    "奈良公園":"Nara Park Japan",
+    "東大寺":"Todai-ji Temple Nara Japan",
+    "二月堂":"Nigatsudo Nara Japan",
+    "春日大社":"Kasuga Taisha Nara Japan",
+    "若草山":"Mount Wakakusa Nara Japan",
+    "奈良町":"Naramachi Nara Japan",
+    "午餐":"Naramachi Nara Japan",
+    "JR宇治":"JR Uji Station Japan",
+    "宇治川・宇治橋":"Uji Bridge Japan",
+    "宇治神社":"Ujigami Shrine Uji Japan",
+    "平等院":"Byodo-in Temple Uji Japan",
+    "宇治表參道・抹茶街":"Uji Omotesando Japan",
+
+    "伏見稻荷大社":"Fushimi Inari Taisha Japan",
+    "JR東福寺":"Tofukuji Station Kyoto Japan",
+    "清水五條":"Kiyomizu-Gojo Station Kyoto Japan",
+    "清水寺":"Kiyomizu-dera Temple Kyoto Japan",
+    "三年坂・二年坂":"Ninenzaka Kyoto Japan",
+    "八坂之塔":"Yasaka Pagoda Kyoto Japan",
+    "八坂神社":"Yasaka Shrine Kyoto Japan",
+    "祇園・花見小路":"Hanamikoji Street Kyoto Japan",
+    "嵐山竹林":"Arashiyama Bamboo Forest Kyoto Japan",
+    "天龍寺":"Tenryu-ji Temple Kyoto Japan",
+    "渡月橋":"Togetsukyo Bridge Kyoto Japan",
+    "嵐山商店街・抹茶":"Arashiyama Shopping Street Kyoto Japan",
+
+    "JR三宮":"Sannomiya Station Kobe Japan",
+    "神戶機場":"Kobe Airport Japan",
+    "RMQ 台中":"Taichung International Airport Taiwan"
+  };
+
+  return map[name]||"";
+}
 
 function renderRoute(day){
+
   const box=document.getElementById("routeMap");
   const data=days[day];
 
   let html=`
     <div style="text-align:center;margin-bottom:15px;">
       <div style="font-weight:800;font-size:.95rem;">${data.title}</div>
-      ${data.pass ? `<div style="font-size:.72rem;color:var(--green);margin-top:3px;">${data.pass}</div>`:""}
+      ${data.pass?`<div style="font-size:.72rem;color:var(--green);margin-top:3px;">${data.pass}</div>`:""}
     </div>
+
     <div class="route-track">
   `;
 
   data.nodes.forEach((node,index)=>{
-    const [icon,name,sub,type]=node;
 
-    const place =
-      name.includes("JR難波") ? "JR Namba Station Osaka Japan" :
-      name.includes("神戶機場") ? "Kobe Airport Japan" :
-      name.includes("JR奈良") ? "JR Nara Station Japan" :
-      name.includes("JR宇治") ? "JR Uji Station Japan" :
-      name.includes("JR東福寺") ? "Tofukuji Station Kyoto Japan" :
-      name.includes("JR三宮") ? "Sannomiya Station Kobe Japan" :
-      name.includes("伏見稻荷") ? "Fushimi Inari Taisha Japan" :
-      name.includes("大阪城") ? "Osaka Castle Japan" :
-      name.includes("黑門市場") ? "Kuromon Market Osaka Japan" :
-      name.includes("四天王寺") ? "Shitennoji Temple Osaka Japan" :
-      name.includes("天王寺公園") ? "Tennoji Park Osaka Japan" :
-      name.includes("新世界") ? "Tsutenkaku Osaka Japan" :
-      name.includes("法善寺") ? "Hozenji Yokocho Osaka Japan" :
-      name.includes("道頓堀") ? "Dotonbori Osaka Japan" :
-      name.includes("神戶牛") ? "Kobe Japan" :
-      name.includes("生田神社") ? "Ikuta Shrine Kobe Japan" :
-      name.includes("南京町") ? "Nankinmachi Kobe Japan" :
-      name.includes("神戶港塔") ? "Kobe Port Tower Japan" :
-      name.includes("北野") ? "Kitano Ijinkan Kobe Japan" :
-      name.includes("奈良公園") ? "Nara Park Japan" :
-      name.includes("東大寺") ? "Todai-ji Temple Nara Japan" :
-      name.includes("二月堂") ? "Nigatsudo Nara Japan" :
-      name.includes("春日大社") ? "Kasuga Taisha Nara Japan" :
-      name.includes("若草山") ? "Mount Wakakusa Nara Japan" :
-      name.includes("奈良町") ? "Naramachi Nara Japan" :
-      name.includes("宇治川") ? "Uji Bridge Japan" :
-      name.includes("宇治神社") ? "Ujigami Shrine Uji Japan" :
-      name.includes("平等院") ? "Byodo-in Temple Uji Japan" :
-      name.includes("宇治表參道") ? "Uji Omotesando Japan" :
-      name.includes("清水五條") ? "Kiyomizu-Gojo Station Kyoto Japan" :
-      name.includes("清水寺") ? "Kiyomizu-dera Temple Kyoto Japan" :
-      name.includes("三年坂") ? "Ninenzaka Kyoto Japan" :
-      name.includes("八坂之塔") ? "Yasaka Pagoda Kyoto Japan" :
-      name.includes("八坂神社") ? "Yasaka Shrine Kyoto Japan" :
-      name.includes("祇園") ? "Hanamikoji Street Kyoto Japan" :
-      name.includes("嵐山竹林") ? "Arashiyama Bamboo Forest Kyoto Japan" :
-      name.includes("天龍寺") ? "Tenryu-ji Temple Kyoto Japan" :
-      name.includes("渡月橋") ? "Togetsukyo Bridge Kyoto Japan" :
-      name.includes("嵐山商店街") ? "Arashiyama Shopping Street Kyoto Japan" :
-      "";
+    const [icon,name,sub,type]=node;
+    const place=getNodePlace(name);
 
     html+=`
       <div class="route-node ${type||""}">
         <div class="route-node-title">${icon} ${name}</div>
         <div class="route-node-sub">${sub}</div>
-        ${place ? `<a class="map-link" href="${placeUrl(place)}" target="_blank">📍</a>`:""}
+        ${place?`
+          <a class="map-link"
+             href="${placeUrl(place)}"
+             target="_blank"
+             rel="noopener">
+            📍
+          </a>
+        `:""}
       </div>
     `;
 
@@ -1797,12 +1831,14 @@ function renderRoute(day){
         </div>
       `;
     }
+
   });
 
   html+=`
     </div>
+
     <div class="route-legend">
-      🧭 路線方向　｜　📍 地點
+      路線依照當日實際行程順序排列
     </div>
   `;
 
@@ -1810,18 +1846,19 @@ function renderRoute(day){
 }
 
 
-/* =========================================================
-   ITINERARY
-========================================================= */
+/* ITINERARY */
 
 function renderItinerary(day){
+
   const container=document.getElementById("daysContainer");
   const data=days[day];
 
   let html=`
     <div class="day-panel active">
+
       <div class="weather-box">
         <div class="weather-title">🌤️ 今日天氣</div>
+
         <div class="weather-links">
   `;
 
@@ -1829,7 +1866,8 @@ function renderItinerary(day){
     html+=`
       <a class="weather-link"
          href="${weatherUrl(city)}"
-         target="_blank">
+         target="_blank"
+         rel="noopener">
         ☁️ ${city}｜Apple Weather →
       </a>
     `;
@@ -1841,20 +1879,31 @@ function renderItinerary(day){
 
       <div class="notice">
         <div class="notice-title">💡 今日注意事項</div>
+
         <textarea
           class="editable"
           rows="2"
           placeholder="點此輸入今天的重要提醒……"
           oninput="saveNotice(${day},this.value)"
-        >${localStorage.getItem("notice_"+day)||""}</textarea>
+        >${escapeHtml(localStorage.getItem("notice_"+day)||"")}</textarea>
 
 ```
   </div>
 
   <div class="card day-details">
+
     <details open>
+
       <summary>${data.title}</summary>
+
       <div class="day-content">
+
+        ${data.pass?`
+          <div class="pass-badge">
+            ${data.pass}
+          </div>
+        `:""}
+
         <div class="timeline">
 ```
 
@@ -1864,54 +1913,102 @@ data.items.forEach((item,index)=>{
 
 ```
 html+=`
-  <div class="timeline-item ${item.move ? "move":""}">
+  <div class="timeline-item ${item.move?"move":""}">
+
     <div class="timeline-dot"></div>
-    <div class="timeline-time">${item.time}</div>
-    <div class="timeline-main">
-      ${item.title}
-      ${
-        item.place
-        ? `<a class="map-link" href="${placeUrl(item.place)}" target="_blank">📍</a>`
-        : ""
-      }
-      ${
-        item.nav
-        ? `<a class="map-link" href="${navUrl(item.nav)}" target="_blank">🧭</a>`
-        : ""
-      }
+
+    <div class="timeline-time">
+      ${item.time}
     </div>
 
-    ${item.sub ? `<div class="timeline-sub">${item.sub}</div>`:""}
+    <div class="timeline-main">
 
-    ${item.transport ? `<div class="transport">${item.transport}</div>`:""}
+      ${item.title}
+
+      ${
+        item.place
+        ?`
+          <a class="map-link"
+             href="${placeUrl(item.place)}"
+             target="_blank"
+             rel="noopener">
+            📍
+          </a>
+        `
+        :""
+      }
+
+      ${
+        item.nav
+        ?`
+          <a class="map-link"
+             href="${navUrl(item.nav)}"
+             target="_blank"
+             rel="noopener">
+            🧭
+          </a>
+        `
+        :""
+      }
+
+    </div>
+
+    ${
+      item.sub
+      ?`<div class="timeline-sub">${item.sub}</div>`
+      :""
+    }
+
+    ${
+      item.transport
+      ?`<div class="transport">${item.transport}</div>`
+      :""
+    }
 `;
 
 if(item.note){
+
   html+=`
     <div class="note-wrap">
-      <div class="note-label">📝 備註</div>
+
+      <div class="note-label">
+        📝 備註
+      </div>
+
       <textarea
         class="note-textarea"
         rows="1"
         data-note-key="day${day}_item${index}"
         placeholder="可自行輸入"
       ></textarea>
+
     </div>
   `;
 }
 
 if(item.option){
+
   html+=`
     <div class="route-option">
-      <div class="route-option-title">🔄 備選路線</div>
+
+      <div class="route-option-title">
+        🔄 非 JR 備選路線
+      </div>
+
       <div style="font-size:.76rem;">
+
         <strong>B｜阪急</strong><br>
+
         🚃 阪急京都線＋阪急嵐山線<br>
+
         <span style="color:var(--muted);">
           Hankyu Kyoto Line + Hankyu Arashiyama Line
         </span><br>
+
         京都河原町 → 桂 → 嵐山
+
       </div>
+
     </div>
   `;
 }
@@ -1931,31 +2028,31 @@ container.innerHTML=html;
 restoreNotes();
 }
 
-/* =========================================================
-NOTES
-========================================================= */
+/* NOTES */
 
 function saveNotice(day,value){
 localStorage.setItem("notice_"+day,value);
 }
 
 function restoreNotes(){
+
 document.querySelectorAll("[data-note-key]").forEach(el=>{
-const key=el.dataset.noteKey;
-el.value=localStorage.getItem(key)||"";
 
 ```
+const key=el.dataset.noteKey;
+
+el.value=localStorage.getItem(key)||"";
+
 el.addEventListener("input",()=>{
   localStorage.setItem(key,el.value);
 });
 ```
 
 });
+
 }
 
-/* =========================================================
-EXPENSE
-========================================================= */
+/* EXPENSE */
 
 const expenseCategories=[
 "🍜 餐飲",
@@ -1972,11 +2069,16 @@ let expenses=
 JSON.parse(localStorage.getItem("japan_expenses")||"[]");
 
 function saveExpenses(){
-localStorage.setItem("japan_expenses",JSON.stringify(expenses));
+localStorage.setItem(
+"japan_expenses",
+JSON.stringify(expenses)
+);
+
 updateExpenseTotal();
 }
 
 function addExpense(data={}){
+
 expenses.push({
 day:data.day||"Day 1",
 category:data.category||"🍜 餐飲",
@@ -1991,30 +2093,41 @@ renderExpenses();
 }
 
 function deleteExpense(index){
+
 expenses.splice(index,1);
+
 saveExpenses();
 renderExpenses();
 }
 
 function renderExpenses(){
+
 const box=document.getElementById("expenseRows");
+
 box.innerHTML="";
 
 expenses.forEach((e,index)=>{
-const row=document.createElement("div");
-row.className="expense-row";
 
 ```
+const row=document.createElement("div");
+
+row.className="expense-row";
+
 row.innerHTML=`
+
   <select onchange="updateExpense(${index},'day',this.value)">
     ${[1,2,3,4,5].map(d=>`
-      <option ${e.day==="Day "+d?"selected":""}>Day ${d}</option>
+      <option ${e.day==="Day "+d?"selected":""}>
+        Day ${d}
+      </option>
     `).join("")}
   </select>
 
   <select onchange="updateExpense(${index},'category',this.value)">
     ${expenseCategories.map(c=>`
-      <option ${e.category===c?"selected":""}>${c}</option>
+      <option ${e.category===c?"selected":""}>
+        ${c}
+      </option>
     `).join("")}
   </select>
 
@@ -2026,15 +2139,15 @@ row.innerHTML=`
 
   <input
     type="number"
-    value="${e.amount}"
+    value="${escapeHtml(e.amount)}"
     placeholder="0"
     onchange="updateExpense(${index},'amount',this.value)"
   >
 
   <select onchange="updateExpense(${index},'currency',this.value)">
-    <option selected>JPY</option>
-    <option>CAD</option>
-    <option>TWD</option>
+    <option ${e.currency==="JPY"?"selected":""}>JPY</option>
+    <option ${e.currency==="CAD"?"selected":""}>CAD</option>
+    <option ${e.currency==="TWD"?"selected":""}>TWD</option>
   </select>
 
   <input
@@ -2043,7 +2156,12 @@ row.innerHTML=`
     onchange="updateExpense(${index},'payer',this.value)"
   >
 
-  <button class="delete-btn" onclick="deleteExpense(${index})">🗑️</button>
+  <button
+    class="delete-btn"
+    onclick="deleteExpense(${index})">
+    🗑️
+  </button>
+
 `;
 
 box.appendChild(row);
@@ -2055,42 +2173,45 @@ updateExpenseTotal();
 }
 
 function updateExpense(index,key,value){
+
 expenses[index][key]=value;
+
 saveExpenses();
 }
 
 function updateExpenseTotal(){
+
 const total=expenses.reduce((sum,e)=>{
+
+```
 if(e.currency==="JPY"){
-return sum+(parseFloat(e.amount)||0);
+  return sum+(parseFloat(e.amount)||0);
 }
+
 return sum;
+```
+
 },0);
 
 document.getElementById("expenseTotal").textContent=
 "¥"+total.toLocaleString("ja-JP");
 }
 
-function escapeHtml(str){
-return String(str||"")
-.replace(/&/g,"&")
-.replace(/"/g,""")
-.replace(/</g,"<")
-.replace(/>/g,">");
-}
-
-/* =========================================================
-PARTICIPANTS
-========================================================= */
+/* PARTICIPANTS */
 
 let people=
 JSON.parse(localStorage.getItem("japan_people")||"[]");
 
 function savePeople(){
-localStorage.setItem("japan_people",JSON.stringify(people));
+
+localStorage.setItem(
+"japan_people",
+JSON.stringify(people)
+);
 }
 
 function addPerson(){
+
 const input=document.getElementById("personInput");
 const name=input.value.trim();
 
@@ -2102,49 +2223,72 @@ savePeople();
 }
 
 input.value="";
+
 renderPeople();
 renderPersonSelect();
 }
 
 function deletePerson(index){
+
 people.splice(index,1);
+
 savePeople();
+
 renderPeople();
 renderPersonSelect();
 }
 
 function renderPeople(){
+
 const box=document.getElementById("peopleList");
 
-box.innerHTML=people.map((p,i)=>`     <div class="person-chip">
-      ${escapeHtml(p)}       <button onclick="deletePerson(${i})">×</button>     </div>
-  `).join("");
+box.innerHTML=people.map((p,i)=>`
+
+```
+<div class="person-chip">
+
+  ${escapeHtml(p)}
+
+  <button onclick="deletePerson(${i})">
+    ×
+  </button>
+
+</div>
+```
+
+`).join("");
 }
 
 function renderPersonSelect(){
+
 const select=document.getElementById("todoPerson");
+
 const current=select.value;
 
 select.innerHTML=
 `<option value="">負責人</option>`+
-people.map(p=>`       <option value="${escapeHtml(p)}">${escapeHtml(p)}</option>
+people.map(p=>`       <option value="${escapeHtml(p)}">
+        ${escapeHtml(p)}       </option>
     `).join("");
 
 select.value=current;
 }
 
-/* =========================================================
-TODO
-========================================================= */
+/* TODO */
 
 let todos=
 JSON.parse(localStorage.getItem("japan_todos")||"[]");
 
 function saveTodos(){
-localStorage.setItem("japan_todos",JSON.stringify(todos));
+
+localStorage.setItem(
+"japan_todos",
+JSON.stringify(todos)
+);
 }
 
 function addTodo(){
+
 const input=document.getElementById("todoInput");
 const person=document.getElementById("todoPerson").value;
 
@@ -2167,55 +2311,94 @@ renderTodos();
 }
 
 function toggleTodo(index){
+
 todos[index].done=!todos[index].done;
+
 saveTodos();
 renderTodos();
 }
 
 function deleteTodo(index){
+
 todos.splice(index,1);
+
 saveTodos();
 renderTodos();
 }
 
 function renderTodos(){
+
 const box=document.getElementById("todoList");
 
 if(!todos.length){
-box.innerHTML=`       <div style="text-align:center;color:var(--muted);font-size:.76rem;padding:15px;">
-        目前沒有待辦事項       </div>
-    `;
+
+```
+box.innerHTML=`
+  <div style="
+    text-align:center;
+    color:var(--muted);
+    font-size:.76rem;
+    padding:15px;
+  ">
+    目前沒有待辦事項
+  </div>
+`;
+
 return;
+```
+
 }
 
 box.innerHTML=todos.map((t,i)=>`
-<div class="todo-item ${t.done?"done":""}">
-<input
-class="todo-check"
-type="checkbox"
-${t.done?"checked":""}
-onchange="toggleTodo(${i})"
->
 
 ```
-  <div class="todo-text">${escapeHtml(t.text)}</div>
+<div class="todo-item ${t.done?"done":""}">
+
+  <input
+    class="todo-check"
+    type="checkbox"
+    ${t.done?"checked":""}
+    onchange="toggleTodo(${i})"
+  >
+
+  <div class="todo-text">
+    ${escapeHtml(t.text)}
+  </div>
 
   ${
     t.person
-    ? `<div class="todo-person">👤 ${escapeHtml(t.person)}</div>`
+    ?`
+      <div class="todo-person">
+        👤 ${escapeHtml(t.person)}
+      </div>
+    `
     :""
   }
 
-  <button class="delete-btn" onclick="deleteTodo(${i})">🗑️</button>
+  <button
+    class="delete-btn"
+    onclick="deleteTodo(${i})">
+    🗑️
+  </button>
+
 </div>
 ```
 
 `).join("");
 }
 
-/* =========================================================
-INIT
-========================================================= */
+/* ESCAPE */
+
+function escapeHtml(str){
+
+return String(str||"")
+.replace(/&/g,"&")
+.replace(/"/g,""")
+.replace(/</g,"<")
+.replace(/>/g,">");
+}
+
+/* INIT */
 
 createTabs();
 renderRoute(1);
