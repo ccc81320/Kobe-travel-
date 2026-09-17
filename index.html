@@ -1271,209 +1271,212 @@ onclick="toggleTheme()"
     <span class="small">點開／關閉各日行程</span>
   </div>
 
-  <!-- D1 -->
-
-  <div class="day-card open">
-
-
-<div class="day-header" onclick="toggleDay(this)">
-  <h3>D1｜台中 → 神戶 → 大阪</h3>
-  <span class="tag">11/20 金</span>
-</div>
-
-<div class="day-content">
-
-  <div class="weather-box">
-    <div class="weather-title">🌤️ 今日天氣</div>
-    <a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">
-      ☁️ 神戶｜Apple Weather →
-    </a>
-  </div>
-
-  <div class="day-note">
-    <div class="day-note-label">💡 今日注意事項</div>
-    <textarea id="note-d1" placeholder="點此輸入……"></textarea>
-  </div>
-
   <div class="timeline">
 
-    <div class="timeline-item">
-      <div class="timeline-time">12:30</div>
-      <div>
-        <div class="item-title">✈️ 抵達神戶機場 Kobe Airport（UKB）</div>
-        <div class="item-sub">入境＋行李：約 30–45 分鐘</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍</a>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">12:30</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        ✈️ 抵達神戶機場 Kobe Airport（UKB）
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport" target="_blank">📍</a>
       </div>
+      <div class="item-sub">Kobe Airport｜神戸空港</div>
     </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">12:45–13:10</div>
-      <div>
-        <div class="item-title">神戶機場 → 三宮</div>
-        <div class="item-sub">🚃 Port Liner｜Port Island Line（ポートアイランド線）<br>約 18 分｜💳 ¥340</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Sannomiya+Station+Kobe">🧭</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">13:10–13:30</div>
-      <div>
-        <div class="item-title">🧳 三宮寄放行李 <span class="pending">待定</span></div>
-        <div class="item-sub">🚶 步行</div>
-        <div class="inline-note">
-          <textarea id="d1-luggage" placeholder="📝 行李寄放地點／備註……"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item meal">
-      <div class="timeline-time">13:30–14:45</div>
-      <div>
-        <div class="item-title">🍽️ 神戶牛午餐 <span class="pending">待定</span></div>
-        <div class="item-sub">餐廳尚未確認，建議提前預約</div>
-        <div class="inline-note">
-          <textarea id="d1-lunch" placeholder="📝 餐廳名稱／備註……"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">14:45–15:00</div>
-      <div>
-        <div class="item-title">三宮 → 生田神社</div>
-        <div class="item-sub">🚶 約 10–15 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Station+Kobe&destination=Ikuta+Shrine+Kobe">🧭</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">15:00–15:30</div>
-      <div>
-        <div class="item-title">⛩️ 生田神社</div>
-        <div class="item-sub">Ikuta Shrine｜生田神社</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Ikuta+Shrine+Kobe">📍</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">15:30–16:00</div>
-      <div>
-        <div class="item-title">生田神社 → 北野異人館街</div>
-        <div class="item-sub">🚶 約 15-20 分 或🚌 City Loop 觀光巴士｜💳 ¥260）</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Ikuta+Shrine+Kobe&destination=Nankinmachi+Kobe">🧭</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">16:00–17:00</div>
-      <div>
-        <div class="item-title">🏮 北野異人館</div>
-        <div class="item-sub">Nankinmachi｜北野異人館</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Nankinmachi+Kobe">📍</a>
-        </div>
-        <div class="inline-note">
-          <textarea id="d1-nankin" placeholder="📝 備註……"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">17:00–17:20</div>
-      <div>
-        <div class="item-title">南京町 → 神戶港塔</div>
-        <div class="item-sub">🚶 約 20 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Nankinmachi+Kobe&destination=Kobe+Port+Tower">🧭</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">17:20–18:10</div>
-      <div>
-        <div class="item-title">🗼 神戶港塔</div>
-        <div class="item-sub">🎟️ ¥1,200</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Port+Tower">📍</a>
-        </div>
-        <div class="inline-note">
-          <textarea id="d1-tower" placeholder="📝 備註……"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">18:10–18:30</div>
-      <div>
-        <div class="item-title">神戶港塔 → 北野</div>
-        <div class="item-sub">🚶 約 20 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Port+Tower&destination=Kitano+Ijinkan+Kobe">🧭</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">18:30–19:30</div>
-      <div>
-        <div class="item-title">🌿 北野異人館</div>
-        <div class="item-sub">Kitano Ijinkan｜北野異人館街</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kitano+Ijinkan+Kobe">📍</a>
-        </div>
-        <div class="inline-note">
-          <textarea id="d1-kitano" placeholder="📝 備註……"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">19:30–20:00</div>
-      <div>
-        <div class="item-title">北野 → 三宮取行李</div>
-        <div class="item-sub">🚶 約 20–30 分</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kitano+Ijinkan+Kobe&destination=Sannomiya+Station+Kobe">🧭</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">20:00–20:40</div>
-      <div>
-        <div class="item-title">三宮 → JR難波</div>
-        <div class="item-sub">🚆 JR神戶線＋JR大和路線<br>JR Kobe Line + JR Yamatoji Line<br>約 40–50 分｜💳 約 ¥660</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Station+Kobe&destination=JR-Namba+Station">🧭</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-time">20:40</div>
-      <div>
-        <div class="item-title">🏨 入住飯店｜JR難波</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=JR-Namba+Station">📍</a>
-        </div>
-      </div>
-    </div>
-
   </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">12:45–13:10</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        神戶機場 → 三宮站
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Sannomiya+Station+Kobe" target="_blank">🧭</a>
+      </div>
+      <div class="item-sub">
+        🚃 神戶新交通 Port Liner｜Kobe New Transit Port Liner｜神戸新交通ポートライナー<br>
+        約 18–25 分鐘｜💳 約 ¥340
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">13:10–13:30</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        三宮站 → 行李寄放
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Sannomiya+Station+Kobe" target="_blank">📍</a>
+      </div>
+      <div class="item-sub">
+        🧳 寄放行李後開始神戶市區行程
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">13:30–14:45</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        🥩 神戶牛午餐
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Kobe+Beef+Sannomiya" target="_blank">📍</a>
+      </div>
+      <div class="item-sub">
+        Kobe Beef｜神戸牛<br>
+        約 60–75 分鐘｜午餐時間
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">14:45–15:00</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        神戶牛餐廳 → 生田神社
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Kobe&destination=Ikuta+Shrine+Kobe" target="_blank">🧭</a>
+      </div>
+      <div class="item-sub">
+        🚶 步行｜約 10–15 分鐘｜¥0
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">15:00–15:40</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        ⛩️ 生田神社 Ikuta Shrine
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Ikuta+Shrine+Kobe" target="_blank">📍</a>
+      </div>
+      <div class="item-sub">Ikuta Shrine｜生田神社</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">15:40–16:00</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        生田神社 → 北野異人館
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&origin=Ikuta+Shrine+Kobe&destination=Kitano+Ijinkan+Kobe" target="_blank">🧭</a>
+      </div>
+      <div class="item-sub">
+        🚶 步行｜約 15–20 分鐘｜¥0
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">16:00–17:00</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        🏘️ 北野異人館 Kitano Ijinkan
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Kitano+Ijinkan+Kobe" target="_blank">📍</a>
+      </div>
+      <div class="item-sub">Kitano Ijinkan｜北野異人館街</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">17:00–17:20</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        北野異人館 → 南京町
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&origin=Kitano+Ijinkan+Kobe&destination=Nankinmachi+Kobe" target="_blank">🧭</a>
+      </div>
+      <div class="item-sub">
+        🚶 步行｜約 20 分鐘｜¥0
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">17:20–18:10</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        🥟 南京町 Nankinmachi
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Nankinmachi+Kobe" target="_blank">📍</a>
+      </div>
+      <div class="item-sub">Nankinmachi｜南京町</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">18:10–18:20</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        南京町 → 神戶港塔
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&origin=Nankinmachi+Kobe&destination=Kobe+Port+Tower" target="_blank">🧭</a>
+      </div>
+      <div class="item-sub">
+        🚶 步行｜約 10 分鐘｜¥0
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">18:20–19:10</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        🌊 神戶港塔 Kobe Port Tower
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Kobe+Port+Tower" target="_blank">📍</a>
+      </div>
+      <div class="item-sub">Kobe Port Tower｜神戸ポートタワー</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">19:10–19:30</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        神戶港塔 → 三宮站
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Port+Tower&destination=Sannomiya+Station+Kobe" target="_blank">🧭</a>
+      </div>
+      <div class="item-sub">
+        🚶 步行｜約 20 分鐘｜¥0
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">19:30–20:00</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        三宮站 → 取行李
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Sannomiya+Station+Kobe" target="_blank">📍</a>
+      </div>
+      <div class="item-sub">
+        🧳 取回寄放行李
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">20:00–20:55</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        三宮站 → JR 新今宮站
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Station+Kobe&destination=Shin-Imamiya+Station+Osaka" target="_blank">🧭</a>
+      </div>
+      <div class="item-sub">
+        🚆 JR 神戶線｜JR Kobe Line｜JR神戸線<br>
+        ＋ JR 大阪環狀線｜JR Osaka Loop Line｜JR大阪環状線<br>
+        約 50–60 分鐘｜💳 約 ¥520
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">21:00</div>
+    <div class="timeline-content">
+      <div class="item-title">
+        🏨 JR 新今宮站 → 住一通天閣店
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Imamiya+Station+Osaka&destination=Apartment+Hotel+11+Tsutenkaku" target="_blank">🧭</a>
+      </div>
+      <div class="item-sub">
+        住一通天閣店｜Apartment Hotel 11 Tsutenkaku<br>
+        🚶 步行｜約 5–10 分鐘｜¥0
+      </div>
+    </div>
+  </div>
+
 </div>
-
-  </div>
 
   <!-- D2 -->
 
