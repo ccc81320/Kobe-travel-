@@ -1,805 +1,734 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>日本行程規劃</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 20px; background-color: #f5f5f7; }
-    .day-card { background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-    .day-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
-    .day-date { color: #0066cc; margin-right: 8px; }
-    .weather { margin-bottom: 12px; font-size: 0.9rem; }
-    .pass-badge { display: inline-block; background: #e3f2fd; color: #0d47a1; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; margin-bottom: 12px; }
-    .timeline-item { border-left: 2px solid #e0e0e0; padding-left: 12px; margin-bottom: 16px; position: relative; }
-    .timeline-time { font-weight: bold; font-size: 0.9rem; color: #555; }
-    .item-title { font-weight: 600; font-size: 1rem; margin-top: 2px; }
-    .item-sub { font-size: 0.85rem; color: #666; margin-top: 2px; }
-    .pending { color: #d32f2f; }
-    .note-input-wrap { margin-top: 6px; }
-    .note-input { width: 100%; box-sizing: border-box; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem; }
-  </style>
-</head>
-<body>
+```
+/* 待辦事項樣式 */
+.section-card { background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.section-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 12px; }
+.todo-form { display: flex; gap: 8px; margin-bottom: 12px; }
+.todo-input { padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem; }
+.todo-input.text { flex: 2; }
+.todo-input.person { flex: 1; max-width: 100px; }
+.btn-add { background: #0066cc; color: #fff; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.85rem; cursor: pointer; }
+.todo-list { list-style: none; padding: 0; margin: 0; }
+.todo-item { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+.todo-left { display: flex; align-items: center; gap: 8px; }
+.todo-person { font-size: 0.8rem; color: #666; background: #e0e0e0; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
 
-<!-- D1 -->
-<div class="day-card open">
-  <div class="day-header" onclick="toggleDay(this)">
-    <div class="day-header-main">
-      <div class="day-title">
-        <span class="day-date">11/20（金）</span>
-        <span class="day-name">D1｜台中・神戶・大阪</span>
+/* 消費紀錄樣式（精簡高度版） */
+.expense-form { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.expense-input { padding: 5px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem; }
+.expense-input.item { flex: 2; min-width: 110px; }
+.expense-input.amount { flex: 1; min-width: 70px; }
+.expense-input.type { width: 85px; }
+.expense-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.expense-table th, .expense-table td { border-bottom: 1px solid #eee; padding: 6px 4px; text-align: left; }
+.expense-table th { background: #fafafa; color: #555; }
+.expense-list-wrap { max-height: 180px; overflow-y: auto; }
+.btn-del { color: #d32f2f; cursor: pointer; background: none; border: none; font-size: 0.85rem; padding: 0 4px; }
+
+```
+
+```
+<div class="timeline">
+  <div class="timeline-item">
+    <div class="timeline-time">12:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">✈️ 抵達神戶機場 Kobe Airport（UKB）📍</div>
+      </div>
+      <div class="item-sub"><a href="[https://maps.google.com/?q=Kobe+Airport](https://maps.google.com/?q=Kobe+Airport)" target="_blank">📍 導航：1 Chome-1 Kobe Airport, Chuo Ward, Kobe, Hyogo 650-0048, Japan</a></div>
+      <div class="item-sub">入境＋行李：約 30–45 分鐘</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">12:45–13:10</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚝 神戶機場 → 三宮</div>
+      </div>
+      <div class="item-sub">神戶新交通港灣人工島線 / ポートライナー / Port Liner｜電車 18 分鐘｜¥340</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">13:10–13:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🧳 三宮寄放行李</div>
+      </div>
+      <div class="item-sub pending">住宿行李寄放，待確認</div>
+      <div class="note-input-wrap">
+        <textarea class="note-input" placeholder="輸入備註（例：寄放於車站 3 號出口置物櫃）..." oninput="saveNote('d1-baggage', this.value)"></textarea>
       </div>
     </div>
   </div>
 
-  <div class="day-content">
-    <div class="weather">
-      <span>🌤️ 神戶天氣</span>
-      <a href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955" target="_blank">Apple Weather ↗</a>
+  <div class="timeline-item">
+    <div class="timeline-time">13:30–14:45</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🍽️ 神戶牛午餐</div>
+      </div>
+      <div class="item-sub pending">餐廳待確認</div>
+      <div class="note-input-wrap">
+        <textarea class="note-input" placeholder="輸入備註（例：已預約 Mouriya 13:30）..." oninput="saveNote('d1-lunch', this.value)"></textarea>
+      </div>
     </div>
+  </div>
 
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">12:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">✈️ 抵達神戶機場 Kobe Airport（UKB）</div>
-          </div>
-          <div class="item-sub">入境＋行李：約 30–45 分鐘</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">14:45–15:40</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🏘️ 北野異人館</div>
       </div>
+      <div class="item-sub">步行 15 分鐘（1.1km，上坡，趁關門前參觀）</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">12:45–13:10</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚝 神戶機場 → 三宮</div>
-          </div>
-          <div class="item-sub">神戶新交通港灣人工島線 / ポートライナー / Port Liner｜電車 18 分鐘｜¥340</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">15:40–16:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">⛩️ 生田神社</div>
       </div>
+      <div class="item-sub">順路下坡步行 10 分鐘</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">13:10–13:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🧳 三宮寄放行李</div>
-          </div>
-          <div class="item-sub pending">住宿行李寄放，待確認</div>
-          <div class="note-input-wrap">
-            <textarea class="note-input" placeholder="輸入備註（例：寄放於車站 3 號出口置物櫃）..." oninput="saveNote('d1-baggage', this.value)"></textarea>
-          </div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">16:30–17:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🥟 南京町</div>
       </div>
+      <div class="item-sub">步行 15 分鐘（1.1km）</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">13:30–14:45</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🍽️ 神戶牛午餐</div>
-          </div>
-          <div class="item-sub pending">餐廳待確認</div>
-          <div class="note-input-wrap">
-            <textarea class="note-input" placeholder="輸入備註（例：已預約 Mouriya 13:30）..." oninput="saveNote('d1-lunch', this.value)"></textarea>
-          </div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">17:30–18:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🗼 神戶港塔</div>
       </div>
+      <div class="item-sub">步行 15 分鐘（900m）｜門票 ¥1,200（看夜景）</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">14:45–15:40</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🏘️ 北野異人館</div>
-          </div>
-          <div class="item-sub">步行 15 分鐘（1.1km，上坡，趁關門前參觀）</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">18:30–19:15</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 神戶港塔 → 三宮取行李</div>
       </div>
+      <div class="item-sub">步行 25 分鐘（1.8km）</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">15:40–16:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">⛩️ 生田神社</div>
-          </div>
-          <div class="item-sub">順路下坡步行 10 分鐘</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">20:00–20:50</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚆 三宮 → JR難波</div>
       </div>
+      <div class="item-sub">JR神戶線 / JR神戸線 / JR Kobe Line ＋ JR大和路線 / JR大和路線 / JR Yamatoji Line｜電車 50 分鐘｜約 ¥660</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">16:30–17:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🥟 南京町</div>
-          </div>
-          <div class="item-sub">步行 15 分鐘（1.1km）</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">20:50–21:00</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 JR難波 → 住宿</div>
       </div>
+      <div class="item-sub">步行 10 分鐘（700m）</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">17:30–18:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🗼 神戶港塔</div>
-          </div>
-          <div class="item-sub">步行 15 分鐘（900m）｜門票 ¥1,200（看夜景）</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">21:00</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🏨 抵達住宿：住一通天閣店</div>
       </div>
+      <div class="item-sub">2 Chome-5-11 Ebisuhigashi, Naniwa Ward, Osaka, 556-0002, Japan</div>
+    </div>
+  </div>
+</div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">18:30–19:15</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 神戶港塔 → 三宮取行李</div>
-          </div>
-          <div class="item-sub">步行 25 分鐘（1.8km）</div>
-        </div>
+```
+
+```
+<div class="pass-badge">🎫 JR Kansai Area Pass｜Day 1</div>
+
+<div class="timeline">
+  <div class="timeline-item">
+    <div class="timeline-time">07:00–08:10</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚆 JR難波 → JR稻荷</div>
       </div>
+      <div class="item-sub">JR大和路線 / JR大和路線 / JR Yamatoji Line ＋ JR奈良線 / JR奈良線 / JR Nara Line｜電車 1 小時 10 分鐘｜JR Pass</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">20:00–20:50</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚆 三宮 → JR難波</div>
-          </div>
-          <div class="item-sub">JR神戶線 / JR神戸線 / JR Kobe Line ＋ JR大和路線 / JR大和路線 / JR Yamatoji Line｜電車 50 分鐘｜約 ¥660</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">08:10–09:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">⛩️ 伏見稻荷大社</div>
       </div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">20:50–21:00</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 JR難波 → 住宿</div>
-          </div>
-          <div class="item-sub">步行 10 分鐘（700m）</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">09:30–10:05</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚆 JR稻荷 → JR嵯峨嵐山</div>
       </div>
+      <div class="item-sub">JR奈良線 / JR奈良線 / JR Nara Line ＋ JR山陰本線（嵯峨野線） / JR山陰本線 / JR San-in Line（京都站轉乘）｜電車 35 分鐘｜JR Pass</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">21:00</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🏨 抵達住宿：住一通天閣店</div>
-          </div>
-          <div class="item-sub">2 Chome-5-11 Ebisuhigashi, Naniwa Ward, Osaka, 556-0002, Japan</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">10:05–10:15</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 JR嵯峨嵐山 → 竹林小徑</div>
+      </div>
+      <div class="item-sub">步行 10 分鐘（800m）</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">10:15–12:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🎍 嵐山公園・竹林小徑・渡月橋</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">12:30–13:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🥢 嵐山午餐</div>
+      </div>
+      <div class="item-sub pending">餐廳待確認</div>
+      <div class="note-input-wrap">
+        <textarea class="note-input" placeholder="輸入備註（例：預計吃鰻魚飯廣川或湯豆腐）..." oninput="saveNote('d2-lunch', this.value)"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">13:30–14:20</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚆 嵐山 → 清水道巴士站</div>
+      </div>
+      <div class="item-sub">JR嵯峨嵐山站搭乘 JR山陰本線 / JR山陰本線 / JR San-in Line 至京都站，轉乘 京都市營巴士 / 京都市営バス / Kyoto City Bus（206系統）或計程車｜約 50 分鐘</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">14:20–14:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 清水道巴士站 → 清水寺</div>
+      </div>
+      <div class="item-sub">步行 10 分鐘（600m，上坡）</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">14:30–17:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🏯 清水寺・三年坂・祇園</div>
+      </div>
+      <div class="item-sub">門票 ¥400</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">17:30–19:00</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🍽️ 祇園 / 河原町晚餐</div>
+      </div>
+      <div class="item-sub pending">餐廳待確認</div>
+      <div class="note-input-wrap">
+        <textarea class="note-input" placeholder="輸入備註（例：勝牛或鴨川附近餐廳）..." oninput="saveNote('d2-dinner', this.value)"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">19:00–20:15</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚆 京都 → JR難波</div>
+      </div>
+      <div class="item-sub">JR東海道本線（京都線） / JR東海道本線 / JR Tokaido Main Line ＋ JR大和路線 / JR大和路線 / JR Yamatoji Line｜電車 1 小時 15 分鐘</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">20:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🏨 回住宿：住一通天閣店</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- D2 -->
-<div class="day-card">
-  <div class="day-header" onclick="toggleDay(this)">
-    <div class="day-header-main">
-      <div class="day-title">
-        <span class="day-date">11/21（土）</span>
-        <span class="day-name">D2｜大阪</span>
+```
+
+```
+<div class="pass-badge">🎫 JR Kansai Area Pass｜Day 2</div>
+
+<div class="timeline">
+  <div class="timeline-item">
+    <div class="timeline-time">07:30–08:20</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚆 住宿 → JR奈良</div>
+      </div>
+      <div class="item-sub">JR大和路線 / JR大和路線 / JR Yamatoji Line｜電車 50 分鐘｜JR Pass</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">08:20–08:35</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 JR奈良 → 奈良公園</div>
+      </div>
+      <div class="item-sub">步行 15 分鐘（1.1km）</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">08:35–09:00</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🦌 奈良公園</div>
       </div>
     </div>
   </div>
 
-  <div class="day-content">
-    <div class="weather">
-      <span>🌤️ 大阪天氣</span>
-      <a href="https://weather.apple.com/en-US/weather-forecast/34.6937/135.5023" target="_blank">Apple Weather ↗</a>
-    </div>
-
-    <div class="pass-badge">🎫 大阪地下鐵一日券 / Osaka Metro Enjoy Eco Card</div>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">09:00–09:25</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚇 住宿 → 谷町四丁目站</div>
-          </div>
-          <div class="item-sub">大阪地下鐵谷町線 / 大阪メトロ谷町線 / Osaka Metro Tanimachi Line（天王寺站 → 谷町四丁目站）｜地鐵 25 分鐘｜Enjoy Eco Card</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">09:00–10:15</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🛕 東大寺</div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">09:25–09:35</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 谷町四丁目站 → 大阪城天守閣</div>
-          </div>
-          <div class="item-sub">步行 10 分鐘（750m）</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">09:35–11:00</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🏯 大阪城</div>
-          </div>
-          <div class="item-sub">門票 ¥1,200</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">11:00–11:25</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚇 大阪城 → 日本橋站</div>
-          </div>
-          <div class="item-sub">大阪地下鐵中央線 / 大阪メトロ中央線 / Osaka Metro Chuo Line 轉 千日前線 / 千日前線 / Sennichimae Line 至日本橋站｜地鐵 25 分鐘｜Enjoy Eco Card</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">11:25–11:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 日本橋站 → 黑門市場</div>
-          </div>
-          <div class="item-sub">步行 5 分鐘（300m）</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">11:30–12:45</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🥢 黑門市場</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">12:45–13:00</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚇 黑門市場 → 四天王寺前夕陽丘站</div>
-          </div>
-          <div class="item-sub">大阪地下鐵堺筋線 / 大阪メトロ堺筋線 / Osaka Metro Sakaisuji Line（日本橋站 → 惠美須町站）｜地鐵 15 分鐘｜Enjoy Eco Card</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">13:00–13:05</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 車站 → 四天王寺</div>
-          </div>
-          <div class="item-sub">步行 5 分鐘（350m）</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">13:05–14:00</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">⛩️ 四天王寺</div>
-          </div>
-          <div class="item-sub">門票 ¥500</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">14:00–14:15</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 四天王寺 → 天王寺公園</div>
-          </div>
-          <div class="item-sub">步行 15 分鐘（1km）</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">14:15–15:00</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🌳 天王寺公園</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">15:00–15:10</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 天王寺公園 → 新世界・通天閣</div>
-          </div>
-          <div class="item-sub">步行 10 分鐘（700m）</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">15:10–16:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🗼 新世界・通天閣</div>
-          </div>
-          <div class="item-sub">門票 ¥1,200</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">16:30–16:45</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 新世界 → 法善寺橫丁</div>
-          </div>
-          <div class="item-sub">步行 15 分鐘（1.2km）</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">16:45–17:15</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🍢 法善寺橫丁</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">17:15–17:25</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 法善寺橫丁 → 心齋橋 / 道頓堀</div>
-          </div>
-          <div class="item-sub">步行 10 分鐘（600m）</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">17:25–20:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🛍️ 心齋橋・美國村・道頓堀＋晚餐</div>
-          </div>
-          <div class="item-sub pending">行程／餐廳待確認</div>
-          <div class="note-input-wrap">
-            <textarea class="note-input" placeholder="輸入備註（例：逛藥妝店、藥局買備藥、大阪燒）..." oninput="saveNote('d2-shopping', this.value)"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">20:30–20:45</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 心齋橋 / 道頓堀 → 住宿</div>
-          </div>
-          <div class="item-sub">步行 15 分鐘（1.1km）或搭乘 御堂筋線 / 御堂筋線 / Midosuji Line</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">20:45</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🏨 回住宿：住一通天閣店</div>
-          </div>
-        </div>
-      </div>
+      <div class="item-sub">門票 ¥800</div>
     </div>
   </div>
-</div>
 
-<!-- D3 -->
-<div class="day-card">
-  <div class="day-header" onclick="toggleDay(this)">
-    <div class="day-header-main">
-      <div class="day-title">
-        <span class="day-date">11/22（日）</span>
-        <span class="day-name">D3｜奈良・宇治</span>
+  <div class="timeline-item">
+    <div class="timeline-time">10:15–10:25</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 東大寺 → 二月堂</div>
+      </div>
+      <div class="item-sub">步行 10 分鐘（500m，上坡）</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">10:25–10:55</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🏯 二月堂</div>
+      </div>
+      <div class="item-sub">¥0</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">10:55–11:10</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 二月堂 → 春日大社</div>
+      </div>
+      <div class="item-sub">步行 15 分鐘（1km）</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">11:10–11:55</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">⛩️ 春日大社</div>
+      </div>
+      <div class="item-sub">¥0</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">11:55–12:05</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 春日大社 → 若草山</div>
+      </div>
+      <div class="item-sub">步行 10 分鐘（600m）</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">12:05–12:35</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">⛰️ 若草山</div>
+      </div>
+      <div class="item-sub">門票 ¥150</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">12:35–12:55</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 若草山 → 奈良町</div>
+      </div>
+      <div class="item-sub">步行 20 分鐘（1.3km）</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">12:55–13:40</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🍜 午餐（奈良町）</div>
+      </div>
+      <div class="item-sub pending">餐廳待確認</div>
+      <div class="note-input-wrap">
+        <textarea class="note-input" placeholder="輸入備註（例：志津香釜飯或奈良町烏龍麵）..." oninput="saveNote('d3-lunch', this.value)"></textarea>
       </div>
     </div>
   </div>
 
-  <div class="day-content">
-    <div class="weather">
-      <span>🌤️ 奈良天氣</span>
-      <a href="https://weather.apple.com/en-US/weather-forecast/34.6851/135.8048" target="_blank">Apple Weather ↗</a>
+  <div class="timeline-item">
+    <div class="timeline-time">13:40–13:50</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 奈良町 → JR奈良</div>
+      </div>
+      <div class="item-sub">步行 10 分鐘（750m）</div>
     </div>
+  </div>
 
-    <div class="pass-badge">🎫 JR Kansai Area Pass｜Day 1</div>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">07:30–08:20</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚆 住宿 → JR奈良</div>
-          </div>
-          <div class="item-sub">JR大和路線 / JR大和路線 / JR Yamatoji Line｜電車 50 分鐘｜JR Pass</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">13:50–14:25</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚆 JR奈良 → JR宇治</div>
       </div>
+      <div class="item-sub">JR奈良線 / JR奈良線 / JR Nara Line｜電車 35 分鐘｜JR Pass</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">08:20–08:35</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 JR奈良 → 奈良公園</div>
-          </div>
-          <div class="item-sub">步行 15 分鐘（1.1km）</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">14:25–14:35</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 JR宇治 → 宇治川・宇治橋</div>
       </div>
+      <div class="item-sub">步行 10 分鐘（700m）</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">08:35–09:00</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🦌 奈良公園</div>
-          </div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">14:35–14:55</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🌉 宇治川・宇治橋</div>
       </div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">09:00–10:15</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🛕 東大寺</div>
-          </div>
-          <div class="item-sub">門票 ¥800</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">14:55–15:05</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 宇治橋 → 宇治上神社</div>
       </div>
+      <div class="item-sub">步行 10 分鐘（650m）</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">10:15–10:25</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 東大寺 → 二月堂</div>
-          </div>
-          <div class="item-sub">步行 10 分鐘（500m，上坡）</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">15:05–15:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">⛩️ 宇治上神社</div>
       </div>
+      <div class="item-sub">¥0</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">10:25–10:55</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🏯 二月堂</div>
-          </div>
-          <div class="item-sub">¥0</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">15:30–15:40</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 宇治上神社 → 平等院</div>
       </div>
+      <div class="item-sub">步行 10 分鐘（600m，經朝霧橋）</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">10:55–11:10</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 二月堂 → 春日大社</div>
-          </div>
-          <div class="item-sub">步行 15 分鐘（1km）</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">15:40–16:45</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🏯 平等院</div>
       </div>
+      <div class="item-sub">門票 ¥700</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">11:10–11:55</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">⛩️ 春日大社</div>
-          </div>
-          <div class="item-sub">¥0</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">16:45–17:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🍵 宇治表參道・抹茶</div>
       </div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">11:55–12:05</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 春日大社 → 若草山</div>
-          </div>
-          <div class="item-sub">步行 10 分鐘（600m）</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">17:30–18:50</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚆 JR宇治 → JR難波</div>
       </div>
+      <div class="item-sub">JR奈良線 / JR奈良線 / JR Nara Line ＋ JR大和路線 / JR大和路線 / JR Yamatoji Line｜電車 1 小時 20 分鐘｜JR Pass</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">12:05–12:35</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">⛰️ 若草山</div>
-          </div>
-          <div class="item-sub">門票 ¥150</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">18:50–19:50</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🍽️ 晚餐</div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">12:35–12:55</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 若草山 → 奈良町</div>
-          </div>
-          <div class="item-sub">步行 20 分鐘（1.3km）</div>
-        </div>
+      <div class="item-sub pending">餐廳待確認</div>
+      <div class="note-input-wrap">
+        <textarea class="note-input" placeholder="輸入備註（例：難波周邊燒肉或居酒屋）..." oninput="saveNote('d3-dinner', this.value)"></textarea>
       </div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">12:55–13:40</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🍜 午餐（奈良町）</div>
-          </div>
-          <div class="item-sub pending">餐廳待確認</div>
-          <div class="note-input-wrap">
-            <textarea class="note-input" placeholder="輸入備註（例：志津香釜飯或奈良町烏龍麵）..." oninput="saveNote('d3-lunch', this.value)"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">13:40–13:50</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 奈良町 → JR奈良</div>
-          </div>
-          <div class="item-sub">步行 10 分鐘（750m）</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">13:50–14:25</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚆 JR奈良 → JR宇治</div>
-          </div>
-          <div class="item-sub">JR奈良線 / JR奈良線 / JR Nara Line｜電車 35 分鐘｜JR Pass</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">14:25–14:35</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 JR宇治 → 宇治川・宇治橋</div>
-          </div>
-          <div class="item-sub">步行 10 分鐘（700m）</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">14:35–14:55</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🌉 宇治川・宇治橋</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">14:55–15:05</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 宇治橋 → 宇治上神社</div>
-          </div>
-          <div class="item-sub">步行 10 分鐘（650m）</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">15:05–15:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">⛩️ 宇治上神社</div>
-          </div>
-          <div class="item-sub">¥0</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">15:30–15:40</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 宇治上神社 → 平等院</div>
-          </div>
-          <div class="item-sub">步行 10 分鐘（600m，經朝霧橋）</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">15:40–16:45</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🏯 平等院</div>
-          </div>
-          <div class="item-sub">門票 ¥700</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">16:45–17:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🍵 宇治表參道・抹茶</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">17:30–18:50</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚆 JR宇治 → JR難波</div>
-          </div>
-          <div class="item-sub">JR奈良線 / JR奈良線 / JR Nara Line ＋ JR大和路線 / JR大和路線 / JR Yamatoji Line｜電車 1 小時 20 分鐘｜JR Pass</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">18:50–19:50</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🍽️ 晚餐</div>
-          </div>
-          <div class="item-sub pending">餐廳待確認</div>
-          <div class="note-input-wrap">
-            <textarea class="note-input" placeholder="輸入備註（例：難波周邊燒肉或居酒屋）..." oninput="saveNote('d3-dinner', this.value)"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">20:00</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🏨 回住宿：住一通天閣店</div>
-          </div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">20:00</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🏨 回住宿：住一通天閣店</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- D4 -->
-<div class="day-card">
-  <div class="day-header" onclick="toggleDay(this)">
-    <div class="day-header-main">
-      <div class="day-title">
-        <span class="day-date">11/23（月）</span>
-        <span class="day-name">D4｜京都・嵐山</span>
+```
+
+```
+<div class="pass-badge">🎫 大阪地下鐵一日券 / Osaka Metro Enjoy Eco Card</div>
+
+<div class="timeline">
+  <div class="timeline-item">
+    <div class="timeline-time">09:00–09:25</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚇 住宿 → 谷町四丁目站</div>
+      </div>
+      <div class="item-sub">大阪地下鐵谷町線 / 大阪メトロ谷町線 / Osaka Metro Tanimachi Line（天王寺站 → 谷町四丁目站）｜地鐵 25 分鐘｜Enjoy Eco Card</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">09:25–09:35</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 谷町四丁目站 → 大阪城天守閣</div>
+      </div>
+      <div class="item-sub">步行 10 分鐘（750m）</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">09:35–11:00</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🏯 大阪城</div>
+      </div>
+      <div class="item-sub">門票 ¥1,200</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">11:00–11:25</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚇 大阪城 → 日本橋站</div>
+      </div>
+      <div class="item-sub">大阪地下鐵中央線 / 大阪メトロ中央線 / Osaka Metro Chuo Line 轉 千日前線 / 千日前線 / Sennichimae Line 至日本橋站｜地鐵 25 分鐘｜Enjoy Eco Card</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">11:25–11:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 日本橋站 → 黑門市場</div>
+      </div>
+      <div class="item-sub">步行 5 分鐘（300m）</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">11:30–12:45</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🥢 黑門市場</div>
       </div>
     </div>
   </div>
 
-  <div class="day-content">
-    <div class="weather">
-      <span>🌤️ 京都天氣</span>
-      <a href="https://weather.apple.com/en-US/weather-forecast/35.0116/135.7681" target="_blank">Apple Weather ↗</a>
+  <div class="timeline-item">
+    <div class="timeline-time">12:45–13:00</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚇 黑門市場 → 四天王寺前夕陽丘站</div>
+      </div>
+      <div class="item-sub">大阪地下鐵堺筋線 / 大阪メトロ堺筋線 / Osaka Metro Sakaisuji Line（日本橋站 → 惠美須町站）｜地鐵 15 分鐘｜Enjoy Eco Card</div>
     </div>
+  </div>
 
-    <div class="pass-badge">🎫 JR Kansai Area Pass｜Day 2</div>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-time">07:00–08:10</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚆 JR難波 → JR稻荷</div>
-          </div>
-          <div class="item-sub">JR大和路線 / JR大和路線 / JR Yamatoji Line ＋ JR奈良線 / JR奈良線 / JR Nara Line｜電車 1 小時 10 分鐘｜JR Pass</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">13:00–13:05</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 車站 → 四天王寺</div>
       </div>
+      <div class="item-sub">步行 5 分鐘（350m）</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">08:10–09:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">⛩️ 伏見稻荷大社</div>
-          </div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">13:05–14:00</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">⛩️ 四天王寺</div>
       </div>
+      <div class="item-sub">門票 ¥500</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">09:30–10:05</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚆 JR稻荷 → JR嵯峨嵐山</div>
-          </div>
-          <div class="item-sub">JR奈良線 / JR奈良線 / JR Nara Line ＋ JR山陰本線（嵯峨野線） / JR山陰本線 / JR San-in Line（京都站轉乘）｜電車 35 分鐘｜JR Pass</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">14:00–14:15</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 四天王寺 → 天王寺公園</div>
       </div>
+      <div class="item-sub">步行 15 分鐘（1km）</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">10:05–10:15</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 JR嵯峨嵐山 → 竹林小徑</div>
-          </div>
-          <div class="item-sub">步行 10 分鐘（800m）</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">14:15–15:00</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🌳 天王寺公園</div>
       </div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">10:15–12:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🎍 嵐山公園・竹林小徑・渡月橋</div>
-          </div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">15:00–15:10</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 天王寺公園 → 新世界・通天閣</div>
       </div>
+      <div class="item-sub">步行 10 分鐘（700m）</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">12:30–13:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🥢 嵐山午餐</div>
-          </div>
-          <div class="item-sub pending">餐廳待確認</div>
-          <div class="note-input-wrap">
-            <textarea class="note-input" placeholder="輸入備註（例：預計吃鰻魚飯廣川或湯豆腐）..." oninput="saveNote('d4-lunch', this.value)"></textarea>
-          </div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">15:10–16:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🗼 新世界・通天閣</div>
       </div>
+      <div class="item-sub">門票 ¥1,200</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">13:30–14:20</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚆 嵐山 → 清水道巴士站</div>
-          </div>
-          <div class="item-sub">JR嵯峨嵐山站搭乘 JR山陰本線 / JR山陰本線 / JR San-in Line 至京都站，轉乘 京都市營巴士 / 京都市営バス / Kyoto City Bus（206系統）或計程車｜約 50 分鐘</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">16:30–16:45</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 新世界 → 法善寺橫丁</div>
       </div>
+      <div class="item-sub">步行 15 分鐘（1.2km）</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">14:20–14:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚶 清水道巴士站 → 清水寺</div>
-          </div>
-          <div class="item-sub">步行 10 分鐘（600m，上坡）</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">16:45–17:15</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🍢 法善寺橫丁</div>
       </div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">14:30–17:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🏯 清水寺・三年坂・祇園</div>
-          </div>
-          <div class="item-sub">門票 ¥400</div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">17:15–17:25</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 法善寺橫丁 → 心齋橋 / 道頓堀</div>
       </div>
+      <div class="item-sub">步行 10 分鐘（600m）</div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">17:30–19:00</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🍽️ 祇園 / 河原町晚餐</div>
-          </div>
-          <div class="item-sub pending">餐廳待確認</div>
-          <div class="note-input-wrap">
-            <textarea class="note-input" placeholder="輸入備註（例：勝牛或鴨川附近餐廳）..." oninput="saveNote('d4-dinner', this.value)"></textarea>
-          </div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">17:25–20:30</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🛍️ 心齋橋・美國村・道頓堀＋晚餐</div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-time">19:00–20:15</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🚆 京都 → JR難波</div>
-          </div>
-          <div class="item-sub">JR東海道本線（京都線） / JR東海道本線 / JR Tokaido Main Line ＋ JR大和路線 / JR大和路線 / JR Yamatoji Line｜電車 1 小時 15 分鐘</div>
-        </div>
+      <div class="item-sub pending">行程／餐廳待確認</div>
+      <div class="note-input-wrap">
+        <textarea class="note-input" placeholder="輸入備註（例：逛藥妝店、藥局買備藥、大阪燒）..." oninput="saveNote('d4-shopping', this.value)"></textarea>
       </div>
+    </div>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-time">20:30</div>
-        <div class="timeline-body">
-          <div class="item-title-row">
-            <div class="item-title">🏨 回住宿：住一通天閣店</div>
-          </div>
-        </div>
+  <div class="timeline-item">
+    <div class="timeline-time">20:30–20:45</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🚶 心齋橋 / 道頓堀 → 住宿</div>
+      </div>
+      <div class="item-sub">步行 15 分鐘（1.1km）或搭乘 御堂筋線 / 御堂筋線 / Midosuji Line</div>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-time">20:45</div>
+    <div class="timeline-body">
+      <div class="item-title-row">
+        <div class="item-title">🏨 回住宿：住一通天閣店</div>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-  function toggleDay(element) {
-    const card = element.parentElement;
-    card.classList.toggle('open');
-  }
-  function saveNote(key, val) {
-    localStorage.setItem(key, val);
-  }
-</script>
-</body>
-</html>
+```
