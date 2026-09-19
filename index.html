@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f5f1e9">
-<title>JAPAN TRAVEL｜神戶・京都・奈良・大阪5日遊</title>
+<title>JAPAN TRAVEL｜神戶・大阪・奈良・京都5日遊</title>
 
 <style>
 *{box-sizing:border-box}
@@ -427,9 +427,9 @@ body.night .map-tab.active{
 
 .day-header{
   cursor:pointer;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto auto;
+  display:flex;
   align-items:center;
+  justify-content:space-between;
   gap:10px;
   padding:16px;
   background:rgba(85,123,112,.045);
@@ -580,6 +580,24 @@ body.night .map-tab.active{
   line-height:1.45;
 }
 
+.item-title-row{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.item-title-row .item-title{
+  flex:1;
+  min-width:0;
+}
+
+.item-title-row .item-links{
+  flex:0 0 auto;
+  margin-top:0;
+  justify-content:flex-end;
+}
+
 .item-sub{
   color:var(--muted);
   font-size:12px;
@@ -587,19 +605,12 @@ body.night .map-tab.active{
   margin-top:4px;
 }
 
-.timeline-item > div > .item-title{padding-right:92px;}
 .item-links{
-  display:inline-flex;
+  display:flex;
   flex-wrap:wrap;
   gap:6px;
-  margin-top:0;
-  position:absolute;
-  right:0;
-  top:0;
-  justify-content:flex-end;
+  margin-top:6px;
 }
-.timeline-item > div{position:relative;}
-.item-links .map-link{white-space:nowrap;}
 
 .map-link{
   display:inline-flex;
@@ -610,13 +621,46 @@ body.night .map-tab.active{
   border-bottom:1px dotted var(--green);
 }
 
-.inline-note{
+.note-list{
   margin-top:7px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
 }
 
-.inline-note textarea{
-  min-height:48px;
+.note-row{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+
+.note-row input{
+  min-width:0;
+  flex:1;
+  padding:7px 9px;
   font-size:11px;
+}
+
+.note-delete{
+  flex:0 0 auto;
+  width:27px;
+  height:27px;
+  padding:0;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--card);
+  color:var(--muted);
+  cursor:pointer;
+}
+
+.add-note{
+  margin-top:5px;
+  border:0;
+  background:none;
+  color:var(--green);
+  font-size:11px;
+  padding:3px 0;
+  cursor:pointer;
 }
 
 .meal{
@@ -635,33 +679,6 @@ body.night .map-tab.active{
   margin-left:4px;
 }
 
-.note-fields{
-  margin-top:8px;
-  display:grid;
-  gap:5px;
-}
-.note-line{
-  display:grid;
-  grid-template-columns:22px 1fr;
-  align-items:start;
-  gap:5px;
-}
-.note-number{
-  color:var(--muted);
-  font-size:11px;
-  padding-top:8px;
-  text-align:right;
-}
-.note-line input{
-  width:100%;
-  box-sizing:border-box;
-  padding:7px 9px;
-  border:1px solid var(--line);
-  border-radius:8px;
-  background:var(--card);
-  color:var(--text);
-  font-size:11px;
-}
 /* EXPENSES */
 
 .expense-table{
@@ -952,8 +969,7 @@ footer{
   }
 
   .day-header{
-    grid-template-columns:minmax(0,1fr) auto auto;
-    align-items:center;
+    align-items:flex-start;
   }
 
   .day-header h3{
@@ -978,6 +994,14 @@ footer{
 
   .item-title{
     font-size:13px;
+  }
+
+  .item-title-row{
+    gap:6px;
+  }
+
+  .item-title-row .item-links{
+    max-width:42%;
   }
 
   .item-sub{
@@ -1060,7 +1084,7 @@ footer{
 <header>
   <div class="eyebrow">JAPAN TRAVEL · NOVEMBER 2026</div>
   <h1>JAPAN TRAVEL</h1>
-  <div class="subtitle">神戶・京都・奈良・大阪5日遊</div>
+  <div class="subtitle">神戶・大阪・奈良・京都5日遊</div>
 
 <button
 id="themeToggle"
@@ -1126,31 +1150,87 @@ onclick="toggleTheme()"
   <div class="map-box">
 
 <svg id="svg-d1" class="day-map active" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
-<path class="map-route" d="M55 90 C125 55 185 80 245 145 S345 220 420 185 S520 120 585 215 S650 310 705 355"/>
-<circle class="map-node" cx="55" cy="90" r="12"/><circle class="map-node" cx="245" cy="145" r="12"/><circle class="map-node" cx="420" cy="185" r="12"/><circle class="map-node" cx="585" cy="215" r="12"/><circle class="map-node" cx="705" cy="355" r="12"/>
-<text class="map-label" x="55" y="62" text-anchor="middle">神戶機場</text><text class="map-label" x="245" y="118" text-anchor="middle">三宮・生田</text><text class="map-label" x="420" y="158" text-anchor="middle">南京町</text><text class="map-label" x="585" y="188" text-anchor="middle">神戶港塔</text><text class="map-label" x="705" y="390" text-anchor="middle">新今宮</text>
-<polygon class="map-arrow" points="690,347 705,355 690,363"/>
+
+<path class="map-route"
+ d="M70 100
+    C140 45 215 65 270 125
+    S350 225 420 185
+    S505 125 565 205
+    S640 300 690 350"/>
+
+  <circle class="map-node" cx="70" cy="100" r="12"/>
+  <circle class="map-node" cx="270" cy="125" r="12"/>
+  <circle class="map-node" cx="420" cy="185" r="12"/>
+  <circle class="map-node" cx="565" cy="205" r="12"/>
+  <circle class="map-node" cx="690" cy="350" r="12"/>
+
+<text class="map-label" x="70" y="72" text-anchor="middle">神戶機場</text> <text class="map-label" x="270" y="98" text-anchor="middle">生田神社</text> <text class="map-label" x="420" y="158" text-anchor="middle">南京町</text> <text class="map-label" x="565" y="178" text-anchor="middle">神戶港塔</text> <text class="map-label" x="690" y="385" text-anchor="middle">北野異人館</text>
+
+  <polygon class="map-arrow" points="675,342 690,350 675,358"/>
 </svg>
 
 <svg id="svg-d2" class="day-map" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
-<path class="map-route" d="M55 345 C120 305 175 320 220 265 S275 160 335 205 S405 300 465 250 S520 125 580 145 S655 100 705 70"/>
-<circle class="map-node" cx="55" cy="345" r="12"/><circle class="map-node" cx="220" cy="265" r="12"/><circle class="map-node" cx="335" cy="205" r="12"/><circle class="map-node" cx="465" cy="250" r="12"/><circle class="map-node" cx="580" cy="145" r="12"/><circle class="map-node" cx="705" cy="70" r="12"/>
-<text class="map-label" x="55" y="378" text-anchor="middle">新今宮</text><text class="map-label" x="220" y="298" text-anchor="middle">伏見稻荷</text><text class="map-label" x="335" y="178" text-anchor="middle">清水寺</text><text class="map-label" x="465" y="283" text-anchor="middle">祇園</text><text class="map-label" x="580" y="112" text-anchor="middle">龜岡小火車</text><text class="map-label" x="705" y="42" text-anchor="middle">嵐山</text>
-<polygon class="map-arrow" points="690,62 705,70 690,78"/>
+
+<path class="map-route"
+ d="M65 350
+    C125 310 185 335 225 275
+    S285 155 345 190
+    S420 285 470 235
+    S535 115 590 150
+    S655 125 700 80"/>
+
+  <circle class="map-node" cx="65" cy="350" r="12"/>
+  <circle class="map-node" cx="225" cy="275" r="12"/>
+  <circle class="map-node" cx="345" cy="190" r="12"/>
+  <circle class="map-node" cx="470" cy="235" r="12"/>
+  <circle class="map-node" cx="590" cy="150" r="12"/>
+  <circle class="map-node" cx="700" cy="80" r="12"/>
+
+<text class="map-label" x="65" y="383" text-anchor="middle">伏見稻荷大社</text> <text class="map-label" x="225" y="308" text-anchor="middle">清水寺</text> <text class="map-label" x="345" y="163" text-anchor="middle">八坂神社</text> <text class="map-label" x="470" y="268" text-anchor="middle">祇園</text> <text class="map-label" x="590" y="120" text-anchor="middle">嵐山竹林</text> <text class="map-label" x="700" y="52" text-anchor="middle">天龍寺・渡月橋</text>
+
+  <polygon class="map-arrow" points="685,72 700,80 685,88"/>
 </svg>
 
 <svg id="svg-d3" class="day-map" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
-<path class="map-route" d="M55 335 C120 370 185 340 225 275 S295 185 350 220 S425 325 485 270 S555 160 610 180 S665 115 710 80"/>
-<circle class="map-node" cx="55" cy="335" r="12"/><circle class="map-node" cx="225" cy="275" r="12"/><circle class="map-node" cx="350" cy="220" r="12"/><circle class="map-node" cx="485" cy="270" r="12"/><circle class="map-node" cx="610" cy="180" r="12"/><circle class="map-node" cx="710" cy="80" r="12"/>
-<text class="map-label" x="55" y="368" text-anchor="middle">新今宮</text><text class="map-label" x="225" y="308" text-anchor="middle">奈良公園</text><text class="map-label" x="350" y="190" text-anchor="middle">東大寺</text><text class="map-label" x="485" y="303" text-anchor="middle">若草山</text><text class="map-label" x="610" y="148" text-anchor="middle">奈良町</text><text class="map-label" x="710" y="48" text-anchor="middle">宇治・平等院</text>
-<polygon class="map-arrow" points="695,72 710,80 695,88"/>
+
+<path class="map-route"
+ d="M65 340
+    C125 385 190 365 230 300
+    S290 185 350 230
+    S425 335 475 275
+    S535 150 595 175
+    S655 135 700 90"/>
+
+  <circle class="map-node" cx="65" cy="340" r="12"/>
+  <circle class="map-node" cx="230" cy="300" r="12"/>
+  <circle class="map-node" cx="350" cy="230" r="12"/>
+  <circle class="map-node" cx="475" cy="275" r="12"/>
+  <circle class="map-node" cx="595" cy="175" r="12"/>
+  <circle class="map-node" cx="700" cy="90" r="12"/>
+
+<text class="map-label" x="65" y="373" text-anchor="middle">奈良公園</text> <text class="map-label" x="230" y="333" text-anchor="middle">東大寺</text> <text class="map-label" x="350" y="203" text-anchor="middle">春日大社</text> <text class="map-label" x="475" y="308" text-anchor="middle">若草山</text> <text class="map-label" x="595" y="145" text-anchor="middle">奈良町</text> <text class="map-label" x="700" y="62" text-anchor="middle">宇治・平等院</text>
+
+  <polygon class="map-arrow" points="685,82 700,90 685,98"/>
 </svg>
 
 <svg id="svg-d4" class="day-map" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
-<path class="map-route" d="M55 300 C120 250 175 270 225 210 S315 90 380 135 S455 250 520 210 S600 125 655 165 S690 235 710 280"/>
-<circle class="map-node" cx="55" cy="300" r="12"/><circle class="map-node" cx="225" cy="210" r="12"/><circle class="map-node" cx="380" cy="135" r="12"/><circle class="map-node" cx="520" cy="210" r="12"/><circle class="map-node" cx="655" cy="165" r="12"/><circle class="map-node" cx="710" cy="280" r="12"/>
-<text class="map-label" x="55" y="333" text-anchor="middle">新今宮</text><text class="map-label" x="225" y="243" text-anchor="middle">大阪城</text><text class="map-label" x="380" y="105" text-anchor="middle">黑門市場</text><text class="map-label" x="520" y="243" text-anchor="middle">四天王寺</text><text class="map-label" x="655" y="133" text-anchor="middle">梅田</text><text class="map-label" x="710" y="313" text-anchor="middle">心齋橋・道頓堀</text>
-<polygon class="map-arrow" points="695,272 710,280 695,288"/>
+
+<path class="map-route"
+ d="M70 260
+    C130 210 195 225 245 170
+    S330 75 390 130
+    S470 255 525 205
+    S610 145 690 185"/>
+
+  <circle class="map-node" cx="70" cy="260" r="12"/>
+  <circle class="map-node" cx="245" cy="170" r="12"/>
+  <circle class="map-node" cx="390" cy="130" r="12"/>
+  <circle class="map-node" cx="525" cy="205" r="12"/>
+  <circle class="map-node" cx="690" cy="185" r="12"/>
+
+<text class="map-label" x="70" y="293" text-anchor="middle">大阪城</text> <text class="map-label" x="245" y="143" text-anchor="middle">黑門市場</text> <text class="map-label" x="390" y="103" text-anchor="middle">四天王寺</text> <text class="map-label" x="525" y="238" text-anchor="middle">新世界・通天閣</text> <text class="map-label" x="690" y="153" text-anchor="middle">心齋橋・道頓堀</text>
+
+  <polygon class="map-arrow" points="675,177 690,185 675,193"/>
 </svg>
 
 <svg id="svg-d5" class="day-map" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
@@ -1184,7 +1264,7 @@ onclick="toggleTheme()"
   <div class="flight-card">
     <div class="flight-head">
       <div>
-        <div class="flight-airline">STARLUX Airlines · JX308</div>
+        <div class="flight-airline">JX308</div>
         <div class="flight-date">11/20（金）｜去程</div>
       </div>
       <span class="tag">直飛</span>
@@ -1215,7 +1295,7 @@ onclick="toggleTheme()"
   <div class="flight-card">
     <div class="flight-head">
       <div>
-        <div class="flight-airline">STARLUX Airlines · JX307</div>
+        <div class="flight-airline">JX307</div>
         <div class="flight-date">11/24（火）｜回程</div>
       </div>
       <span class="tag">直飛</span>
@@ -1250,230 +1330,179 @@ onclick="toggleTheme()"
     <span class="small">點開／關閉各日行程</span>
   </div>
 
-  <!-- D1 -->
 
-  <div class="day-card open">
-    <div class="day-header" onclick="toggleDay(this)">
-      <h3>D1｜台中 → 神戶 → 大阪</h3>
-      <span class="tag">11/20 金</span>
-    </div>
-    <div class="day-content">
-      <div class="weather-box">
-        <div class="weather-title">🌤️ 今日天氣</div>
-        <a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">☁️ 神戶｜Apple Weather →</a>
-      </div>
-      <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d1" placeholder="點此輸入……"></textarea></div>
-      <div class="timeline">
-        <div class="timeline-item"><div class="timeline-time">12:30–13:30</div><div><div class="item-title">✈️ 抵達神戶機場 Kobe Airport（UKB）</div><div class="item-sub">入境＋行李</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">13:30–13:50</div><div><div class="item-title">🧳 三宮站：行李寄放</div><div class="item-sub">🚶 步行約 5–10 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Sannomiya+Station+Kobe">🧭</a></div><div class="note-fields" data-note-id="d1-luggage">
-  <div class="note-line"><span class="note-number">1.</span><input id="d1-luggage-1" placeholder="輸入備註……"></div>
-  <div class="note-line"><span class="note-number">2.</span><input id="d1-luggage-2" placeholder="輸入備註……"></div>
-  <div class="note-line"><span class="note-number">3.</span><input id="d1-luggage-3" placeholder="輸入備註……"></div>
-</div></div></div>
-        <div class="timeline-item meal"><div class="timeline-time">14:00–15:00</div><div><div class="item-title">🥩 神戶牛午餐 <span class="pending">待定</span></div><div class="note-fields" data-note-id="d1-lunch">
-  <div class="note-line"><span class="note-number">1.</span><input id="d1-lunch-1" placeholder="輸入備註……"></div>
-  <div class="note-line"><span class="note-number">2.</span><input id="d1-lunch-2" placeholder="輸入備註……"></div>
-  <div class="note-line"><span class="note-number">3.</span><input id="d1-lunch-3" placeholder="輸入備註……"></div>
-</div></div></div>
-        <div class="timeline-item"><div class="timeline-time">15:00–15:15</div><div><div class="item-title">三宮站 → 生田神社</div><div class="item-sub">🚶 約 10–15 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Station+Kobe&destination=Ikuta+Shrine+Kobe">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">15:15–15:40</div><div><div class="item-title">⛩️ 生田神社 Ikuta Shrine</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Ikuta+Shrine+Kobe">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">15:40–16:00</div><div><div class="item-title">生田神社 → 神戶三宮中心街</div><div class="item-sub">🚶 約 8 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Ikuta+Shrine+Kobe&destination=Kobe+Sannomiya+Center+Gai">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">16:00–17:00</div><div><div class="item-title">🌿 神戶三宮中心街 Sannomiya Centre Gai</div><div class="note-fields" data-note-id="note-5179524782856294743"><div class="note-line"><span class="note-number">1.</span><input id="note-5179524782856294743-1" value="Loft" placeholder="輸入備註……"></div><div class="note-line"><span class="note-number">2.</span><input id="note-5179524782856294743-2" value="" placeholder="輸入備註……"></div><div class="note-line"><span class="note-number">3.</span><input id="note-5179524782856294743-3" value="" placeholder="輸入備註……"></div></div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Sannomiya+Center+Gai">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">17:00–17:15</div><div><div class="item-title">神戶三宮中心街 → 南京町</div><div class="item-sub">🚶 約 12 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Sannomiya+Center+Gai&destination=Nankinmachi+Kobe">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">17:15–17:45</div><div><div class="item-title">🏮 南京町 Nankinmachi</div><div class="note-fields" data-note-id="note-6812563368844604457"><div class="note-line"><span class="note-number">1.</span><input id="note-6812563368844604457-1" value="是唐人街，不一定要逛，會經過所以才排。" placeholder="輸入備註……"></div><div class="note-line"><span class="note-number">2.</span><input id="note-6812563368844604457-2" value="TAOCA COFFEE Kobe Motomachi／放香堂咖啡店" placeholder="輸入備註……"></div><div class="note-line"><span class="note-number">3.</span><input id="note-6812563368844604457-3" value="" placeholder="輸入備註……"></div></div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Nankinmachi+Kobe">📍</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=TAOCA+COFFEE+Kobe+Motomachi">☕ TAOCA</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hokodo+Kobe+coffee">☕ 放香堂</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">17:45–18:00</div><div><div class="item-title">南京町 → 神戶港塔 Kobe Port Tower</div><div class="item-sub">🚶 約 15 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Nankinmachi+Kobe&destination=Kobe+Port+Tower">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">18:00–19:00</div><div><div class="item-title">🗼 神戶港塔 Kobe Port Tower</div><div class="item-sub">🎟️ ¥1,200｜不登頂、外圍拍照 ¥0</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Port+Tower">📍</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=BE+KOBE+Monument+Meriken+Park">📍 BE KOBE</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">19:10–19:30</div><div><div class="item-title">神戶港塔 → JR元町站 → JR三宮站</div><div class="item-sub">🚶＋🚃 JR神戶線｜約 18 分鐘｜💳 ¥150</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Port+Tower&destination=Sannomiya+Station+Kobe">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">19:30–20:00</div><div><div class="item-title">🧳 三宮站：取回行李</div><div class="item-sub">🚶 約 5–10 分鐘｜若時間充裕可繼續逛三宮商圈</div></div></div>
-        <div class="timeline-item"><div class="timeline-time">20:00–20:55</div><div><div class="item-title">JR三宮站 → JR新今宮站 Shin-Imamiya</div><div class="item-sub">🚆 JR神戶線＋JR大阪環狀線｜約 45–50 分鐘｜💳 約 ¥750</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Station+Kobe&destination=Shin-Imamiya+Station+Osaka">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">20:55–21:05</div><div><div class="item-title">JR新今宮站 → 住一通天閣店</div><div class="item-sub">🚶 約 5–10 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Imamiya+Station+Osaka&destination=Apartment+Hotel+11+Tsutenkaku">🧭</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Apartment+Hotel+11+Tsutenkaku">📍</a></div></div></div>
-        <div class="timeline-item meal"><div class="timeline-time">晚間</div><div><div class="item-title">🍽️ 晚餐 <span class="pending">待定</span></div><div class="item-sub">住一通天閣店 → 新世界・通天閣｜🚶 約 5–10 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Apartment+Hotel+11+Tsutenkaku&destination=Tsutenkaku+Osaka">🧭 新世界・通天閣</a></div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- D2 -->
-
-  <div class="day-card">
-    <div class="day-header" onclick="toggleDay(this)">
-      <h3>D2｜京都＋嵐山小火車</h3>
-      <span class="tag">11/21 六</span>
-    </div>
-    <div class="day-content">
-      <div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/35.0116/135.7681">☁️ 京都｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/35.0095/135.6670">☁️ 嵐山｜Apple Weather →</a></div>
-      <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d2" placeholder="點此輸入……"></textarea></div>
-      <div class="timeline">
-        <div class="timeline-item"><div class="timeline-time">07:00–08:00</div><div><div class="item-title">JR新今宮站 → JR大阪站 → JR京都站</div><div class="item-sub">🚆 JR大阪環狀線＋JR京都線｜約 1 小時｜🎫 ¥770｜跟二阿會合</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Imamiya+Station+Osaka&destination=Kyoto+Station">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">08:20–08:30</div><div><div class="item-title">JR京都站 → JR稻荷站</div><div class="item-sub">🚆 JR奈良線｜約 5 分鐘｜🎫 ¥150</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kyoto+Station&destination=Inari+Station+Kyoto">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">08:30–10:00</div><div><div class="item-title">⛩️ 伏見稻荷大社</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Fushimi+Inari+Taisha+Kyoto">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">10:10–10:55</div><div><div class="item-title">JR稻荷站 → JR東福寺站 → 京阪東福寺站 → 京阪清水五條站 → 清水寺</div><div class="item-sub">🚆 JR奈良線＋🚃 京阪本線＋🚶 約 5–10 分鐘｜約 45 分鐘｜🎫 ¥150＋💳 ¥170</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Inari+Station+Kyoto&destination=Tofukuji+Station+Kyoto">🧭 稻荷→東福寺</a><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Tofukuji+Station+Kyoto&destination=Kiyomizu-Gojo+Station">🧭 東福寺→清水五條</a><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kiyomizu-Gojo+Station&destination=Kiyomizu-dera+Kyoto">🧭 清水五條→清水寺</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">10:55–14:00</div><div><div class="item-title">🏯 清水寺</div><div class="item-sub">🎟️ ¥500</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kiyomizu-dera+Kyoto">📍</a></div><div class="item-sub">🏮 三年坂・二年坂｜🗼 八坂之塔｜⛩️ 八坂神社｜🌸 祇園・花見小路｜🍽️ 午餐待定</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sannenzaka+Ninenzaka+Kyoto">📍 三年坂・二年坂</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Yasaka+Pagoda+Kyoto">📍 八坂之塔</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Yasaka+Shrine+Kyoto">📍 八坂神社</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hanamikoji+Street+Kyoto">📍 花見小路</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">14:10–15:20</div><div><div class="item-title">祇園 → 京阪祇園四條站 → 京阪三條站／地下鐵三條京阪站 → 地下鐵二條站／JR二條站 → JR馬堀站 → 觀光小火車龜岡站</div><div class="item-sub">🚃 京阪本線＋🚇 地下鐵東西線＋🚆 JR嵯峨野線｜約 60 分＋🚶 約 10 分｜💳 ¥640</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Hanamikoji+Street+Kyoto&destination=Torokko+Kameoka+Station">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">15:30–15:55</div><div><div class="item-title">🚂 嵯峨野觀光小火車（龜岡站 → 嵐山站）</div><div class="item-sub">約 25 分鐘｜🎟️ ¥880｜車次：14:30／15:30／16:30，需提前訂票</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Torokko+Kameoka+Station">📍 龜岡站</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Torokko+Arashiyama+Station">📍 嵐山站</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">16:00–17:30</div><div><div class="item-title">🎋 嵐山竹林</div><div class="item-sub">🏯 天龍寺｜🚶 約 5 分｜🎟️ ¥500（16:30 停止售票）<br>🌉 渡月橋｜🍵 嵐山商店街・抹茶｜🌿 嵐山散步<br>備註：楓葉／注意商店關門時間</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Arashiyama+Bamboo+Forest+Kyoto">📍 竹林</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tenryu-ji+Temple+Kyoto">📍 天龍寺</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Togetsukyo+Bridge+Kyoto">📍 渡月橋</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Arashiyama+Shopping+Street+Kyoto">📍 嵐山商店街</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">18:10–18:30</div><div><div class="item-title">JR嵯峨嵐山站 → JR京都站</div><div class="item-sub">🚆 JR嵯峨野線｜約 11–15 分鐘｜🎫 ¥240</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Saga-Arashiyama+Station&destination=Kyoto+Station">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">18:35–19:35</div><div><div class="item-title">JR京都站 → JR大阪站／Osaka Metro 梅田站 → 心齋橋站</div><div class="item-sub">🚆 JR京都線＋🚇 Osaka Metro 御堂筋線｜約 1 小時｜🎫 ¥820</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kyoto+Station&destination=Shinsaibashi+Station+Osaka">🧭</a></div></div></div>
-        <div class="timeline-item meal"><div class="timeline-time">19:35–</div><div><div class="item-title">🍽️ 晚餐 <span class="pending">待定</span></div><div class="item-sub">🏨 回飯店｜JR新今宮</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shinsaibashi+Station+Osaka&destination=Shin-Imamiya+Station+Osaka">🧭</a></div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- D3 -->
-
-  <div class="day-card">
-    <div class="day-header" onclick="toggleDay(this)">
-      <h3>D3｜奈良＋宇治</h3>
-      <span class="tag">11/22 日</span>
-    </div>
-    <div class="day-content">
-      <div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6851/135.8048">☁️ 奈良｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.8841/135.7990">☁️ 宇治｜Apple Weather →</a></div>
-      <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d3" placeholder="點此輸入……"></textarea></div>
-      <div class="timeline">
-        <div class="timeline-item"><div class="timeline-time">07:20–08:10</div><div><div class="item-title">住一通天閣店 → JR新今宮站 → JR奈良站</div><div class="item-sub">🚆 JR大和路線｜約 45–50 分鐘｜🎫 ¥580</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Imamiya+Station+Osaka&destination=JR-Nara+Station">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">08:15–08:30</div><div><div class="item-title">JR奈良站 → 奈良公園</div><div class="item-sub">🚶 15–20 分鐘／或公車約 5 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=JR-Nara+Station&destination=Nara+Park">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">08:30–09:00</div><div><div class="item-title">🦌 奈良公園</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Nara+Park">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">09:00–09:15</div><div><div class="item-title">奈良公園 → 東大寺</div><div class="item-sub">🚶 約 15 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Nara+Park&destination=Todai-ji+Temple+Nara">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">09:15–10:15</div><div><div class="item-title">🏯 東大寺</div><div class="item-sub">🎟️ ¥800</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Todai-ji+Temple+Nara">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">10:15–10:25</div><div><div class="item-title">東大寺 → 二月堂</div><div class="item-sub">🚶 約 10 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Todai-ji+Temple+Nara&destination=Nigatsudo+Nara">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">10:25–10:55</div><div><div class="item-title">🌿 二月堂</div><div class="item-sub">🎟️ ¥0</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Nigatsudo+Nara">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">10:55–11:05</div><div><div class="item-title">二月堂 → 若草山</div><div class="item-sub">🚶 約 10–15 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Nigatsudo+Nara&destination=Mount+Wakakusa+Nara">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">11:05–11:50</div><div><div class="item-title">🌄 若草山</div><div class="item-sub">🎟️ 入山 ¥150</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Mount+Wakakusa+Nara">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">11:50–12:05</div><div><div class="item-title">若草山 → 春日大社</div><div class="item-sub">🚶 10–15 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Mount+Wakakusa+Nara&destination=Kasuga+Taisha+Nara">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">12:05–12:40</div><div><div class="item-title">⛩️ 春日大社</div><div class="item-sub">🎟️ ¥0（本殿參拜區另計）</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kasuga+Taisha+Nara">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">12:40–13:00</div><div><div class="item-title">春日大社 → 奈良町</div><div class="item-sub">🚶 15–20 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kasuga+Taisha+Nara&destination=Naramachi+Nara">🧭</a></div></div></div>
-        <div class="timeline-item meal"><div class="timeline-time">13:00–14:00</div><div><div class="item-title">🏘️ 奈良町＋午餐 <span class="pending">待定</span></div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Naramachi+Nara">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">14:00–15:00</div><div><div class="item-title">JR奈良站 → JR宇治站 → 平等院</div><div class="item-sub">🚆 JR奈良線＋🚶 約 10 分｜約 50 分鐘｜🎫 ¥510<br>備註：中村藤吉本店宇治本店／中村藤吉平等院店先抽號碼牌</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=JR-Nara+Station&destination=JR-Uji+Station">🧭</a><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=JR-Uji+Station&destination=Byodoin+Temple+Uji">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">15:00–16:00</div><div><div class="item-title">🏯 平等院</div><div class="item-sub">🎟️ ¥700｜🍵 平等院表參道・抹茶街</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Byodoin+Temple+Uji">📍 平等院</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Uji+Omotesando">📍 表參道</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">16:00–16:10</div><div><div class="item-title">平等院 → 宇治神社</div><div class="item-sub">🚶 約 10 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Byodoin+Temple+Uji&destination=Uji+Shrine+Kyoto">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">16:10–17:00</div><div><div class="item-title">⛩️ 宇治神社</div><div class="item-sub">🌊 宇治川・宇治橋</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Uji+Shrine+Kyoto">📍 宇治神社</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Uji+Bridge+Uji+Kyoto">📍 宇治橋</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">17:30–18:50</div><div><div class="item-title">JR宇治站 → JR奈良站 → JR新今宮站 → 動物園前站 → 心齋橋</div><div class="item-sub">🚆 JR奈良線＋JR大和路線＋🚇 Osaka Metro 御堂筋線｜約 1 小時 15 分｜🎫 ¥1,120</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=JR-Uji+Station&destination=Shinsaibashi+Station+Osaka">🧭</a></div></div></div>
-        <div class="timeline-item meal"><div class="timeline-time">18:50–</div><div><div class="item-title">🍽️ 晚餐 <span class="pending">待定</span></div><div class="item-sub">🏨 回飯店｜JR新今宮</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shinsaibashi+Station+Osaka&destination=Shin-Imamiya+Station+Osaka">🧭</a></div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- D4 -->
-
-  <div class="day-card">
-    <div class="day-header" onclick="toggleDay(this)">
-      <h3>D4｜大阪</h3>
-      <span class="tag">11/23 月</span>
-    </div>
-    <div class="day-content">
-      <div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6937/135.5023">☁️ 大阪｜Apple Weather →</a></div>
-      <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d4" placeholder="點此輸入……"></textarea></div>
-      <div class="timeline">
-        <div class="timeline-item"><div class="timeline-time">09:00–09:30</div><div><div class="item-title">動物園前站 → 天王寺站 → 谷町四丁目站</div><div class="item-sub">🚇 Osaka Metro 御堂筋線＋谷町線＋🚶 約 25–30 分鐘｜🪪 Enjoy Eco Card</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Dobutsuen-mae+Station+Osaka&destination=Osaka+Castle">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">09:30–11:00</div><div><div class="item-title">🏯 大阪城天守閣</div><div class="item-sub">🎟️ ¥1,200</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Osaka+Castle">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">11:00–11:30</div><div><div class="item-title">谷町四丁目站 → 谷町九丁目站 → 日本橋站 → 黑門市場</div><div class="item-sub">🚇 Osaka Metro 谷町線＋千日前線＋🚶 約 25–30 分鐘｜🪪 Enjoy Eco Card</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Osaka+Castle&destination=Kuromon+Market+Osaka">🧭</a></div></div></div>
-        <div class="timeline-item meal"><div class="timeline-time">11:30–13:00</div><div><div class="item-title">🍣 黑門市場</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kuromon+Market+Osaka">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">13:00–13:15</div><div><div class="item-title">日本橋站 → 四天王寺前夕陽丘站 → 四天王寺</div><div class="item-sub">🚇 Osaka Metro＋🚶 約 15 分鐘｜🪪 Enjoy Eco Card</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kuromon+Market+Osaka&destination=Shitennoji+Temple+Osaka">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">13:15–14:00</div><div><div class="item-title">⛩️ 四天王寺</div><div class="item-sub">🎟️ ¥500</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Shitennoji+Temple+Osaka">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">14:00–14:15</div><div><div class="item-title">四天王寺 → 天王寺公園</div><div class="item-sub">🚶 約 15 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shitennoji+Temple+Osaka&destination=Tennoji+Park+Osaka">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">14:15–15:00</div><div><div class="item-title">🌳 天王寺公園</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tennoji+Park+Osaka">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">15:00–15:20</div><div><div class="item-title">天王寺站 → 梅田站</div><div class="item-sub">🚇 Osaka Metro 御堂筋線｜約 15 分鐘｜🪪 Enjoy Eco Card</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Tennoji+Station+Osaka&destination=Umeda+Station+Osaka">🧭</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">15:30–17:30</div><div><div class="item-title">🎡 梅田商圈</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Umeda+Osaka">📍</a></div></div></div>
-        <div class="timeline-item"><div class="timeline-time">18:00–18:10</div><div><div class="item-title">梅田站 → 心齋橋站</div><div class="item-sub">🚇 Osaka Metro 御堂筋線｜約 10 分鐘｜🪪 Enjoy Eco Card</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Umeda+Station+Osaka&destination=Shinsaibashi+Station+Osaka">🧭</a></div></div></div>
-        <div class="timeline-item meal"><div class="timeline-time">18:10–21:30</div><div><div class="item-title">🍽️ 待定行程＋晚餐 <span class="pending">待定</span></div><div class="item-sub">🛍️ 心齋橋・Amerikamura｜🌃 道頓堀｜🏮 法善寺橫丁</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Shinsaibashi+Osaka">📍 心齋橋</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Amerikamura+Osaka">📍 Amerikamura</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Dotonbori+Osaka">📍 道頓堀</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hozenji+Yokocho+Osaka">📍 法善寺橫丁</a></div><div class="note-fields" data-note-id="d4-dinner">
-  <div class="note-line"><span class="note-number">1.</span><input id="d4-dinner-1" placeholder="輸入備註……"></div>
-  <div class="note-line"><span class="note-number">2.</span><input id="d4-dinner-2" placeholder="輸入備註……"></div>
-  <div class="note-line"><span class="note-number">3.</span><input id="d4-dinner-3" placeholder="輸入備註……"></div>
-</div></div></div>
-        <div class="timeline-item"><div class="timeline-time">21:30</div><div><div class="item-title">🏨 回飯店｜住一通天閣店</div><div class="item-sub">🚶 約 10–15 分鐘</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Dotonbori+Osaka&destination=Apartment+Hotel+11+Tsutenkaku">🧭</a></div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- D5 -->
-
-  <div class="day-card">
-
-<div class="day-header" onclick="toggleDay(this)">
-  <h3>D5｜大阪 → 神戶 → 台中</h3>
-  <span class="tag">11/24 火</span>
-</div>
-
+<!-- D1 -->
+<div class="day-card">
+<div class="day-header" onclick="toggleDay(this)"><h3>D1｜台中 → 神戶 → 大阪</h3><span class="tag">11/20 金</span></div>
 <div class="day-content">
 
-  <div class="weather-box">
-    <div class="weather-title">🌤️ 今日天氣</div>
-    <a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">
-      ☁️ 神戶｜Apple Weather →
-    </a>
-  </div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">☁️ 神戶｜Apple Weather →</a></div>
+<div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d1" placeholder="點此輸入……"></textarea></div>
+<div class="timeline">
+<div class="timeline-item"><div class="timeline-time">12:30</div><div><div class="item-title-row"><div class="item-title">✈️ 抵達神戶機場 Kobe Airport（UKB）</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍</a></div></div><div class="item-sub">入境＋行李：約 30–45 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">12:45–13:10</div><div><div class="item-title-row"><div class="item-title">神戶機場 → JR三宮站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Sannomiya+Station+Kobe">🧭</a></div></div><div class="item-sub">🚃 Port Liner
+Port Island Line
+ポートライナー
+約 18 分鐘｜💳 ¥340</div></div></div>
+<div class="timeline-item"><div class="timeline-time">13:30–13:50</div><div><div class="item-title-row"><div class="item-title">🧳 三宮寄放行李</div></div><div class="item-sub">🚶 步行 5–10 分鐘</div><div class="note-list" data-note-key="d1-luggage"></div><button class="add-note" type="button" onclick="addNote('d1-luggage')">＋ 新增備註</button></div></div>
+<div class="timeline-item meal"><div class="timeline-time">14:00–15:00</div><div><div class="item-title-row"><div class="item-title">🍽️ 神戶牛午餐 <span class="pending">待定</span></div></div><div class="item-sub">餐廳待定</div><div class="note-list" data-note-key="d1-lunch"></div><button class="add-note" type="button" onclick="addNote('d1-lunch')">＋ 新增備註</button></div></div>
+<div class="timeline-item"><div class="timeline-time">15:00–15:15</div><div><div class="item-title-row"><div class="item-title">三宮 → 生田神社</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Station+Kobe&destination=Ikuta+Shrine+Kobe">🧭</a></div></div><div class="item-sub">🚶 約 10–15 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">15:15–15:40</div><div><div class="item-title-row"><div class="item-title">⛩️ 生田神社</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Ikuta+Shrine+Kobe">📍</a></div></div><div class="item-sub">Ikuta Shrine｜生田神社</div></div></div>
+<div class="timeline-item"><div class="timeline-time">15:40–16:00</div><div><div class="item-title-row"><div class="item-title">生田神社 → 神戶三宮 Center Gai</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Ikuta+Shrine+Kobe&destination=Kobe+Sannomiya+Center+Gai">🧭</a></div></div><div class="item-sub">🚶 約 8 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">16:00–17:00</div><div><div class="item-title-row"><div class="item-title">🏮 神戶三宮 Center Gai</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Sannomiya+Center+Gai">📍</a></div></div><div class="note-list" data-note-key="d1-centergai"></div><button class="add-note" type="button" onclick="addNote('d1-centergai')">＋ 新增備註</button></div></div>
+<div class="timeline-item"><div class="timeline-time">17:00–17:15</div><div><div class="item-title-row"><div class="item-title">三宮 Center Gai → 南京町</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Sannomiya+Center+Gai&destination=Nankinmachi+Kobe">🧭</a></div></div><div class="item-sub">🚶 約 12 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">17:15–17:45</div><div><div class="item-title-row"><div class="item-title">🏮 南京町</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Nankinmachi+Kobe">📍</a></div></div><div class="item-sub">Chinatown｜經過／TAOCA COFFEE Kobe Motomachi／放香堂</div><div class="note-list" data-note-key="d1-nankin"></div><button class="add-note" type="button" onclick="addNote('d1-nankin')">＋ 新增備註</button></div></div>
+<div class="timeline-item"><div class="timeline-time">17:45–18:00</div><div><div class="item-title-row"><div class="item-title">南京町 → 神戶港塔</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Nankinmachi+Kobe&destination=Kobe+Port+Tower">🧭</a></div></div><div class="item-sub">🚶 約 15 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">18:00–19:00</div><div><div class="item-title-row"><div class="item-title">🗼 神戶港塔</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Port+Tower">📍</a></div></div><div class="item-sub">🎟️ ¥1,200｜不上塔可免費外拍｜BE KOBE Monument</div><div class="note-list" data-note-key="d1-tower"></div><button class="add-note" type="button" onclick="addNote('d1-tower')">＋ 新增備註</button></div></div>
+<div class="timeline-item"><div class="timeline-time">19:10–19:30</div><div><div class="item-title-row"><div class="item-title">神戶港塔 → JR元町站 → JR三宮站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Port+Tower&destination=Sannomiya+Station+Kobe">🧭</a></div></div><div class="item-sub">🚶＋🚆 JR神戶線
+Walk + JR Kobe Line
+徒歩＋JR神戸線
+約 18 分鐘｜💳 ¥150</div></div></div>
+<div class="timeline-item"><div class="timeline-time">19:30–20:00</div><div><div class="item-title-row"><div class="item-title">🧳 三宮取回行李</div></div></div></div>
+<div class="timeline-item"><div class="timeline-time">20:00–20:55</div><div><div class="item-title-row"><div class="item-title">JR三宮站 → JR新今宮站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Station+Kobe&destination=Shin-Imamiya+Station">🧭</a></div></div><div class="item-sub">🚆 JR神戶線＋JR大阪環狀線
+JR Kobe Line + JR Osaka Loop Line
+JR神戸線＋JR大阪環状線
+約 45–50 分鐘｜💳 約 ¥750</div></div></div>
+<div class="timeline-item"><div class="timeline-time">20:55–21:05</div><div><div class="item-title-row"><div class="item-title">JR新今宮站 → 住一通天閣店</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Imamiya+Station&destination=Apartment+Hotel+11+Tsutenkaku">🧭</a></div></div><div class="item-sub">🚶 約 5–10 分鐘</div></div></div>
+<div class="timeline-item meal"><div class="timeline-time">晚餐</div><div><div class="item-title-row"><div class="item-title">🍽️ 晚餐 <span class="pending">待定</span></div></div><div class="item-sub">飯店 → 新世界／通天閣 步行約 5–10 分鐘</div><div class="note-list" data-note-key="d1-dinner"></div><button class="add-note" type="button" onclick="addNote('d1-dinner')">＋ 新增備註</button></div></div>
+</div></div></div>
 
-  <div class="day-note">
-    <div class="day-note-label">💡 今日注意事項</div>
-    <textarea id="note-d5" placeholder="點此輸入……"></textarea>
-  </div>
+<!-- D2 -->
+<div class="day-card">
+<div class="day-header" onclick="toggleDay(this)"><h3>D2｜京都＋嵐山</h3><span class="tag">11/21 土</span></div>
+<div class="day-content">
 
-  <div class="timeline">
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6937/135.5023">☁️ 大阪｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/35.0116/135.7681">☁️ 京都｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/35.0095/135.6670">☁️ 嵐山｜Apple Weather →</a></div>
+<div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d2" placeholder="點此輸入……"></textarea></div>
+<div class="timeline">
+<div class="timeline-item"><div class="timeline-time">07:00–08:00</div><div><div class="item-title-row"><div class="item-title">🏨 住一通天閣店 → JR大阪站 → JR京都站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Imamiya+Station&destination=Kyoto+Station">🧭</a></div></div><div class="item-sub">🚆 JR大阪環狀線＋JR京都線
+JR Osaka Loop Line + JR Kyoto Line
+JR大阪環状線＋JR京都線
+約 1 小時｜💳 ¥770</div></div></div>
+<div class="timeline-item"><div class="timeline-time">08:20–08:30</div><div><div class="item-title-row"><div class="item-title">JR京都站 → JR稻荷站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kyoto+Station&destination=Inari+Station+Kyoto">🧭</a></div></div><div class="item-sub">🚆 JR奈良線
+JR Nara Line
+JR奈良線
+約 5 分鐘｜💳 ¥150</div></div></div>
+<div class="timeline-item"><div class="timeline-time">08:30–10:00</div><div><div class="item-title-row"><div class="item-title">⛩️ 伏見稻荷大社</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Fushimi+Inari+Taisha+Kyoto">📍</a></div></div></div></div>
+<div class="timeline-item"><div class="timeline-time">10:10–10:55</div><div><div class="item-title-row"><div class="item-title">JR稻荷站 → JR東福寺站 → 京阪東福寺站 → 京阪清水五條站 → 清水寺</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Inari+Station+Kyoto&destination=Kiyomizu-dera+Kyoto">🧭</a></div></div><div class="item-sub">🚆 JR奈良線＋京阪本線＋步行
+JR Nara Line + Keihan Main Line + Walk
+JR奈良線＋京阪本線＋徒歩
+約 45 分鐘｜💳 ¥150＋¥170</div><div class="note-list" data-note-key="d2-kiyomizu-route"></div><button class="add-note" type="button" onclick="addNote('d2-kiyomizu-route')">＋ 新增備註</button></div></div>
+<div class="timeline-item"><div class="timeline-time">10:55–14:00</div><div><div class="item-title-row"><div class="item-title">🏯 清水寺＋三年坂・二年坂＋八坂之塔</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kiyomizu-dera+Kyoto">📍</a></div></div><div class="item-sub">🎟️ 清水寺 ¥500｜午餐待定｜八坂神社／祇園・花見小路</div><div class="note-list" data-note-key="d2-kiyomizu"></div><button class="add-note" type="button" onclick="addNote('d2-kiyomizu')">＋ 新增備註</button></div></div>
+<div class="timeline-item"><div class="timeline-time">14:10–15:20</div><div><div class="item-title-row"><div class="item-title">祇園 → 京阪祇園四條 → 京阪三條／地下鐵三條京阪 → 地下鐵二條／JR二條 → JR馬堀 → 嵯峨野觀光鐵道龜岡</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Gion-Shijo+Station&destination=Torokko-Kameoka+Station">🧭</a></div></div><div class="item-sub">🚃 京阪本線＋地下鐵東西線＋JR嵯峨野線
+Keihan Main Line + Tozai Line + JR Sagano Line
+京阪本線＋地下鉄東西線＋JR嵯峨野線
+約 60 分鐘＋步行 10 分鐘｜💳 ¥640</div></div></div>
+<div class="timeline-item"><div class="timeline-time">15:30–15:55</div><div><div class="item-title-row"><div class="item-title">🚂 嵯峨野觀光小火車｜龜岡站 → 嵐山站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Torokko-Kameoka+Station&destination=Torokko-Arashiyama+Station">🧭</a></div></div><div class="item-sub">約 25 分鐘｜🎟️ ¥880｜建議提前預約</div></div></div>
+<div class="timeline-item"><div class="timeline-time">16:00–17:30</div><div><div class="item-title-row"><div class="item-title">🎋 嵐山竹林＋天龍寺＋渡月橋＋商店街／抹茶</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Arashiyama+Bamboo+Forest+Kyoto">📍</a></div></div><div class="item-sub">🎟️ 天龍寺 ¥500｜天龍寺售票至 16:30｜🍁 楓葉／注意商店關門時間</div><div class="note-list" data-note-key="d2-arashiyama"></div><button class="add-note" type="button" onclick="addNote('d2-arashiyama')">＋ 新增備註</button></div></div>
+<div class="timeline-item"><div class="timeline-time">18:10–18:30</div><div><div class="item-title-row"><div class="item-title">JR嵯峨嵐山站 → JR京都站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Saga-Arashiyama+Station&destination=Kyoto+Station">🧭</a></div></div><div class="item-sub">🚆 JR嵯峨野線
+JR Sagano Line
+JR嵯峨野線
+約 11–15 分鐘｜💳 ¥240</div></div></div>
+<div class="timeline-item"><div class="timeline-time">18:35–19:35</div><div><div class="item-title-row"><div class="item-title">JR京都站 → JR大阪站／梅田站 → 心齋橋站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kyoto+Station&destination=Shinsaibashi+Station">🧭</a></div></div><div class="item-sub">🚆 JR京都線＋🚇 Osaka Metro御堂筋線
+JR Kyoto Line + Osaka Metro Midosuji Line
+JR京都線＋大阪メトロ御堂筋線
+約 1 小時｜💳 ¥820</div></div></div>
+<div class="timeline-item meal"><div class="timeline-time">19:35</div><div><div class="item-title-row"><div class="item-title">🍽️ 晚餐 <span class="pending">待定</span></div></div><div class="note-list" data-note-key="d2-dinner"></div><button class="add-note" type="button" onclick="addNote('d2-dinner')">＋ 新增備註</button></div></div>
+</div></div></div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">待定</div>
-      <div>
-        <div class="item-title">🧳 住一通天閣店 Check-out</div>
-        <div class="inline-note">
-          <textarea id="d5-checkout" placeholder="📝 Check-out 時間／備註……"></textarea>
-        </div>
-      </div>
-    </div>
+<!-- D3 -->
+<div class="day-card">
+<div class="day-header" onclick="toggleDay(this)"><h3>D3｜奈良＋宇治</h3><span class="tag">11/22 日</span></div>
+<div class="day-content">
 
-    <div class="timeline-item meal">
-      <div class="timeline-time">早午餐</div>
-      <div>
-        <div class="item-title">🍽️ 早午餐 <span class="pending">待定</span></div>
-        <div class="inline-note">
-          <textarea id="d5-brunch" placeholder="📝 餐廳／備註……"></textarea>
-        </div>
-      </div>
-    </div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6851/135.8048">☁️ 奈良｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.8840/135.7999">☁️ 宇治｜Apple Weather →</a></div>
+<div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d3" placeholder="點此輸入……"></textarea></div>
+<div class="timeline">
+<div class="timeline-item"><div class="timeline-time">07:20–08:10</div><div><div class="item-title-row"><div class="item-title">🏨 住一通天閣店 → JR奈良站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Imamiya+Station&destination=JR-Nara+Station">🧭</a></div></div><div class="item-sub">🚆 JR大和路線
+JR Yamatoji Line
+JR大和路線
+約 45–50 分鐘｜💳 ¥580</div></div></div>
+<div class="timeline-item"><div class="timeline-time">08:15–08:30</div><div><div class="item-title-row"><div class="item-title">JR奈良站 → 奈良公園</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=JR-Nara+Station&destination=Nara+Park">🧭</a></div></div><div class="item-sub">🚶 約 15–20 分鐘／🚌 公車約 5 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">08:30–09:00</div><div><div class="item-title-row"><div class="item-title">🦌 奈良公園</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Nara+Park">📍</a></div></div></div></div>
+<div class="timeline-item"><div class="timeline-time">09:00–09:15</div><div><div class="item-title-row"><div class="item-title">奈良公園 → 東大寺</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Nara+Park&destination=Todai-ji+Temple+Nara">🧭</a></div></div><div class="item-sub">🚶 約 15 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">09:15–10:15</div><div><div class="item-title-row"><div class="item-title">🏯 東大寺</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Todai-ji+Temple+Nara">📍</a></div></div><div class="item-sub">🎟️ ¥800</div></div></div>
+<div class="timeline-item"><div class="timeline-time">10:15–10:25</div><div><div class="item-title-row"><div class="item-title">東大寺 → 二月堂</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Todai-ji+Temple+Nara&destination=Nigatsudo+Nara">🧭</a></div></div><div class="item-sub">🚶 約 10 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">10:25–10:55</div><div><div class="item-title-row"><div class="item-title">🌿 二月堂</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Nigatsudo+Nara">📍</a></div></div><div class="item-sub">🎟️ ¥0</div></div></div>
+<div class="timeline-item"><div class="timeline-time">10:55–11:05</div><div><div class="item-title-row"><div class="item-title">二月堂 → 若草山</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Nigatsudo+Nara&destination=Mount+Wakakusa+Nara">🧭</a></div></div><div class="item-sub">🚶 約 10–15 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">11:05–11:50</div><div><div class="item-title-row"><div class="item-title">🌄 若草山</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Mount+Wakakusa+Nara">📍</a></div></div><div class="item-sub">🎟️ ¥150</div></div></div>
+<div class="timeline-item"><div class="timeline-time">11:50–12:05</div><div><div class="item-title-row"><div class="item-title">若草山 → 春日大社</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Mount+Wakakusa+Nara&destination=Kasuga+Taisha+Nara">🧭</a></div></div><div class="item-sub">🚶 約 10–15 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">12:05–12:40</div><div><div class="item-title-row"><div class="item-title">⛩️ 春日大社</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kasuga+Taisha+Nara">📍</a></div></div><div class="item-sub">主殿外圍區域免費；內部參拜區另計</div></div></div>
+<div class="timeline-item"><div class="timeline-time">12:40–13:00</div><div><div class="item-title-row"><div class="item-title">春日大社 → 奈良町</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kasuga+Taisha+Nara&destination=Naramachi+Nara">🧭</a></div></div><div class="item-sub">🚶 約 15–20 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">13:00–14:00</div><div><div class="item-title-row"><div class="item-title">🏘️ 奈良町＋午餐</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Naramachi+Nara">📍</a></div></div><div class="item-sub">午餐待定</div><div class="note-list" data-note-key="d3-lunch"></div><button class="add-note" type="button" onclick="addNote('d3-lunch')">＋ 新增備註</button></div></div>
+<div class="timeline-item"><div class="timeline-time">14:00–15:00</div><div><div class="item-title-row"><div class="item-title">JR奈良站 → JR宇治站 → 平等院</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=JR-Nara+Station&destination=Byodoin+Temple+Uji">🧭</a></div></div><div class="item-sub">🚆 JR奈良線＋步行
+JR Nara Line + Walk
+JR奈良線＋徒歩
+約 50 分鐘｜💳 ¥510｜中村藤吉宇治本店／平等院店可先取號</div></div></div>
+<div class="timeline-item"><div class="timeline-time">15:00–16:00</div><div><div class="item-title-row"><div class="item-title">🏯 平等院＋宇治表參道抹茶街</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Byodoin+Temple+Uji">📍</a></div></div><div class="item-sub">🎟️ ¥700</div></div></div>
+<div class="timeline-item"><div class="timeline-time">16:00–16:10</div><div><div class="item-title-row"><div class="item-title">平等院 → 宇治神社</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Byodoin+Temple+Uji&destination=Uji+Shrine+Uji">🧭</a></div></div><div class="item-sub">🚶 約 10 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">16:10–17:00</div><div><div class="item-title-row"><div class="item-title">⛩️ 宇治神社＋宇治川／宇治橋</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Uji+Shrine+Uji">📍</a></div></div></div></div>
+<div class="timeline-item"><div class="timeline-time">17:30–18:50</div><div><div class="item-title-row"><div class="item-title">JR宇治站 → JR奈良站 → JR新今宮站 → 動物園前站 → 心齋橋站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Uji+Station+Kyoto&destination=Shinsaibashi+Station">🧭</a></div></div><div class="item-sub">🚆 JR奈良線＋JR大和路線＋🚇 御堂筋線
+JR Nara Line + JR Yamatoji Line + Midosuji Line
+JR奈良線＋JR大和路線＋御堂筋線
+約 1 小時 15 分鐘｜💳 ¥1,120</div></div></div>
+<div class="timeline-item meal"><div class="timeline-time">18:50</div><div><div class="item-title-row"><div class="item-title">🍽️ 晚餐 <span class="pending">待定</span></div></div><div class="note-list" data-note-key="d3-dinner"></div><button class="add-note" type="button" onclick="addNote('d3-dinner')">＋ 新增備註</button></div></div>
+</div></div></div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">待定</div>
-      <div>
-        <div class="item-title">JR難波 → 三宮</div>
-        <div class="item-sub">🚆 JR大和路線＋JR神戶線<br>JR Yamatoji Line + JR Kobe Line<br>40–50 分｜💳 約 ¥660</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=JR-Namba+Station&destination=Sannomiya+Station+Kobe">🧭</a>
-        </div>
-      </div>
-    </div>
+<!-- D4 -->
+<div class="day-card">
+<div class="day-header" onclick="toggleDay(this)"><h3>D4｜大阪</h3><span class="tag">11/23 月</span></div>
+<div class="day-content">
 
-    <div class="timeline-item">
-      <div class="timeline-time">11:15–11:35</div>
-      <div>
-        <div class="item-title">三宮 → 神戶機場</div>
-        <div class="item-sub">🚃 Port Liner｜Port Island Line（ポートアイランド線）<br>18 分｜💳 ¥340</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Station+Kobe&destination=Kobe+Airport">🧭</a>
-        </div>
-      </div>
-    </div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6937/135.5023">☁️ 大阪｜Apple Weather →</a></div>
+<div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d4" placeholder="點此輸入……"></textarea></div>
+<div class="timeline">
+<div class="timeline-item"><div class="timeline-time">09:00–09:30</div><div><div class="item-title-row"><div class="item-title">🏨 動物園前站 → 天王寺站 → 谷町四丁目站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Dobutsuen-mae+Station&destination=Tanimachi+4-chome+Station">🧭</a></div></div><div class="item-sub">🚇 Osaka Metro 御堂筋線＋谷町線＋步行
+Osaka Metro Midosuji Line + Tanimachi Line + Walk
+大阪メトロ御堂筋線＋谷町線＋徒歩
+約 25–30 分鐘｜🪪 Enjoy Eco Card</div></div></div>
+<div class="timeline-item"><div class="timeline-time">09:30–11:00</div><div><div class="item-title-row"><div class="item-title">🏯 大阪城</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Osaka+Castle">📍</a></div></div><div class="item-sub">🎟️ ¥1,200</div></div></div>
+<div class="timeline-item"><div class="timeline-time">11:00–11:30</div><div><div class="item-title-row"><div class="item-title">谷町四丁目站 → 谷町九丁目站 → 日本橋站 → 黑門市場</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Tanimachi+4-chome+Station&destination=Kuromon+Market+Osaka">🧭</a></div></div><div class="item-sub">🚇 谷町線＋千日前線＋步行
+Tanimachi Line + Sennichimae Line + Walk
+谷町線＋千日前線＋徒歩
+約 25–30 分鐘｜🪪 Enjoy Eco Card</div></div></div>
+<div class="timeline-item"><div class="timeline-time">11:30–13:00</div><div><div class="item-title-row"><div class="item-title">🍣 黑門市場</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kuromon+Market+Osaka">📍</a></div></div></div></div>
+<div class="timeline-item"><div class="timeline-time">13:00–13:15</div><div><div class="item-title-row"><div class="item-title">日本橋站 → 四天王寺前夕陽丘站 → 四天王寺</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Nippombashi+Station+Osaka&destination=Shitennoji-mae+Yuhigaoka+Station">🧭</a></div></div><div class="item-sub">🚇 千日前線＋谷町線＋步行
+Sennichimae Line + Tanimachi Line + Walk
+千日前線＋谷町線＋徒歩
+約 15 分鐘｜🪪 Enjoy Eco Card</div></div></div>
+<div class="timeline-item"><div class="timeline-time">13:15–14:00</div><div><div class="item-title-row"><div class="item-title">⛩️ 四天王寺</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Shitennoji+Temple+Osaka">📍</a></div></div><div class="item-sub">🎟️ ¥500</div></div></div>
+<div class="timeline-item"><div class="timeline-time">14:00–14:15</div><div><div class="item-title-row"><div class="item-title">四天王寺 → 天王寺公園</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shitennoji+Temple&destination=Tennoji+Park">🧭</a></div></div><div class="item-sub">🚶 約 15 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">14:15–15:00</div><div><div class="item-title-row"><div class="item-title">🌳 天王寺公園</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tennoji+Park+Osaka">📍</a></div></div></div></div>
+<div class="timeline-item"><div class="timeline-time">15:00–15:20</div><div><div class="item-title-row"><div class="item-title">天王寺 → 梅田</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Tennoji+Station+Osaka&destination=Umeda+Station+Osaka">🧭</a></div></div><div class="item-sub">🚇 御堂筋線
+Osaka Metro Midosuji Line
+大阪メトロ御堂筋線
+約 15 分鐘｜🪪 Enjoy Eco Card</div></div></div>
+<div class="timeline-item"><div class="timeline-time">15:30–17:30</div><div><div class="item-title-row"><div class="item-title">🏙️ 梅田</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Umeda+Osaka">📍</a></div></div></div></div>
+<div class="timeline-item"><div class="timeline-time">18:00–18:10</div><div><div class="item-title-row"><div class="item-title">梅田 → 心齋橋</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Umeda+Station+Osaka&destination=Shinsaibashi+Station">🧭</a></div></div><div class="item-sub">🚇 御堂筋線
+Osaka Metro Midosuji Line
+大阪メトロ御堂筋線
+約 10 分鐘｜🪪 Enjoy Eco Card</div></div></div>
+<div class="timeline-item meal"><div class="timeline-time">18:10–21:30</div><div><div class="item-title-row"><div class="item-title">🍽️ 待定行程＋晚餐 <span class="pending">待定</span></div></div><div class="item-sub">心齋橋／Amerikamura＋道頓堀＋法善寺橫丁</div><div class="note-list" data-note-key="d4-dinner"></div><button class="add-note" type="button" onclick="addNote('d4-dinner')">＋ 新增備註</button></div></div>
+<div class="timeline-item"><div class="timeline-time">21:30</div><div><div class="item-title-row"><div class="item-title">🏨 道頓堀 → 住一通天閣店</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Dotonbori+Osaka&destination=Apartment+Hotel+11+Tsutenkaku">🧭</a></div></div><div class="item-sub">🚶／步行</div></div></div>
+</div></div></div>
 
-    <div class="timeline-item">
-      <div class="timeline-time">11:40–12:00</div>
-      <div>
-        <div class="item-title">✈️ 抵達神戶機場｜Kobe Airport（UKB）</div>
-        <div class="item-links">
-          <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍</a>
-        </div>
-      </div>
-    </div>
+<!-- D5 -->
+<div class="day-card">
+<div class="day-header" onclick="toggleDay(this)"><h3>D5｜大阪 → 神戶 → 台中</h3><span class="tag">11/24 火</span></div>
+<div class="day-content">
 
-    <div class="timeline-item">
-      <div class="timeline-time">13:30</div>
-      <div>
-        <div class="item-title">✈️ 神戶 → 台中｜STARLUX Airlines</div>
-        <div class="item-sub">13:30 → 16:00｜直飛 · 約 3 小時 30 分</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-  </div>
-
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">☁️ 神戶｜Apple Weather →</a></div>
+<div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d5" placeholder="點此輸入……"></textarea></div>
+<div class="timeline">
+<div class="timeline-item"><div class="timeline-time">待定</div><div><div class="item-title-row"><div class="item-title">🧳 Apartment Hotel 11 Tsutenkaku Check-out</div></div><div class="note-list" data-note-key="d5-checkout"></div><button class="add-note" type="button" onclick="addNote('d5-checkout')">＋ 新增備註</button></div></div>
+<div class="timeline-item meal"><div class="timeline-time">早午餐</div><div><div class="item-title-row"><div class="item-title">🍽️ 早午餐 <span class="pending">待定</span></div></div><div class="note-list" data-note-key="d5-brunch"></div><button class="add-note" type="button" onclick="addNote('d5-brunch')">＋ 新增備註</button></div></div>
+<div class="timeline-item"><div class="timeline-time">待定</div><div><div class="item-title-row"><div class="item-title">Apartment Hotel 11 Tsutenkaku → JR新今宮站 → JR三宮站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Imamiya+Station&destination=Sannomiya+Station+Kobe">🧭</a></div></div><div class="item-sub">🚆 JR大阪環狀線＋JR神戶線
+JR Osaka Loop Line + JR Kobe Line
+JR大阪環状線＋JR神戸線
+約 1 小時 20 分鐘｜💳 約 ¥1,000</div></div></div>
+<div class="timeline-item"><div class="timeline-time">待定</div><div><div class="item-title-row"><div class="item-title">JR三宮站 → 神戶機場</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Station+Kobe&destination=Kobe+Airport">🧭</a></div></div><div class="item-sub">🚃 Port Liner
+Port Island Line
+ポートライナー
+約 18 分鐘｜💳 ¥340</div></div></div>
+<div class="timeline-item"><div class="timeline-time">12:00左右</div><div><div class="item-title-row"><div class="item-title">✈️ 神戶機場報到／安檢</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍</a></div></div><div class="item-sub">建議預留國際線時間</div></div></div>
+<div class="timeline-item"><div class="timeline-time">13:30–16:00</div><div><div class="item-title-row"><div class="item-title">✈️ 神戶 → 台中｜STARLUX Airlines BR036</div></div><div class="item-sub">直飛 · 約 3 小時 30 分鐘</div></div></div>
+</div></div></div>
 </section>
 
 <section class="card">
@@ -1557,7 +1586,7 @@ onclick="toggleTheme()"
   </div>
 
   <div class="tip">🇯🇵 日本時間為 JST（UTC+9），台灣時間為 GMT+8。</div>
-
+  <div class="tip">🚆 本次行程不使用 JR Pass；JR／地鐵／私鐵皆以 IC 或單程票支付。</div>
   <div class="tip">🪪 Day 4 使用 Enjoy Eco Card；實際票價依當日官方資訊確認。</div>
   <div class="tip">🎟️ 景點門票價格為目前行程預估值，出發前建議再確認官方資訊。</div>
   <div class="tip">📱 Google Maps 導航按鈕需要網路；行程內容本身可以直接在網站查看。</div>
@@ -1565,7 +1594,7 @@ onclick="toggleTheme()"
 </section>
 
 <footer>
-  Kobe・Kyoto・Nara・Osaka 5-Day<br>
+  Kobe・Osaka・Nara・Kyoto 5-Day<br>
   November 20 — 24, 2026
 </footer>
 
@@ -1785,45 +1814,35 @@ setInterval(function(){
 
 
 /* =========================
-   行程備註
+   行程備註：每個項目預設 3 筆，可自由新增／刪除
 ========================= */
 
-const noteIds = [
-  "note-d1","note-d2","note-d3","note-d4","note-d5",
-  "d1-luggage","d1-lunch","d1-nankin","d1-tower","d1-kitano",
-  "d2-dinner",
-  "d3-lunch","d3-matcha","d3-dinner",
+const noteKeys = [
+  "d1-luggage","d1-lunch","d1-centergai","d1-nankin","d1-tower","d1-dinner",
+  "d2-kiyomizu-route","d2-kiyomizu","d2-arashiyama","d2-dinner",
+  "d3-lunch","d3-dinner",
   "d4-dinner",
   "d5-checkout","d5-brunch"
 ];
 
+function getNotes(key){
+  const raw=localStorage.getItem("kobe_notes_"+key);
+  if(raw){ try { const a=JSON.parse(raw); if(Array.isArray(a)) return a; } catch(e){} }
+  const old=localStorage.getItem("kobe_note_"+key);
+  return old ? [old,"",""] : ["","",""];
+}
+function saveNotes(key,notes){ localStorage.setItem("kobe_notes_"+key,JSON.stringify(notes)); }
+function renderNotes(key){
+  const box=document.querySelector('[data-note-key="'+key+'"]');
+  if(!box) return;
+  const notes=getNotes(key);
+  box.innerHTML=notes.map((v,i)=>`<div class="note-row"><input value="${escapeAttr(v)}" placeholder="${i+1}. 備註……" oninput="updateNote('${key}',${i},this.value)"><button class="note-delete" type="button" onclick="deleteNote('${key}',${i})">✕</button></div>`).join("");
+}
+function updateNote(key,index,value){ const notes=getNotes(key); notes[index]=value; saveNotes(key,notes); }
+function addNote(key){ const notes=getNotes(key); notes.push(""); saveNotes(key,notes); renderNotes(key); }
+function deleteNote(key,index){ const notes=getNotes(key); notes.splice(index,1); saveNotes(key,notes); renderNotes(key); }
 
-noteIds.forEach(function(id){
-
-  const el =
-    document.getElementById(id);
-
-  if(!el) return;
-
-  const key =
-    "kobe_note_" + id;
-
-  el.value =
-    localStorage.getItem(key) || "";
-
-  el.addEventListener(
-    "input",
-    function(){
-
-      localStorage.setItem(
-        key,
-        el.value
-      );
-
-    }
-  );
-
-});
+noteKeys.forEach(renderNotes);
 
 
 /* =========================
@@ -1956,7 +1975,7 @@ function peopleForExpense(){
 
   if(!people.length){
 
-    return "<option value="">選擇同行者</option>";
+    return "<option>未設定</option>";
 
   }
 
@@ -2224,32 +2243,6 @@ function renderExpenses(){
 
 }
 
-
-
-/* EDITABLE ITINERARY NOTES */
-function noteKey(id){ return "kobe_note_" + id; }
-function loadNoteFields(){
-  document.querySelectorAll(".note-fields").forEach(function(box){
-    var id=box.getAttribute("data-note-id");
-    var saved=JSON.parse(localStorage.getItem(noteKey(id)) || "null");
-    if(saved){
-      for(var i=0;i<3;i++){
-        var el=document.getElementById(id+"-"+(i+1));
-        if(el) el.value=saved[i] || "";
-      }
-    }
-    box.querySelectorAll("input").forEach(function(input){
-      input.addEventListener("change",function(){
-        var vals=[];
-        for(var i=0;i<3;i++){
-          var el=document.getElementById(id+"-"+(i+1));
-          vals.push(el ? el.value : "");
-        }
-        localStorage.setItem(noteKey(id),JSON.stringify(vals));
-      });
-    });
-  });
-}
 
 /* =========================
    PEOPLE
@@ -2698,8 +2691,6 @@ document.addEventListener(
     renderTodos();
 
     renderExpenses();
-
-    loadNoteFields();
 
   }
 );
