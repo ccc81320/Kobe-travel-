@@ -996,15 +996,39 @@ footer{
     padding:13px;
   }
 
-  .timeline-item{
-    grid-template-columns:100px 1fr;
-    gap:10px;
-  }
+  
+.timeline-item {
+  grid-template-columns: 1fr;
+  gap: 8px;
+  padding: 16px 0;
+}
 
-  .timeline-time{
-    font-size:12px;
-    padding-left:25px;
-    white-space:nowrap;
+.timeline-time {
+  font-size: 12px;
+  padding-left: 25px;
+  white-space: normal;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.timeline-item > div:nth-child(2) {
+  margin-left: 25px;
+}
+
+.item-title {
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.item-title-row {
+  gap: 6px;
+}
+
+.item-sub {
+  font-size: 11px;
+  line-height: 1.8;
+  margin-top: 8px;
+}
   }
 
   .item-title{
