@@ -577,6 +577,16 @@ body.night .map-tab.active{
   z-index:2;
 }
 
+.timeline-item:not(:last-child) .timeline-time::after{
+  content:"";
+  position:absolute;
+  left:10px;
+  top:19px;
+  bottom:-22px;
+  width:2px;
+  background:currentColor;
+  opacity:.25;
+}
 
 .item-title{
   font-weight:700;
@@ -986,39 +996,15 @@ footer{
     padding:13px;
   }
 
-  
-.timeline-item {
-  grid-template-columns: 1fr;
-  gap: 8px;
-  padding: 16px 0;
-}
+  .timeline-item{
+    grid-template-columns:100px 1fr;
+    gap:10px;
+  }
 
-.timeline-time {
-  font-size: 12px;
-  padding-left: 25px;
-  white-space: normal;
-  line-height: 1.6;
-  margin-bottom: 4px;
-}
-
-.timeline-item > div:nth-child(2) {
-  margin-left: 25px;
-}
-
-.item-title {
-  font-size: 13px;
-  line-height: 1.7;
-}
-
-.item-title-row {
-  gap: 6px;
-}
-
-.item-sub {
-  font-size: 11px;
-  line-height: 1.8;
-  margin-top: 8px;
-}
+  .timeline-time{
+    font-size:12px;
+    padding-left:25px;
+    white-space:nowrap;
   }
 
   .item-title{
@@ -1103,6 +1089,42 @@ footer{
   }
 }
 .note-map-links{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.note-map-links .map-link{font-size:12px;display:inline-flex;align-items:center}
+
+
+/* Main navigation tabs */
+.main-tabs{display:flex;gap:8px;margin:0 0 18px;padding:6px;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);position:sticky;top:8px;z-index:20}
+.main-tab{flex:1;border:0;border-radius:11px;padding:12px 10px;background:transparent;color:var(--muted);font:inherit;font-weight:800;cursor:pointer;transition:.2s}
+.main-tab.active{background:var(--green);color:#fff}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.shopping-intro{margin-bottom:14px;color:var(--muted);font-size:13px;line-height:1.6}
+.shopping-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 18px}
+.shopping-form input,.shopping-form select,.shopping-form textarea{width:100%;min-width:0;border:1px solid var(--line);border-radius:10px;padding:10px 11px;background:var(--bg);color:var(--text);font:inherit;font-size:14px}
+.shopping-form textarea{grid-column:1/-1;resize:vertical;min-height:68px}
+.shopping-form .full{grid-column:1/-1}
+.shopping-form label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
+.shopping-upload{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.shopping-upload input{padding:7px}
+.shopping-summary{display:flex;gap:10px;margin:12px 0}
+.shopping-summary .total-box{flex:1;min-width:0}
+.shopping-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.shopping-item{border:1px solid var(--line);background:var(--card);border-radius:14px;overflow:hidden;min-width:0}
+.shopping-image{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--green-light);display:block}
+.shopping-image-placeholder{aspect-ratio:4/3;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:34px}
+.shopping-preview{margin-top:10px;max-width:220px}.shopping-preview img{display:block;width:100%;max-height:220px;object-fit:contain;border:1px solid var(--line);border-radius:10px}.shopping-note{white-space:pre-wrap;overflow-wrap:anywhere}.shopping-meta.muted{opacity:.65}
+.shopping-item-body{padding:11px}
+.shopping-item-title{font-weight:800;overflow-wrap:anywhere;margin-bottom:4px}
+.shopping-companion-tag{display:inline-flex;align-items:center;margin-bottom:7px;padding:3px 8px;border-radius:999px;background:var(--green-light);color:var(--text);font-size:11px;font-weight:700}
+.shopping-filters{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 8px}
+.shopping-filters button{border:1px solid var(--line);border-radius:999px;padding:7px 12px;background:var(--bg);color:var(--text);font:inherit;font-size:12px;cursor:pointer}
+.shopping-filters button.active{background:var(--green-light);font-weight:800;border-color:var(--green)}
+.shopping-meta{font-size:12px;color:var(--muted);line-height:1.6;overflow-wrap:anywhere}
+.shopping-item-actions{display:flex;gap:6px;margin-top:10px;align-items:center;flex-wrap:wrap}
+.shopping-item-actions button{border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);padding:6px 8px;font:inherit;font-size:12px;cursor:pointer}
+.shopping-item-actions label{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text);margin-right:auto}
+.shopping-empty{padding:22px 12px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px;grid-column:1/-1}
+@media(max-width:520px){.shopping-form{grid-template-columns:1fr}.shopping-form textarea,.shopping-form .full{grid-column:auto}.shopping-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.shopping-item-body{padding:9px}.main-tabs{top:4px}}
+@media(min-width:700px){.shopping-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
 </style>
 
 </head>
@@ -1127,6 +1149,13 @@ onclick="toggleTheme()"
 
   </button>
 </header>
+
+<nav class="main-tabs" aria-label="主要分頁">
+  <button type="button" class="main-tab active" data-tab="itinerary" onclick="switchMainTab('itinerary')">🗾 行程</button>
+  <button type="button" class="main-tab" data-tab="shopping" onclick="switchMainTab('shopping')">🛍️ 購物清單</button>
+</nav>
+
+<div id="tab-itinerary" class="tab-panel active">
 
 <section class="card now-card">
   <div class="section-title">
@@ -1192,7 +1221,7 @@ onclick="toggleTheme()"
   <circle class="map-node" cx="565" cy="205" r="12"/>
   <circle class="map-node" cx="690" cy="350" r="12"/>
 
-<text class="map-label" x="70" y="72" text-anchor="middle">神戶機場</text> <text class="map-label" x="270" y="98" text-anchor="middle">生田神社</text> <text class="map-label" x="420" y="158" text-anchor="middle">神戶三宮 Center Gai</text> <text class="map-label" x="565" y="178" text-anchor="middle">BE KOBE</text> <text class="map-label" x="690" y="385" text-anchor="middle">神戶港塔</text>
+<text class="map-label" x="70" y="72" text-anchor="middle">神戶機場</text> <text class="map-label" x="270" y="98" text-anchor="middle">生田神社</text> <text class="map-label" x="420" y="158" text-anchor="middle">南京町</text> <text class="map-label" x="565" y="178" text-anchor="middle">神戶港塔</text> <text class="map-label" x="690" y="385" text-anchor="middle">北野異人館</text>
 
   <polygon class="map-arrow" points="675,342 690,350 675,358"/>
 </svg>
@@ -1214,7 +1243,7 @@ onclick="toggleTheme()"
   <circle class="map-node" cx="590" cy="150" r="12"/>
   <circle class="map-node" cx="700" cy="80" r="12"/>
 
-<text class="map-label" x="65" y="383" text-anchor="middle">伏見稻荷大社</text> <text class="map-label" x="225" y="308" text-anchor="middle">嵐山小火車</text> <text class="map-label" x="345" y="163" text-anchor="middle">錦市場</text> <text class="map-label" x="470" y="268" text-anchor="middle">祇園</text> <text class="map-label" x="590" y="120" text-anchor="middle">八坂神社</text> <text class="map-label" x="700" y="52" text-anchor="middle">清水寺</text>
+<text class="map-label" x="65" y="383" text-anchor="middle">伏見稻荷大社</text> <text class="map-label" x="225" y="308" text-anchor="middle">清水寺</text> <text class="map-label" x="345" y="163" text-anchor="middle">八坂神社</text> <text class="map-label" x="470" y="268" text-anchor="middle">祇園</text> <text class="map-label" x="590" y="120" text-anchor="middle">嵐山竹林</text> <text class="map-label" x="700" y="52" text-anchor="middle">天龍寺・渡月橋</text>
 
   <polygon class="map-arrow" points="685,72 700,80 685,88"/>
 </svg>
@@ -1370,6 +1399,7 @@ onclick="toggleTheme()"
 <div class="timeline-item"><div class="timeline-time">12:30</div><div><div class="item-title-row"><div class="item-title">✈️ 抵達神戶機場 Kobe Airport（UKB）</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍</a></div></div><div class="item-sub">入境＋行李：約 30–45 分鐘</div></div></div>
 <div class="timeline-item"><div class="timeline-time">12:45–13:10</div><div><div class="item-title-row"><div class="item-title">神戶機場 → 三宮</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Sannomiya+Station+Kobe">🧭</a></div></div><div class="item-sub">🚃 Port Liner
 Port Island Line
+ポートライナー
 約 18 分鐘｜💳 ¥340</div></div></div>
 <div class="timeline-item"><div class="timeline-time">13:30–13:50</div><div><div class="item-title-row"><div class="item-title">🧳 三宮寄放行李</div></div><div class="item-sub">🚶 步行 5–10 分鐘</div><div class="note-list" data-note-key="d1-luggage"></div><button class="add-note" type="button" onclick="addNote('d1-luggage')">＋ 新增備註</button></div></div>
 <div class="timeline-item meal"><div class="timeline-time">14:00–15:00</div><div><div class="item-title-row"><div class="item-title">🍽️ 神戶牛午餐 <span class="pending">待定</span></div></div><div class="item-sub">餐廳待定</div><div class="note-list" data-note-key="d1-lunch"></div><button class="add-note" type="button" onclick="addNote('d1-lunch')">＋ 新增備註</button></div></div>
@@ -1378,7 +1408,7 @@ Port Island Line
 <div class="timeline-item"><div class="timeline-time">15:40–16:00</div><div><div class="item-title-row"><div class="item-title">生田神社 → 神戶三宮 Center Gai</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Ikuta+Shrine+Kobe&destination=Kobe+Sannomiya+Center+Gai">🧭</a></div></div><div class="item-sub">🚶 約 8 分鐘</div></div></div>
 <div class="timeline-item"><div class="timeline-time">16:00–17:00</div><div><div class="item-title-row"><div class="item-title">🏮 神戶三宮 Center Gai</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Sannomiya+Center+Gai">📍</a></div></div><div class="note-list" data-note-key="d1-centergai"></div><button class="add-note" type="button" onclick="addNote('d1-centergai')">＋ 新增備註</button></div></div>
 <div class="timeline-item"><div class="timeline-time">17:00–17:15</div><div><div class="item-title-row"><div class="item-title">三宮 Center Gai → 南京町</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Sannomiya+Center+Gai&destination=Nankinmachi+Kobe">🧭</a></div></div><div class="item-sub">🚶 約 12 分鐘</div></div></div>
-<div class="timeline-item"><div class="timeline-time">17:15–17:45</div><div><div class="item-title-row"><div class="item-title">🏮 南京町</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Nankinmachi+Kobe">📍</a></div></div><div class="item-sub"></div><div class="note-list" data-note-key="d1-nankin"></div><div class="note-map-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=TAOCA+COFFEE+Kobe+Motomachi">📍 TAOCA COFFEE Kobe Motomachi</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hokodo+Kobe+Motomachi">📍 放香堂</a></div><button class="add-note" type="button" onclick="addNote('d1-nankin')">＋ 新增備註</button></div></div>
+<div class="timeline-item"><div class="timeline-time">17:15–17:45</div><div><div class="item-title-row"><div class="item-title">🏮 南京町</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Nankinmachi+Kobe">📍</a></div></div><div class="item-sub">Chinatown</div><div class="note-list" data-note-key="d1-nankin"></div><div class="note-map-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=TAOCA+COFFEE+Kobe+Motomachi">📍 TAOCA COFFEE Kobe Motomachi</a><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hokodo+Kobe+Motomachi">📍 放香堂</a></div><button class="add-note" type="button" onclick="addNote('d1-nankin')">＋ 新增備註</button></div></div>
 <div class="timeline-item"><div class="timeline-time">17:45–18:00</div><div><div class="item-title-row"><div class="item-title">南京町 → 神戶港塔</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Nankinmachi+Kobe&destination=Kobe+Port+Tower">🧭</a></div></div><div class="item-sub">🚶 約 15 分鐘</div></div></div>
 <div class="timeline-item"><div class="timeline-time">18:00–19:00</div><div><div class="item-title-row"><div class="item-title">🗼 神戶港塔 ＋ 🗼 BE KOBE Monument</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Port+Tower">📍</a></div></div><div class="item-sub">🎟️ ¥1,200｜不上塔可免費外拍</div><div class="note-list" data-note-key="d1-tower"></div><button class="add-note" type="button" onclick="addNote('d1-tower')">＋ 新增備註</button></div></div>
 <div class="timeline-item"><div class="timeline-time">19:10–19:30</div><div><div class="item-title-row"><div class="item-title">神戶港塔 → JR元町站 → JR三宮站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Port+Tower&destination=Sannomiya+Station+Kobe">🧭</a></div></div><div class="item-sub">🚶＋🚆 JR神戶線
@@ -1407,12 +1437,11 @@ JR Kobe Line + JR Osaka Loop Line
 <div class="timeline-time">06:00–07:30</div>
 <div>
 <div class="item-title-row">
-<div class="item-title">🏨 動物園前站  → 北濱 → 中書島 → 伏見稻荷</div>
+<div class="item-title">🏨 動物園前站 (6:16) → 北濱 → 中書島 → 伏見稻荷</div>
 <div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&amp;origin=Dobutsuen-mae+Station,+Osaka&amp;destination=Fushimi-Inari+Station,+Kyoto&amp;travelmode=transit">🧭</a></div>
 </div>
 <div class="item-sub">🚆 大阪地鐵堺筋線＋京阪本線
 Osaka Metro Sakaisuji Line + Keihan Main Line
-班次6:16
 約 1 小時 30 分鐘｜💳 ¥720</div>
 </div>
 </div>
@@ -1424,7 +1453,7 @@ Osaka Metro Sakaisuji Line + Keihan Main Line
 <div class="item-title">⛩️ 伏見稻荷大社</div>
 <div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&amp;query=Fushimi+Inari+Taisha+Kyoto">📍</a></div>
 </div>
-<div class="item-sub">千本鳥居</div>
+<div class="item-sub">千本鳥居｜參拜與拍照</div>
 </div>
 </div>
 
@@ -1461,7 +1490,6 @@ JR Nara Line + Walk
 </div>
 <div class="item-sub">🚆 JR 山陰本線（嵯峨野線）＋🚶步行約 10 分鐘
 JR Sagano Line (San-in Main Line)
-班次9:42
 </div>
 </div>
 </div>
@@ -1492,7 +1520,7 @@ JR Sagano Line (San-in Main Line)
 </div>
 </div>
 <div class="item-sub">🏯 天龍寺門票 ¥500｜16:30 停止售票
-🍁 楓葉季</div>
+🍁 楓葉季｜可安排抹茶與沿途拍照</div>
 <div class="note-list" data-note-key="d2-arashiyama"></div>
 <button class="add-note" type="button" onclick="addNote('d2-arashiyama')">＋ 新增備註</button>
 </div>
@@ -1507,7 +1535,7 @@ JR Sagano Line (San-in Main Line)
 </div>
 <div class="item-sub">🚆 嵐電＋阪急京都線＋🚶步行約 12 分鐘
 Randen Arashiyama Line + Hankyu Kyoto Line
-預計約 1 小時</div>
+預計約 1 小時｜依實際班次安排</div>
 <div class="note-list" data-note-key="d2-nishiki-route"></div>
 <button class="add-note" type="button" onclick="addNote('d2-nishiki-route')">＋ 新增備註</button>
 </div>
@@ -1530,7 +1558,7 @@ Randen Arashiyama Line + Hankyu Kyoto Line
 <div class="item-sub">🛍️ 錦市場逛街與小吃
 🌸 祇園、花見小路、八坂神社
 🏮 八坂之塔、三年坂・二年坂
-🏯 清水寺門票 ¥500</div>
+🏯 清水寺門票 ¥500｜留意參拜時間與步行距離</div>
 <div class="note-list" data-note-key="d2-kiyomizu"></div>
 <button class="add-note" type="button" onclick="addNote('d2-kiyomizu')">＋ 新增備註</button>
 </div>
@@ -1567,7 +1595,7 @@ Kyoto City Bus + JR Kyoto Line + Osaka Metro Midosuji Line
 <div class="item-title">🏨 返回飯店</div>
 <div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&amp;origin=Shinsaibashi+Station,+Osaka&amp;destination=Shin-Imamiya+Station,+Osaka&amp;travelmode=transit">🧭</a></div>
 </div>
-<div class="item-sub"></div>
+<div class="item-sub">依飯店位置搭乘大阪地鐵或 JR 返回</div>
 </div>
 </div>
 
@@ -1601,12 +1629,14 @@ JR大和路線
 <div class="timeline-item"><div class="timeline-time">13:00–14:00</div><div><div class="item-title-row"><div class="item-title">🏘️ 奈良町＋午餐</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Naramachi+Nara">📍</a></div></div><div class="item-sub">午餐待定</div><div class="note-list" data-note-key="d3-lunch"></div><button class="add-note" type="button" onclick="addNote('d3-lunch')">＋ 新增備註</button></div></div>
 <div class="timeline-item"><div class="timeline-time">14:00–15:00</div><div><div class="item-title-row"><div class="item-title">JR奈良站 → JR宇治站 → 平等院</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=JR-Nara+Station&destination=Byodoin+Temple+Uji">🧭</a></div></div><div class="item-sub">🚆 JR奈良線＋步行
 JR Nara Line + Walk
+JR奈良線＋徒歩
 約 50 分鐘｜💳 ¥510｜中村藤吉宇治本店／平等院店可先取號</div></div></div>
 <div class="timeline-item"><div class="timeline-time">15:00–16:00</div><div><div class="item-title-row"><div class="item-title">🏯 平等院＋宇治表參道抹茶街</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Byodoin+Temple+Uji">📍</a></div></div><div class="item-sub">🎟️ ¥700</div></div></div>
 <div class="timeline-item"><div class="timeline-time">16:00–16:10</div><div><div class="item-title-row"><div class="item-title">平等院 → 宇治神社</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Byodoin+Temple+Uji&destination=Uji+Shrine+Uji">🧭</a></div></div><div class="item-sub">🚶 約 10 分鐘</div></div></div>
 <div class="timeline-item"><div class="timeline-time">16:10–17:00</div><div><div class="item-title-row"><div class="item-title">⛩️ 宇治神社＋宇治川／宇治橋</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Uji+Shrine+Uji">📍</a></div></div></div></div>
 <div class="timeline-item"><div class="timeline-time">17:30–18:50</div><div><div class="item-title-row"><div class="item-title">JR宇治站 → JR奈良站 → JR新今宮站 → 動物園前站 → 心齋橋站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Uji+Station+Kyoto&destination=Shinsaibashi+Station">🧭</a></div></div><div class="item-sub">🚆 JR奈良線＋JR大和路線＋🚇 御堂筋線
 JR Nara Line + JR Yamatoji Line + Midosuji Line
+JR奈良線＋JR大和路線＋御堂筋線
 約 1 小時 15 分鐘｜💳 ¥1,120</div></div></div>
 <div class="timeline-item meal"><div class="timeline-time">18:50</div><div><div class="item-title-row"><div class="item-title">🍽️ 晚餐 <span class="pending">待定</span></div></div><div class="note-list" data-note-key="d3-dinner"></div><button class="add-note" type="button" onclick="addNote('d3-dinner')">＋ 新增備註</button></div></div>
 </div></div></div>
@@ -1619,16 +1649,19 @@ JR Nara Line + JR Yamatoji Line + Midosuji Line
 <div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6937/135.5023">☁️ 大阪｜Apple Weather →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d4" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
-<div class="timeline-item"><div class="timeline-time">09:00–09:30</div><div><div class="item-title-row"><div class="item-title">🏨 動物園前站 → 天王寺站 → 谷町四丁目站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Dobutsuen-mae+Station&destination=Tanimachi+4-chome+Station">🧭</a></div></div><div class="item-sub">🚇 Osaka Metro 御堂筋線＋谷町線＋🚶步行
+<div class="timeline-item"><div class="timeline-time">09:00–09:30</div><div><div class="item-title-row"><div class="item-title">🏨 動物園前站 → 天王寺站 → 谷町四丁目站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Dobutsuen-mae+Station&destination=Tanimachi+4-chome+Station">🧭</a></div></div><div class="item-sub">🚇 Osaka Metro 御堂筋線＋谷町線＋步行
 Osaka Metro Midosuji Line + Tanimachi Line + Walk
+大阪メトロ御堂筋線＋谷町線＋徒歩
 約 25–30 分鐘｜🪪 Enjoy Eco Card</div></div></div>
 <div class="timeline-item"><div class="timeline-time">09:30–11:00</div><div><div class="item-title-row"><div class="item-title">🏯 大阪城</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Osaka+Castle">📍</a></div></div><div class="item-sub">🎟️ ¥1,200</div></div></div>
-<div class="timeline-item"><div class="timeline-time">11:00–11:30</div><div><div class="item-title-row"><div class="item-title">谷町四丁目站 → 谷町九丁目站 → 日本橋站 → 黑門市場</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Tanimachi+4-chome+Station&destination=Kuromon+Market+Osaka">🧭</a></div></div><div class="item-sub">🚇 谷町線＋千日前線＋🚶步行
+<div class="timeline-item"><div class="timeline-time">11:00–11:30</div><div><div class="item-title-row"><div class="item-title">谷町四丁目站 → 谷町九丁目站 → 日本橋站 → 黑門市場</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Tanimachi+4-chome+Station&destination=Kuromon+Market+Osaka">🧭</a></div></div><div class="item-sub">🚇 谷町線＋千日前線＋步行
 Tanimachi Line + Sennichimae Line + Walk
+谷町線＋千日前線＋徒歩
 約 25–30 分鐘｜🪪 Enjoy Eco Card</div></div></div>
 <div class="timeline-item"><div class="timeline-time">11:30–13:00</div><div><div class="item-title-row"><div class="item-title">🍣 黑門市場</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kuromon+Market+Osaka">📍</a></div></div></div></div>
-<div class="timeline-item"><div class="timeline-time">13:00–13:15</div><div><div class="item-title-row"><div class="item-title">日本橋站 → 四天王寺前夕陽丘站 → 四天王寺</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Nippombashi+Station+Osaka&destination=Shitennoji-mae+Yuhigaoka+Station">🧭</a></div></div><div class="note-list" data-note-key="d4-kuromon"></div><button class="add-note" type="button" onclick="addNote('d4-kuromon')">＋ 新增備註</button><div class="item-sub">🚇 千日前線＋谷町線＋🚶步行
+<div class="timeline-item"><div class="timeline-time">13:00–13:15</div><div><div class="item-title-row"><div class="item-title">日本橋站 → 四天王寺前夕陽丘站 → 四天王寺</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Nippombashi+Station+Osaka&destination=Shitennoji-mae+Yuhigaoka+Station">🧭</a></div></div><div class="note-list" data-note-key="d4-kuromon"></div><button class="add-note" type="button" onclick="addNote('d4-kuromon')">＋ 新增備註</button><div class="item-sub">🚇 千日前線＋谷町線＋步行
 Sennichimae Line + Tanimachi Line + Walk
+千日前線＋谷町線＋徒歩
 約 15 分鐘｜🪪 Enjoy Eco Card</div></div></div>
 <div class="timeline-item"><div class="timeline-time">13:15–14:00</div><div><div class="item-title-row"><div class="item-title">⛩️ 四天王寺</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Shitennoji+Temple+Osaka">📍</a></div></div><div class="item-sub">🎟️ ¥500</div></div></div>
 <div class="timeline-item"><div class="timeline-time">14:00–14:15</div><div><div class="item-title-row"><div class="item-title">四天王寺 → 天王寺公園</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shitennoji+Temple&destination=Tennoji+Park">🧭</a></div></div><div class="item-sub">🚶 約 15 分鐘</div></div></div>
@@ -1640,8 +1673,9 @@ Osaka Metro Midosuji Line
 <div class="timeline-item"><div class="timeline-time">15:30–17:30</div><div><div class="item-title-row"><div class="item-title">🏙️ 梅田</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Umeda+Osaka">📍</a></div></div></div></div>
 <div class="timeline-item"><div class="timeline-time">18:00–18:10</div><div><div class="item-title-row"><div class="item-title">梅田站 → 心齋橋站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Umeda+Station+Osaka&destination=Shinsaibashi+Station">🧭</a></div></div><div class="note-list" data-note-key="d4-umeda"></div><button class="add-note" type="button" onclick="addNote('d4-umeda')">＋ 新增備註</button><div class="item-sub">🚇 御堂筋線
 Osaka Metro Midosuji Line
+大阪メトロ御堂筋線
 約 10 分鐘｜🪪 Enjoy Eco Card</div></div></div>
-<div class="timeline-item meal"><div class="timeline-time">18:10–21:30</div><div><div class="item-title-row"><div class="item-title">🍽️ 待定行程＋晚餐 <span class="pending">待定</span></div></div><div class="item-sub">心齋橋＋道頓堀＋法善寺橫丁</div><div class="note-list" data-note-key="d4-dinner"></div><button class="add-note" type="button" onclick="addNote('d4-dinner')">＋ 新增備註</button></div></div>
+<div class="timeline-item meal"><div class="timeline-time">18:10–21:30</div><div><div class="item-title-row"><div class="item-title">🍽️ 待定行程＋晚餐 <span class="pending">待定</span></div></div><div class="item-sub">心齋橋／Amerikamura＋道頓堀＋法善寺橫丁</div><div class="note-list" data-note-key="d4-dinner"></div><button class="add-note" type="button" onclick="addNote('d4-dinner')">＋ 新增備註</button></div></div>
 <div class="timeline-item"><div class="timeline-time">21:30</div><div><div class="item-title-row"><div class="item-title">🏨 道頓堀 → 住一通天閣店</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Dotonbori+Osaka&destination=Apartment+Hotel+11+Tsutenkaku">🧭</a></div></div><div class="item-sub">🚶／步行</div></div></div>
 </div></div></div>
 
@@ -1657,9 +1691,11 @@ Osaka Metro Midosuji Line
 <div class="timeline-item meal"><div class="timeline-time">早午餐</div><div><div class="item-title-row"><div class="item-title">🍽️ 早午餐 <span class="pending">待定</span></div></div><div class="note-list" data-note-key="d5-brunch"></div><button class="add-note" type="button" onclick="addNote('d5-brunch')">＋ 新增備註</button></div></div>
 <div class="timeline-item"><div class="timeline-time">待定</div><div><div class="item-title-row"><div class="item-title">住一通天閣店 → JR新今宮 → JR三宮</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Imamiya+Station&destination=Sannomiya+Station+Kobe">🧭</a></div></div><div class="item-sub">🚆 JR大阪環狀線＋JR神戶線
 JR Osaka Loop Line + JR Kobe Line
+JR大阪環状線＋JR神戸線
 約 1 小時 20 分鐘｜💳 約 ¥1,000</div></div></div>
 <div class="timeline-item"><div class="timeline-time">待定</div><div><div class="item-title-row"><div class="item-title">三宮 → 神戶機場</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Sannomiya+Station+Kobe&destination=Kobe+Airport">🧭</a></div></div><div class="item-sub">🚃 Port Liner
 Port Island Line
+ポートライナー
 約 18 分鐘｜💳 ¥340</div></div></div>
 <div class="timeline-item"><div class="timeline-time">12:00左右</div><div><div class="item-title-row"><div class="item-title">✈️ 神戶機場報到／安檢</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍</a></div></div><div class="item-sub">建議預留國際線時間</div></div></div>
 <div class="timeline-item"><div class="timeline-time">13:30–16:00</div><div><div class="item-title-row"><div class="item-title">✈️ 神戶 → 台中｜STARLUX Airlines JX307</div></div><div class="item-sub">直飛 · 約 3 小時 30 分鐘</div></div></div>
@@ -1746,9 +1782,36 @@ Port Island Line
     <span class="small">旅行中快速查看</span>
   </div>
 
-  <div class="tip">抹茶: 中村藤吉/一保堂/丸久小山園</div>
-  <div class="tip">購物: Muji/3 Coins/唐吉軻德</div>
-  <div class="tip">🪪 Day 4 使用 Enjoy Eco Card</div>
+  <div class="tip">🇯🇵 日本時間為 JST（UTC+9），台灣時間為 GMT+8。</div>
+  <div class="tip">🚆 本次行程不使用 JR Pass；JR／地鐵／私鐵皆以 IC 或單程票支付。</div>
+  <div class="tip">🪪 Day 4 使用 Enjoy Eco Card；實際票價依當日官方資訊確認。</div>
+  <div class="tip">🎟️ 景點門票價格為目前行程預估值，出發前建議再確認官方資訊。</div>
+  <div class="tip">📱 Google Maps 導航按鈕需要網路；行程內容本身可以直接在網站查看。</div>
+  <div class="tip">☁️ 天氣按鈕固定連到指定城市，不使用手機目前位置作為目的地。</div>
+</section>
+
+</div>
+
+<section id="tab-shopping" class="tab-panel">
+  <section class="card">
+    <div class="section-title">
+      <h2>🛍️ 購物清單</h2>
+      <span class="small">圖片方格・購物備忘</span>
+    </div>
+    <div class="shopping-intro">上傳商品圖片，再寫下簡單備註即可。商品會以方格排列，資料保存在目前瀏覽器中。</div>
+    <details class="expense-entry" id="shoppingFormDetails" open>
+      <summary>＋ 新增圖片</summary>
+      <form class="shopping-form" id="shoppingForm">
+        <div class="full"><label for="shopImage">商品圖片</label><div class="shopping-upload"><input id="shopImage" type="file" accept="image/*"><span class="small">支援手機／電腦圖片，單張最多 2 MB。</span></div><div id="shoppingImagePreview" class="shopping-preview" style="display:none"></div></div>
+        <div><label for="shopCompanion">旅伴／分類</label><input id="shopCompanion" type="text" placeholder="例如：我、Amy、媽媽" /></div>
+        <div><label for="shopNote">備註（可留空）</label><textarea id="shopNote" placeholder="例如：顏色、尺寸、價格或購買地點……"></textarea></div>
+        <button class="btn primary full" type="submit" id="shoppingSubmit">＋ 加入購物清單</button>
+        <button class="btn full" type="button" id="shoppingCancelEdit" style="display:none" onclick="cancelShoppingEdit()">取消編輯</button>
+      </form>
+    </details>
+    <div class="shopping-filters" id="shoppingFilters"></div>
+    <div class="shopping-grid" id="shoppingList" style="margin-top:14px"></div>
+  </section>
 </section>
 
 <footer>
@@ -2820,6 +2883,63 @@ function renderTodos(){
     }).join("");
 
 }
+
+
+
+/* =========================
+   Main tabs + image-note shopping grid
+========================= */
+function switchMainTab(tab){
+  document.querySelectorAll('.main-tab').forEach(function(btn){btn.classList.toggle('active',btn.dataset.tab===tab);});
+  document.querySelectorAll('.tab-panel').forEach(function(panel){panel.classList.toggle('active',panel.id==='tab-'+tab);});
+  if(tab==='shopping') renderShopping();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+var shoppingItems=[];
+var shoppingEditId=null;
+var shoppingImageData='';
+try{shoppingItems=JSON.parse(localStorage.getItem('kobe_shopping_items_v1')||'[]');if(!Array.isArray(shoppingItems))shoppingItems=[];}catch(e){shoppingItems=[];}
+function saveShopping(){try{localStorage.setItem('kobe_shopping_items_v1',JSON.stringify(shoppingItems));}catch(e){alert('保存失敗：圖片可能太大，請改用較小的圖片後再試。');}}
+var shoppingFilter='全部';
+function renderShopping(){
+  var list=document.getElementById('shoppingList');if(!list)return;
+  var filters=document.getElementById('shoppingFilters');
+  var companions=Array.from(new Set(shoppingItems.map(function(x){return (x.companion||'').trim()||'未分類';})));
+  if(filters){var allFilters=['全部'].concat(companions);if(allFilters.indexOf(shoppingFilter)<0)shoppingFilter='全部';filters.innerHTML=allFilters.map(function(name){return '<button type="button" class="'+(shoppingFilter===name?'active':'')+'" onclick="setShoppingFilter('+JSON.stringify(name).replace(/</g,'\\u003c')+')">'+escapeHtml(name)+'</button>';}).join('');filters.style.display=shoppingItems.length?'flex':'none';}
+  var shown=shoppingItems.filter(function(x){return shoppingFilter==='全部'||((x.companion||'').trim()||'未分類')===shoppingFilter;});
+  if(!shown.length){list.innerHTML='<div class="shopping-empty">🛍️ '+(shoppingItems.length?'這個分類還沒有圖片。':'還沒有圖片，按「新增圖片」開始整理想買的商品吧！')+'</div>';return;}
+  list.innerHTML=shown.map(function(x){
+    var image=x.image?'<img class="shopping-image" src="'+x.image+'" alt="購物圖片">':'<div class="shopping-image-placeholder">🛍️</div>';
+    var companion=(x.companion||'').trim()||'未分類';
+    return '<article class="shopping-item">'+image+'<div class="shopping-item-body"><div class="shopping-companion-tag">'+escapeHtml(companion)+'</div>'+(x.note?'<div class="shopping-meta shopping-note">'+escapeHtml(x.note)+'</div>':'<div class="shopping-meta shopping-note muted">沒有備註</div>')+'<div class="shopping-item-actions"><button type="button" onclick="editShopping('+x.id+')">編輯</button><button type="button" onclick="deleteShopping('+x.id+')">刪除</button></div></div></article>';
+  }).join('');
+}
+function setShoppingFilter(name){shoppingFilter=name;renderShopping();}
+function updateShoppingPreview(){
+  var preview=document.getElementById('shoppingImagePreview');
+  if(!preview)return;
+  if(shoppingImageData){preview.innerHTML='<img src="'+shoppingImageData+'" alt="圖片預覽">';preview.style.display='block';}
+  else {preview.innerHTML='';preview.style.display='none';}
+}
+document.getElementById('shopImage').addEventListener('change',function(){
+  var file=this.files&&this.files[0];if(!file)return;
+  if(!file.type.startsWith('image/')){alert('請選擇圖片檔案。');this.value='';return;}
+  if(file.size>2*1024*1024){alert('圖片大於 2 MB，請先縮小圖片再上傳。');this.value='';return;}
+  var reader=new FileReader();reader.onload=function(){shoppingImageData=reader.result;updateShoppingPreview();};reader.readAsDataURL(file);
+});
+document.getElementById('shoppingForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var old=shoppingItems.find(function(x){return x.id===shoppingEditId;});
+  var image=shoppingImageData||(old?old.image:'');
+  if(!image){alert('請先上傳一張商品圖片。');return;}
+  var item={id:shoppingEditId||Date.now(),image:image,note:document.getElementById('shopNote').value.trim(),companion:document.getElementById('shopCompanion').value.trim()};
+  if(shoppingEditId){shoppingItems=shoppingItems.map(function(x){return x.id===shoppingEditId?item:x;});}else{shoppingItems.unshift(item);}
+  saveShopping();renderShopping();this.reset();shoppingImageData='';updateShoppingPreview();shoppingEditId=null;document.getElementById('shoppingSubmit').textContent='＋ 加入購物清單';document.getElementById('shoppingCancelEdit').style.display='none';
+});
+function editShopping(id){var x=shoppingItems.find(function(v){return v.id===id;});if(!x)return;shoppingEditId=id;shoppingImageData=x.image||'';document.getElementById('shopNote').value=x.note||'';document.getElementById('shopCompanion').value=x.companion||'';document.getElementById('shopImage').value='';updateShoppingPreview();document.getElementById('shoppingSubmit').textContent='儲存修改';document.getElementById('shoppingCancelEdit').style.display='block';document.getElementById('shoppingFormDetails').open=true;document.getElementById('shoppingFormDetails').scrollIntoView({behavior:'smooth',block:'start'});}
+function cancelShoppingEdit(){shoppingEditId=null;shoppingImageData='';document.getElementById('shoppingForm').reset();updateShoppingPreview();document.getElementById('shoppingSubmit').textContent='＋ 加入購物清單';document.getElementById('shoppingCancelEdit').style.display='none';}
+function deleteShopping(id){if(!confirm('確定要刪除這張圖片嗎？'))return;shoppingItems=shoppingItems.filter(function(x){return x.id!==id;});saveShopping();renderShopping();}
 
 
 /* =========================
