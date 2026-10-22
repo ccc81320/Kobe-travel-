@@ -739,9 +739,12 @@ body.night .map-tab.active{
 
 .expense-row{
   display:grid;
-  grid-template-columns:62px 100px minmax(120px,1fr) 88px 62px 72px 82px 82px 35px;
+  grid-template-columns:minmax(132px,1.25fr) minmax(76px,.9fr) minmax(110px,1.5fr) minmax(65px,.7fr) minmax(55px,.6fr) minmax(55px,.6fr) minmax(78px,.9fr) minmax(78px,.9fr) 28px;
   gap:7px;
   align-items:center;
+  min-width:0;
+  width:100%;
+  box-sizing:border-box;
   padding:9px 0;
   border-bottom:1px solid var(--line);
 }
@@ -752,10 +755,26 @@ body.night .map-tab.active{
   font-weight:700;
 }
 
+ .expense-row > *{
+  min-width:0;
+  max-width:100%;
+}
+
 .expense-row input,
 .expense-row select{
+  box-sizing:border-box;
+  min-width:0;
+  width:100%;
   padding:8px;
   font-size:11px;
+}
+
+.expense-row input[type="date"]{
+  min-width:0;
+  width:100%;
+  max-width:100%;
+  font-size:12px;
+  padding:8px 3px;
 }
 
 .expense-total{
@@ -917,6 +936,43 @@ body.night .map-tab.active{
   color:var(--muted);
   cursor:pointer;
   padding:4px;
+}
+
+/* Editable practical-info rows */
+.practical-tip-row{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 0;
+  border-bottom:1px solid var(--line);
+}
+.practical-tip-text{
+  min-width:0;
+  flex:1;
+  overflow-wrap:anywhere;
+  line-height:1.6;
+}
+.practical-tip-delete{
+  flex:0 0 auto;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:transparent;
+  color:var(--muted);
+  padding:5px 10px;
+  cursor:pointer;
+}
+.practical-tip-delete:hover{color:var(--text);}
+.practical-tip-form{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:8px;
+  margin-top:12px;
+}
+.practical-tip-form input{min-width:0;width:100%;box-sizing:border-box;}
+@media(max-width:560px){
+  .practical-tip-form{grid-template-columns:1fr;}
+  .practical-tip-form button{width:100%;}
 }
 
 /* PRACTICAL */
@@ -1096,8 +1152,8 @@ footer{
     display:none;
   }
 
-  .expense-row{
-    grid-template-columns:1fr 1fr;
+   .expense-row{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
     gap:7px;
     padding:10px;
     border:1px solid var(--line);
@@ -1109,10 +1165,13 @@ footer{
     grid-column:1/-1;
   }
 
+  .expense-row > *:nth-child(1),
+  .expense-row > *:nth-child(2),
   .expense-row > *:nth-child(4),
   .expense-row > *:nth-child(5),
   .expense-row > *:nth-child(6),
-  .expense-row > *:nth-child(7){
+  .expense-row > *:nth-child(7),
+  .expense-row > *:nth-child(8){
     min-width:0;
   }
 
@@ -1222,6 +1281,7 @@ onclick="toggleTheme()"
 <nav class="main-tabs" aria-label="主要分頁">
   <button type="button" class="main-tab active" data-tab="itinerary" onclick="switchMainTab('itinerary')">🗾 行程</button>
   <button type="button" class="main-tab" data-tab="shopping" onclick="switchMainTab('shopping')">🛍️ 購物清單</button>
+  <button type="button" class="main-tab" data-tab="expenses" onclick="switchMainTab('expenses')">💰 消費清單</button>
 </nav>
 
 <div id="tab-itinerary" class="tab-panel active">
@@ -1760,9 +1820,86 @@ Port Island Line
 </div></div></div>
 </section>
 
+
+
 <section class="card">
   <div class="section-title">
-    <h2>② 💰 消費紀錄</h2>
+    <h2>② ☑️ 待辦事項</h2>
+    <span class="small">一同去郊遊</span>
+  </div>
+
+  <div class="people-box">
+    <div class="small">👥 旅伴</div>
+
+<div id="peopleList" class="people-list"></div>
+
+<div class="add-person">
+  <input id="personInput" placeholder="輸入旅伴">
+  <button class="btn primary" onclick="addPerson()">新增</button>
+</div>
+
+  </div>
+
+  <div class="todo-add">
+    <input id="todoInput" placeholder="新增待辦事項">
+
+<select id="todoOwner">
+  <option value="">負責人</option>
+  <option value="Celina">Celina</option>
+  <option value="Magic">Magic</option>
+</select>
+
+<input id="todoNoteInput" placeholder="備註（可選）">
+
+<button class="btn primary" onclick="addTodo()">新增</button>
+
+  </div>
+
+  <div id="todoList"></div>
+</section>
+
+<section class="card">
+  <div class="section-title">
+    <h2>③ 💡 實用資訊</h2>
+    <span class="small">旅行中快速查看</span>
+  </div>
+
+  <div id="practicalTipsList"></div>
+  <div class="practical-tip-form">
+    <input id="practicalTipInput" type="text" placeholder="輸入實用資訊，例如：交通、店家、注意事項">
+    <button class="btn primary" type="button" onclick="addPracticalTip()">＋ 新增資訊</button>
+  </div>
+  <div class="small">新增的資訊會保存在這台裝置的瀏覽器中。</div>
+</section>
+
+</div>
+
+<section id="tab-shopping" class="tab-panel">
+  <section class="card">
+    <div class="section-title">
+      <h2>🛍️ 購物清單</h2>
+      <span class="small">圖片方格・購物備忘</span>
+    </div>
+    <div class="shopping-intro">上傳商品圖片，再寫下簡單備註即可。</div>
+    <details class="expense-entry" id="shoppingFormDetails" open>
+      <summary>＋ 新增圖片</summary>
+      <form class="shopping-form" id="shoppingForm">
+        <div class="full"><label for="shopImage">商品圖片</label><div class="shopping-upload"><input id="shopImage" type="file" accept="image/*"><span class="small">支援手機／電腦圖片，單張最多 2 MB。</span></div><div id="shoppingImagePreview" class="shopping-preview" style="display:none"></div></div>
+        <div><label for="shopCompanion">旅伴</label><select id="shopCompanion" required><option value="Celina">Celina</option><option value="Magic">Magic</option></select></div>
+        <div><label for="shopNote">備註（可留空）</label><textarea id="shopNote" placeholder="例如：顏色、尺寸、價格或購買地點……"></textarea></div>
+        <button class="btn primary full" type="submit" id="shoppingSubmit">＋ 加入購物清單</button>
+        <button class="btn full" type="button" id="shoppingCancelEdit" style="display:none" onclick="cancelShoppingEdit()">取消編輯</button>
+      </form>
+    </details>
+    <div class="shopping-filters" id="shoppingFilters"></div>
+    <div class="shopping-grid" id="shoppingList" style="margin-top:14px"></div>
+  </section>
+</section>
+
+<section id="tab-expenses" class="tab-panel">
+<section class="card">
+  <div class="section-title">
+    <h2>💰 消費紀錄</h2>
     <span class="small">是免稅不是免費</span>
   </div>
 
@@ -1799,75 +1936,6 @@ Port Island Line
     </details>
   </div>
 </section>
-
-<section class="card">
-  <div class="section-title">
-    <h2>③ ☑️ 待辦事項</h2>
-    <span class="small">一同去郊遊</span>
-  </div>
-
-  <div class="people-box">
-    <div class="small">👥 旅伴</div>
-
-<div id="peopleList" class="people-list"></div>
-
-<div class="add-person">
-  <input id="personInput" placeholder="輸入旅伴">
-  <button class="btn primary" onclick="addPerson()">新增</button>
-</div>
-
-  </div>
-
-  <div class="todo-add">
-    <input id="todoInput" placeholder="新增待辦事項">
-
-<select id="todoOwner">
-  <option value="">負責人</option>
-  <option value="Celina">Celina</option>
-  <option value="Magic">Magic</option>
-</select>
-
-<input id="todoNoteInput" placeholder="備註（可選）">
-
-<button class="btn primary" onclick="addTodo()">新增</button>
-
-  </div>
-
-  <div id="todoList"></div>
-</section>
-
-<section class="card">
-  <div class="section-title">
-    <h2>④ 💡 實用資訊</h2>
-    <span class="small">旅行中快速查看</span>
-  </div>
-
-  <div class="tip">抹茶: 中村藤吉/一保堂/丸久小山園</div>
-  <div class= "tip"> 購物: 無印/3 Coins/唐吉軻德</div>
-</section>
-
-</div>
-
-<section id="tab-shopping" class="tab-panel">
-  <section class="card">
-    <div class="section-title">
-      <h2>🛍️ 購物清單</h2>
-      <span class="small">圖片方格・購物備忘</span>
-    </div>
-    <div class="shopping-intro">上傳商品圖片，再寫下簡單備註即可。</div>
-    <details class="expense-entry" id="shoppingFormDetails" open>
-      <summary>＋ 新增圖片</summary>
-      <form class="shopping-form" id="shoppingForm">
-        <div class="full"><label for="shopImage">商品圖片</label><div class="shopping-upload"><input id="shopImage" type="file" accept="image/*"><span class="small">支援手機／電腦圖片，單張最多 2 MB。</span></div><div id="shoppingImagePreview" class="shopping-preview" style="display:none"></div></div>
-        <div><label for="shopCompanion">旅伴</label><select id="shopCompanion" required><option value="Celina">Celina</option><option value="Magic">Magic</option></select></div>
-        <div><label for="shopNote">備註（可留空）</label><textarea id="shopNote" placeholder="例如：顏色、尺寸、價格或購買地點……"></textarea></div>
-        <button class="btn primary full" type="submit" id="shoppingSubmit">＋ 加入購物清單</button>
-        <button class="btn full" type="button" id="shoppingCancelEdit" style="display:none" onclick="cancelShoppingEdit()">取消編輯</button>
-      </form>
-    </details>
-    <div class="shopping-filters" id="shoppingFilters"></div>
-    <div class="shopping-grid" id="shoppingList" style="margin-top:14px"></div>
-  </section>
 </section>
 
 <footer>
@@ -2176,7 +2244,7 @@ expenses =
 
     return {
 
-      day:e.day || "Day 1",
+      day:expenseDateValue(e.day || "Day 1"),
 
       category:
         e.category || "🍜 餐飲",
@@ -2202,19 +2270,16 @@ expenses =
   });
 
 
+function expenseDateValue(value){
+  const v = String(value || "").trim();
+  // Accept any valid date value; continue supporting legacy Day 1–Day 5 entries.
+  if (/^\d{4}-\d{2}-\d{2}$/.test(v)) return v;
+  const match = v.match(/Day\s*([1-5])/i);
+  if (match) return `2026-11-${String(19 + Number(match[1])).padStart(2,"0")}`;
+  return new Date().toISOString().slice(0,10);
+}
+
 function expenseOptions(type){
-
-  if(type === "day"){
-
-    return `
-      <option>Day 1</option>
-      <option>Day 2</option>
-      <option>Day 3</option>
-      <option>Day 4</option>
-      <option>Day 5</option>
-    `;
-
-  }
 
   return `
     <option>🍜 餐飲</option>
@@ -2251,23 +2316,16 @@ function paymentOptions(){
 }
 
 
-function peopleForExpense(){
+function peopleForExpense(currentPayer){
 
-  if(!people.length){
-
-    return "<option>未設定</option>";
-
-  }
-
-  return people
+  const companions = (Array.isArray(people) && people.length) ? people : ["Celina", "Magic"];
+  return "<option value=''>選擇付款人</option>" + companions
     .map(function(p){
-
       return `
-        <option value="${escapeAttr(p)}">
+        <option value="${escapeAttr(p)}" ${currentPayer === p ? "selected" : ""}>
           ${escapeHtml(p)}
         </option>
       `;
-
     })
     .join("");
 
@@ -2278,7 +2336,7 @@ function addExpenseRow(){
 
   expenses.push({
 
-    day:"Day 1",
+    day:"2026-11-20",
 
     category:"🍜 餐飲",
 
@@ -2373,7 +2431,10 @@ function renderExpenses(){
 
     row.innerHTML = `
 
-      <select
+      <input
+        type="date"
+        aria-label="消費日期"
+        value="${escapeAttr(expenseDateValue(e.day))}"
         onchange="
           updateExpense(
             ${i},
@@ -2382,8 +2443,6 @@ function renderExpenses(){
           )
         "
       >
-        ${expenseOptions("day")}
-      </select>
 
       <select
         onchange="
@@ -2459,7 +2518,7 @@ function renderExpenses(){
           )
         "
       >
-        ${peopleForExpense()}
+        ${peopleForExpense(e.payer)}
       </select>
 
       <select
@@ -2487,27 +2546,13 @@ function renderExpenses(){
 
     list.appendChild(row);
 
-    const selects =
-      row.querySelectorAll("select");
+    const selects = row.querySelectorAll("select");
 
-    selects[0].value =
-      e.day || "Day 1";
-
-    selects[1].value =
-      e.category || "🍜 餐飲";
-
-    selects[2].value =
-      e.currency || "JPY";
-
-    if(e.payer){
-
-      selects[3].value =
-        e.payer;
-
-    }
-
-    selects[4].value =
-      e.payment || "💵 現金";
+    // The date is now an input[type=date], so select indexes start at category.
+    if (selects[0]) selects[0].value = e.category || "🍜 餐飲";
+    if (selects[1]) selects[1].value = e.currency || "JPY";
+    if (selects[2]) selects[2].value = e.payer || "";
+    if (selects[3]) selects[3].value = e.payment || "💵 現金";
 
   });
 
@@ -2535,6 +2580,11 @@ let people =
     ) || "[]"
   );
 
+/* Ensure the default travel companions remain visible if an older version saved an empty list. */
+if(!Array.isArray(people) || people.length === 0){
+  people = ["Celina", "Magic"];
+  try { localStorage.setItem("kobe_people", JSON.stringify(people)); } catch(e) {}
+}
 
 function savePeople(){
 
@@ -2873,7 +2923,7 @@ function renderTodos(){
                   "
                 >
                   <option value="">負責人</option>
-                  ${["Celina", "Magic"].map(function(p){
+                  ${((Array.isArray(people) && people.length) ? people : ["Celina", "Magic"]).map(function(p){
                     return `
                       <option
                         value="${escapeAttr(p)}"
@@ -2958,7 +3008,18 @@ function renderShopping(){
     return '<article class="shopping-item">'+image+'<div class="shopping-item-body"><div class="shopping-companion-tag">'+escapeHtml(companion)+'</div>'+(x.note?'<div class="shopping-meta shopping-note">'+escapeHtml(x.note)+'</div>':'<div class="shopping-meta shopping-note muted">沒有備註</div>')+'<div class="shopping-item-actions"><button type="button" onclick="editShopping('+x.id+')">編輯</button><button type="button" onclick="deleteShopping('+x.id+')">刪除</button></div></div></article>';
   }).join('');
 }
-function setShoppingFilter(name){shoppingFilter=name;renderShopping();}
+function setShoppingFilter(name){
+  if(['全部','Celina','Magic'].indexOf(name)<0)return;
+  shoppingFilter=name;
+  renderShopping();
+}
+// Delegate clicks from the shopping filter buttons so each filter remains selectable after rerender.
+document.getElementById('shoppingFilters').addEventListener('click',function(e){
+  var button=e.target.closest('button');
+  if(!button)return;
+  var label=(button.textContent||'').trim();
+  if(['全部','Celina','Magic'].indexOf(label)>=0)setShoppingFilter(label);
+});
 function updateShoppingPreview(){
   var preview=document.getElementById('shoppingImagePreview');
   if(!preview)return;
@@ -2976,14 +3037,59 @@ document.getElementById('shoppingForm').addEventListener('submit',function(e){
   var old=shoppingItems.find(function(x){return x.id===shoppingEditId;});
   var image=shoppingImageData||(old?old.image:'');
   if(!image){alert('請先上傳一張商品圖片。');return;}
-  var item={id:shoppingEditId||Date.now(),image:image,note:document.getElementById('shopNote').value.trim(),companion:document.getElementById('shopCompanion').value.trim()};
+  var companionSelect=document.getElementById('shopCompanion');
+  var selectedCompanion=companionSelect.value || 'Celina';
+  var item={id:shoppingEditId||Date.now(),image:image,note:document.getElementById('shopNote').value.trim(),companion:selectedCompanion};
   if(shoppingEditId){shoppingItems=shoppingItems.map(function(x){return x.id===shoppingEditId?item:x;});}else{shoppingItems.unshift(item);}
-  saveShopping();renderShopping();this.reset();shoppingImageData='';updateShoppingPreview();shoppingEditId=null;document.getElementById('shoppingSubmit').textContent='＋ 加入購物清單';document.getElementById('shoppingCancelEdit').style.display='none';
+  saveShopping();
+  renderShopping();
+  this.reset();
+  // Keep the last chosen companion instead of silently reverting to Celina.
+  companionSelect.value=selectedCompanion;
+  shoppingImageData='';updateShoppingPreview();shoppingEditId=null;document.getElementById('shoppingSubmit').textContent='＋ 加入購物清單';document.getElementById('shoppingCancelEdit').style.display='none';
 });
-function editShopping(id){var x=shoppingItems.find(function(v){return v.id===id;});if(!x)return;shoppingEditId=id;shoppingImageData=x.image||'';document.getElementById('shopNote').value=x.note||'';document.getElementById('shopCompanion').value=x.companion||'';document.getElementById('shopImage').value='';updateShoppingPreview();document.getElementById('shoppingSubmit').textContent='儲存修改';document.getElementById('shoppingCancelEdit').style.display='block';document.getElementById('shoppingFormDetails').open=true;document.getElementById('shoppingFormDetails').scrollIntoView({behavior:'smooth',block:'start'});}
+function editShopping(id){var x=shoppingItems.find(function(v){return v.id===id;});if(!x)return;shoppingEditId=id;shoppingImageData=x.image||'';document.getElementById('shopNote').value=x.note||'';document.getElementById('shopCompanion').value=(/^magic$/i.test((x.companion||'').trim())?'Magic':'Celina');document.getElementById('shopImage').value='';updateShoppingPreview();document.getElementById('shoppingSubmit').textContent='儲存修改';document.getElementById('shoppingCancelEdit').style.display='block';document.getElementById('shoppingFormDetails').open=true;document.getElementById('shoppingFormDetails').scrollIntoView({behavior:'smooth',block:'start'});}
 function cancelShoppingEdit(){shoppingEditId=null;shoppingImageData='';document.getElementById('shoppingForm').reset();updateShoppingPreview();document.getElementById('shoppingSubmit').textContent='＋ 加入購物清單';document.getElementById('shoppingCancelEdit').style.display='none';}
 function deleteShopping(id){if(!confirm('確定要刪除這張圖片嗎？'))return;shoppingItems=shoppingItems.filter(function(x){return x.id!==id;});saveShopping();renderShopping();}
 
+
+/* =========================
+   實用資訊：可自行新增／刪除並保存
+========================= */
+var practicalTips = [];
+try {
+  var savedPracticalTips = localStorage.getItem('kobe_practical_tips_v1');
+  practicalTips = savedPracticalTips === null
+    ? ['抹茶：中村藤吉／一保堂／丸久小山園', '購物：無印／3 Coins／唐吉軻德']
+    : JSON.parse(savedPracticalTips);
+  if (!Array.isArray(practicalTips)) practicalTips = [];
+} catch (e) {
+  practicalTips = ['抹茶：中村藤吉／一保堂／丸久小山園', '購物：無印／3 Coins／唐吉軻德'];
+}
+function savePracticalTips(){
+  try { localStorage.setItem('kobe_practical_tips_v1', JSON.stringify(practicalTips)); }
+  catch(e) { alert('儲存失敗，請確認瀏覽器儲存空間。'); }
+}
+function renderPracticalTips(){
+  var list = document.getElementById('practicalTipsList');
+  if (!list) return;
+  list.innerHTML = practicalTips.map(function(t, i){
+    return '<div class="practical-tip-row"><div class="practical-tip-text">' + escapeHtml(String(t)) + '</div><button type="button" class="practical-tip-delete" aria-label="刪除資訊" onclick="deletePracticalTip(' + i + ')">刪除</button></div>';
+  }).join('');
+}
+function addPracticalTip(){
+  var input = document.getElementById('practicalTipInput');
+  var value = input.value.trim();
+  if (!value) { alert('請先輸入實用資訊。'); input.focus(); return; }
+  practicalTips.push(value);
+  savePracticalTips(); renderPracticalTips(); input.value = ''; input.focus();
+}
+function deletePracticalTip(index){
+  if (index < 0 || index >= practicalTips.length) return;
+  practicalTips.splice(index, 1);
+  savePracticalTips();
+  renderPracticalTips();
+}
 
 /* =========================
    初始化
@@ -3012,6 +3118,7 @@ document.addEventListener(
     renderTodos();
 
     renderExpenses();
+    renderPracticalTips();
 
   }
 );
