@@ -2993,9 +2993,15 @@ try{shoppingItems=JSON.parse(localStorage.getItem('kobe_shopping_items_v1')||'[]
 function saveShopping(){try{localStorage.setItem('kobe_shopping_items_v1',JSON.stringify(shoppingItems));}catch(e){alert('保存失敗：圖片可能太大，請改用較小的圖片後再試。');}}
 var shoppingFilter='全部';
 function shoppingOwner(item){
-  var owner=(item.companion||'').trim().toLowerCase();
-  if(owner==='celina'||owner==='ceina')return 'Celina';
-  if(owner==='magic')return 'Magic';
+  // 相容不同版本存下來的負責人欄位，避免有圖片的項目被歸到「其他」而無法用 Celina 篩選。
+  var raw = item && (
+    item.companion || item.owner || item.person || item.buyer ||
+    item.assignee || item.purchaser || item.responsible
+  );
+  var owner = String(raw == null ? '' : raw).trim().toLowerCase();
+  owner = owner.normalize ? owner.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : owner;
+  if(owner === 'celina' || owner === 'ceina' || owner === 'celina chen') return 'Celina';
+  if(owner === 'magic' || owner === 'magic chen') return 'Magic';
   return '其他';
 }
 function renderShopping(){
@@ -3040,7 +3046,7 @@ document.getElementById('shoppingForm').addEventListener('submit',function(e){
 });
 function editShopping(id){var x=shoppingItems.find(function(v){return v.id===id;});if(!x)return;shoppingEditId=id;shoppingImageData=x.image||'';document.getElementById('shopNote').value=x.note||'';document.getElementById('shopCompanion').value=x.companion||'';document.getElementById('shopImage').value='';updateShoppingPreview();document.getElementById('shoppingSubmit').textContent='儲存修改';document.getElementById('shoppingCancelEdit').style.display='block';document.getElementById('shoppingFormDetails').open=true;document.getElementById('shoppingFormDetails').scrollIntoView({behavior:'smooth',block:'start'});}
 function cancelShoppingEdit(){shoppingEditId=null;shoppingImageData='';document.getElementById('shoppingForm').reset();updateShoppingPreview();document.getElementById('shoppingSubmit').textContent='＋ 加入購物清單';document.getElementById('shoppingCancelEdit').style.display='none';}
-function deleteShopping(id){if(!confirm('確定要刪除這張圖片嗎？'))return;shoppingItems=shoppingItems.filter(function(x){return x.id!==id;});saveShopping();renderShopping();}
+function deleteShopping(id){if(!confirm('確定要刪除這個購物項目嗎？'))return;shoppingItems=shoppingItems.filter(function(x){return x.id!==id;});saveShopping();renderShopping();}
 
 
 /* =========================
