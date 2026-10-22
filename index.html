@@ -555,6 +555,13 @@ body.night .map-tab.active{
   border-bottom:0;
 }
 
+/* D1 arrival: a little extra breathing room on mobile */
+.timeline-item.arrival-item{margin-bottom:10px;padding-bottom:18px}
+.timeline-item.arrival-item .timeline-time::after{
+  content:"";position:absolute;left:10px;top:19px;bottom:-28px;width:0;
+  border-left:2px dashed currentColor;opacity:.35;background:none;
+}
+
 .timeline-time{
   font-size:13px;
   font-weight:800;
@@ -577,7 +584,7 @@ body.night .map-tab.active{
   z-index:2;
 }
 
-.timeline-item:not(:last-child) .timeline-time::after{
+.timeline-item:not(:last-child):not(.arrival-item) .timeline-time::after{
   content:"";
   position:absolute;
   left:10px;
@@ -962,6 +969,41 @@ footer{
     font-size:13px;
   }
 
+  /* Mobile itinerary: put the time on its own line, then leave a clear gap
+     before the indented activity, matching the requested 16:00–17:00 layout. */
+  .timeline-item{
+    grid-template-columns:minmax(0, 1fr);
+    gap:0;
+    padding:14px 0;
+  }
+
+  .timeline-time{
+    margin-bottom:12px;
+    white-space:normal;
+  }
+
+  .timeline-item > div:nth-child(2){
+    min-width:0;
+    padding-left:28px;
+  }
+
+  .item-title-row{
+    flex-wrap:wrap;
+    align-items:flex-start;
+    gap:4px 8px;
+  }
+
+  .item-title-row .item-title{
+    flex:1 1 100%;
+    min-width:0;
+    overflow-wrap:anywhere;
+  }
+
+  .item-title-row .item-links{
+    margin-top:0;
+    justify-content:flex-start;
+  }
+
   .map-place{
     font-size:11px;
   }
@@ -1001,6 +1043,22 @@ footer{
     gap:10px;
   }
 
+  /* D1 抵達時間獨立一行，下一行再顯示行程，手機閱讀更順 */
+  .timeline-item.arrival-item{
+    grid-template-columns:1fr;
+    gap:0;
+    padding-bottom:18px;
+    margin-bottom:10px;
+  }
+
+  .timeline-item.arrival-item .timeline-time{
+    margin-bottom:12px;
+  }
+
+  .timeline-item.arrival-item > div:nth-child(2){
+    padding-left:25px;
+  }
+
   .timeline-time{
     font-size:12px;
     padding-left:25px;
@@ -1013,10 +1071,15 @@ footer{
 
   .item-title-row{
     gap:6px;
+    flex-wrap:wrap;
   }
 
   .item-title-row .item-links{
-    max-width:42%;
+    flex:1 0 100%;
+    width:100%;
+    max-width:100%;
+    justify-content:flex-start;
+    margin-top:3px;
   }
 
   .item-sub{
@@ -1396,7 +1459,7 @@ onclick="toggleTheme()"
 <div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">☁️ 神戶｜Apple Weather →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d1" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
-<div class="timeline-item"><div class="timeline-time">12:30</div><div><div class="item-title-row"><div class="item-title">✈️ 抵達神戶機場 Kobe Airport（UKB）</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍</a></div></div><div class="item-sub">入境＋行李：約 30–45 分鐘</div></div></div>
+<div class="timeline-item arrival-item"><div class="timeline-time">12:30</div><div><div class="item-title-row"><div class="item-title">✈️ 抵達神戶機場 Kobe Airport（UKB）</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍</a></div></div><div class="item-sub">入境＋行李：約 30–45 分鐘</div></div></div>
 <div class="timeline-item"><div class="timeline-time">12:45–13:10</div><div><div class="item-title-row"><div class="item-title">神戶機場 → 三宮</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Sannomiya+Station+Kobe">🧭</a></div></div><div class="item-sub">🚃 Port Liner
 Port Island Line
 約 18 分鐘｜💳 ¥340</div></div></div>
@@ -1788,7 +1851,7 @@ Port Island Line
       <summary>＋ 新增圖片</summary>
       <form class="shopping-form" id="shoppingForm">
         <div class="full"><label for="shopImage">商品圖片</label><div class="shopping-upload"><input id="shopImage" type="file" accept="image/*"><span class="small">支援手機／電腦圖片，單張最多 2 MB。</span></div><div id="shoppingImagePreview" class="shopping-preview" style="display:none"></div></div>
-        <div><label for="shopCompanion">旅伴／分類</label><input id="shopCompanion" type="text" placeholder="例如：Ceina/ Magic" /></div>
+        <div><label for="shopCompanion">旅伴</label><select id="shopCompanion" required><option value="Celina">Celina</option><option value="Magic">Magic</option></select></div>
         <div><label for="shopNote">備註（可留空）</label><textarea id="shopNote" placeholder="例如：顏色、尺寸、價格或購買地點……"></textarea></div>
         <button class="btn primary full" type="submit" id="shoppingSubmit">＋ 加入購物清單</button>
         <button class="btn full" type="button" id="shoppingCancelEdit" style="display:none" onclick="cancelShoppingEdit()">取消編輯</button>
@@ -2461,6 +2524,16 @@ let people =
     ) || "[]"
   );
 
+// Keep the two trip companions available in both the people list and TODO owner dropdown.
+// Preserve any additional names the user has already added.
+if(!Array.isArray(people)) people = [];
+["Celina", "Magic"].forEach(function(name){
+  if(!people.some(function(p){ return String(p).trim().toLowerCase() === name.toLowerCase(); })){
+    people.push(name);
+  }
+});
+localStorage.setItem("kobe_people", JSON.stringify(people));
+
 
 function savePeople(){
 
@@ -2890,9 +2963,9 @@ var shoppingFilter='全部';
 function renderShopping(){
   var list=document.getElementById('shoppingList');if(!list)return;
   var filters=document.getElementById('shoppingFilters');
-  var companions=Array.from(new Set(shoppingItems.map(function(x){return (x.companion||'').trim()||'未分類';})));
-  if(filters){var allFilters=['全部'].concat(companions);if(allFilters.indexOf(shoppingFilter)<0)shoppingFilter='全部';filters.innerHTML=allFilters.map(function(name){return '<button type="button" class="'+(shoppingFilter===name?'active':'')+'" onclick="setShoppingFilter('+JSON.stringify(name).replace(/</g,'\\u003c')+')">'+escapeHtml(name)+'</button>';}).join('');filters.style.display=shoppingItems.length?'flex':'none';}
-  var shown=shoppingItems.filter(function(x){return shoppingFilter==='全部'||((x.companion||'').trim()||'未分類')===shoppingFilter;});
+  var allFilters=['全部','Celina','Magic'];
+  if(filters){if(allFilters.indexOf(shoppingFilter)<0)shoppingFilter='全部';filters.innerHTML=allFilters.map(function(name){return '<button type="button" class="'+(shoppingFilter===name?'active':'')+'" onclick="setShoppingFilter('+JSON.stringify(name).replace(/</g,'\\u003c')+')">'+escapeHtml(name)+'</button>';}).join('');filters.style.display=shoppingItems.length?'flex':'none';}
+  var shown=shoppingItems.filter(function(x){var owner=(x.companion||'').trim();if(/^celina$/i.test(owner)||/^ceina$/i.test(owner))owner='Celina';else if(/^magic$/i.test(owner))owner='Magic';return shoppingFilter==='全部'||owner===shoppingFilter;});
   if(!shown.length){list.innerHTML='<div class="shopping-empty">🛍️ '+(shoppingItems.length?'這個分類還沒有圖片。':'還沒有圖片，按「新增圖片」開始整理想買的商品吧！')+'</div>';return;}
   list.innerHTML=shown.map(function(x){
     var image=x.image?'<img class="shopping-image" src="'+x.image+'" alt="購物圖片">':'<div class="shopping-image-placeholder">🛍️</div>';
@@ -2918,7 +2991,8 @@ document.getElementById('shoppingForm').addEventListener('submit',function(e){
   var old=shoppingItems.find(function(x){return x.id===shoppingEditId;});
   var image=shoppingImageData||(old?old.image:'');
   if(!image){alert('請先上傳一張商品圖片。');return;}
-  var item={id:shoppingEditId||Date.now(),image:image,note:document.getElementById('shopNote').value.trim(),companion:document.getElementById('shopCompanion').value.trim()};
+  var owner=document.getElementById('shopCompanion').value;
+  var item={id:shoppingEditId||Date.now(),image:image,note:document.getElementById('shopNote').value.trim(),companion:owner==='Magic'?'Magic':'Celina'};
   if(shoppingEditId){shoppingItems=shoppingItems.map(function(x){return x.id===shoppingEditId?item:x;});}else{shoppingItems.unshift(item);}
   saveShopping();renderShopping();this.reset();shoppingImageData='';updateShoppingPreview();shoppingEditId=null;document.getElementById('shoppingSubmit').textContent='＋ 加入購物清單';document.getElementById('shoppingCancelEdit').style.display='none';
 });
