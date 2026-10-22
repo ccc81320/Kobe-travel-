@@ -3050,11 +3050,11 @@ var practicalTips = [];
 try {
   var savedPracticalTips = localStorage.getItem('kobe_practical_tips_v1');
   practicalTips = savedPracticalTips === null
-    ? ['抹茶：中村藤吉／一保堂／丸久小山園', '購物：無印／3 Coins／唐吉軻德']
+    ? ['抹茶：中村藤吉／一保堂／丸久小山園', '購物：無印／3 Coins／唐吉軻德','住宿地址: 2 Chome-5-11 Ebisuhigashi, Naniwa Ward, Osaka, 556-0002日本']
     : JSON.parse(savedPracticalTips);
   if (!Array.isArray(practicalTips)) practicalTips = [];
 } catch (e) {
-  practicalTips = ['抹茶：中村藤吉／一保堂／丸久小山園', '購物：無印／3 Coins／唐吉軻德'];
+  practicalTips = ['抹茶：中村藤吉／一保堂／丸久小山園', '購物：無印／3 Coins／唐吉軻德','住宿地址: 2 Chome-5-11 Ebisuhigashi, Naniwa Ward, Osaka, 556-0002日本'];
 }
 function savePracticalTips(){
   try { localStorage.setItem('kobe_practical_tips_v1', JSON.stringify(practicalTips)); }
