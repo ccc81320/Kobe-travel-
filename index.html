@@ -2993,26 +2993,30 @@ try{shoppingItems=JSON.parse(localStorage.getItem('kobe_shopping_items_v1')||'[]
 function saveShopping(){try{localStorage.setItem('kobe_shopping_items_v1',JSON.stringify(shoppingItems));}catch(e){alert('保存失敗：圖片可能太大，請改用較小的圖片後再試。');}}
 var shoppingFilter='全部';
 function shoppingOwner(item){
-  // 相容不同版本存下來的負責人欄位，避免有圖片的項目被歸到「其他」而無法用 Celina 篩選。
-  var raw = item && (
-    item.companion || item.owner || item.person || item.buyer ||
-    item.assignee || item.purchaser || item.responsible
-  );
-  var owner = String(raw == null ? '' : raw).trim().toLowerCase();
-  owner = owner.normalize ? owner.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : owner;
-  if(owner === 'celina' || owner === 'ceina' || owner === 'celina chen') return 'Celina';
-  if(owner === 'magic' || owner === 'magic chen') return 'Magic';
+  // 兼容舊資料可能使用的不同欄位名稱與大小寫
+  var raw=item && (item.companion || item.owner || item.person || item.buyer || item.assignee || item.purchaser || item.responsible);
+  var owner=String(raw == null ? '' : raw).trim().toLowerCase();
+  if(owner==='celina'||owner==='ceina'||owner==='celina chen')return 'Celina';
+  if(owner==='magic'||owner==='magic chen')return 'Magic';
   return '其他';
 }
 function renderShopping(){
   var list=document.getElementById('shoppingList');if(!list)return;
   var filters=document.getElementById('shoppingFilters');
-  if(filters){var allFilters=['全部','Celina','Magic'];if(allFilters.indexOf(shoppingFilter)<0)shoppingFilter='全部';filters.innerHTML=allFilters.map(function(name){return '<button type="button" class="'+(shoppingFilter===name?'active':'')+'" onclick="setShoppingFilter('+JSON.stringify(name).replace(/</g,'\\u003c')+')">'+escapeHtml(name)+'</button>';}).join('');filters.style.display='flex';}
+  if(filters){
+    var allFilters=['全部','Celina','Magic'];
+    if(allFilters.indexOf(shoppingFilter)<0)shoppingFilter='全部';
+    // 注意：HTML 屬性中的反斜線不能跳脫雙引號，使用單引號參數避免按鈕失效
+    filters.innerHTML=allFilters.map(function(name){
+      return '<button type="button" class="'+(shoppingFilter===name?'active':'')+'" onclick="setShoppingFilter(\''+name+'\')">'+escapeHtml(name)+'</button>';
+    }).join('');
+    filters.style.display='flex';
+  }
   var shown=shoppingItems.filter(function(x){return shoppingFilter==='全部'||shoppingOwner(x)===shoppingFilter;});
   if(!shown.length){list.innerHTML='<div class="shopping-empty">🛍️ '+(shoppingItems.length?'這個分類還沒有購物項目。':'還沒有購物項目，按「新增購物項目」輸入備註即可！')+'</div>';return;}
   list.innerHTML=shown.map(function(x){
     var image=x.image?'<img class="shopping-image" src="'+x.image+'" alt="購物圖片">':'';
-    var companion=(x.companion||'').trim()||'未分類';
+    var companion=(x.companion||x.owner||x.person||x.buyer||x.assignee||x.purchaser||x.responsible||'').toString().trim()||'未分類';
     return '<article class="shopping-item">'+image+'<div class="shopping-item-body"><div class="shopping-companion-tag">'+escapeHtml(companion)+'</div>'+(x.note?'<div class="shopping-meta shopping-note">'+escapeHtml(x.note)+'</div>':'<div class="shopping-meta shopping-note muted">沒有備註</div>')+'<div class="shopping-item-actions"><button type="button" onclick="editShopping('+x.id+')">編輯</button><button type="button" onclick="deleteShopping('+x.id+')">刪除</button></div></div></article>';
   }).join('');
 }
@@ -3046,7 +3050,7 @@ document.getElementById('shoppingForm').addEventListener('submit',function(e){
 });
 function editShopping(id){var x=shoppingItems.find(function(v){return v.id===id;});if(!x)return;shoppingEditId=id;shoppingImageData=x.image||'';document.getElementById('shopNote').value=x.note||'';document.getElementById('shopCompanion').value=x.companion||'';document.getElementById('shopImage').value='';updateShoppingPreview();document.getElementById('shoppingSubmit').textContent='儲存修改';document.getElementById('shoppingCancelEdit').style.display='block';document.getElementById('shoppingFormDetails').open=true;document.getElementById('shoppingFormDetails').scrollIntoView({behavior:'smooth',block:'start'});}
 function cancelShoppingEdit(){shoppingEditId=null;shoppingImageData='';document.getElementById('shoppingForm').reset();updateShoppingPreview();document.getElementById('shoppingSubmit').textContent='＋ 加入購物清單';document.getElementById('shoppingCancelEdit').style.display='none';}
-function deleteShopping(id){if(!confirm('確定要刪除這個購物項目嗎？'))return;shoppingItems=shoppingItems.filter(function(x){return x.id!==id;});saveShopping();renderShopping();}
+function deleteShopping(id){if(!confirm('確定要刪除這張圖片嗎？'))return;shoppingItems=shoppingItems.filter(function(x){return x.id!==id;});saveShopping();renderShopping();}
 
 
 /* =========================
