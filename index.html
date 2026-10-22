@@ -975,10 +975,36 @@ footer{
     min-width:0;
   }
 
+  .map-box{
+    width:100%;
+    aspect-ratio:760 / 430;
+  }
+
   .map-box svg{
+    display:block;
     width:100%;
     height:auto;
-    min-height:420px;
+    min-height:0;
+    max-width:100%;
+  }
+
+  .weather-box{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    align-items:flex-start;
+  }
+
+  .weather-title{
+    flex:0 0 100%;
+    margin-bottom:2px;
+  }
+
+  .weather-link{
+    max-width:100%;
+    box-sizing:border-box;
+    white-space:normal;
+    overflow-wrap:anywhere;
   }
 
   .map-day{
@@ -1416,7 +1442,7 @@ onclick="toggleTheme()"
 <div class="day-header" onclick="toggleDay(this)"><h3>D1｜台中 → 神戶 → 大阪</h3><span class="tag">11/20 金</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">☁️ 神戶｜Apple Weather →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/?lat=34.6901&long=135.1955">☁️ 神戶｜Apple Weather →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d1" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
 <div class="timeline-item"><div class="timeline-time">12:30</div><div><div class="item-title-row"><div class="item-title">✈️ 抵達神戶機場 Kobe Airport（UKB）</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍</a></div></div><div class="item-sub">入境＋行李：約 30–45 分鐘</div></div></div>
@@ -1449,7 +1475,7 @@ JR Kobe Line + JR Osaka Loop Line
 <div class="day-header" onclick="toggleDay(this)"><h3>D2｜京都＋嵐山</h3><span class="tag">11/21 土</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6937/135.5023">☁️ 大阪｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/35.0116/135.7681">☁️ 京都｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/35.0095/135.6670">☁️ 嵐山｜Apple Weather →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/?lat=34.6937&long=135.5023">☁️ 大阪｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/?lat=35.0116&long=135.7681">☁️ 京都｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/?lat=35.0095&long=135.6670">☁️ 嵐山｜Apple Weather →</a></div>
 
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d2" placeholder="點此輸入……"></textarea></div>
 
@@ -1630,7 +1656,7 @@ Kyoto City Bus + JR Kyoto Line + Osaka Metro Midosuji Line
 <div class="day-header" onclick="toggleDay(this)"><h3>D3｜奈良＋宇治</h3><span class="tag">11/22 日</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6851/135.8048">☁️ 奈良｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.8840/135.7999">☁️ 宇治｜Apple Weather →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/?lat=34.6851&long=135.8048">☁️ 奈良｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/?lat=34.8840&long=135.7999">☁️ 宇治｜Apple Weather →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d3" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
 <div class="timeline-item"><div class="timeline-time">07:20–08:10</div><div><div class="item-title-row"><div class="item-title">🏨 住一通天閣店 → JR奈良</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Imamiya+Station&destination=JR-Nara+Station">🧭</a></div></div><div class="item-sub">🚆 JR大和路線
@@ -1665,7 +1691,7 @@ JR Nara Line + JR Yamatoji Line + Midosuji Line
 <div class="day-header" onclick="toggleDay(this)"><h3>D4｜大阪</h3><span class="tag">11/23 月</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6937/135.5023">☁️ 大阪｜Apple Weather →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/?lat=34.6937&long=135.5023">☁️ 大阪｜Apple Weather →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d4" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
 <div class="timeline-item"><div class="timeline-time">09:00–09:30</div><div><div class="item-title-row"><div class="item-title">🏨 動物園前站 → 天王寺站 → 谷町四丁目站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Dobutsuen-mae+Station&destination=Tanimachi+4-chome+Station">🧭</a></div></div><div class="item-sub">🚇 Osaka Metro 御堂筋線＋谷町線＋🚶步行
@@ -1698,7 +1724,7 @@ Osaka Metro Midosuji Line
 <div class="day-header" onclick="toggleDay(this)"><h3>D5｜大阪 → 神戶 → 台中</h3><span class="tag">11/24 火</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">☁️ 神戶｜Apple Weather →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/?lat=34.6901&long=135.1955">☁️ 神戶｜Apple Weather →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d5" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
 <div class="timeline-item"><div class="timeline-time">待定</div><div><div class="item-title-row"><div class="item-title">🧳 住一通天閣店 Check-out</div></div><div class="note-list" data-note-key="d5-checkout"></div><button class="add-note" type="button" onclick="addNote('d5-checkout')">＋ 新增備註</button></div></div>
@@ -1777,6 +1803,8 @@ Port Island Line
 
 <select id="todoOwner">
   <option value="">負責人</option>
+  <option value="Celina">Celina</option>
+  <option value="Magic">Magic</option>
 </select>
 
 <input id="todoNoteInput" placeholder="備註（可選）">
@@ -1811,7 +1839,7 @@ Port Island Line
       <summary>＋ 新增圖片</summary>
       <form class="shopping-form" id="shoppingForm">
         <div class="full"><label for="shopImage">商品圖片</label><div class="shopping-upload"><input id="shopImage" type="file" accept="image/*"><span class="small">支援手機／電腦圖片，單張最多 2 MB。</span></div><div id="shoppingImagePreview" class="shopping-preview" style="display:none"></div></div>
-        <div><label for="shopCompanion">旅伴／分類</label><input id="shopCompanion" type="text" placeholder="例如：Ceina/ Magic" /></div>
+        <div><label for="shopCompanion">旅伴</label><select id="shopCompanion" required><option value="Celina">Celina</option><option value="Magic">Magic</option></select></div>
         <div><label for="shopNote">備註（可留空）</label><textarea id="shopNote" placeholder="例如：顏色、尺寸、價格或購買地點……"></textarea></div>
         <button class="btn primary full" type="submit" id="shoppingSubmit">＋ 加入購物清單</button>
         <button class="btn full" type="button" id="shoppingCancelEdit" style="display:none" onclick="cancelShoppingEdit()">取消編輯</button>
@@ -2582,35 +2610,14 @@ function renderPeople(){
 
 function renderOwnerOptions(){
 
-  const select =
-    document.getElementById(
-      "todoOwner"
-    );
-
+  const select = document.getElementById("todoOwner");
   if(!select) return;
 
-  if(!people.length){
-
-    select.innerHTML =
-      "<option value=''>負責人</option>";
-
-    return;
-
-  }
-
-  select.innerHTML =
-    "<option value=''>負責人</option>" +
-
-    people.map(function(p){
-
-      return `
-        <option
-          value="${escapeAttr(p)}"
-        >
-          ${escapeHtml(p)}
-        </option>
-      `;
-
+  const currentValue = select.value;
+  const companions = ["Celina", "Magic"];
+  select.innerHTML = "<option value=''>負責人</option>" +
+    companions.map(function(name){
+      return `<option value="${escapeAttr(name)}" ${currentValue === name ? "selected" : ""}>${escapeHtml(name)}</option>`;
     }).join("");
 
 }
@@ -2846,7 +2853,7 @@ function renderTodos(){
                   "
                 >
                   <option value="">負責人</option>
-                  ${people.map(function(p){
+                  ${["Celina", "Magic"].map(function(p){
                     return `
                       <option
                         value="${escapeAttr(p)}"
@@ -2913,12 +2920,17 @@ var shoppingImageData='';
 try{shoppingItems=JSON.parse(localStorage.getItem('kobe_shopping_items_v1')||'[]');if(!Array.isArray(shoppingItems))shoppingItems=[];}catch(e){shoppingItems=[];}
 function saveShopping(){try{localStorage.setItem('kobe_shopping_items_v1',JSON.stringify(shoppingItems));}catch(e){alert('保存失敗：圖片可能太大，請改用較小的圖片後再試。');}}
 var shoppingFilter='全部';
+function shoppingOwner(item){
+  var owner=(item.companion||'').trim().toLowerCase();
+  if(owner==='celina'||owner==='ceina')return 'Celina';
+  if(owner==='magic')return 'Magic';
+  return '其他';
+}
 function renderShopping(){
   var list=document.getElementById('shoppingList');if(!list)return;
   var filters=document.getElementById('shoppingFilters');
-  var companions=Array.from(new Set(shoppingItems.map(function(x){return (x.companion||'').trim()||'未分類';})));
-  if(filters){var allFilters=['全部'].concat(companions);if(allFilters.indexOf(shoppingFilter)<0)shoppingFilter='全部';filters.innerHTML=allFilters.map(function(name){return '<button type="button" class="'+(shoppingFilter===name?'active':'')+'" onclick="setShoppingFilter('+JSON.stringify(name).replace(/</g,'\\u003c')+')">'+escapeHtml(name)+'</button>';}).join('');filters.style.display=shoppingItems.length?'flex':'none';}
-  var shown=shoppingItems.filter(function(x){return shoppingFilter==='全部'||((x.companion||'').trim()||'未分類')===shoppingFilter;});
+  if(filters){var allFilters=['全部','Celina','Magic'];if(allFilters.indexOf(shoppingFilter)<0)shoppingFilter='全部';filters.innerHTML=allFilters.map(function(name){return '<button type="button" class="'+(shoppingFilter===name?'active':'')+'" onclick="setShoppingFilter('+JSON.stringify(name).replace(/</g,'\\u003c')+')">'+escapeHtml(name)+'</button>';}).join('');filters.style.display=shoppingItems.length?'flex':'none';}
+  var shown=shoppingItems.filter(function(x){return shoppingFilter==='全部'||shoppingOwner(x)===shoppingFilter;});
   if(!shown.length){list.innerHTML='<div class="shopping-empty">🛍️ '+(shoppingItems.length?'這個分類還沒有圖片。':'還沒有圖片，按「新增圖片」開始整理想買的商品吧！')+'</div>';return;}
   list.innerHTML=shown.map(function(x){
     var image=x.image?'<img class="shopping-image" src="'+x.image+'" alt="購物圖片">':'<div class="shopping-image-placeholder">🛍️</div>';
