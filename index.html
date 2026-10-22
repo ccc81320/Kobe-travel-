@@ -1886,9 +1886,9 @@ Port Island Line
     <details class="expense-entry" id="shoppingFormDetails" open>
       <summary>＋ 新增購物項目</summary>
       <form class="shopping-form" id="shoppingForm">
-        <div class="full"><label for="shopImage">商品圖片（選填）</label><div class="shopping-upload"><input id="shopImage" type="file" accept="image/*"><span class="small">不附圖片也可以新增；如需附圖，單張最多 2 MB。</span></div><div id="shoppingImagePreview" class="shopping-preview" style="display:none"></div></div>
+        <div class="full"><label for="shopImage">商品圖片（非必要）</label><div class="shopping-upload"><input id="shopImage" type="file" accept="image/*"><span class="small">只要填寫下方備註即可新增，不需要圖片；圖片可完全不選。單張最多 2 MB。</span></div><div id="shoppingImagePreview" class="shopping-preview" style="display:none"></div></div>
         <div><label for="shopCompanion">旅伴</label><select id="shopCompanion" required><option value="Celina">Celina</option><option value="Magic">Magic</option></select></div>
-        <div><label for="shopNote">備註（可留空）</label><textarea id="shopNote" placeholder="例如：顏色、尺寸、價格或購買地點……"></textarea></div>
+        <div><label for="shopNote">備註（只填這欄即可新增）</label><textarea id="shopNote" placeholder="例如：顏色、尺寸、價格或購買地點……"></textarea></div>
         <button class="btn primary full" type="submit" id="shoppingSubmit">＋ 加入購物清單</button>
         <button class="btn full" type="button" id="shoppingCancelEdit" style="display:none" onclick="cancelShoppingEdit()">取消編輯</button>
       </form>
@@ -3028,7 +3028,12 @@ document.getElementById('shoppingForm').addEventListener('submit',function(e){
   var old=shoppingItems.find(function(x){return x.id===shoppingEditId;});
   var image=shoppingImageData||(old?old.image:'');
   var note=document.getElementById('shopNote').value.trim();
-  if(!image&&!note){alert('請輸入備註，或附上一張商品圖片再新增。');return;}
+  // 圖片完全選填；有備註即可新增，不依賴圖片上傳狀態。
+  if(!note && !image){
+    alert('請至少輸入一段備註即可新增，完全不需要上傳圖片。');
+    document.getElementById('shopNote').focus();
+    return;
+  }
   var item={id:shoppingEditId||Date.now(),image:image,note:note,companion:document.getElementById('shopCompanion').value.trim()};
   if(shoppingEditId){shoppingItems=shoppingItems.map(function(x){return x.id===shoppingEditId?item:x;});}else{shoppingItems.unshift(item);}
   saveShopping();renderShopping();this.reset();shoppingImageData='';updateShoppingPreview();shoppingEditId=null;document.getElementById('shoppingSubmit').textContent='＋ 加入購物清單';document.getElementById('shoppingCancelEdit').style.display='none';
