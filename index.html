@@ -558,8 +558,8 @@ body.night .map-tab.active{
 /* D1 arrival: a little extra breathing room on mobile */
 .timeline-item.arrival-item{margin-bottom:10px;padding-bottom:18px}
 .timeline-item.arrival-item .timeline-time::after{
-  content:"";position:absolute;left:10px;top:19px;bottom:-28px;width:0;
-  border-left:2px dashed currentColor;opacity:.35;background:none;
+  content:""; position:absolute; left:10px; top:19px; bottom:-28px; width:2px;
+  border:0; background:repeating-linear-gradient(to bottom,currentColor 0 4px,transparent 4px 8px); opacity:.45;
 }
 
 .timeline-time{
@@ -585,14 +585,8 @@ body.night .map-tab.active{
 }
 
 .timeline-item:not(:last-child):not(.arrival-item) .timeline-time::after{
-  content:"";
-  position:absolute;
-  left:10px;
-  top:19px;
-  bottom:-22px;
-  width:2px;
-  background:currentColor;
-  opacity:.25;
+  content:""; position:absolute; left:10px; top:19px; bottom:-22px; width:2px;
+  border:0; background:repeating-linear-gradient(to bottom,currentColor 0 4px,transparent 4px 8px); opacity:.35;
 }
 
 .item-title{
@@ -1038,35 +1032,30 @@ footer{
     padding:13px;
   }
 
+  /* 手機版行程：時間固定獨立一行，下一行縮排顯示行程，並加大字體 */
   .timeline-item{
-    grid-template-columns:100px 1fr;
-    gap:10px;
-  }
-
-  /* D1 抵達時間獨立一行，下一行再顯示行程，手機閱讀更順 */
-  .timeline-item.arrival-item{
-    grid-template-columns:1fr;
-    gap:0;
-    padding-bottom:18px;
-    margin-bottom:10px;
-  }
-
-  .timeline-item.arrival-item .timeline-time{
-    margin-bottom:12px;
-  }
-
-  .timeline-item.arrival-item > div:nth-child(2){
-    padding-left:25px;
+    grid-template-columns:minmax(0, 1fr) !important;
+    gap:0 !important;
+    padding:16px 0;
   }
 
   .timeline-time{
-    font-size:12px;
-    padding-left:25px;
-    white-space:nowrap;
+    display:block;
+    font-size:16px !important;
+    line-height:1.6;
+    padding-left:28px;
+    margin-bottom:14px !important;
+    white-space:normal;
+  }
+
+  .timeline-item > div:nth-child(2){
+    min-width:0;
+    padding-left:28px !important;
   }
 
   .item-title{
-    font-size:13px;
+    font-size:16px !important;
+    line-height:1.55;
   }
 
   .item-title-row{
@@ -1188,6 +1177,54 @@ footer{
 @media(max-width:520px){.shopping-form{grid-template-columns:1fr}.shopping-form textarea,.shopping-form .full{grid-column:auto}.shopping-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.shopping-item-body{padding:9px}.main-tabs{top:4px}}
 @media(min-width:700px){.shopping-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
+
+/* Final mobile timeline layout: time + map icon on the first row, activity on the next row */
+@media (max-width:650px){
+  .timeline-item{
+    position:relative !important;
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:0 !important;
+    padding:14px 0 16px !important;
+  }
+  .timeline-time{
+    display:block !important;
+    font-size:16px !important;
+    line-height:1.5 !important;
+    padding-left:28px !important;
+    padding-right:42px !important;
+    margin:0 0 8px !important;
+    white-space:normal !important;
+  }
+  .timeline-item > div:nth-child(2){
+    min-width:0 !important;
+    padding-left:28px !important;
+  }
+  .item-title-row{
+    display:block !important;
+    position:static !important;
+  }
+  .item-title-row .item-title{
+    display:block !important;
+    width:100% !important;
+    font-size:16px !important;
+    line-height:1.55 !important;
+    overflow-wrap:anywhere !important;
+  }
+  .item-title-row .item-links{
+    position:absolute !important;
+    top:14px !important;
+    right:0 !important;
+    display:flex !important;
+    width:auto !important;
+    max-width:42px !important;
+    margin:0 !important;
+    justify-content:flex-end !important;
+    flex:0 0 auto !important;
+  }
+  .item-title-row .map-link{
+    font-size:16px !important;
+  }
+}
 </style>
 
 </head>
@@ -1456,7 +1493,7 @@ onclick="toggleTheme()"
 <div class="day-header" onclick="toggleDay(this)"><h3>D1｜台中 → 神戶 → 大阪</h3><span class="tag">11/20 金</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">☁️ 神戶｜Apple Weather →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Kobe+Japan">☁️ 神戶｜查看當地天氣 →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d1" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
 <div class="timeline-item arrival-item"><div class="timeline-time">12:30</div><div><div class="item-title-row"><div class="item-title">✈️ 抵達神戶機場 Kobe Airport（UKB）</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍</a></div></div><div class="item-sub">入境＋行李：約 30–45 分鐘</div></div></div>
@@ -1489,7 +1526,7 @@ JR Kobe Line + JR Osaka Loop Line
 <div class="day-header" onclick="toggleDay(this)"><h3>D2｜京都＋嵐山</h3><span class="tag">11/21 土</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6937/135.5023">☁️ 大阪｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/35.0116/135.7681">☁️ 京都｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/35.0095/135.6670">☁️ 嵐山｜Apple Weather →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Osaka+Japan">☁️ 大阪｜查看當地天氣 →</a><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Kyoto+Japan">☁️ 京都｜查看當地天氣 →</a><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Arashiyama,+Kyoto+Japan">☁️ 嵐山｜查看當地天氣 →</a></div>
 
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d2" placeholder="點此輸入……"></textarea></div>
 
@@ -1670,7 +1707,7 @@ Kyoto City Bus + JR Kyoto Line + Osaka Metro Midosuji Line
 <div class="day-header" onclick="toggleDay(this)"><h3>D3｜奈良＋宇治</h3><span class="tag">11/22 日</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6851/135.8048">☁️ 奈良｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.8840/135.7999">☁️ 宇治｜Apple Weather →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Nara+Japan">☁️ 奈良｜查看當地天氣 →</a><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Uji,+Kyoto+Japan">☁️ 宇治｜查看當地天氣 →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d3" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
 <div class="timeline-item"><div class="timeline-time">07:20–08:10</div><div><div class="item-title-row"><div class="item-title">🏨 住一通天閣店 → JR奈良</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Imamiya+Station&destination=JR-Nara+Station">🧭</a></div></div><div class="item-sub">🚆 JR大和路線
@@ -1705,7 +1742,7 @@ JR Nara Line + JR Yamatoji Line + Midosuji Line
 <div class="day-header" onclick="toggleDay(this)"><h3>D4｜大阪</h3><span class="tag">11/23 月</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6937/135.5023">☁️ 大阪｜Apple Weather →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Osaka+Japan">☁️ 大阪｜查看當地天氣 →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d4" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
 <div class="timeline-item"><div class="timeline-time">09:00–09:30</div><div><div class="item-title-row"><div class="item-title">🏨 動物園前站 → 天王寺站 → 谷町四丁目站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Dobutsuen-mae+Station&destination=Tanimachi+4-chome+Station">🧭</a></div></div><div class="item-sub">🚇 Osaka Metro 御堂筋線＋谷町線＋🚶步行
@@ -1738,7 +1775,7 @@ Osaka Metro Midosuji Line
 <div class="day-header" onclick="toggleDay(this)"><h3>D5｜大阪 → 神戶 → 台中</h3><span class="tag">11/24 火</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">☁️ 神戶｜Apple Weather →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Kobe+Japan">☁️ 神戶｜查看當地天氣 →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d5" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
 <div class="timeline-item"><div class="timeline-time">待定</div><div><div class="item-title-row"><div class="item-title">🧳 住一通天閣店 Check-out</div></div><div class="note-list" data-note-key="d5-checkout"></div><button class="add-note" type="button" onclick="addNote('d5-checkout')">＋ 新增備註</button></div></div>
