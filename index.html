@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f5f1e9">
-<title>JAPAN TRAVEL｜神戶・大阪・京都・奈良5日遊</title>
+<title>JAPAN TRAVEL｜神戶・京都・奈良・大阪5日遊</title>
 
 <style>
 *{box-sizing:border-box}
@@ -219,20 +219,52 @@ body.night .now-card{
   font-size:11px;
 }
 
-/* MAP */
+/* MAP — scenic artwork blended gently behind the route */
 .map-box{
-  background:#faf7f1;
+  position:relative;
+  isolation:isolate;
+  background:transparent;
   border-radius:17px;
   overflow:hidden;
   border:1px solid #ebe3d6;
+  box-shadow:inset 0 0 0 5px rgba(255,255,255,.22);
 }
-
+.map-box::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.96;
+  background-image:linear-gradient(rgba(250,246,237,.25),rgba(250,246,237,.34)), var(--map-art);
+  background-size:cover;
+  background-position:center;
+  transform:scale(1.015);
+}
+.map-box::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:linear-gradient(90deg,rgba(250,247,239,.12),rgba(250,247,239,.02) 45%,rgba(250,247,239,.14));
+}
+.map-box[data-day="d1"]{--map-art:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3NjAgNDMwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iI2I3ZDdlNiIvPjxzdG9wIG9mZnNldD0iLjYyIiBzdG9wLWNvbG9yPSIjZjhkN2IwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZTZhNThkIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9InciIHgyPSIwIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iIzc5YjhjYSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzMxNWU3ZCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI3NjAiIGhlaWdodD0iNDMwIiBmaWxsPSJ1cmwoI2EpIi8+PGNpcmNsZSBjeD0iNjAwIiBjeT0iOTUiIHI9IjQzIiBmaWxsPSIjZmZmMGM4IiBvcGFjaXR5PSIuOSIvPjxwYXRoIGQ9Ik0wIDIyMCBRMTIwIDE5MCAyNDAgMjIyIFQ0ODAgMjE1IFQ3NjAgMjI1IFY0MzAgSDBaIiBmaWxsPSIjODI5ZGE1IiBvcGFjaXR5PSIuNiIvPjxwYXRoIGQ9Ik0wIDI3MCBRMTgwIDI0MCAzNDAgMjcwIFQ3NjAgMjYwIFY0MzAgSDBaIiBmaWxsPSJ1cmwoI3cpIi8+PHBhdGggZD0iTTAgMzMwIFExNzAgMzA1IDMzMCAzMzQgVDc2MCAzMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q5ZjBlOSIgc3Ryb2tlLXdpZHRoPSI0IiBvcGFjaXR5PSIuNyIvPjxnIGZpbGw9IiM1MzZkN2MiPjxyZWN0IHg9IjY1IiB5PSIxOTAiIHdpZHRoPSIzNCIgaGVpZ2h0PSI4MCIvPjxyZWN0IHg9IjEwNiIgeT0iMTYwIiB3aWR0aD0iNDUiIGhlaWdodD0iMTEwIi8+PHJlY3QgeD0iMTYwIiB5PSIyMTAiIHdpZHRoPSIyOCIgaGVpZ2h0PSI2MCIvPjxyZWN0IHg9IjYzMCIgeT0iMTc1IiB3aWR0aD0iMzYiIGhlaWdodD0iOTUiLz48cmVjdCB4PSI2NzUiIHk9IjIwNSIgd2lkdGg9IjMwIiBoZWlnaHQ9IjY1Ii8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ5MCAxMzApIj48cmVjdCB4PSIyOCIgeT0iNTQiIHdpZHRoPSIyNiIgaGVpZ2h0PSIxMjgiIHJ4PSIyIiBmaWxsPSIjYzg0ZDQ4Ii8+PHJlY3QgeD0iMTkiIHk9IjUyIiB3aWR0aD0iNDQiIGhlaWdodD0iMTAiIGZpbGw9IiNmMmQwYTAiLz48cGF0aCBkPSJNMTAgNTQgTDMyIDM0IEg1MCBMNzIgNTRaIiBmaWxsPSIjYTk0MzNlIi8+PHBhdGggZD0iTTAgMzYgTDMyIDEyIEw4MiAzNloiIGZpbGw9IiNjNTRlNDgiLz48cGF0aCBkPSJNMjQgMTEgTDMyIDAgTDQwIDExWiIgZmlsbD0iI2E5NDMzZSIvPjxyZWN0IHg9IjMzIiB5PSI4MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE4IiBmaWxsPSIjZjRkN2EyIi8+PHJlY3QgeD0iMzMiIHk9IjExOSIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE4IiBmaWxsPSIjZjRkN2EyIi8+PHJlY3QgeD0iMCIgeT0iMTc2IiB3aWR0aD0iODIiIGhlaWdodD0iOCIgZmlsbD0iI2U5YzE4ZCIvPjwvZz48ZyBmaWxsPSIjZjZlN2QwIiBvcGFjaXR5PSIuODUiPjxwYXRoIGQ9Ik04MCA5MHEzMC0yMiA2MCAwcTIyLTIwIDQyIDB2OUg4MFoiLz48cGF0aCBkPSJNMjcwIDEyMHEyNS0xOCA1MCAwcTE4LTE3IDM0IDB2OEgyNzBaIi8+PC9nPjwvc3ZnPg==");}
+.map-box[data-day="d2"]{--map-art:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3NjAgNDMwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImIiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iI2Q3ZTVlNyIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1ZDhhZCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI3NjAiIGhlaWdodD0iNDMwIiBmaWxsPSJ1cmwoI2IpIi8+PGNpcmNsZSBjeD0iNjIwIiBjeT0iODAiIHI9IjM1IiBmaWxsPSIjZmZmMGM5Ii8+PHBhdGggZD0iTTAgMjQwIEwxMzAgMTMwIDI0MCAyMzIgMzU1IDExMCA0OTAgMjQwIDYxMCAxNDUgNzYwIDIzMCBWNDMwIEgwWiIgZmlsbD0iI2EyYjdhMyIvPjxwYXRoIGQ9Ik0wIDI4MCBMMTQwIDIxMCAyNjAgMjg2IDM5MCAyMDUgNTMwIDI4MCA2NzAgMjA1IDc2MCAyNTUgVjQzMCBIMFoiIGZpbGw9IiM2ZDkzODIiLz48cGF0aCBkPSJNMCAzNjAgUTE5MCAzMzAgMzgwIDM2MCBUNzYwIDM1MCBWNDMwIEgwWiIgZmlsbD0iI2QzYzRhMyIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCAxNzgpIj48cGF0aCBkPSJNLTM1IDI1IEwwIDAgMzUgMjVaIiBmaWxsPSIjYjY0NDM3Ii8+PHJlY3QgeD0iLTI4IiB5PSIyNSIgd2lkdGg9IjU2IiBoZWlnaHQ9IjkiIGZpbGw9IiNlOWM3OGYiLz48cmVjdCB4PSItMjMiIHk9IjM0IiB3aWR0aD0iNDYiIGhlaWdodD0iNjgiIGZpbGw9IiNhODRhM2MiLz48cmVjdCB4PSItMzciIHk9IjQ0IiB3aWR0aD0iNzQiIGhlaWdodD0iOCIgZmlsbD0iI2U5Yzc4ZiIvPjxyZWN0IHg9Ii0zNyIgeT0iOTgiIHdpZHRoPSI3NCIgaGVpZ2h0PSI4IiBmaWxsPSIjZTljNzhmIi8+PHBhdGggZD0iTS00NiA0MyBMMCAxNCA0NiA0M1oiIGZpbGw9IiNiNjQ0MzciLz48cGF0aCBkPSJNLTQ3IDQwIEwwIDEwIDQ3IDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiM3NzNjMzUiIHN0cm9rZS13aWR0aD0iNCIvPjxyZWN0IHg9Ii03IiB5PSI1OCIgd2lkdGg9IjE0IiBoZWlnaHQ9IjQ0IiBmaWxsPSIjNTgzZjMyIi8+PC9nPjxnIGZpbGw9IiNjODRmNDUiPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjI4MCIgcj0iMjciLz48Y2lyY2xlIGN4PSIxMzAiIGN5PSIyNjMiIHI9IjI0Ii8+PGNpcmNsZSBjeD0iMTYwIiBjeT0iMjg0IiByPSIyOCIvPjxjaXJjbGUgY3g9IjU4NSIgY3k9IjI3NSIgcj0iMzAiLz48Y2lyY2xlIGN4PSI2MjAiIGN5PSIyNTYiIHI9IjI2Ii8+PGNpcmNsZSBjeD0iNjUwIiBjeT0iMjgwIiByPSIzMCIvPjwvZz48ZyBmaWxsPSIjZTlhMDc4Ij48Y2lyY2xlIGN4PSIxMTMiIGN5PSIyNzQiIHI9IjEyIi8+PGNpcmNsZSBjeD0iMTQ4IiBjeT0iMjg0IiByPSIxMyIvPjxjaXJjbGUgY3g9IjYwMCIgY3k9IjI3MiIgcj0iMTMiLz48Y2lyY2xlIGN4PSI2MzkiIGN5PSIyODAiIHI9IjE0Ii8+PC9nPjxwYXRoIGQ9Ik0wIDM5MCBRMTkwIDM3MCAzODAgMzk1IFQ3NjAgMzg1IiBmaWxsPSJub25lIiBzdHJva2U9IiNmNGU4ZDQiIHN0cm9rZS13aWR0aD0iNSIgb3BhY2l0eT0iLjciLz48L3N2Zz4=");}
+.map-box[data-day="d3"]{--map-art:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3NjAgNDMwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9InNreSIgeDI9IjAiIHkyPSIxIj48c3RvcCBzdG9wLWNvbG9yPSIjZDllOGQzIi8+PHN0b3Agb2Zmc2V0PSIuNjIiIHN0b3AtY29sb3I9IiNmM2U1YmQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlNGM5OGUiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iaGlsbCIgeDI9IjAiIHkyPSIxIj48c3RvcCBzdG9wLWNvbG9yPSIjNzg5NzdhIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNDY2YjU4Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9Ijc2MCIgaGVpZ2h0PSI0MzAiIGZpbGw9InVybCgjc2t5KSIvPjxjaXJjbGUgY3g9IjYxMCIgY3k9Ijg2IiByPSIzOSIgZmlsbD0iI2ZmZjBiZCIgb3BhY2l0eT0iLjkiLz48cGF0aCBkPSJNMCAyMzAgTDEwNSAxMzUgMjA1IDIyMiAzMjAgMTI2IDQzNSAyMjUgNTY1IDE0MiA2OTAgMjIwIDc2MCAxNzVWNDMwSDBaIiBmaWxsPSIjYTljNWEwIi8+PHBhdGggZD0iTTAgMjgwIEwxMzUgMjA1IDI0NSAyNzUgMzkwIDE5NSA1MjAgMjc4IDY1NSAyMDUgNzYwIDI2MFY0MzBIMFoiIGZpbGw9InVybCgjaGlsbCkiLz48cGF0aCBkPSJNMCAzNTAgUTE3MCAzMjYgMzMwIDM1MiBUNzYwIDM0MFY0MzBIMFoiIGZpbGw9IiNkOGM4OWEiLz48cGF0aCBkPSJNMCAzODYgUTE3MCAzNzAgMzUwIDM5MCBUNzYwIDM3OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjVlZGNmIiBzdHJva2Utd2lkdGg9IjUiIG9wYWNpdHk9Ii44Ii8+CjwhLS0gVG9kYWktamkgR3JlYXQgQnVkZGhhIEhhbGwgc2lsaG91ZXR0ZSAtLT4KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzAwIDE0MikiPjxwYXRoIGQ9Ik0tMTIyIDc2IEwtODYgNDQgLTU4IDI4IDAgMyA1OCAyOCA4NiA0NCAxMjIgNzZaIiBmaWxsPSIjNzY1ZDQzIi8+PHBhdGggZD0iTS0xMTAgNzIgUTAgNDUgMTEwIDcyIEw5NyA4NCBRMCA2MyAtOTcgODRaIiBmaWxsPSIjYzlhNjZhIi8+PHJlY3QgeD0iLTg4IiB5PSI4MiIgd2lkdGg9IjE3NiIgaGVpZ2h0PSIxMDQiIGZpbGw9IiM5ZDgwNTkiLz48cmVjdCB4PSItNzMiIHk9Ijk1IiB3aWR0aD0iMTQ2IiBoZWlnaHQ9IjkxIiBmaWxsPSIjYzVhNTc0Ii8+PHJlY3QgeD0iLTUzIiB5PSIxMDMiIHdpZHRoPSIyNSIgaGVpZ2h0PSI4MyIgZmlsbD0iIzc1NWQ0MyIvPjxyZWN0IHg9IjI4IiB5PSIxMDMiIHdpZHRoPSIyNSIgaGVpZ2h0PSI4MyIgZmlsbD0iIzc1NWQ0MyIvPjxyZWN0IHg9Ii0xMCIgeT0iMTIyIiB3aWR0aD0iMjAiIGhlaWdodD0iNjQiIGZpbGw9IiM3NjVkNDMiLz48cGF0aCBkPSJNLTEzMiA4MCBMMCA0OCAxMzIgODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2U1Yzk4ZCIgc3Ryb2tlLXdpZHRoPSI4Ii8+PHBhdGggZD0iTS04OCA5MiBIODggTS04OCAxMjAgSDg4IE0tODggMTUxIEg4OCIgc3Ryb2tlPSIjZTRjNThiIiBzdHJva2Utd2lkdGg9IjUiLz48L2c+CjwhLS0gZGVlciBzaWxob3VldHRlIGZvcmVncm91bmQgLS0+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU3MCAyODYpIiBmaWxsPSIjOWI3MDQ0IiBzdHJva2U9IiM5YjcwNDQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGVsbGlwc2UgY3g9IjAiIGN5PSIxMiIgcng9IjQzIiByeT0iMjMiLz48cGF0aCBkPSJNMjUgNSBRMzggLTEwIDQ4IC0zMiBMNjEgLTM5IFE2OSAtMzYgNjQgLTI2IEw1NSAtMjAgNTAgM1oiLz48ZWxsaXBzZSBjeD0iNjAiIGN5PSItMzUiIHJ4PSIxNyIgcnk9IjEyIi8+PHBhdGggZD0iTTcwIC00MyBMODMgLTUxIDc2IC0zNyBNNTggLTQ2IEw1MyAtNjEgNjIgLTUwIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjUiLz48cGF0aCBkPSJNLTIzIDI1IEwtMzAgNzAgIC0yMiA3MCAtMTIgMjkgTTE3IDI3IEwyMiA3MCAzMCA3MCAyOSAyNSBNLTIgMjggTC0yIDY4IDYgNjggOCAyNiIgc3Ryb2tlLXdpZHRoPSI5IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTS00MSA3IFEtNjAgLTUgLTU0IC0yMCIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSI2Ii8+PGNpcmNsZSBjeD0iNjUiIGN5PSItMzciIHI9IjIuNSIgZmlsbD0iIzNjMzQyOSIgc3Ryb2tlPSJub25lIi8+PHBhdGggZD0iTTQzIC00NCBMMzMgLTYxIDQyIC01NCA0NyAtNjggNTAgLTUxIE02NSAtNDYgTDc1IC02MiA3MyAtNDkgODUgLTU2IDc3IC00MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOWI3MDQ0IiBzdHJva2Utd2lkdGg9IjQiLz48L2c+CjwhLS0gc21hbGwgdHJlZXMsIGRpc3RpbmN0bHkgZ3JlZW4gcmF0aGVyIHRoYW4gYXV0dW1uIGxlYXZlcyAtLT4KPGc+PHBhdGggZD0iTTk0IDMwMFYyMjAgTTgwIDI2NUw5NCAyMzUgMTEwIDI2NSBNNzUgMjgwTDk0IDI0OCAxMTYgMjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiM1ZTZlNGIiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTE0NSAzMTBWMjQ1IE0xMzEgMjc1TDE0NSAyNTEgMTYwIDI3NSBNMTI5IDI5MUwxNDUgMjY4IDE2MiAyOTEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzVlNmU0YiIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNNjkwIDMwNVYyMjAgTTY3MyAyNjVMNjkwIDIzMyA3MDggMjY1IE02NjkgMjg0TDY5MCAyNTIgNzEyIDI4NCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNWU2ZTRiIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48ZyBmaWxsPSIjZjVlYmNmIiBvcGFjaXR5PSIuOCI+PGNpcmNsZSBjeD0iMjMwIiBjeT0iOTAiIHI9IjMiLz48Y2lyY2xlIGN4PSIyNTAiIGN5PSIxMTEiIHI9IjIiLz48Y2lyY2xlIGN4PSI0NzAiIGN5PSI5NCIgcj0iMyIvPjxjaXJjbGUgY3g9IjUwNSIgY3k9IjExOSIgcj0iMiIvPjwvZz48L3N2Zz4=");}
+.map-box[data-day="d4"]{--map-art:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3NjAgNDMwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImQiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iIzI2M2Q2MyIvPjxzdG9wIG9mZnNldD0iLjY1IiBzdG9wLWNvbG9yPSIjOGM2YTgyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZTZhMTdkIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9Ijc2MCIgaGVpZ2h0PSI0MzAiIGZpbGw9InVybCgjZCkiLz48Y2lyY2xlIGN4PSI2MDAiIGN5PSI4NSIgcj0iMjkiIGZpbGw9IiNmZmUzYjAiIG9wYWNpdHk9Ii44Ii8+PGcgZmlsbD0iIzI4Mzc0YSI+PHBhdGggZD0iTTAgMTgwIEg3MCBWMzIwIEgwWiBNNzggMTQwIEgxNDUgVjMyMCBINzhaIE0xNTQgMjA1IEgyMTAgVjMyMCBIMTU0WiBNNTYwIDE2NSBINjI1IFYzMjAgSDU2MFogTTYzNSAxMjUgSDcwNSBWMzIwIEg2MzVaIE03MTAgMTkwIEg3NjAgVjMyMCBINzEwWiIvPjwvZz48ZyBmaWxsPSIjZmZjYzcwIj48cmVjdCB4PSIxNyIgeT0iMjA1IiB3aWR0aD0iOSIgaGVpZ2h0PSIxNSIvPjxyZWN0IHg9IjQwIiB5PSIyMDUiIHdpZHRoPSI5IiBoZWlnaHQ9IjE1Ii8+PHJlY3QgeD0iOTYiIHk9IjE2NSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE4Ii8+PHJlY3QgeD0iMTIwIiB5PSIxNjUiIHdpZHRoPSIxMSIgaGVpZ2h0PSIxOCIvPjxyZWN0IHg9IjU4MCIgeT0iMTkwIiB3aWR0aD0iMTAiIGhlaWdodD0iMTUiLz48cmVjdCB4PSI2MDIiIHk9IjE5MCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjE1Ii8+PHJlY3QgeD0iNjU4IiB5PSIxNTUiIHdpZHRoPSIxMSIgaGVpZ2h0PSIxNyIvPjxyZWN0IHg9IjY4MSIgeT0iMTU1IiB3aWR0aD0iMTEiIGhlaWdodD0iMTciLz48L2c+PHBhdGggZD0iTTAgMzIwIFExOTAgMzA1IDM4MCAzMjIgVDc2MCAzMTUgVjQzMCBIMFoiIGZpbGw9IiMyNTRlNzAiLz48cGF0aCBkPSJNMCAzNTAgUTE4MCAzMzMgMzYwIDM1NSBUNzYwIDM0NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZThiNmExIiBzdHJva2Utd2lkdGg9IjQiIG9wYWNpdHk9Ii43NSIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCAxMTApIj48cGF0aCBkPSJNLTQ4IDcyIEwwIDQyIDQ4IDcyWiIgZmlsbD0iI2NmNGU0YiIvPjxyZWN0IHg9Ii0zOSIgeT0iNzIiIHdpZHRoPSI3OCIgaGVpZ2h0PSIxMDgiIGZpbGw9IiNmZmYwY2YiLz48cmVjdCB4PSItNDgiIHk9IjkwIiB3aWR0aD0iOTYiIGhlaWdodD0iMTIiIGZpbGw9IiNkOTRjNGIiLz48cmVjdCB4PSItNDgiIHk9IjEyNiIgd2lkdGg9Ijk2IiBoZWlnaHQ9IjEyIiBmaWxsPSIjZDk0YzRiIi8+PHJlY3QgeD0iLTEyIiB5PSI4MiIgd2lkdGg9IjI0IiBoZWlnaHQ9Ijk4IiBmaWxsPSIjNGQ1NjZjIi8+PHBhdGggZD0iTS01OCA3MCBMMCAzNSA1OCA3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRjNDdjIiBzdHJva2Utd2lkdGg9IjYiLz48L2c+PGcgZmlsbD0iI2ZmZGY4ZCI+PGNpcmNsZSBjeD0iMjM1IiBjeT0iMTU1IiByPSI2Ii8+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMTgwIiByPSI1Ii8+PGNpcmNsZSBjeD0iNDkwIiBjeT0iMTYwIiByPSI1Ii8+PGNpcmNsZSBjeD0iNTEwIiBjeT0iMTg1IiByPSI2Ii8+PGNpcmNsZSBjeD0iMTkwIiBjeT0iMjQ1IiByPSI1Ii8+PGNpcmNsZSBjeD0iNTM1IiBjeT0iMjM1IiByPSI1Ii8+PC9nPjxwYXRoIGQ9Ik0xMDAgMzY1IEw2NjAgMzY1IiBzdHJva2U9IiNmNmQ4YTIiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iLjY1Ii8+PC9zdmc+");}
+.map-box[data-day="d5"]{--map-art:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3NjAgNDMwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImUiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iI2I3ZDJlNSIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjZjRjNWEwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZTlhMTdjIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9Ijc2MCIgaGVpZ2h0PSI0MzAiIGZpbGw9InVybCgjZSkiLz48Y2lyY2xlIGN4PSIxNjAiIGN5PSIxMzUiIHI9IjQ3IiBmaWxsPSIjZmZmMGM5Ii8+PHBhdGggZD0iTTAgMjQ1IFExNzAgMjIwIDM0MCAyNDUgVDc2MCAyMzggVjQzMCBIMFoiIGZpbGw9IiM3ODk4YTciLz48cGF0aCBkPSJNMCAyODUgUTE4MCAyNjUgMzYwIDI5MCBUNzYwIDI4MCBWNDMwIEgwWiIgZmlsbD0iIzQ1NmU4NiIvPjxwYXRoIGQ9Ik0wIDM1NSBRMTgwIDMzMCAzNjAgMzYwIFQ3NjAgMzQ1IiBmaWxsPSJub25lIiBzdHJva2U9IiNkY2VjZjAiIHN0cm9rZS13aWR0aD0iNSIgb3BhY2l0eT0iLjgiLz48ZyBmaWxsPSIjNWQ2ZTdjIj48cmVjdCB4PSI2MCIgeT0iMjMwIiB3aWR0aD0iNDUiIGhlaWdodD0iODUiLz48cmVjdCB4PSIxMTIiIHk9IjIwNSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjExMCIvPjxyZWN0IHg9IjE2MCIgeT0iMjQ1IiB3aWR0aD0iMzgiIGhlaWdodD0iNzAiLz48cmVjdCB4PSI1NTAiIHk9IjIyMCIgd2lkdGg9IjQ2IiBoZWlnaHQ9Ijk1Ii8+PHJlY3QgeD0iNjAzIiB5PSIxOTAiIHdpZHRoPSI1MiIgaGVpZ2h0PSIxMjUiLz48cmVjdCB4PSI2NjIiIHk9IjIzNSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjgwIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM1MCAxMzApIiBmaWxsPSIjZjhmNGU5Ij48cGF0aCBkPSJNLTE1MCA0MiBMLTE1IDI3IDMyIC03IDUwIC03IDMwIDI3IDE0MiA0MCAxNjUgNTMgMzAgNTIgMTIgODIgLTUgODIgMCA1MiAtMTUwIDU1WiIvPjxwYXRoIGQ9Ik0tMTUgMjggTC00MCA1IC0yNyAyIDUgMjdaIi8+PHBhdGggZD0iTTI4IDI4IEw1OCA5IDY5IDEyIDQ4IDMyWiIvPjwvZz48cGF0aCBkPSJNMCA0MDAgUTE4MCAzODAgMzYwIDQwMCBUNzYwIDM5MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjhlOWQ1IiBzdHJva2Utd2lkdGg9IjQiIG9wYWNpdHk9Ii42NSIvPjxnIGZpbGw9IiNmNGU1Y2MiIG9wYWNpdHk9Ii43NSI+PHBhdGggZD0iTTQzMCA5MHEyNC0xOCA0OCAwcTE4LTE2IDM0IDB2OEg0MzBaIi8+PHBhdGggZD0iTTUyMCAxMjBxMjItMTcgNDQgMHExNi0xNSAzMCAwdjhINTIwWiIvPjwvZz48L3N2Zz4=");}
 body.night .map-box{
   background:#30312e;
   border-color:#4c4d47;
+  box-shadow:inset 0 0 0 5px rgba(255,255,255,.025);
 }
+body.night .map-box::before{opacity:.82;filter:brightness(.60) saturate(.90);}
+body.night .map-box::after{background:linear-gradient(90deg,rgba(25,29,34,.20),rgba(25,29,34,.02) 45%,rgba(25,29,34,.22));}
 
 .map-box svg{
+  position:relative;
+  z-index:1;
   display:block;
   width:100%;
   height:auto;
@@ -555,13 +587,6 @@ body.night .map-tab.active{
   border-bottom:0;
 }
 
-/* D1 arrival: a little extra breathing room on mobile */
-.timeline-item.arrival-item{margin-bottom:10px;padding-bottom:18px}
-.timeline-item.arrival-item .timeline-time::after{
-  content:""; position:absolute; left:10px; top:19px; bottom:-28px; width:2px;
-  border:0; background:repeating-linear-gradient(to bottom,currentColor 0 4px,transparent 4px 8px); opacity:.45;
-}
-
 .timeline-time{
   font-size:13px;
   font-weight:800;
@@ -584,10 +609,7 @@ body.night .map-tab.active{
   z-index:2;
 }
 
-.timeline-item:not(:last-child):not(.arrival-item) .timeline-time::after{
-  content:""; position:absolute; left:10px; top:19px; bottom:-22px; width:2px;
-  border:0; background:repeating-linear-gradient(to bottom,currentColor 0 4px,transparent 4px 8px); opacity:.35;
-}
+/* Removed the solid vertical connector beneath each timeline time. */
 
 .item-title{
   font-weight:700;
@@ -963,41 +985,6 @@ footer{
     font-size:13px;
   }
 
-  /* Mobile itinerary: put the time on its own line, then leave a clear gap
-     before the indented activity, matching the requested 16:00–17:00 layout. */
-  .timeline-item{
-    grid-template-columns:minmax(0, 1fr);
-    gap:0;
-    padding:14px 0;
-  }
-
-  .timeline-time{
-    margin-bottom:12px;
-    white-space:normal;
-  }
-
-  .timeline-item > div:nth-child(2){
-    min-width:0;
-    padding-left:28px;
-  }
-
-  .item-title-row{
-    flex-wrap:wrap;
-    align-items:flex-start;
-    gap:4px 8px;
-  }
-
-  .item-title-row .item-title{
-    flex:1 1 100%;
-    min-width:0;
-    overflow-wrap:anywhere;
-  }
-
-  .item-title-row .item-links{
-    margin-top:0;
-    justify-content:flex-start;
-  }
-
   .map-place{
     font-size:11px;
   }
@@ -1032,43 +1019,27 @@ footer{
     padding:13px;
   }
 
-  /* 手機版行程：時間固定獨立一行，下一行縮排顯示行程，並加大字體 */
   .timeline-item{
-    grid-template-columns:minmax(0, 1fr) !important;
-    gap:0 !important;
-    padding:16px 0;
+    grid-template-columns:100px 1fr;
+    gap:10px;
   }
 
   .timeline-time{
-    display:block;
-    font-size:16px !important;
-    line-height:1.6;
-    padding-left:28px;
-    margin-bottom:14px !important;
-    white-space:normal;
-  }
-
-  .timeline-item > div:nth-child(2){
-    min-width:0;
-    padding-left:28px !important;
+    font-size:12px;
+    padding-left:25px;
+    white-space:nowrap;
   }
 
   .item-title{
-    font-size:16px !important;
-    line-height:1.55;
+    font-size:13px;
   }
 
   .item-title-row{
     gap:6px;
-    flex-wrap:wrap;
   }
 
   .item-title-row .item-links{
-    flex:1 0 100%;
-    width:100%;
-    max-width:100%;
-    justify-content:flex-start;
-    margin-top:3px;
+    max-width:42%;
   }
 
   .item-sub{
@@ -1177,54 +1148,6 @@ footer{
 @media(max-width:520px){.shopping-form{grid-template-columns:1fr}.shopping-form textarea,.shopping-form .full{grid-column:auto}.shopping-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.shopping-item-body{padding:9px}.main-tabs{top:4px}}
 @media(min-width:700px){.shopping-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
-
-/* Final mobile timeline layout: time + map icon on the first row, activity on the next row */
-@media (max-width:650px){
-  .timeline-item{
-    position:relative !important;
-    grid-template-columns:minmax(0,1fr) !important;
-    gap:0 !important;
-    padding:14px 0 16px !important;
-  }
-  .timeline-time{
-    display:block !important;
-    font-size:16px !important;
-    line-height:1.5 !important;
-    padding-left:28px !important;
-    padding-right:42px !important;
-    margin:0 0 8px !important;
-    white-space:normal !important;
-  }
-  .timeline-item > div:nth-child(2){
-    min-width:0 !important;
-    padding-left:28px !important;
-  }
-  .item-title-row{
-    display:block !important;
-    position:static !important;
-  }
-  .item-title-row .item-title{
-    display:block !important;
-    width:100% !important;
-    font-size:16px !important;
-    line-height:1.55 !important;
-    overflow-wrap:anywhere !important;
-  }
-  .item-title-row .item-links{
-    position:absolute !important;
-    top:14px !important;
-    right:0 !important;
-    display:flex !important;
-    width:auto !important;
-    max-width:42px !important;
-    margin:0 !important;
-    justify-content:flex-end !important;
-    flex:0 0 auto !important;
-  }
-  .item-title-row .map-link{
-    font-size:16px !important;
-  }
-}
 </style>
 
 </head>
@@ -1304,7 +1227,7 @@ onclick="toggleTheme()"
     <button class="map-tab" data-day="d5" onclick="switchMap('d5')">D5</button>
   </div>
 
-  <div class="map-box">
+  <div class="map-box" data-day="d1">
 
 <svg id="svg-d1" class="day-map active" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
 
@@ -1493,10 +1416,10 @@ onclick="toggleTheme()"
 <div class="day-header" onclick="toggleDay(this)"><h3>D1｜台中 → 神戶 → 大阪</h3><span class="tag">11/20 金</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Kobe+Japan">☁️ 神戶｜查看當地天氣 →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">☁️ 神戶｜Apple Weather →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d1" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
-<div class="timeline-item arrival-item"><div class="timeline-time">12:30</div><div><div class="item-title-row"><div class="item-title">✈️ 抵達神戶機場 Kobe Airport（UKB）</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍</a></div></div><div class="item-sub">入境＋行李：約 30–45 分鐘</div></div></div>
+<div class="timeline-item"><div class="timeline-time">12:30</div><div><div class="item-title-row"><div class="item-title">✈️ 抵達神戶機場 Kobe Airport（UKB）</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kobe+Airport">📍</a></div></div><div class="item-sub">入境＋行李：約 30–45 分鐘</div></div></div>
 <div class="timeline-item"><div class="timeline-time">12:45–13:10</div><div><div class="item-title-row"><div class="item-title">神戶機場 → 三宮</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kobe+Airport&destination=Sannomiya+Station+Kobe">🧭</a></div></div><div class="item-sub">🚃 Port Liner
 Port Island Line
 約 18 分鐘｜💳 ¥340</div></div></div>
@@ -1526,7 +1449,7 @@ JR Kobe Line + JR Osaka Loop Line
 <div class="day-header" onclick="toggleDay(this)"><h3>D2｜京都＋嵐山</h3><span class="tag">11/21 土</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Osaka+Japan">☁️ 大阪｜查看當地天氣 →</a><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Kyoto+Japan">☁️ 京都｜查看當地天氣 →</a><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Arashiyama,+Kyoto+Japan">☁️ 嵐山｜查看當地天氣 →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6937/135.5023">☁️ 大阪｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/35.0116/135.7681">☁️ 京都｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/35.0095/135.6670">☁️ 嵐山｜Apple Weather →</a></div>
 
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d2" placeholder="點此輸入……"></textarea></div>
 
@@ -1552,7 +1475,7 @@ Osaka Metro Sakaisuji Line + Keihan Main Line
 <div class="item-title">⛩️ 伏見稻荷大社</div>
 <div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&amp;query=Fushimi+Inari+Taisha+Kyoto">📍</a></div>
 </div>
-<div class="item-sub">千本鳥居</div>
+<div class="item-sub">千本鳥居｜參拜與拍照</div>
 </div>
 </div>
 
@@ -1707,7 +1630,7 @@ Kyoto City Bus + JR Kyoto Line + Osaka Metro Midosuji Line
 <div class="day-header" onclick="toggleDay(this)"><h3>D3｜奈良＋宇治</h3><span class="tag">11/22 日</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Nara+Japan">☁️ 奈良｜查看當地天氣 →</a><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Uji,+Kyoto+Japan">☁️ 宇治｜查看當地天氣 →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6851/135.8048">☁️ 奈良｜Apple Weather →</a><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.8840/135.7999">☁️ 宇治｜Apple Weather →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d3" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
 <div class="timeline-item"><div class="timeline-time">07:20–08:10</div><div><div class="item-title-row"><div class="item-title">🏨 住一通天閣店 → JR奈良</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Imamiya+Station&destination=JR-Nara+Station">🧭</a></div></div><div class="item-sub">🚆 JR大和路線
@@ -1742,7 +1665,7 @@ JR Nara Line + JR Yamatoji Line + Midosuji Line
 <div class="day-header" onclick="toggleDay(this)"><h3>D4｜大阪</h3><span class="tag">11/23 月</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Osaka+Japan">☁️ 大阪｜查看當地天氣 →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6937/135.5023">☁️ 大阪｜Apple Weather →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d4" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
 <div class="timeline-item"><div class="timeline-time">09:00–09:30</div><div><div class="item-title-row"><div class="item-title">🏨 動物園前站 → 天王寺站 → 谷町四丁目站</div><div class="item-links"><a class="map-link" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Dobutsuen-mae+Station&destination=Tanimachi+4-chome+Station">🧭</a></div></div><div class="item-sub">🚇 Osaka Metro 御堂筋線＋谷町線＋🚶步行
@@ -1775,7 +1698,7 @@ Osaka Metro Midosuji Line
 <div class="day-header" onclick="toggleDay(this)"><h3>D5｜大阪 → 神戶 → 台中</h3><span class="tag">11/24 火</span></div>
 <div class="day-content">
 
-<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=weather+in+Kobe+Japan">☁️ 神戶｜查看當地天氣 →</a></div>
+<div class="weather-box"><div class="weather-title">🌤️ 今日天氣</div><a class="weather-link" target="_blank" href="https://weather.apple.com/en-US/weather-forecast/34.6901/135.1955">☁️ 神戶｜Apple Weather →</a></div>
 <div class="day-note"><div class="day-note-label">💡 今日注意事項</div><textarea id="note-d5" placeholder="點此輸入……"></textarea></div>
 <div class="timeline">
 <div class="timeline-item"><div class="timeline-time">待定</div><div><div class="item-title-row"><div class="item-title">🧳 住一通天閣店 Check-out</div></div><div class="note-list" data-note-key="d5-checkout"></div><button class="add-note" type="button" onclick="addNote('d5-checkout')">＋ 新增備註</button></div></div>
@@ -1888,7 +1811,7 @@ Port Island Line
       <summary>＋ 新增圖片</summary>
       <form class="shopping-form" id="shoppingForm">
         <div class="full"><label for="shopImage">商品圖片</label><div class="shopping-upload"><input id="shopImage" type="file" accept="image/*"><span class="small">支援手機／電腦圖片，單張最多 2 MB。</span></div><div id="shoppingImagePreview" class="shopping-preview" style="display:none"></div></div>
-        <div><label for="shopCompanion">旅伴</label><select id="shopCompanion" required><option value="Celina">Celina</option><option value="Magic">Magic</option></select></div>
+        <div><label for="shopCompanion">旅伴／分類</label><input id="shopCompanion" type="text" placeholder="例如：Ceina/ Magic" /></div>
         <div><label for="shopNote">備註（可留空）</label><textarea id="shopNote" placeholder="例如：顏色、尺寸、價格或購買地點……"></textarea></div>
         <button class="btn primary full" type="submit" id="shoppingSubmit">＋ 加入購物清單</button>
         <button class="btn full" type="button" id="shoppingCancelEdit" style="display:none" onclick="cancelShoppingEdit()">取消編輯</button>
@@ -1930,6 +1853,9 @@ function toggleDay(header){
 ========================= */
 
 function switchMap(day){
+
+  const mapBox = document.querySelector(".map-box");
+  if(mapBox) mapBox.setAttribute("data-day", day);
 
   document.querySelectorAll(".map-box .day-map").forEach(function(map){
 
@@ -2561,16 +2487,6 @@ let people =
     ) || "[]"
   );
 
-// Keep the two trip companions available in both the people list and TODO owner dropdown.
-// Preserve any additional names the user has already added.
-if(!Array.isArray(people)) people = [];
-["Celina", "Magic"].forEach(function(name){
-  if(!people.some(function(p){ return String(p).trim().toLowerCase() === name.toLowerCase(); })){
-    people.push(name);
-  }
-});
-localStorage.setItem("kobe_people", JSON.stringify(people));
-
 
 function savePeople(){
 
@@ -3000,9 +2916,9 @@ var shoppingFilter='全部';
 function renderShopping(){
   var list=document.getElementById('shoppingList');if(!list)return;
   var filters=document.getElementById('shoppingFilters');
-  var allFilters=['全部','Celina','Magic'];
-  if(filters){if(allFilters.indexOf(shoppingFilter)<0)shoppingFilter='全部';filters.innerHTML=allFilters.map(function(name){return '<button type="button" class="'+(shoppingFilter===name?'active':'')+'" onclick="setShoppingFilter('+JSON.stringify(name).replace(/</g,'\\u003c')+')">'+escapeHtml(name)+'</button>';}).join('');filters.style.display=shoppingItems.length?'flex':'none';}
-  var shown=shoppingItems.filter(function(x){var owner=(x.companion||'').trim();if(/^celina$/i.test(owner)||/^ceina$/i.test(owner))owner='Celina';else if(/^magic$/i.test(owner))owner='Magic';return shoppingFilter==='全部'||owner===shoppingFilter;});
+  var companions=Array.from(new Set(shoppingItems.map(function(x){return (x.companion||'').trim()||'未分類';})));
+  if(filters){var allFilters=['全部'].concat(companions);if(allFilters.indexOf(shoppingFilter)<0)shoppingFilter='全部';filters.innerHTML=allFilters.map(function(name){return '<button type="button" class="'+(shoppingFilter===name?'active':'')+'" onclick="setShoppingFilter('+JSON.stringify(name).replace(/</g,'\\u003c')+')">'+escapeHtml(name)+'</button>';}).join('');filters.style.display=shoppingItems.length?'flex':'none';}
+  var shown=shoppingItems.filter(function(x){return shoppingFilter==='全部'||((x.companion||'').trim()||'未分類')===shoppingFilter;});
   if(!shown.length){list.innerHTML='<div class="shopping-empty">🛍️ '+(shoppingItems.length?'這個分類還沒有圖片。':'還沒有圖片，按「新增圖片」開始整理想買的商品吧！')+'</div>';return;}
   list.innerHTML=shown.map(function(x){
     var image=x.image?'<img class="shopping-image" src="'+x.image+'" alt="購物圖片">':'<div class="shopping-image-placeholder">🛍️</div>';
@@ -3028,8 +2944,7 @@ document.getElementById('shoppingForm').addEventListener('submit',function(e){
   var old=shoppingItems.find(function(x){return x.id===shoppingEditId;});
   var image=shoppingImageData||(old?old.image:'');
   if(!image){alert('請先上傳一張商品圖片。');return;}
-  var owner=document.getElementById('shopCompanion').value;
-  var item={id:shoppingEditId||Date.now(),image:image,note:document.getElementById('shopNote').value.trim(),companion:owner==='Magic'?'Magic':'Celina'};
+  var item={id:shoppingEditId||Date.now(),image:image,note:document.getElementById('shopNote').value.trim(),companion:document.getElementById('shopCompanion').value.trim()};
   if(shoppingEditId){shoppingItems=shoppingItems.map(function(x){return x.id===shoppingEditId?item:x;});}else{shoppingItems.unshift(item);}
   saveShopping();renderShopping();this.reset();shoppingImageData='';updateShoppingPreview();shoppingEditId=null;document.getElementById('shoppingSubmit').textContent='＋ 加入購物清單';document.getElementById('shoppingCancelEdit').style.display='none';
 });
